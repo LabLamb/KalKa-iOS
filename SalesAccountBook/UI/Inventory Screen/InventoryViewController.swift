@@ -11,6 +11,7 @@ class InventoryViewController: UITableViewController {
     init() {
         self.inventory = Inventory()
         super.init(nibName: nil, bundle: nil)
+        self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
     }
 
     required init?(coder: NSCoder) {
@@ -23,5 +24,17 @@ class InventoryViewController: UITableViewController {
     }
     
     @objc private func addMerch() {}
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Clicked on \(indexPath)")
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "InventoryCell") as! InventoryCell
+        let data = self.inventory.merchs[indexPath.row]
+        
+        return cell
+    }
     
 }
