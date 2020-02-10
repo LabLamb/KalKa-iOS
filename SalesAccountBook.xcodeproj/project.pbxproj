@@ -1,0 +1,731 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */; };
+		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
+		D2C7D85423F13333004C66B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85323F13333004C66B4 /* SceneDelegate.swift */; };
+		D2C7D85623F13333004C66B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85523F13333004C66B4 /* ViewController.swift */; };
+		D2C7D85923F13333004C66B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85723F13333004C66B4 /* Main.storyboard */; };
+		D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */; };
+		D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85D23F13336004C66B4 /* Assets.xcassets */; };
+		D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */; };
+		D2C7D86C23F13336004C66B4 /* SalesAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */; };
+		D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */; };
+		DE607B1EBB0023BEE607DE7C /* libPods-SalesAccountBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB031935C5243BD3CFD3F56 /* libPods-SalesAccountBook.a */; };
+		EA24C96DF2295B0F7B357361 /* libPods-SalesAccountBookUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2C7D86823F13336004C66B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2C7D84623F13333004C66B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2C7D84D23F13333004C66B4;
+			remoteInfo = SalesAccountBook;
+		};
+		D2C7D87323F13336004C66B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2C7D84623F13333004C66B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2C7D84D23F13333004C66B4;
+			remoteInfo = SalesAccountBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		031FB57617AEE24DBAB0F10B /* Pods-SalesAccountBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookUITests/Pods-SalesAccountBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0DB031935C5243BD3CFD3F56 /* libPods-SalesAccountBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AC3AEBC6D61BEC54F84BFA /* Pods-SalesAccountBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookTests.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookTests/Pods-SalesAccountBookTests.release.xcconfig"; sourceTree = "<group>"; };
+		74E8514E1DC173456249207E /* Pods-SalesAccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.release.xcconfig"; sourceTree = "<group>"; };
+		89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
+		B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C7D85123F13333004C66B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2C7D85323F13333004C66B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D2C7D85523F13333004C66B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2C7D85823F13333004C66B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SalesAccountBook.xcdatamodel; sourceTree = "<group>"; };
+		D2C7D85D23F13336004C66B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2C7D86023F13336004C66B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2C7D86223F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2C7D86723F13336004C66B4 /* SalesAccountBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesAccountBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesAccountBookTests.swift; sourceTree = "<group>"; };
+		D2C7D86D23F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2C7D87223F13336004C66B4 /* SalesAccountBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesAccountBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesAccountBookUITests.swift; sourceTree = "<group>"; };
+		D2C7D87823F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F396CF4E4699A3A53863C9AE /* Pods-SalesAccountBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookUITests.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookUITests/Pods-SalesAccountBookUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F550AB1B838D36EE699453AF /* Pods-SalesAccountBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookTests.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookTests/Pods-SalesAccountBookTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2C7D84B23F13333004C66B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE607B1EBB0023BEE607DE7C /* libPods-SalesAccountBook.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D86423F13336004C66B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D86F23F13336004C66B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA24C96DF2295B0F7B357361 /* libPods-SalesAccountBookUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		128B9261D5A56EB5520969EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0DB031935C5243BD3CFD3F56 /* libPods-SalesAccountBook.a */,
+				B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */,
+				89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2C7D84523F13333004C66B4 = {
+			isa = PBXGroup;
+			children = (
+				D2C7D85023F13333004C66B4 /* SalesAccountBook */,
+				D2C7D86A23F13336004C66B4 /* SalesAccountBookTests */,
+				D2C7D87523F13336004C66B4 /* SalesAccountBookUITests */,
+				D2C7D84F23F13333004C66B4 /* Products */,
+				F9D5A3030A454CFDF3331C7B /* Pods */,
+				128B9261D5A56EB5520969EE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D2C7D84F23F13333004C66B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */,
+				D2C7D86723F13336004C66B4 /* SalesAccountBookTests.xctest */,
+				D2C7D87223F13336004C66B4 /* SalesAccountBookUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2C7D85023F13333004C66B4 /* SalesAccountBook */ = {
+			isa = PBXGroup;
+			children = (
+				D2C7D85123F13333004C66B4 /* AppDelegate.swift */,
+				D2C7D85323F13333004C66B4 /* SceneDelegate.swift */,
+				D2C7D85523F13333004C66B4 /* ViewController.swift */,
+				D2C7D85723F13333004C66B4 /* Main.storyboard */,
+				D2C7D85D23F13336004C66B4 /* Assets.xcassets */,
+				D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */,
+				D2C7D86223F13336004C66B4 /* Info.plist */,
+				D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */,
+			);
+			path = SalesAccountBook;
+			sourceTree = "<group>";
+		};
+		D2C7D86A23F13336004C66B4 /* SalesAccountBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */,
+				D2C7D86D23F13336004C66B4 /* Info.plist */,
+			);
+			path = SalesAccountBookTests;
+			sourceTree = "<group>";
+		};
+		D2C7D87523F13336004C66B4 /* SalesAccountBookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */,
+				D2C7D87823F13336004C66B4 /* Info.plist */,
+			);
+			path = SalesAccountBookUITests;
+			sourceTree = "<group>";
+		};
+		F9D5A3030A454CFDF3331C7B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */,
+				74E8514E1DC173456249207E /* Pods-SalesAccountBook.release.xcconfig */,
+				F550AB1B838D36EE699453AF /* Pods-SalesAccountBookTests.debug.xcconfig */,
+				57AC3AEBC6D61BEC54F84BFA /* Pods-SalesAccountBookTests.release.xcconfig */,
+				031FB57617AEE24DBAB0F10B /* Pods-SalesAccountBookUITests.debug.xcconfig */,
+				F396CF4E4699A3A53863C9AE /* Pods-SalesAccountBookUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2C7D84D23F13333004C66B4 /* SalesAccountBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2C7D87B23F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBook" */;
+			buildPhases = (
+				78EAA2A4E14533D425E6D0ED /* [CP] Check Pods Manifest.lock */,
+				D2C7D84A23F13333004C66B4 /* Sources */,
+				D2C7D84B23F13333004C66B4 /* Frameworks */,
+				D2C7D84C23F13333004C66B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SalesAccountBook;
+			productName = SalesAccountBook;
+			productReference = D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2C7D86623F13336004C66B4 /* SalesAccountBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2C7D87E23F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBookTests" */;
+			buildPhases = (
+				EAF9B2AD13EF48347FA0966C /* [CP] Check Pods Manifest.lock */,
+				D2C7D86323F13336004C66B4 /* Sources */,
+				D2C7D86423F13336004C66B4 /* Frameworks */,
+				D2C7D86523F13336004C66B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2C7D86923F13336004C66B4 /* PBXTargetDependency */,
+			);
+			name = SalesAccountBookTests;
+			productName = SalesAccountBookTests;
+			productReference = D2C7D86723F13336004C66B4 /* SalesAccountBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D2C7D87123F13336004C66B4 /* SalesAccountBookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2C7D88123F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBookUITests" */;
+			buildPhases = (
+				334A94DC12F4F3864883E8FE /* [CP] Check Pods Manifest.lock */,
+				D2C7D86E23F13336004C66B4 /* Sources */,
+				D2C7D86F23F13336004C66B4 /* Frameworks */,
+				D2C7D87023F13336004C66B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2C7D87423F13336004C66B4 /* PBXTargetDependency */,
+			);
+			name = SalesAccountBookUITests;
+			productName = SalesAccountBookUITests;
+			productReference = D2C7D87223F13336004C66B4 /* SalesAccountBookUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2C7D84623F13333004C66B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = LabLambWorks;
+				TargetAttributes = {
+					D2C7D84D23F13333004C66B4 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					D2C7D86623F13336004C66B4 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = D2C7D84D23F13333004C66B4;
+					};
+					D2C7D87123F13336004C66B4 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = D2C7D84D23F13333004C66B4;
+					};
+				};
+			};
+			buildConfigurationList = D2C7D84923F13333004C66B4 /* Build configuration list for PBXProject "SalesAccountBook" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2C7D84523F13333004C66B4;
+			productRefGroup = D2C7D84F23F13333004C66B4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2C7D84D23F13333004C66B4 /* SalesAccountBook */,
+				D2C7D86623F13336004C66B4 /* SalesAccountBookTests */,
+				D2C7D87123F13336004C66B4 /* SalesAccountBookUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2C7D84C23F13333004C66B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */,
+				D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */,
+				D2C7D85923F13333004C66B4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D86523F13336004C66B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D87023F13336004C66B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		334A94DC12F4F3864883E8FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalesAccountBookUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78EAA2A4E14533D425E6D0ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalesAccountBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAF9B2AD13EF48347FA0966C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalesAccountBookTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2C7D84A23F13333004C66B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C7D85623F13333004C66B4 /* ViewController.swift in Sources */,
+				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
+				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
+				D2C7D85423F13333004C66B4 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D86323F13336004C66B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C7D86C23F13336004C66B4 /* SalesAccountBookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2C7D86E23F13336004C66B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2C7D86923F13336004C66B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2C7D84D23F13333004C66B4 /* SalesAccountBook */;
+			targetProxy = D2C7D86823F13336004C66B4 /* PBXContainerItemProxy */;
+		};
+		D2C7D87423F13336004C66B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2C7D84D23F13333004C66B4 /* SalesAccountBook */;
+			targetProxy = D2C7D87323F13336004C66B4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2C7D85723F13333004C66B4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2C7D85823F13333004C66B4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2C7D86023F13336004C66B4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2C7D87923F13336004C66B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2C7D87A23F13336004C66B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2C7D87C23F13336004C66B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2C7D87D23F13336004C66B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74E8514E1DC173456249207E /* Pods-SalesAccountBook.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D2C7D87F23F13336004C66B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F550AB1B838D36EE699453AF /* Pods-SalesAccountBookTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalesAccountBook.app/SalesAccountBook";
+			};
+			name = Debug;
+		};
+		D2C7D88023F13336004C66B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57AC3AEBC6D61BEC54F84BFA /* Pods-SalesAccountBookTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalesAccountBook.app/SalesAccountBook";
+			};
+			name = Release;
+		};
+		D2C7D88223F13336004C66B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 031FB57617AEE24DBAB0F10B /* Pods-SalesAccountBookUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SalesAccountBook;
+			};
+			name = Debug;
+		};
+		D2C7D88323F13336004C66B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F396CF4E4699A3A53863C9AE /* Pods-SalesAccountBookUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5APGXQS5S8;
+				INFOPLIST_FILE = SalesAccountBookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = LabLambWorks.SalesAccountBookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SalesAccountBook;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2C7D84923F13333004C66B4 /* Build configuration list for PBXProject "SalesAccountBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2C7D87923F13336004C66B4 /* Debug */,
+				D2C7D87A23F13336004C66B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2C7D87B23F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2C7D87C23F13336004C66B4 /* Debug */,
+				D2C7D87D23F13336004C66B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2C7D87E23F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2C7D87F23F13336004C66B4 /* Debug */,
+				D2C7D88023F13336004C66B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2C7D88123F13336004C66B4 /* Build configuration list for PBXNativeTarget "SalesAccountBookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2C7D88223F13336004C66B4 /* Debug */,
+				D2C7D88323F13336004C66B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */,
+			);
+			currentVersion = D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */;
+			path = SalesAccountBook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D2C7D84623F13333004C66B4 /* Project object */;
+}

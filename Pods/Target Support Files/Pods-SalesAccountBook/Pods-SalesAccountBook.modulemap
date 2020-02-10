@@ -1,0 +1,6 @@
+module Pods_SalesAccountBook {
+  umbrella header "Pods-SalesAccountBook-umbrella.h"
+
+  export *
+  module * { export * }
+}
