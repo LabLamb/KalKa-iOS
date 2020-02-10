@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
+		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
+		D2A559FC23F157DF00022E9A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FB23F157DF00022E9A /* Merch.swift */; };
+		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
 		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
 		D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */; };
 		D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85D23F13336004C66B4 /* Assets.xcassets */; };
@@ -45,6 +48,12 @@
 		8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 		B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D2A559F823F152AD00022E9A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D2A559F923F152C100022E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D2A559FB23F157DF00022E9A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
+		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D85123F13333004C66B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SalesAccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -115,6 +124,31 @@
 			path = "Inventory Screen";
 			sourceTree = "<group>";
 		};
+		D2A559FD23F157E700022E9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2A559FE23F157ED00022E9A /* Raw Model */,
+				D2A55A0123F1584C00022E9A /* View Model */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2A559FE23F157ED00022E9A /* Raw Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2A559FB23F157DF00022E9A /* Merch.swift */,
+			);
+			path = "Raw Model";
+			sourceTree = "<group>";
+		};
+		D2A55A0123F1584C00022E9A /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2A559FF23F1584800022E9A /* Inventory.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		D2C7D84523F13333004C66B4 = {
 			isa = PBXGroup;
 			children = (
@@ -141,11 +175,13 @@
 			isa = PBXGroup;
 			children = (
 				D2C7D85123F13333004C66B4 /* AppDelegate.swift */,
+				D2A559FD23F157E700022E9A /* Model */,
 				D22AF8CA23F144B100186AA4 /* UI */,
 				D2C7D85D23F13336004C66B4 /* Assets.xcassets */,
 				D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */,
 				D2C7D86223F13336004C66B4 /* Info.plist */,
 				D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */,
+				D22AF8D023F14FE700186AA4 /* Localizable.strings */,
 			);
 			path = SalesAccountBook;
 			sourceTree = "<group>";
@@ -270,6 +306,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
+				"zh-Hans",
+				"zh-HK",
 			);
 			mainGroup = D2C7D84523F13333004C66B4;
 			productRefGroup = D2C7D84F23F13333004C66B4 /* Products */;
@@ -289,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */,
+				D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */,
 				D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +424,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
+				D2A559FC23F157DF00022E9A /* Merch.swift in Sources */,
+				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 			);
@@ -421,6 +463,17 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D22AF8D023F14FE700186AA4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D22AF8CF23F14FE700186AA4 /* en */,
+				D2A559F823F152AD00022E9A /* zh-Hant */,
+				D2A559F923F152C100022E9A /* zh-Hans */,
+				D2A559FA23F155A200022E9A /* zh-HK */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -436,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -496,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

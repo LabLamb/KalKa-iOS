@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow()
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = InventoryViewController()
+        self.window?.rootViewController = UINavigationController(rootViewController: InventoryViewController())
         
         return true
     }
