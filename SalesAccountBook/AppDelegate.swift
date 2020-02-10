@@ -15,7 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow()
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = UINavigationController(rootViewController: InventoryViewController())
+        
+        let invVC = UINavigationController(rootViewController: InventoryViewController())
+        invVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Inventory", comment: "The collections of goods."), image: #imageLiteral(resourceName: "Inventory"), tag: 1)
+        
+        let tabController = UITabBarController()
+        tabController.viewControllers = [
+            invVC
+        ]
+        
+        self.window?.rootViewController = tabController
         
         return true
     }

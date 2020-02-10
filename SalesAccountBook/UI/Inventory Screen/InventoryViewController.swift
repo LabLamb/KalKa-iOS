@@ -7,13 +7,17 @@ import UIKit
 class InventoryViewController: UITableViewController {
     
     let inventory: Inventory
+    let searchbar: UISearchBar
     
     init() {
         self.inventory = Inventory()
+        self.searchbar = UISearchBar()
         super.init(nibName: nil, bundle: nil)
+        self.tableView.separatorStyle = .none
         self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
     }
 
     required init?(coder: NSCoder) {

@@ -20,6 +20,9 @@
 		D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
+		D2F6007B23F19299003AAA58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2F6007D23F19299003AAA58 /* InfoPlist.strings */; };
+		D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */; };
+		D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */; };
 		DE607B1EBB0023BEE607DE7C /* libPods-SalesAccountBook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB031935C5243BD3CFD3F56 /* libPods-SalesAccountBook.a */; };
 		EA24C96DF2295B0F7B357361 /* libPods-SalesAccountBookUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */; };
 /* End PBXBuildFile section */
@@ -70,6 +73,12 @@
 		D2C7D87823F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D2F6007C23F19299003AAA58 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2F6007E23F1929E003AAA58 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D2F6007F23F192A0003AAA58 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D2F6008023F192A1003AAA58 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconWithTextLabel.swift; sourceTree = "<group>"; };
 		F396CF4E4699A3A53863C9AE /* Pods-SalesAccountBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookUITests.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookUITests/Pods-SalesAccountBookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F550AB1B838D36EE699453AF /* Pods-SalesAccountBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookTests.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookTests/Pods-SalesAccountBookTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +124,7 @@
 		D22AF8CA23F144B100186AA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D2F6008523F1B16A003AAA58 /* Shared */,
 				D22AF8CB23F144C300186AA4 /* Inventory Screen */,
 			);
 			path = UI;
@@ -183,11 +193,13 @@
 				D2F6007723F172DD003AAA58 /* Constants.swift */,
 				D2A559FD23F157E700022E9A /* Model */,
 				D22AF8CA23F144B100186AA4 /* UI */,
+				D2F6008723F1B16A003AAA58 /* Extension */,
 				D2C7D85D23F13336004C66B4 /* Assets.xcassets */,
 				D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */,
 				D2C7D86223F13336004C66B4 /* Info.plist */,
 				D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */,
 				D22AF8D023F14FE700186AA4 /* Localizable.strings */,
+				D2F6007D23F19299003AAA58 /* InfoPlist.strings */,
 			);
 			path = SalesAccountBook;
 			sourceTree = "<group>";
@@ -208,6 +220,22 @@
 				D2C7D87823F13336004C66B4 /* Info.plist */,
 			);
 			path = SalesAccountBookUITests;
+			sourceTree = "<group>";
+		};
+		D2F6008523F1B16A003AAA58 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D2F6008723F1B16A003AAA58 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F9D5A3030A454CFDF3331C7B /* Pods */ = {
@@ -334,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */,
+				D2F6007B23F19299003AAA58 /* InfoPlist.strings in Resources */,
 				D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */,
 				D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */,
 			);
@@ -431,9 +460,11 @@
 			files = (
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2A559FC23F157DF00022E9A /* Merch.swift in Sources */,
+				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
+				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 			);
@@ -488,6 +519,17 @@
 				D2C7D86023F13336004C66B4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D2F6007D23F19299003AAA58 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F6007C23F19299003AAA58 /* en */,
+				D2F6007E23F1929E003AAA58 /* zh-Hant */,
+				D2F6007F23F192A0003AAA58 /* zh-HK */,
+				D2F6008023F192A1003AAA58 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
