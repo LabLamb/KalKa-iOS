@@ -7,34 +7,50 @@ import SnapKit
 
 class InventoryCell: UITableViewCell {
     
-    let iconImage: UIImageView
-    let nameLabel: UILabel
-    let priceLabel: UILabel
-    let qtyLabel: UILabel
-    let remarkLabel: UILabel
-    
-    init(data: Merch) {
-        self.iconImage = UIImageView()
-        self.nameLabel = UILabel()
-        self.priceLabel = UILabel()
-        self.qtyLabel = UILabel()
-        self.remarkLabel = UILabel()
-        
-        super.init(style: .default, reuseIdentifier: "InventoryCell")
-        
-        self.setupLayout()
-    }
+    lazy var iconImage: UIImageView = {
+        let result = UIImageView()
+        return result
+    }()
+    lazy var nameLabel: UILabel = {
+        let result = UILabel()
+        return result
+    }()
+    lazy var priceLabel: UILabel = {
+        let result = UILabel()
+        return result
+    }()
+    lazy var qtyLabel: UILabel = {
+        let result = UILabel()
+        return result
+    }()
+    lazy var remarkLabel: UILabel = {
+        let result = UILabel()
+        return result
+    }()
     
     private func setupLayout() {
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview()
+            make.left.top.equalToSuperview().offset(Constants.Layout.Spacing.Large)
+            make.bottom.equalToSuperview().offset(-Constants.Layout.Spacing.Large)
             make.width.equalToSuperview().dividedBy(5)
+            make.height.equalTo(self.iconImage.snp.width)
         }
         self.iconImage.clipsToBounds = true
         DispatchQueue.main.async {
+            self.iconImage.layer.borderColor = UIColor.black.cgColor
+            self.iconImage.layer.borderWidth = 2
             self.iconImage.layer.cornerRadius = self.iconImage.frame.width / 2
         }
+    }
+    
+    private func setupData(data: Merch) {
+        self.iconImage.image = data.image
+    }
+    
+    public func setup(data: Merch) {
+        self.setupLayout()
+        self.setupData(data: data)
     }
     
     override func prepareForReuse() {
@@ -43,9 +59,5 @@ class InventoryCell: UITableViewCell {
         self.qtyLabel.text = ""
         self.remarkLabel.text = ""
         self.iconImage.image = nil
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

@@ -83,7 +83,7 @@
 		0CF01037E39D10B8C309E95AF9CBA441 /* Pods-SalesAccountBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SalesAccountBookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		10BB39EBC91B498F86F2180427A89BA3 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		1168BDFABE00A00AE8BEB90BC188BC03 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
-		1256457E601E8C799CCE63CAE4BCB97E /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SalesAccountBookTests.a"; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1256457E601E8C799CCE63CAE4BCB97E /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B677FD1FD102980673CED28936E4A0B /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		1E969BD4441DB79BB8C492EC83EC8585 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		203D9210F92471DD9B8A2C2FC1249504 /* Pods-SalesAccountBookUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SalesAccountBookUITests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		7330C91C4C35F6B8B9A6937D933491A1 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
 		7B3CAD9BE6AD19A03D1EA761005A914D /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
 		7CD8B290D397CC330B08331B38155E76 /* Pods-SalesAccountBook-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SalesAccountBook-acknowledgements.plist"; sourceTree = "<group>"; };
-		7FA262F7EE2113297A414629D3A92472 /* libPods-SalesAccountBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SalesAccountBook.a"; path = "libPods-SalesAccountBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FA262F7EE2113297A414629D3A92472 /* libPods-SalesAccountBook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81CCA2F303C2C394671F946E8EF25E76 /* Pods-SalesAccountBookTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SalesAccountBookTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		852AD0BC5909C1E027A0FE681CFA99D4 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		864C7E15BBED0DFDF3F226D45C7F4F70 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
@@ -116,9 +116,9 @@
 		9029347A8F37EAE0FA9E365E85BB4762 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 		90CB221CCB009997F9A77A740FAA4C63 /* Pods-SalesAccountBookTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SalesAccountBookTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		913683B7175DE4B74D56894EA582282A /* Pods-SalesAccountBook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SalesAccountBook-dummy.m"; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* libSnapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSnapKit.a; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		979486118B3E90C08386079D57962701 /* libSnapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSnapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		983542A6E1742835CE0BEA364D53998B /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A123A71A79E61216CB04E0B4F6E39394 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
 		A5A686605CA8AAB45147757A461E45A3 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		AA3E81986F916E65772A1A215F957BDD /* Pods-SalesAccountBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SalesAccountBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		C00A996EFF4242FA3433552D3F4C120E /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
 		C915B423259762A4EE0A975DA2E15044 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		CB79A399F2A14D68A7661965B9AB847B /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
-		CC75F371E41CF5D54612EE98E6D471E0 /* libPods-SalesAccountBookUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SalesAccountBookUITests.a"; path = "libPods-SalesAccountBookUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC75F371E41CF5D54612EE98E6D471E0 /* libPods-SalesAccountBookUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0F2925203335F1C58668991D6654C4C /* Pods-SalesAccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SalesAccountBook.release.xcconfig"; sourceTree = "<group>"; };
 		E3C946D1807DCA77B01A5FDCC83A29D3 /* Pods-SalesAccountBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SalesAccountBookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E61B2828D242864754AEAF8C42646EFC /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
@@ -227,7 +227,6 @@
 				BAA78489D89C2799FF681A76CD77512D /* UILayoutSupport+Extensions.swift */,
 				1148705FA9715DA29B8EF0BA7676C738 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -442,6 +441,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = DE99D1B304B6D4AEB3C87E8DB3834A61 /* Products */;

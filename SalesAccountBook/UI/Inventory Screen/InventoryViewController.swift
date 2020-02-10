@@ -12,6 +12,8 @@ class InventoryViewController: UITableViewController {
         self.inventory = Inventory()
         super.init(nibName: nil, bundle: nil)
         self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
 
     required init?(coder: NSCoder) {
@@ -30,11 +32,16 @@ class InventoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "InventoryCell") as! InventoryCell
         let data = self.inventory.merchs[indexPath.row]
         
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "InventoryCell", for: indexPath) as! InventoryCell
+        cell.setup(data: data)
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.inventory.merchs.count
     }
     
 }
