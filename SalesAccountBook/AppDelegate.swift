@@ -1,8 +1,4 @@
 //
-//  AppDelegate.swift
-//  SalesAccountBook
-//
-//  Created by LabLamb on 10/2/2020.
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
@@ -19,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow()
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = UIViewController()
+        self.window?.rootViewController = InventoryViewController()
         
         return true
     }
