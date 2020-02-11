@@ -5,3 +5,7 @@
 "Inventory" = "倉存";
 "Orders" = "訂單";
 "Search" = "搜尋";
+"MerchName" = "名稱";
+"MerchPrice" = "價格";
+"MerchQty" = "數量";
+"MerchRemark" = "備註";

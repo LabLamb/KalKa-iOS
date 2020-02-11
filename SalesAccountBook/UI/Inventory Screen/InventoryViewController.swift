@@ -7,11 +7,7 @@ import SnapKit
 class InventoryViewController: UIViewController {
     
     let inventory: Inventory
-    var filteredMerchs: [Merch] {
-        didSet {
-            self.refresh()
-        }
-    }
+    var filteredMerchs: [Merch]
     let searchBar: UISearchBar
     let tableView: UITableView
     
@@ -44,7 +40,11 @@ class InventoryViewController: UIViewController {
         self.setup()
     }
     
-    @objc private func navToAddMerchView() {}
+    @objc private func navToAddMerchView() {
+        self.navigationController?.pushViewController(NewMerchViewController(), animated: true)
+//        self.inventory.addMerch(name: "試品", price: 123.0, qty: 22, remark: "試試佢", image: #imageLiteral(resourceName: "Earnings"))
+//        self.refresh()
+    }
     
     private func setup() {
         self.view.backgroundColor = .white
@@ -92,6 +92,7 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension InventoryViewController: Refreshable {
     func refresh() {
+        self.filteredMerchs = self.inventory.merchs
         self.tableView.reloadData()
     }
 }
@@ -99,7 +100,7 @@ extension InventoryViewController: Refreshable {
 extension InventoryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
-            self.filteredMerchs = self.inventory.merchs
+            self.refresh()
         } else {
             self.filteredMerchs = self.inventory.merchs.filter({ merch in
                 return merch.name.contains(searchText) || merch.remark.contains(searchText)

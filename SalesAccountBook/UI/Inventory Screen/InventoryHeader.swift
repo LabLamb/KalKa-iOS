@@ -21,7 +21,7 @@ class InventoryHeader: UITableViewHeaderFooterView {
     public func setup() {
         self.backgroundView = UIView()
         self.backgroundView?.backgroundColor = .white
-        
+            
         self.addSubview(self.priceTag)
         self.priceTag.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.ExSmall)
@@ -33,7 +33,7 @@ class InventoryHeader: UITableViewHeaderFooterView {
         self.addSubview(self.stock)
         self.stock.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.ExSmall)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.ExLarge)
+            make.right.equalToSuperview().offset(-(Constants.UI.Spacing.ExLarge + Constants.UI.Spacing.ExSmall))
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.ExSmall)
             make.width.equalTo(self.stock.snp.height)
         }

@@ -5,3 +5,7 @@
 "Inventory" = "Inventory";
 "Orders" = "Orders";
 "Search" = "Search";
+"MerchName" = "Name";
+"MerchPrice" = "Price";
+"MerchQty" = "Quantity";
+"MerchRemark" = "Remark";

@@ -5,3 +5,7 @@
 "Inventory" = "仓存";
 "Orders" = "订单";
 "Search" = "搜寻";
+"MerchName" = "名称";
+"MerchPrice" = "价格";
+"MerchQty" = "数量";
+"MerchRemark" = "备注";

@@ -91,7 +91,11 @@ class InventoryCell: UITableViewCell {
     }
     
     private func setupData(data: Merch) {
-        self.iconImage.image = data.image
+        if let imageData = data.image {
+            self.iconImage.image = UIImage(data: imageData)
+        } else {
+            self.iconImage.image = #imageLiteral(resourceName: "MerchDefault")
+        }
         self.nameLabel.text = data.name
         self.remarkLabel.text = data.remark
         self.priceLabel.text = "$\(data.price)"
