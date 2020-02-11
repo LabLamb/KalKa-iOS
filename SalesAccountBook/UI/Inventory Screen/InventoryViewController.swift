@@ -2,41 +2,76 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 
-class InventoryViewController: UITableViewController {
+class InventoryViewController: UIViewController {
     
     let inventory: Inventory
-    let searchbar: UISearchBar
+    var filteredMerchs: [Merch] {
+        didSet {
+            self.refresh()
+        }
+    }
+    let searchBar: UISearchBar
+    let tableView: UITableView
     
     init() {
         self.inventory = Inventory()
-        self.searchbar = UISearchBar()
+        self.filteredMerchs = [Merch]()
+        self.searchBar = UISearchBar()
+        self.tableView = UITableView()
         super.init(nibName: nil, bundle: nil)
-        self.tableView.separatorStyle = .none
+        
         self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
+        self.tableView.register(InventoryHeader.self, forHeaderFooterViewReuseIdentifier: "InventoryHeader")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.filteredMerchs = self.inventory.merchs
+        
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = NSLocalizedString("Search", comment: "The action to look for something.")
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         self.navigationItem.title = NSLocalizedString("Inventory", comment: "The collections of goods.")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addMerch))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
+        
+        self.setup()
     }
     
-    @objc private func addMerch() {}
+    @objc private func navToAddMerchView() {}
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    private func setup() {
+        self.view.backgroundColor = .white
+        
+        self.view.addSubview(self.searchBar)
+        self.searchBar.snp.makeConstraints { make in
+            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+            make.left.right.equalToSuperview()
+        }
+        
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.searchBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
+        }
+    }
+    
+}
+
+extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Clicked on \(indexPath)")
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.inventory.merchs[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = self.filteredMerchs[indexPath.row]
         
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "InventoryCell", for: indexPath) as! InventoryCell
         cell.setup(data: data)
@@ -44,8 +79,31 @@ class InventoryViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.inventory.merchs.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.filteredMerchs.count
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "InventoryHeader") as! InventoryHeader
+        header.setup()
+        return header
+    }
+}
+
+extension InventoryViewController: Refreshable {
+    func refresh() {
+        self.tableView.reloadData()
+    }
+}
+
+extension InventoryViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.filteredMerchs = self.inventory.merchs
+        } else {
+            self.filteredMerchs = self.inventory.merchs.filter({ merch in
+                return merch.name.contains(searchText) || merch.remark.contains(searchText)
+            })
+        }
+    }
 }

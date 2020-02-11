@@ -2,7 +2,6 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Merch {

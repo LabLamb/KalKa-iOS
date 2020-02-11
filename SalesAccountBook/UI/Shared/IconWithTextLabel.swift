@@ -2,7 +2,6 @@
 //  Copyright © 2019 LabLambWorks. All rights reserved.
 //
 
-import UIKit
 import SnapKit
 
 class IconWithTextLabel: UIView {
