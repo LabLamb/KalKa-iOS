@@ -38,12 +38,23 @@ class InventoryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
         
         self.setup()
+        self.inventory.fetch(completion: { [weak self] in
+            guard let `self` = self  else { return }
+            self.refresh()
+        })
     }
     
     @objc private func navToAddMerchView() {
         self.navigationController?.pushViewController(NewMerchViewController(), animated: true)
-//        self.inventory.addMerch(name: "試品", price: 123.0, qty: 22, remark: "試試佢", image: #imageLiteral(resourceName: "Earnings"))
-//        self.refresh()
+        DispatchQueue(label: "NewThread").async {
+            self.inventory.addMerch(name: "香蕉", price: 12.2, qty: 20, remark: "黃色黑點", image: nil)
+            DispatchQueue.main.async {
+                self.inventory.fetch(completion: { [weak self] in
+                    guard let `self` = self  else { return }
+                    self.refresh()
+                })
+            }
+        }
     }
     
     private func setup() {
@@ -99,12 +110,13 @@ extension InventoryViewController: Refreshable {
 
 extension InventoryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            self.refresh()
-        } else {
+        
+        if searchText != "" {
             self.filteredMerchs = self.inventory.merchs.filter({ merch in
                 return merch.name.contains(searchText) || merch.remark.contains(searchText)
             })
         }
+        
+        self.refresh()
     }
 }
