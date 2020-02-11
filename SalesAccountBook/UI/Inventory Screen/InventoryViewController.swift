@@ -10,18 +10,25 @@ class InventoryViewController: UIViewController {
     var filteredMerchs: [Merch]
     let searchBar: UISearchBar
     let tableView: UITableView
+    var onSelectRowDelegate: ((String) -> Void)?
     
-    init() {
+    init(onSelectRow: ((String) -> Void)? = nil) {
         self.inventory = Inventory()
         self.filteredMerchs = [Merch]()
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
+        self.onSelectRowDelegate = onSelectRow
         super.init(nibName: nil, bundle: nil)
         
         self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
         self.tableView.register(InventoryHeader.self, forHeaderFooterViewReuseIdentifier: "InventoryHeader")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.unfocusSearchBar))
+        self.tableView.backgroundView = UIView()
+        self.tableView.backgroundView?.addGestureRecognizer(tapGest)
+        self.tableView.backgroundView?.isUserInteractionEnabled = true
         
         self.filteredMerchs = self.inventory.merchs
         
@@ -38,23 +45,25 @@ class InventoryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
         
         self.setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.inventory.fetch(completion: { [weak self] in
             guard let `self` = self  else { return }
             self.refresh()
         })
+        self.unfocusSearchBar()
     }
     
     @objc private func navToAddMerchView() {
-        self.navigationController?.pushViewController(NewMerchViewController(), animated: true)
-        DispatchQueue(label: "NewThread").async {
-            self.inventory.addMerch(name: "香蕉", price: 12.2, qty: 20, remark: "黃色黑點", image: nil)
-            DispatchQueue.main.async {
-                self.inventory.fetch(completion: { [weak self] in
-                    guard let `self` = self  else { return }
-                    self.refresh()
-                })
+        let newMerchVC: NewMerchViewController = {
+            if self.onSelectRowDelegate != nil {
+                return NewMerchViewController(inventory: self.inventory, onSelectRow: self.onSelectRowDelegate)
+            } else {
+                return NewMerchViewController(inventory: self.inventory)
             }
-        }
+        }()
+        self.navigationController?.pushViewController(newMerchVC, animated: true)
     }
     
     private func setup() {
@@ -78,7 +87,11 @@ class InventoryViewController: UIViewController {
 extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Clicked on \(indexPath)")
+        if let delegate = self.onSelectRowDelegate {
+            delegate(self.filteredMerchs[indexPath.row].name)
+        } else {
+            // navigate to edit
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,13 +123,20 @@ extension InventoryViewController: Refreshable {
 
 extension InventoryViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchText != "" {
+        if !searchText.isEmpty {
             self.filteredMerchs = self.inventory.merchs.filter({ merch in
                 return merch.name.contains(searchText) || merch.remark.contains(searchText)
             })
+            self.tableView.reloadData()
+        } else {
+            self.refresh()
+            DispatchQueue.main.async {
+                self.unfocusSearchBar()
+            }
         }
-        
-        self.refresh()
+    }
+    
+    @objc private func unfocusSearchBar() {
+        self.searchBar.resignFirstResponder()
     }
 }

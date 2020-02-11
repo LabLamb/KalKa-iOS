@@ -86,7 +86,7 @@ class InventoryCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.ExSmall)
             make.height.equalToSuperview().dividedBy(3)
-            make.width.equalToSuperview().dividedBy(6)
+            make.width.equalToSuperview().dividedBy(7)
         }
     }
     

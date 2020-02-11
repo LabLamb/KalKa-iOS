@@ -9,3 +9,9 @@
 "MerchPrice" = "Price";
 "MerchQty" = "Quantity";
 "MerchRemark" = "Remark";
+"NewMerch" = "New product";
+"GenericError" = "Error";
+"ErrorMerchExists" = "Product with the same name already exists";
+"OK" = "OK";
+"ErrorMerchInputEmpty" = "Please enter a product name";
+"Save" = "Save";

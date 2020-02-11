@@ -9,3 +9,9 @@
 "MerchPrice" = "价格";
 "MerchQty" = "数量";
 "MerchRemark" = "备注";
+"NewMerch" = "新货品";
+"GenericError" = "错误";
+"ErrorMerchExists" = "货品名称已被取用";
+"OK" = "确定";
+"ErrorMerchInputEmpty" = "请输入货品名称";
+"Save" = "储存";

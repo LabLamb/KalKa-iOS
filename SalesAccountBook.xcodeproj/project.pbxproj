@@ -15,7 +15,10 @@
 		D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */; };
 		D26BF52D23F2830A00EDB259 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BF52C23F2830A00EDB259 /* StoreKit.framework */; };
 		D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52E23F28FEE00EDB259 /* CoreStack.swift */; };
+		D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */; };
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
+		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
+		D2C3E8B023F3129D00C0F33B /* MerchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */; };
 		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
 		D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */; };
 		D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85D23F13336004C66B4 /* Assets.xcassets */; };
@@ -65,10 +68,13 @@
 		D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Merch+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D26BF52C23F2830A00EDB259 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D26BF52E23F28FEE00EDB259 /* CoreStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStack.swift; sourceTree = "<group>"; };
+		D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Factory.swift"; sourceTree = "<group>"; };
 		D2A559F823F152AD00022E9A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559F923F152C100022E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
+		D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchImageCell.swift; sourceTree = "<group>"; };
 		D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D85123F13333004C66B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SalesAccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -158,6 +164,8 @@
 				D22AF8C823F1447800186AA4 /* InventoryViewController.swift */,
 				D2F6007523F1704B003AAA58 /* InventoryCell.swift */,
 				D2F6008F23F24861003AAA58 /* InventoryHeader.swift */,
+				D2156BFC23F26B2A002885C6 /* NewMerchViewController.swift */,
+				D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */,
 			);
 			path = "Inventory Screen";
 			sourceTree = "<group>";
@@ -216,6 +224,7 @@
 				D2C7D85123F13333004C66B4 /* AppDelegate.swift */,
 				D2F6007723F172DD003AAA58 /* Constants.swift */,
 				D26BF52E23F28FEE00EDB259 /* CoreStack.swift */,
+				D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */,
 				D2A559FD23F157E700022E9A /* Model */,
 				D22AF8CA23F144B100186AA4 /* UI */,
 				D2F6008723F1B16A003AAA58 /* Extension */,
@@ -260,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				D2156BFF23F270DE002885C6 /* Generic */,
-				D2156BFC23F26B2A002885C6 /* NewMerchViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
+				D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -493,8 +502,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
+				D2C3E8B023F3129D00C0F33B /* MerchImageCell.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
@@ -506,6 +517,7 @@
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
+				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

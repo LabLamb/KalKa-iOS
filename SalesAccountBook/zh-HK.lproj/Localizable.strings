@@ -9,3 +9,9 @@
 "MerchPrice" = "價格";
 "MerchQty" = "數量";
 "MerchRemark" = "備註";
+"NewMerch" = "新貨品";
+"GenericError" = "錯誤";
+"ErrorMerchExists" = "貨品名稱已被取用";
+"OK" = "確定";
+"ErrorMerchInputEmpty" = "請輸入貨品名稱";
+"Save" = "儲存";

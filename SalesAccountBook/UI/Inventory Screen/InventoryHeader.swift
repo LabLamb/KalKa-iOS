@@ -25,7 +25,7 @@ class InventoryHeader: UITableViewHeaderFooterView {
         self.addSubview(self.priceTag)
         self.priceTag.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.ExSmall)
-            make.left.equalTo(self.snp.centerX).offset(Constants.UI.Spacing.Large + Constants.UI.Spacing.ExSmall)
+            make.left.equalTo(self.snp.centerX).offset(Constants.UI.Spacing.ExLarge + Constants.UI.Spacing.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.ExSmall)
             make.width.equalTo(self.priceTag.snp.height)
         }
@@ -33,7 +33,7 @@ class InventoryHeader: UITableViewHeaderFooterView {
         self.addSubview(self.stock)
         self.stock.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.ExSmall)
-            make.right.equalToSuperview().offset(-(Constants.UI.Spacing.ExLarge + Constants.UI.Spacing.ExSmall))
+            make.left.equalTo(self.priceTag.snp.right).offset(Constants.UI.Spacing.ExLarge + Constants.UI.Spacing.Medium + Constants.UI.Spacing.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.ExSmall)
             make.width.equalTo(self.stock.snp.height)
         }
