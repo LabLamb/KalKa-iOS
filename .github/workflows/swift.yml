@@ -1,0 +1,25 @@
+name: Swift
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=iOS Simulator,OS=13.1,name=iPhone 11 Pro Max']
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: pod install
+      run: pod install
+      shell: bash
+    - name: Build
+      run: |
+          xcodebuild clean build -workspace HerHack.xcworkspace -scheme HerHack -destination "${destination}"
+      env:
+         destination: ${{ matrix.destination }}
