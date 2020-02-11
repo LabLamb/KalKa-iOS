@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       - master
+      - develop
 
 jobs:
   build:
@@ -20,6 +21,6 @@ jobs:
       shell: bash
     - name: Build
       run: |
-          xcodebuild clean build -workspace HerHack.xcworkspace -scheme HerHack -destination "${destination}"
+          xcodebuild clean build -workspace SalesAccountBook.xcworkspace -scheme SalesAccountBook -destination "${destination}"
       env:
          destination: ${{ matrix.destination }}
