@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */; };
+		D2044B8C23F42841008DFDB1 /* TitleWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */; };
+		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
@@ -26,7 +28,7 @@
 		D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */; };
 		D2C7D86C23F13336004C66B4 /* SalesAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */; };
 		D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */; };
-		D2D3F71023F40CE90034D83F /* MerchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */; };
+		D2D3F71023F40CE90034D83F /* MerchIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D3F70F23F40CE90034D83F /* MerchIconView.swift */; };
 		D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6D98B23F2545E003CDFAC /* Refreshable.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -63,6 +65,8 @@
 		89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 		B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithTextField.swift; sourceTree = "<group>"; };
+		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -90,7 +94,7 @@
 		D2C7D87223F13336004C66B4 /* SalesAccountBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesAccountBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesAccountBookUITests.swift; sourceTree = "<group>"; };
 		D2C7D87823F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchImageCell.swift; sourceTree = "<group>"; };
+		D2D3F70F23F40CE90034D83F /* MerchIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchIconView.swift; sourceTree = "<group>"; };
 		D2D6D98B23F2545E003CDFAC /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -196,7 +200,7 @@
 			children = (
 				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
 				D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */,
-				D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */,
+				D2D3F70F23F40CE90034D83F /* MerchIconView.swift */,
 			);
 			path = "Merch Screen";
 			sourceTree = "<group>";
@@ -275,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
+				D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 			children = (
 				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
 				D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */,
+				D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -508,7 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2D3F71023F40CE90034D83F /* MerchImageCell.swift in Sources */,
+				D2D3F71023F40CE90034D83F /* MerchIconView.swift in Sources */,
 				D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
@@ -522,10 +528,12 @@
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */,
+				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
+				D2044B8C23F42841008DFDB1 /* TitleWithTextField.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

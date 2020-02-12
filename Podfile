@@ -3,7 +3,6 @@ inhibit_all_warnings!
 
 target 'SalesAccountBook' do
   pod 'SnapKit'
-  pod 'SwiftForms'
 
   target 'SalesAccountBookTests' do
     inherit! :search_paths

@@ -97,7 +97,7 @@ class InventoryCell: UITableViewCell {
     
     private func setupData(data: Merch) {
         if let imageData = data.image {
-            self.iconImage.image = UIImage(data: imageData)
+            self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
         } else {
             self.iconImage.image = #imageLiteral(resourceName: "MerchDefault")
         }

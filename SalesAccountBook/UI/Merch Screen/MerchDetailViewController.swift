@@ -3,15 +3,15 @@
 //
 
 import SnapKit
-import SwiftForms
 
-class MerchDetailViewController: FormViewController {
+class MerchDetailViewController: UIViewController {
     
-    let merchName: FormRowDescriptor
-    let merchPic: FormRowDescriptor
-    let merchPrice: FormRowDescriptor
-    let merchQty: FormRowDescriptor
-    let merchRemark: FormRowDescriptor
+    let containerView: UIView
+    let merchPic: MerchIconView
+    let merchName: TitleWithTextField
+    let merchPrice: TitleWithTextField
+    let merchQty: TitleWithTextField
+    let merchRemark: TitleWithTextField
     let actionType: DetailsViewActionType
     
     var currentMerchName: String?
@@ -19,16 +19,13 @@ class MerchDetailViewController: FormViewController {
     var onSelectRowDelegate: ((String) -> Void)?
     
     init(config: MerchDetailsConfigurator) {
-        self.merchPic = FormRowDescriptor(tag: "MerchPic", type: .button,
-                                          title: NSLocalizedString("MerchPic", comment: "New entry of product."))
-        self.merchName = FormRowDescriptor(tag: "MerchName", type: .text,
-                                           title: NSLocalizedString("MerchName", comment: "New entry of product."))
-        self.merchPrice = FormRowDescriptor(tag: "MerchPrice", type: .decimal,
-                                            title: NSLocalizedString("MerchPrice", comment: "New entry of product."))
-        self.merchQty = FormRowDescriptor(tag: "MerchQty", type: .number,
-                                          title: NSLocalizedString("MerchQty", comment: "New entry of product."))
-        self.merchRemark = FormRowDescriptor(tag: "MerchRemark", type: .text,
-                                             title: NSLocalizedString("MerchRemark", comment: "New entry of product."))
+        self.containerView = UIView()
+        self.merchPic = MerchIconView()
+        self.merchName = TitleWithTextField(title: NSLocalizedString("MerchName", comment: "Name of product."))
+        self.merchPrice = TitleWithTextField(title: NSLocalizedString("MerchPrice", comment: "Price of product."))
+        self.merchQty = TitleWithTextField(title: NSLocalizedString("MerchQty", comment: "Quantity of product."))
+        self.merchRemark = TitleWithTextField(title: NSLocalizedString("MerchRemark", comment: "Remark of product."))
+        
         self.actionType = config.action
         
         self.currentMerchName = config.merchName
@@ -37,54 +34,6 @@ class MerchDetailViewController: FormViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        let section = FormSectionDescriptor(headerTitle: nil, footerTitle: nil)
-        
-        self.merchName.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
-        self.merchPrice.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
-        self.merchQty.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
-        self.merchRemark.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
-        
-        let tempView = UIView()
-        tempView.backgroundColor = .clear
-        section.headerView = tempView
-        section.footerView = tempView
-        
-        self.form = FormDescriptor(title: NSLocalizedString("NewMerch", comment: "Label for new product."))
-        self.form.sections.append(section)
-        
-        self.merchPic.configuration.cell.cellClass = MerchImageCell.self
-        
-        section.rows = {
-            if self.actionType == .edit {
-                return [self.merchPic,
-                        self.merchPrice,
-                        self.merchQty,
-                        self.merchRemark]
-            } else if self.actionType == .add {
-                return [self.merchPic,
-                        self.merchName,
-                        self.merchPrice,
-                        self.merchQty,
-                        self.merchRemark]
-            } else {
-                return [self.merchPic,
-                        self.merchName,
-                        self.merchPrice,
-                        self.merchQty,
-                        self.merchRemark]
-            }
-        }()
-        
-        if self.actionType == .edit {
-            guard let merchDetails = self.inventory?.getMerch(name: self.currentMerchName ?? "") else {
-                fatalError()
-            }
-            self.merchPrice.value = String(merchDetails.price) as AnyObject
-            self.merchQty.value = String(merchDetails.qty) as AnyObject
-            self.merchRemark.value = merchDetails.remark as AnyObject
-        }
-        
-        self.form.sections = [section]
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -101,8 +50,107 @@ class MerchDetailViewController: FormViewController {
                 return ""
             }
         }()
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: "The action of storing data on disc."), style: .done, target: self, action: #selector(self.submitMerchDetails))
-        //        self.view.backgroundColor = .white
+        
+        self.setup()
+    }
+    
+    private func setup() {
+        self.view.backgroundColor = .groupTableViewBackground
+        //        NSLocalizedString("MerchName", comment: "Name of product.")
+        //        NSLocalizedString("MerchPic", comment: "New entry of product.")
+        //        self.merchName.placeholder = NSLocalizedString("MerchName", comment: "Name of product.")
+        //        self.merchPrice.placeholder = NSLocalizedString("MerchPrice", comment: "Price of product.")
+        //        self.merchQty.placeholder = NSLocalizedString("MerchQty", comment: "Quantity of product.")
+        //        self.merchRemark.placeholder = NSLocalizedString("MerchRemark", comment: "Remark of product.")
+        
+        if self.actionType == .edit {
+            guard let merchDetails = self.inventory?.getMerch(name: self.currentMerchName ?? "") else {
+                fatalError()
+            }
+            
+            if let img = merchDetails.image {
+                self.merchPic.iconImage.image = img
+            }
+            self.merchPrice.textField.text = String(merchDetails.price)
+            self.merchQty.textField.text = String(merchDetails.qty)
+            self.merchRemark.textField.text = merchDetails.remark
+        }
+        
+        self.view.addSubview(self.containerView)
+        self.containerView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+            make.left.right.equalToSuperview()
+        }
+        self.containerView.backgroundColor = .white
+        
+        self.containerView.addSubview(self.merchPic)
+        self.merchPic.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.height.equalTo(self.view).dividedBy(5)
+        }
+        self.merchPic.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
+        self.merchPic.backgroundColor = .white
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.showImageUploadOption))
+        self.merchPic.addGestureRecognizer(tapGest)
+        self.merchPic.isUserInteractionEnabled = true
+        
+        if self.actionType == .add {
+            self.containerView.addSubview(self.merchName)
+            self.merchName.snp.makeConstraints { make in
+                make.top.equalTo(self.merchPic.snp.bottom)
+                make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
+                make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+                make.height.equalTo(44)
+            }
+            self.merchName.textField.clearButtonMode = .whileEditing
+            self.merchName.backgroundColor = .white
+            self.merchName.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
+        }
+        
+        self.containerView.addSubview(self.merchPrice)
+        self.merchPrice.snp.makeConstraints { make in
+            if self.actionType == .add {
+                make.top.equalTo(self.merchName.snp.bottom)
+            } else {
+                make.top.equalTo(self.merchPic.snp.bottom)
+            }
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.height.equalTo(44)
+        }
+        self.merchPrice.textField.clearButtonMode = .whileEditing
+        self.merchPrice.textField.keyboardType = .numberPad
+        self.merchPrice.backgroundColor = .white
+        self.merchPrice.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
+        
+        self.containerView.addSubview(self.merchQty)
+        self.merchQty.snp.makeConstraints { make in
+            make.top.equalTo(self.merchPrice.snp.bottom)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.height.equalTo(44)
+        }
+        self.merchQty.textField.clearButtonMode = .whileEditing
+        self.merchQty.textField.keyboardType = .numberPad
+        self.merchQty.backgroundColor = .white
+        self.merchQty.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
+        
+        self.containerView.addSubview(self.merchRemark)
+        self.merchRemark.snp.makeConstraints { make in
+            make.top.equalTo(self.merchQty.snp.bottom)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.height.equalTo(44)
+            make.bottom.equalToSuperview()
+        }
+        self.merchRemark.textField.clearButtonMode = .whileEditing
+        self.merchRemark.backgroundColor = .white
+        self.merchRemark.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
     }
     
     @objc private func submitMerchDetails () {
@@ -114,14 +162,14 @@ class MerchDetailViewController: FormViewController {
     }
     
     private func makeMerchDetails(name: String) -> MerchDetails {
-        let parsedPrice = Double(self.merchPrice.value as? String ?? "") ?? 0.0
-        let parsedQty = Int(self.merchQty.value as? String ?? "") ?? 0
+        let parsedPrice = Double(self.merchPrice.textField.text ?? "") ?? 0.0
+        let parsedQty = Int(self.merchQty.textField.text ?? "") ?? 0
         
-        return (name: name, price: parsedPrice, qty: parsedQty, remark: (self.merchRemark.value as? String) ?? "", image: self.merchPic.value as? UIImage)
+        return (name: name, price: parsedPrice, qty: parsedQty, remark: (self.merchRemark.textField.text) ?? "", image: self.merchPic.iconImage.image)
     }
     
     private func submitNewMerch() {
-        guard let merchNameText = self.merchName.value as? String else {
+        guard let merchNameText = self.merchName.textField.text else {
             // alertBox
             let errorMessage = NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field .")
             self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
@@ -160,5 +208,54 @@ class MerchDetailViewController: FormViewController {
         })
     }
     
+    @objc private func showImageUploadOption() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
+            self.uploadByCamera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Photos", comment: "Collections of images."), style: .default, handler: { _ in
+            self.uploadByLibrary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func uploadByCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let picker = UIImagePickerController()
+            picker.allowsEditing = true
+            picker.delegate = self;
+            picker.sourceType = .camera
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
+    
+    private func uploadByLibrary() {
+        
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let picker = UIImagePickerController()
+            picker.allowsEditing = true
+            picker.delegate = self;
+            picker.sourceType = .photoLibrary
+            self.present(picker, animated: true, completion: nil)
+        }
+    }
 }
 
+extension MerchDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.merchPic.iconImage.image = img
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
