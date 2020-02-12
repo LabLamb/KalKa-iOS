@@ -37,6 +37,11 @@ class InventoryCell: UITableViewCell {
     }()
     
     private func setupLayout(remarkExists: Bool) {
+        DispatchQueue.main.async {
+            self.layer.cornerRadius = self.frame.height / 4
+            self.clipsToBounds = true
+        }
+        
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)

@@ -18,7 +18,6 @@
 		D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */; };
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
-		D2C3E8B023F3129D00C0F33B /* MerchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
 		D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */; };
 		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
@@ -27,6 +26,7 @@
 		D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */; };
 		D2C7D86C23F13336004C66B4 /* SalesAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */; };
 		D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */; };
+		D2D3F71023F40CE90034D83F /* MerchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */; };
 		D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6D98B23F2545E003CDFAC /* Refreshable.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -76,7 +76,6 @@
 		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
-		D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchImageCell.swift; sourceTree = "<group>"; };
 		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailsConfigurator.swift; sourceTree = "<group>"; };
 		D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +90,7 @@
 		D2C7D87223F13336004C66B4 /* SalesAccountBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesAccountBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesAccountBookUITests.swift; sourceTree = "<group>"; };
 		D2C7D87823F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchImageCell.swift; sourceTree = "<group>"; };
 		D2D6D98B23F2545E003CDFAC /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -195,8 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
-				D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */,
 				D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */,
+				D2D3F70F23F40CE90034D83F /* MerchImageCell.swift */,
 			);
 			path = "Merch Screen";
 			sourceTree = "<group>";
@@ -508,10 +508,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2D3F71023F40CE90034D83F /* MerchImageCell.swift in Sources */,
 				D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
-				D2C3E8B023F3129D00C0F33B /* MerchImageCell.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,

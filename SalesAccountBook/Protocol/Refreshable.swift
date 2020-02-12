@@ -2,6 +2,8 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-protocol Refreshable {
-    func refresh()
+import Foundation
+
+@objc protocol Refreshable {
+    @objc func refresh()
 }

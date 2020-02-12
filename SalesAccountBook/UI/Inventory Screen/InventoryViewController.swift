@@ -24,13 +24,20 @@ class InventoryViewController: UIViewController {
         self.tableView.register(InventoryHeader.self, forHeaderFooterViewReuseIdentifier: "InventoryHeader")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.unfocusSearchBar))
         self.tableView.backgroundView = UIView()
         self.tableView.backgroundView?.addGestureRecognizer(tapGest)
         self.tableView.backgroundView?.isUserInteractionEnabled = true
         
-        self.filteredMerchs = self.inventory.merchs
+        let refreshCtrl = UIRefreshControl()
+        refreshCtrl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        self.tableView.refreshControl = refreshCtrl
+        
+        DispatchQueue.main.async {
+            self.refresh()
+        }
         
         self.searchBar.delegate = self
         self.searchBar.placeholder = NSLocalizedString("Search", comment: "The action to look for something.")
@@ -47,12 +54,21 @@ class InventoryViewController: UIViewController {
         self.setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.inventory.fullFetch(completion: { [weak self] in
-            guard let `self` = self  else { return }
-            self.refresh()
-        })
+    override func viewWillDisappear(_ animated: Bool) {
         self.unfocusSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.inventory.fullFetch(completion: { [weak self] in
+                guard let `self` = self  else { return }
+                if let txt = self.searchBar.text, txt != "" {
+                    self.filterMerchByString(txt)
+                } else {
+                    self.refresh()
+                }
+            })
+        }
     }
     
     @objc private func navToAddMerchView() {
@@ -69,7 +85,7 @@ class InventoryViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .groupTableViewBackground
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints { make in
@@ -121,18 +137,27 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension InventoryViewController: Refreshable {
     func refresh() {
-        self.filteredMerchs = self.inventory.merchs
-        self.tableView.reloadData()
+        self.inventory.fullFetch(completion: {
+            self.searchBar.text = ""
+            self.filteredMerchs = self.inventory.merchs
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        })
     }
 }
 
 extension InventoryViewController: UISearchBarDelegate {
+    
+    private func filterMerchByString(_ searchText: String) {
+        self.filteredMerchs = self.inventory.merchs.filter({ merch in
+            return merch.name.lowercased().contains(searchText.lowercased()) || merch.remark.lowercased().contains(searchText.lowercased())
+        })
+        self.tableView.reloadData()
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            self.filteredMerchs = self.inventory.merchs.filter({ merch in
-                return merch.name.contains(searchText) || merch.remark.contains(searchText)
-            })
-            self.tableView.reloadData()
+            self.filterMerchByString(searchText)
         } else {
             self.refresh()
             DispatchQueue.main.async {

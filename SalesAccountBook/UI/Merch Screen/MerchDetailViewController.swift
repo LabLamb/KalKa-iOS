@@ -39,6 +39,11 @@ class MerchDetailViewController: FormViewController {
         
         let section = FormSectionDescriptor(headerTitle: nil, footerTitle: nil)
         
+        self.merchName.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
+        self.merchPrice.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
+        self.merchQty.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
+        self.merchRemark.configuration.cell.appearance = ["textField.textAlignment" : NSTextAlignment.right.rawValue as AnyObject ]
+        
         let tempView = UIView()
         tempView.backgroundColor = .clear
         section.headerView = tempView
@@ -97,7 +102,7 @@ class MerchDetailViewController: FormViewController {
             }
         }()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: "The action of storing data on disc."), style: .done, target: self, action: #selector(self.submitMerchDetails))
-//        self.view.backgroundColor = .white
+        //        self.view.backgroundColor = .white
     }
     
     @objc private func submitMerchDetails () {
