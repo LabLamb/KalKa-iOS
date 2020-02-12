@@ -10,6 +10,7 @@
 		8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */; };
 		D2044B8C23F42841008DFDB1 /* TitleWithTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */; };
 		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
+		D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B9123F44C54008DFDB1 /* UIView+Border.swift */; };
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
@@ -67,6 +68,7 @@
 		B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithTextField.swift; sourceTree = "<group>"; };
 		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		D2044B9123F44C54008DFDB1 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
+				D2044B9123F44C54008DFDB1 /* UIView+Border.swift */,
 				D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */,
 				D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */,
 			);
@@ -524,6 +527,7 @@
 				D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */,
 				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
 				D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */,
+				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,

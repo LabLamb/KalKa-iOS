@@ -51,8 +51,6 @@ class InventoryCell: UITableViewCell {
         }
         self.iconImage.clipsToBounds = true
         DispatchQueue.main.async {
-            self.iconImage.layer.borderColor = UIColor.black.cgColor
-            self.iconImage.layer.borderWidth = 2.5
             self.iconImage.layer.cornerRadius = self.iconImage.frame.width / 2
         }
         

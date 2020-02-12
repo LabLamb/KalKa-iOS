@@ -58,12 +58,10 @@ class MerchDetailViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = .groupTableViewBackground
-        //        NSLocalizedString("MerchName", comment: "Name of product.")
-        //        NSLocalizedString("MerchPic", comment: "New entry of product.")
-        //        self.merchName.placeholder = NSLocalizedString("MerchName", comment: "Name of product.")
-        //        self.merchPrice.placeholder = NSLocalizedString("MerchPrice", comment: "Price of product.")
-        //        self.merchQty.placeholder = NSLocalizedString("MerchQty", comment: "Quantity of product.")
-        //        self.merchRemark.placeholder = NSLocalizedString("MerchRemark", comment: "Remark of product.")
+        self.merchName.textField.placeholder = NSLocalizedString("Required(Input)", comment: "Must input.")
+        self.merchPrice.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
+        self.merchQty.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
+        self.merchRemark.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
         
         if self.actionType == .edit {
             guard let merchDetails = self.inventory?.getMerch(name: self.currentMerchName ?? "") else {
@@ -94,6 +92,10 @@ class MerchDetailViewController: UIViewController {
         }
         self.merchPic.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
         self.merchPic.backgroundColor = .white
+        DispatchQueue.main.async {
+            self.merchPic.iconImage.clipsToBounds = true
+            self.merchPic.iconImage.layer.cornerRadius = self.merchPic.iconImage.frame.width / 2
+        }
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.showImageUploadOption))
         self.merchPic.addGestureRecognizer(tapGest)
@@ -169,10 +171,14 @@ class MerchDetailViewController: UIViewController {
     }
     
     private func submitNewMerch() {
-        guard let merchNameText = self.merchName.textField.text else {
+        guard let merchNameText = self.merchName.textField.text, self.merchName.textField.text != "" else {
             // alertBox
             let errorMessage = NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field .")
             self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
+            
+            self.merchName.textField.attributedPlaceholder = NSAttributedString(
+                string: NSLocalizedString("Required(Input)", comment: "Must input."),
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.5)])
             return
         }
         
@@ -210,7 +216,7 @@ class MerchDetailViewController: UIViewController {
     
     @objc private func showImageUploadOption() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
             self.uploadByCamera()
         }))
@@ -228,7 +234,7 @@ class MerchDetailViewController: UIViewController {
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             let picker = UIImagePickerController()
             picker.allowsEditing = true
-            picker.delegate = self;
+            picker.delegate = self
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
         }
@@ -239,7 +245,7 @@ class MerchDetailViewController: UIViewController {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.allowsEditing = true
-            picker.delegate = self;
+            picker.delegate = self
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }
@@ -251,11 +257,13 @@ extension MerchDetailViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.merchPic.iconImage.image = img
-            self.dismiss(animated: true, completion: nil)
         }
+        self.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
 }

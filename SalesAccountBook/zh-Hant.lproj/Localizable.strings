@@ -19,3 +19,5 @@
 "Camera" = "攝影機";
 "Photos" = "相簿";
 "Cancel" = "取消";
+"Required(Input)" = "必須輸入";
+"Optional(Input)" = "選填";

@@ -19,3 +19,5 @@
 "Camera" = "Camera";
 "Photos" = "Photos";
 "Cancel" = "Cancel";
+"Required(Input)" = "Required";
+"Optional(Input)" = "Optional";

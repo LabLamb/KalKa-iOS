@@ -28,7 +28,7 @@ class TitleWithTextField: UIView {
         self.addSubview(self.title)
         self.title.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(5)
+            make.width.equalToSuperview().dividedBy(3)
         })
         self.title.text = title
         self.title.textAlignment = .left
