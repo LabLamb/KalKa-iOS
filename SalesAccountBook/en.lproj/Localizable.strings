@@ -1,0 +1,23 @@
+/*
+  Copyright © 2020 LabLambWorks. All rights reserved.
+*/
+
+"Inventory" = "Inventory";
+"Orders" = "Orders";
+"Search" = "Search";
+"MerchName" = "Name";
+"MerchPrice" = "Price";
+"MerchQty" = "Quantity";
+"MerchRemark" = "Remark";
+"NewMerch" = "New product";
+"GenericError" = "Error";
+"ErrorMerchExists" = "Product with the same name already exists";
+"OK" = "OK";
+"ErrorMerchInputEmpty" = "Please enter a product name";
+"Save" = "Save";
+"Edit" = "Edit";
+"Camera" = "Camera";
+"Photos" = "Photos";
+"Cancel" = "Cancel";
+"Required(Input)" = "Required";
+"Optional(Input)" = "Optional";
