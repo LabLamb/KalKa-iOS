@@ -16,7 +16,7 @@ class Inventory {
         self.persistentContainer = CoreStack.shared.persistentContainer
     }
     
-    public func fetch(completion: (() -> Void)? = nil) {
+    public func fullFetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.sortDescriptors = [sortDesc]
@@ -37,15 +37,60 @@ class Inventory {
             
             try? context.save()
             
-            self.fetch()
+            self.fullFetch()
         }
+    }
+    
+    private func queryMerch(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Merch]? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
+        fetchRequest.predicate = clause
+        if let context = incContext {
+            return try? context.fetch(fetchRequest) as? [Merch]
+        } else {
+            return try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Merch]
+        }
+        
+    }
+    
+    public func getMerch(name: String) -> MerchDetails? {
+        let predicate = NSPredicate(format: "name = %@", name)
+        guard let result = self.queryMerch(clause: predicate) else { return nil}
+        guard let merch = result.first else { return nil }
+        let merchImage: UIImage? = {
+            if let imgData = merch.image {
+                return UIImage(data: imgData)
+            } else {
+                return nil
+            }
+        }()
+        
+        return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
+    }
+    
+    public func editMerch(details: MerchDetails, completion: (() -> Void)) {
+        let context = self.persistentContainer.newBackgroundContext()
+        let predicate = NSPredicate(format: "name = %@", details.name)
+        guard let result = self.queryMerch(clause: predicate, incContext: context) else {
+            fatalError("Trying to edit an non-existing Merch. (Query returned nil)")
+        }
+        
+        guard let editingMerch = result.first else {
+            fatalError("Trying to edit an non-existing Merch. (Array is empty)")
+        }
+        
+        editingMerch.price = details.price
+        editingMerch.qty = Int32(details.qty)
+        editingMerch.remark = details.remark
+        editingMerch.image = details.image?.pngData()
+        
+        try? context.save()
+        
+        completion()
     }
     
     public func existsMerch(name: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", name)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
-        fetchRequest.predicate = predicate
-        if let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Merch] {
+        if let result = self.queryMerch(clause: predicate) {
             completion(result.count > 0)
         } else {
             completion(false)

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8ED396973255F6158A44383F /* libPods-SalesAccountBookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */; };
-		D2156BFD23F26B2A002885C6 /* NewMerchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* NewMerchViewController.swift */; };
+		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
 		D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */; };
@@ -19,6 +19,8 @@
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
 		D2C3E8B023F3129D00C0F33B /* MerchImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */; };
+		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
+		D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */; };
 		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
 		D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85A23F13333004C66B4 /* SalesAccountBook.xcdatamodeld */; };
 		D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85D23F13336004C66B4 /* Assets.xcassets */; };
@@ -61,7 +63,7 @@
 		89151F49DAAEDBB60D5D17A7 /* libPods-SalesAccountBookUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 		B6E3180023D8AE660F185B6F /* libPods-SalesAccountBookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SalesAccountBookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2156BFC23F26B2A002885C6 /* NewMerchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMerchViewController.swift; sourceTree = "<group>"; };
+		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Merch+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -75,6 +77,8 @@
 		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchImageCell.swift; sourceTree = "<group>"; };
+		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailsConfigurator.swift; sourceTree = "<group>"; };
 		D2C7D84E23F13333004C66B4 /* SalesAccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesAccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D85123F13333004C66B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SalesAccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -141,19 +145,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D2156BFF23F270DE002885C6 /* Generic */ = {
-			isa = PBXGroup;
-			children = (
-				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
-			);
-			path = Generic;
-			sourceTree = "<group>";
-		};
 		D22AF8CA23F144B100186AA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				D2F6008523F1B16A003AAA58 /* Shared */,
 				D22AF8CB23F144C300186AA4 /* Inventory Screen */,
+				D2C3E8B523F3B48400C0F33B /* Merch Screen */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -162,10 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				D22AF8C823F1447800186AA4 /* InventoryViewController.swift */,
-				D2F6007523F1704B003AAA58 /* InventoryCell.swift */,
 				D2F6008F23F24861003AAA58 /* InventoryHeader.swift */,
-				D2156BFC23F26B2A002885C6 /* NewMerchViewController.swift */,
-				D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */,
+				D2F6007523F1704B003AAA58 /* InventoryCell.swift */,
 			);
 			path = "Inventory Screen";
 			sourceTree = "<group>";
@@ -194,6 +189,16 @@
 				D2A559FF23F1584800022E9A /* Inventory.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		D2C3E8B523F3B48400C0F33B /* Merch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
+				D2C3E8AF23F3129D00C0F33B /* MerchImageCell.swift */,
+				D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */,
+			);
+			path = "Merch Screen";
 			sourceTree = "<group>";
 		};
 		D2C7D84523F13333004C66B4 = {
@@ -261,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				D2D6D98B23F2545E003CDFAC /* Refreshable.swift */,
+				D2C3E8B123F3A16B00C0F33B /* Enums.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -268,7 +274,7 @@
 		D2F6008523F1B16A003AAA58 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D2156BFF23F270DE002885C6 /* Generic */,
+				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -511,13 +517,15 @@
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
 				D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */,
 				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
-				D2156BFD23F26B2A002885C6 /* NewMerchViewController.swift in Sources */,
+				D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
+				D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,
+				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

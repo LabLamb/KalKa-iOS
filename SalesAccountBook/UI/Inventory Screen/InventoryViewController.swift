@@ -48,7 +48,7 @@ class InventoryViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.inventory.fetch(completion: { [weak self] in
+        self.inventory.fullFetch(completion: { [weak self] in
             guard let `self` = self  else { return }
             self.refresh()
         })
@@ -56,13 +56,15 @@ class InventoryViewController: UIViewController {
     }
     
     @objc private func navToAddMerchView() {
-        let newMerchVC: NewMerchViewController = {
-            if self.onSelectRowDelegate != nil {
-                return NewMerchViewController(inventory: self.inventory, onSelectRow: self.onSelectRowDelegate)
+        let merchConfig: MerchDetailsConfigurator = {
+            if let delegate = self.onSelectRowDelegate {
+                return MerchDetailsConfigurator(action: .add, merchName: nil, inventory: self.inventory, onSelectRow: delegate)
             } else {
-                return NewMerchViewController(inventory: self.inventory)
+                return MerchDetailsConfigurator(action: .add, merchName: nil, inventory: self.inventory, onSelectRow: nil)
             }
         }()
+        
+        let newMerchVC = MerchDetailViewController(config: merchConfig)
         self.navigationController?.pushViewController(newMerchVC, animated: true)
     }
     
@@ -87,10 +89,13 @@ class InventoryViewController: UIViewController {
 extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let merchName = self.filteredMerchs[indexPath.row].name
         if let delegate = self.onSelectRowDelegate {
-            delegate(self.filteredMerchs[indexPath.row].name)
+            delegate(merchName)
         } else {
-            // navigate to edit
+            let merchConfig = MerchDetailsConfigurator(action: .edit, merchName: merchName, inventory: self.inventory, onSelectRow: nil)
+            let editMerchVC = MerchDetailViewController(config: merchConfig)
+            self.navigationController?.pushViewController(editMerchVC, animated: true)
         }
     }
     
