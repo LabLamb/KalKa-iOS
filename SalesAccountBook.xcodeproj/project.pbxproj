@@ -31,12 +31,13 @@
 		D2C7D86C23F13336004C66B4 /* SalesAccountBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D86B23F13336004C66B4 /* SalesAccountBookTests.swift */; };
 		D2C7D87723F13336004C66B4 /* SalesAccountBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */; };
 		D2D3F71023F40CE90034D83F /* MerchIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D3F70F23F40CE90034D83F /* MerchIconView.swift */; };
-		D2D6BA4723F52149007894FD /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D206D20023F51EF800880828 /* Customer+CoreDataClass.swift */; };
-		D2D6BA4823F5214C007894FD /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D206D20123F51EF800880828 /* Customer+CoreDataProperties.swift */; };
-		D2D6BA4923F5214E007894FD /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D206D1FF23F51EF800880828 /* Order+CoreDataClass.swift */; };
-		D2D6BA4A23F52150007894FD /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D206D1FE23F51EF800880828 /* Order+CoreDataProperties.swift */; };
-		D2D6BA4D23F52281007894FD /* OrderItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA4B23F52281007894FD /* OrderItem+CoreDataProperties.swift */; };
-		D2D6BA4E23F52281007894FD /* OrderItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA4C23F52281007894FD /* OrderItem+CoreDataClass.swift */; };
+		D2D6BA5023F522CE007894FD /* CustomerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA4F23F522CE007894FD /* CustomerList.swift */; };
+		D2D6BA6323F5236C007894FD /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA5F23F5236C007894FD /* Customer+CoreDataProperties.swift */; };
+		D2D6BA6423F5236C007894FD /* OrderItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA6123F5236C007894FD /* OrderItem+CoreDataProperties.swift */; };
+		D2D6BA6523F5236C007894FD /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA5E23F5236C007894FD /* Customer+CoreDataClass.swift */; };
+		D2D6BA6623F5236C007894FD /* OrderItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA6223F5236C007894FD /* OrderItem+CoreDataClass.swift */; };
+		D2D6BA6723F5236C007894FD /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA6023F5236C007894FD /* Order+CoreDataClass.swift */; };
+		D2D6BA6823F5236C007894FD /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6BA5D23F5236C007894FD /* Order+CoreDataProperties.swift */; };
 		D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6D98B23F2545E003CDFAC /* Refreshable.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -76,10 +77,6 @@
 		D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithTextField.swift; sourceTree = "<group>"; };
 		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D2044B9123F44C54008DFDB1 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
-		D206D1FE23F51EF800880828 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		D206D1FF23F51EF800880828 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D206D20023F51EF800880828 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D206D20123F51EF800880828 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -109,8 +106,13 @@
 		D2C7D87623F13336004C66B4 /* SalesAccountBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesAccountBookUITests.swift; sourceTree = "<group>"; };
 		D2C7D87823F13336004C66B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2D3F70F23F40CE90034D83F /* MerchIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchIconView.swift; sourceTree = "<group>"; };
-		D2D6BA4B23F52281007894FD /* OrderItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OrderItem+CoreDataProperties.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/View Model/OrderItem+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		D2D6BA4C23F52281007894FD /* OrderItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OrderItem+CoreDataClass.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/View Model/OrderItem+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		D2D6BA4F23F522CE007894FD /* CustomerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerList.swift; sourceTree = "<group>"; };
+		D2D6BA5D23F5236C007894FD /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Order+CoreDataProperties.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/Order+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		D2D6BA5E23F5236C007894FD /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Customer+CoreDataClass.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/Customer+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		D2D6BA5F23F5236C007894FD /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Customer+CoreDataProperties.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/Customer+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		D2D6BA6023F5236C007894FD /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Order+CoreDataClass.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/Order+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		D2D6BA6123F5236C007894FD /* OrderItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OrderItem+CoreDataProperties.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/OrderItem+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		D2D6BA6223F5236C007894FD /* OrderItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "OrderItem+CoreDataClass.swift"; path = "/Users/LabLamb/Documents/Projects/SalesAccountBook/SalesAccountBook/Model/Raw Model/OrderItem+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		D2D6D98B23F2545E003CDFAC /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -188,12 +190,12 @@
 		D26BF51F23F2805600EDB259 /* Raw Model */ = {
 			isa = PBXGroup;
 			children = (
-				D2D6BA4C23F52281007894FD /* OrderItem+CoreDataClass.swift */,
-				D2D6BA4B23F52281007894FD /* OrderItem+CoreDataProperties.swift */,
-				D206D20023F51EF800880828 /* Customer+CoreDataClass.swift */,
-				D206D20123F51EF800880828 /* Customer+CoreDataProperties.swift */,
-				D206D1FF23F51EF800880828 /* Order+CoreDataClass.swift */,
-				D206D1FE23F51EF800880828 /* Order+CoreDataProperties.swift */,
+				D2D6BA6223F5236C007894FD /* OrderItem+CoreDataClass.swift */,
+				D2D6BA6123F5236C007894FD /* OrderItem+CoreDataProperties.swift */,
+				D2D6BA6023F5236C007894FD /* Order+CoreDataClass.swift */,
+				D2D6BA5D23F5236C007894FD /* Order+CoreDataProperties.swift */,
+				D2D6BA5E23F5236C007894FD /* Customer+CoreDataClass.swift */,
+				D2D6BA5F23F5236C007894FD /* Customer+CoreDataProperties.swift */,
 				D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */,
 				D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */,
 			);
@@ -212,6 +214,7 @@
 		D2A55A0123F1584C00022E9A /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				D2D6BA4F23F522CE007894FD /* CustomerList.swift */,
 				D2A559FF23F1584800022E9A /* Inventory.swift */,
 			);
 			path = "View Model";
@@ -541,30 +544,31 @@
 				D2D3F71023F40CE90034D83F /* MerchIconView.swift in Sources */,
 				D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
+				D2D6BA6523F5236C007894FD /* Customer+CoreDataClass.swift in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
-				D2D6BA4D23F52281007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
+				D2D6BA6723F5236C007894FD /* Order+CoreDataClass.swift in Sources */,
+				D2D6BA5023F522CE007894FD /* CustomerList.swift in Sources */,
 				D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */,
-				D2D6BA4E23F52281007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
-				D2D6BA4A23F52150007894FD /* Order+CoreDataProperties.swift in Sources */,
+				D2D6BA6823F5236C007894FD /* Order+CoreDataProperties.swift in Sources */,
+				D2D6BA6623F5236C007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */,
+				D2D6BA6423F5236C007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */,
+				D2D6BA6323F5236C007894FD /* Customer+CoreDataProperties.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
-				D2D6BA4823F5214C007894FD /* Customer+CoreDataProperties.swift in Sources */,
 				D23A385223F5100E00488DFD /* MerchFieldsContainer.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
-				D2D6BA4923F5214E007894FD /* Order+CoreDataClass.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
-				D2D6BA4723F52149007894FD /* Customer+CoreDataClass.swift in Sources */,
 				D2044B8C23F42841008DFDB1 /* TitleWithTextField.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 			);

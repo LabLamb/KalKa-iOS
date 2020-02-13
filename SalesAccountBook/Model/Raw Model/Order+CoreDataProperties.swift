@@ -19,24 +19,24 @@ extension Order {
     @NSManaged public var isShipped: Bool
     @NSManaged public var number: Int32
     @NSManaged public var openedOn: Date
-    @NSManaged public var customer: Customer?
-    @NSManaged public var merch: NSSet?
+    @NSManaged public var customer: Customer
+    @NSManaged public var items: [OrderItem]
 
 }
 
-// MARK: Generated accessors for merch
+// MARK: Generated accessors for items
 extension Order {
 
-    @objc(addMerchObject:)
-    @NSManaged public func addToMerch(_ value: Merch)
+    @objc(addItemsObject:)
+    @NSManaged public func addToItems(_ value: OrderItem)
 
-    @objc(removeMerchObject:)
-    @NSManaged public func removeFromMerch(_ value: Merch)
+    @objc(removeItemsObject:)
+    @NSManaged public func removeFromItems(_ value: OrderItem)
 
-    @objc(addMerch:)
-    @NSManaged public func addToMerch(_ values: NSSet)
+    @objc(addItems:)
+    @NSManaged public func addToItems(_ values: NSSet)
 
-    @objc(removeMerch:)
-    @NSManaged public func removeFromMerch(_ values: NSSet)
+    @objc(removeItems:)
+    @NSManaged public func removeFromItems(_ values: NSSet)
 
 }

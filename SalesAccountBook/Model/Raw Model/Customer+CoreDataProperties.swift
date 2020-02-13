@@ -16,11 +16,13 @@ extension Customer {
         return NSFetchRequest<Customer>(entityName: "Customer")
     }
 
-    @NSManaged public var address: String?
+    @NSManaged public var image: Data?
+    @NSManaged public var address: String
     @NSManaged public var lastContacted: Date
     @NSManaged public var name: String
-    @NSManaged public var phone: String?
-    @NSManaged public var orders: NSSet?
+    @NSManaged public var phone: String
+    @NSManaged public var orders: [Order]
+    @NSManaged public var remark: String
 
 }
 

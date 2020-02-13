@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Customer" representedClassName="Customer" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String"/>
-        <attribute name="lastContacted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="address" attributeType="String" defaultValueString=""/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="lastContacted" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="phone" attributeType="String"/>
+        <attribute name="remark" attributeType="String" defaultValueString=""/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="customer" inverseEntity="Order"/>
     </entity>
     <entity name="Merch" representedClassName="Merch" syncable="YES">
@@ -15,7 +17,7 @@
         <attribute name="remark" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
-        <attribute name="isShipped" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isShipped" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="number" attributeType="Integer 32" usesScalarValueType="YES"/>
         <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="orders" inverseEntity="Customer"/>
@@ -23,13 +25,13 @@
     </entity>
     <entity name="OrderItem" representedClassName="OrderItem" syncable="YES">
         <attribute name="name" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="qty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="remark" optional="YES" attributeType="String"/>
+        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="remark" attributeType="String"/>
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
     </entity>
     <elements>
-        <element name="Customer" positionX="-63" positionY="18" width="128" height="118"/>
+        <element name="Customer" positionX="-63" positionY="18" width="128" height="148"/>
         <element name="Merch" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Order" positionX="-63" positionY="27" width="128" height="118"/>
         <element name="OrderItem" positionX="-54" positionY="54" width="128" height="118"/>
