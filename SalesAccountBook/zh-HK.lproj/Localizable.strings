@@ -21,3 +21,5 @@
 "Cancel" = "取消";
 "Required(Input)" = "必須輸入";
 "Optional(Input)" = "選填";
+"ConfirmationTitle" = "確認";
+"ConfirmationMessage" = "確定要進行此動作？";
