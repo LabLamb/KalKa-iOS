@@ -106,6 +106,8 @@ class InventoryViewController: UIViewController {
     
 }
 
+
+// MARK: - TableView
 extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -139,6 +141,7 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - Refreshable
 extension InventoryViewController: Refreshable {
     func refresh() {
         self.inventory.fullFetch(completion: {
@@ -150,6 +153,8 @@ extension InventoryViewController: Refreshable {
     }
 }
 
+
+//MARK: - SearchBar
 extension InventoryViewController: UISearchBarDelegate {
     
     private func filterMerchByString(_ searchText: String) {
