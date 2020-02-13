@@ -33,10 +33,6 @@ class InventoryViewController: UIViewController {
         self.tableView.backgroundView?.addGestureRecognizer(tapGest)
         self.tableView.backgroundView?.isUserInteractionEnabled = true
         
-        let refreshCtrl = UIRefreshControl()
-        refreshCtrl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshCtrl
-        
         DispatchQueue.main.async {
             self.refresh()
         }
