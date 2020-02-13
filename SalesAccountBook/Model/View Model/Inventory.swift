@@ -67,9 +67,9 @@ class Inventory {
         return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    public func editMerch(details: MerchDetails, completion: (() -> Void)) {
+    public func editMerch(oldName: String, details: MerchDetails, completion: (() -> Void)) {
         let context = self.persistentContainer.newBackgroundContext()
-        let predicate = NSPredicate(format: "name = %@", details.name)
+        let predicate = NSPredicate(format: "name = %@", oldName)
         guard let result = self.queryMerch(clause: predicate, incContext: context) else {
             fatalError("Trying to edit an non-existing Merch. (Query returned nil)")
         }
@@ -78,6 +78,7 @@ class Inventory {
             fatalError("Trying to edit an non-existing Merch. (Array is empty)")
         }
         
+        editingMerch.name = details.name
         editingMerch.price = details.price
         editingMerch.qty = Int32(details.qty)
         editingMerch.remark = details.remark
