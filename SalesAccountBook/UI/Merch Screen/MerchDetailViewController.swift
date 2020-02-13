@@ -135,7 +135,15 @@ class MerchDetailViewController: UIViewController {
         let parsedPrice = Double(self.containerView.merchPrice.textField.text ?? "") ?? 0.0
         let parsedQty = Int(self.containerView.merchQty.textField.text ?? "") ?? 0
         
-        return (name: name, price: parsedPrice, qty: parsedQty, remark: (self.containerView.merchRemark.textField.text) ?? "", image: self.containerView.merchPic.iconImage.image)
+        let img: UIImage? = {
+            if self.containerView.merchPic.iconImage.image == #imageLiteral(resourceName: "MerchDefault") {
+                return nil
+            } else {
+                return self.containerView.merchPic.iconImage.image
+            }
+        }()
+        
+        return (name: name, price: parsedPrice, qty: parsedQty, remark: (self.containerView.merchRemark.textField.text) ?? "", image: img)
     }
     
     private func addMerch(merchDetails: MerchDetails) {
@@ -200,7 +208,7 @@ extension MerchDetailViewController: UIImagePickerControllerDelegate, UINavigati
         
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil))
         
-        resetBtn.isEnabled = !(self.containerView.merchPic.iconImage.image == #imageLiteral(resourceName: "MerchDefault"))
+        resetBtn.isEnabled = !(self.containerView.merchPic.iconImage.image?.isEqual(#imageLiteral(resourceName: "MerchDefault")) ?? false)
         
         self.present(actionSheet, animated: true, completion: nil)
     }

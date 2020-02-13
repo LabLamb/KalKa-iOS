@@ -23,3 +23,5 @@
 "Optional(Input)" = "选填";
 "ConfirmationTitle" = "确认";
 "ConfirmationMessage" = "确定要进行此动作？";
+"Customers" = "客户";
+"Remove" = "移除";
