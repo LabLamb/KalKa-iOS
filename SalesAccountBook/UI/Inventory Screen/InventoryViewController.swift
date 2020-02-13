@@ -6,12 +6,14 @@ import SnapKit
 
 class InventoryViewController: UIViewController {
     
+    // MARK: - Variables
     let inventory: Inventory
     var filteredMerchs: [Merch]
     let searchBar: UISearchBar
     let tableView: UITableView
     var onSelectRowDelegate: ((String) -> Void)?
     
+    // MARK: - Initializion
     init(onSelectRow: ((String) -> Void)? = nil) {
         self.inventory = Inventory()
         self.filteredMerchs = [Merch]()
@@ -47,6 +49,7 @@ class InventoryViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI
     override func viewDidLoad() {
         self.navigationItem.title = NSLocalizedString("Inventory", comment: "The collections of goods.")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
