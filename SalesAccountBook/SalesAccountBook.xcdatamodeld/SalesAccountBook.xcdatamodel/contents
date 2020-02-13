@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Customer" representedClassName="Customer" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phone" attributeType="String"/>
     </entity>
     <entity name="Merch" representedClassName="Merch" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -12,7 +13,7 @@
         <attribute name="remark" attributeType="String" defaultValueString=""/>
     </entity>
     <elements>
+        <element name="Customer" positionX="-63" positionY="18" width="128" height="88"/>
         <element name="Merch" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Customer" positionX="-63" positionY="18" width="128" height="73"/>
     </elements>
 </model>
