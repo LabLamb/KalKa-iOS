@@ -29,3 +29,5 @@
 "ErrorCustomerExists" = "Customer with the same name already exists";
 "ErrorCustomerInputEmpty" = "Please enter a cusomter name";
 "NewCustomer" = "New customer";
+"Phone" = "Phone";
+"Address" = "Address";

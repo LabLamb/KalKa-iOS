@@ -29,3 +29,6 @@
 "ErrorCustomerExists" = "客戶名稱已被取用";
 "ErrorCustomerInputEmpty" = "請輸入客戶名稱";
 "NewCustomer" = "新客戶";
+"Phone" = "電話號碼";
+"Address" = "地址";
+
