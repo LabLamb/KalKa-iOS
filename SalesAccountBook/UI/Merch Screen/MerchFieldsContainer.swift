@@ -14,10 +14,10 @@ class MerchFieldsContainer: UIView {
     
     init() {
         self.merchPic = MerchIconView()
-        self.merchName = TitleWithTextField(title: NSLocalizedString("MerchName", comment: "Name of product."))
-        self.merchPrice = TitleWithTextField(title: NSLocalizedString("MerchPrice", comment: "Price of product."))
-        self.merchQty = TitleWithTextField(title: NSLocalizedString("MerchQty", comment: "Quantity of product."))
-        self.merchRemark = TitleWithTextField(title: NSLocalizedString("MerchRemark", comment: "Remark of product."))
+        self.merchName = TitleWithTextField(title: NSLocalizedString("Name", comment: "Name of product."))
+        self.merchPrice = TitleWithTextField(title: NSLocalizedString("Price", comment: "Price of product."))
+        self.merchQty = TitleWithTextField(title: NSLocalizedString("Qty", comment: "Quantity of product."))
+        self.merchRemark = TitleWithTextField(title: NSLocalizedString("Remark", comment: "Remark of product."))
         
         super.init(frame: .zero)
     }

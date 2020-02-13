@@ -18,16 +18,16 @@ class CustomerCell: UITableViewCell {
         return result
     }()
     
-    lazy var priceLabel: UILabel = {
-        let result = UILabel()
-        return result
-    }()
-    
-    lazy var qtyLabel: UILabel = {
-        let result = UILabel()
-        result.textAlignment = .right
-        return result
-    }()
+//    lazy var priceLabel: UILabel = {
+//        let result = UILabel()
+//        return result
+//    }()
+//
+//    lazy var qtyLabel: UILabel = {
+//        let result = UILabel()
+//        result.textAlignment = .right
+//        return result
+//    }()
     
     lazy var remarkLabel: UILabel = {
         let result = UILabel()
@@ -76,28 +76,28 @@ class CustomerCell: UITableViewCell {
             }
         }
         
-        self.addSubview(self.priceLabel)
-        self.priceLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Medium)
-            make.height.equalToSuperview().dividedBy(3)
-            make.width.equalToSuperview().dividedBy(5)
-        }
-        
-        self.addSubview(self.qtyLabel)
-        self.qtyLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.ExSmall)
-            make.height.equalToSuperview().dividedBy(3)
-            make.width.equalToSuperview().dividedBy(7)
-        }
+//        self.addSubview(self.priceLabel)
+//        self.priceLabel.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Medium)
+//            make.height.equalToSuperview().dividedBy(3)
+//            make.width.equalToSuperview().dividedBy(5)
+//        }
+//
+//        self.addSubview(self.qtyLabel)
+//        self.qtyLabel.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.ExSmall)
+//            make.height.equalToSuperview().dividedBy(3)
+//            make.width.equalToSuperview().dividedBy(7)
+//        }
     }
     
     private func setupData(data: Customer) {
         if let imageData = data.image {
             self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
         } else {
-            self.iconImage.image = #imageLiteral(resourceName: "Avatar")
+            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
         }
         self.nameLabel.text = data.name
         self.remarkLabel.text = data.remark
@@ -113,8 +113,8 @@ class CustomerCell: UITableViewCell {
     
     override func prepareForReuse() {
         self.nameLabel.text = ""
-        self.priceLabel.text = ""
-        self.qtyLabel.text = ""
+//        self.priceLabel.text = ""
+//        self.qtyLabel.text = ""
         self.remarkLabel.text = ""
         self.iconImage.image = nil
         

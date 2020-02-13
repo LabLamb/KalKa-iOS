@@ -5,10 +5,10 @@
 "Inventory" = "仓存";
 "Orders" = "订单";
 "Search" = "搜寻";
-"MerchName" = "名称";
-"MerchPrice" = "价格";
-"MerchQty" = "数量";
-"MerchRemark" = "备注";
+"Name" = "名称";
+"Price" = "价格";
+"Qty" = "数量";
+"Remark" = "备注";
 "NewMerch" = "新货品";
 "GenericError" = "错误";
 "ErrorMerchExists" = "货品名称已被取用";
@@ -25,3 +25,7 @@
 "ConfirmationMessage" = "确定要进行此动作？";
 "Customers" = "客户";
 "Remove" = "移除";
+"LastContacted" = "上次联络";
+"ErrorCustomerExists" = "客户名称已被取用";
+"ErrorCustomerInputEmpty" = "请输入客户名称";
+"NewCustomer" = "新客户";

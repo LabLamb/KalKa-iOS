@@ -20,4 +20,9 @@ class Constants {
                 DarkGrey: UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1),
                 Black: UIColor.black)
     )
+    
+    static let Data = (
+        Placeholder: 0,
+        DateFormat: "yyyy-MM-dd"
+    )
 }

@@ -33,10 +33,6 @@ class CustomerViewController: UIViewController {
         self.tableView.backgroundView?.addGestureRecognizer(tapGest)
         self.tableView.backgroundView?.isUserInteractionEnabled = true
         
-        let refreshCtrl = UIRefreshControl()
-        refreshCtrl.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        self.tableView.refreshControl = refreshCtrl
-        
         DispatchQueue.main.async {
             self.refresh()
         }
@@ -76,16 +72,16 @@ class CustomerViewController: UIViewController {
     }
     
     @objc private func navToAddCustomerView() {
-//        let customerConfig: CustomerDetailsConfigurator = {
-//            if let delegate = self.onSelectRowDelegate {
-//                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.customerList, onSelectRow: delegate)
-//            } else {
-//                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.customerList, onSelectRow: nil)
-//            }
-//        }()
+        let customerConfig: CustomerDetailsConfigurator = {
+            if let delegate = self.onSelectRowDelegate {
+                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.customerList, onSelectRow: delegate)
+            } else {
+                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.customerList, onSelectRow: nil)
+            }
+        }()
         
-//        let newCustomerVC = CustomerDetailViewController(config: customerConfig)
-//        self.navigationController?.pushViewController(newCustomerVC, animated: true)
+        let newCustomerVC = CustomerDetailViewController(config: customerConfig)
+        self.navigationController?.pushViewController(newCustomerVC, animated: true)
     }
     
     private func setup() {
@@ -115,16 +111,16 @@ extension CustomerViewController: UITableViewDataSource, UITableViewDelegate {
         if let delegate = self.onSelectRowDelegate {
             delegate(customerName)
         } else {
-//            let customerConfig = CustomerDetailsConfigurator(action: .edit, customerName: customerName, customerList: self.customerList, onSelectRow: nil)
-//            let editCustomerVC = CustomerDetailViewController(config: customerConfig)
-//            self.navigationController?.pushViewController(editCustomerVC, animated: true)
+            let customerConfig = CustomerDetailsConfigurator(action: .edit, customerName: customerName, customerList: self.customerList, onSelectRow: nil)
+            let editCustomerVC = CustomerDetailViewController(config: customerConfig)
+            self.navigationController?.pushViewController(editCustomerVC, animated: true)
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.filteredCustomers[indexPath.row]
         
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "customerListCell", for: indexPath) as! CustomerCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "CustomerListCell", for: indexPath) as! CustomerCell
         cell.setup(data: data)
         
         return cell

@@ -4,10 +4,11 @@
 
 import SnapKit
 
-class TitleWithTextField: UIView {
+class TitleWithDatePicker: UIView {
     
     let title: UILabel
     let textField: UITextField
+    let datePicker: UIDatePicker
     var text: String {
         get {
             return self.textField.text ?? ""
@@ -27,10 +28,13 @@ class TitleWithTextField: UIView {
         }
     }
     
-    init(title: String, placeholder: String = "", textAlign: NSTextAlignment = .left) {
+    init(title: String,
+         placeholder: String = Date().toString(format: Constants.Data.DateFormat),
+         textAlign: NSTextAlignment = .left) {
         self.title = UILabel()
         self.textField = UITextField()
         self.spacing = 5
+        self.datePicker = UIDatePicker()
         
         super.init(frame: .zero)
         
@@ -56,10 +60,38 @@ class TitleWithTextField: UIView {
         self.textField.placeholder = placeholder
         self.textField.textAlignment = textAlign
         
+        self.datePicker.datePickerMode = .date
+        
+        let toolbar: UIToolbar = {
+            let result = UIToolbar()
+            result.sizeToFit()
+            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(dateDidPick))
+            
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancelDatePicker))
+            
+            result.setItems([doneButton, spaceButton, cancelButton], animated: false)
+            
+            return result
+        }()
+        
+        self.textField.inputAccessoryView = toolbar
+        self.textField.inputView = self.datePicker
+        
     }
     
     @objc func focusTextField() {
         self.textField.becomeFirstResponder()
+    }
+    
+    @objc func dateDidPick(){
+        self.textField.text = self.datePicker.date.toString(format: Constants.Data.DateFormat)
+        self.endEditing(true)
+    }
+    
+    @objc func cancelDatePicker(){
+        self.endEditing(true)
     }
     
     required init?(coder: NSCoder) {
