@@ -19,9 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let invVC = UINavigationController(rootViewController: InventoryViewController())
         invVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Inventory", comment: "The collections of goods."), image: #imageLiteral(resourceName: "Inventory"), tag: 1)
         
+        let cusVC = UINavigationController(rootViewController: CustomerViewController())
+        cusVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Customers", comment: "The human purchasing products."), image: #imageLiteral(resourceName: "Customers"), tag: 2)
+        
         let tabController = UITabBarController()
         tabController.viewControllers = [
-            invVC
+            invVC, cusVC
         ]
         
         self.window?.rootViewController = tabController
