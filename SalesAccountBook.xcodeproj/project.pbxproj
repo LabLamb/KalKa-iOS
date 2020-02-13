@@ -14,6 +14,7 @@
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
+		D23A385223F5100E00488DFD /* MerchFieldsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */; };
 		D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */; };
 		D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */; };
 		D26BF52D23F2830A00EDB259 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BF52C23F2830A00EDB259 /* StoreKit.framework */; };
@@ -72,6 +73,7 @@
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchFieldsContainer.swift; sourceTree = "<group>"; };
 		D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Merch+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Merch+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D26BF52C23F2830A00EDB259 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -203,6 +205,7 @@
 				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
 				D2C3E8B323F3B31700C0F33B /* MerchDetailsConfigurator.swift */,
 				D2D3F70F23F40CE90034D83F /* MerchIconView.swift */,
+				D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */,
 			);
 			path = "Merch Screen";
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2C3E8B423F3B31700C0F33B /* MerchDetailsConfigurator.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
+				D23A385223F5100E00488DFD /* MerchFieldsContainer.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,

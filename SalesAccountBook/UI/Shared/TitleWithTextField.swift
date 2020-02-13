@@ -33,6 +33,10 @@ class TitleWithTextField: UIView {
         self.title.text = title
         self.title.textAlignment = .left
         
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(focusTextField))
+        self.title.isUserInteractionEnabled = true
+        self.title.addGestureRecognizer(tapGest)
+        
         self.addSubview(self.textField)
         self.textField.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
@@ -42,6 +46,10 @@ class TitleWithTextField: UIView {
         self.textField.placeholder = placeholder
         self.textField.textAlignment = textAlign
         
+    }
+    
+    @objc func focusTextField() {
+        self.textField.becomeFirstResponder()
     }
     
     required init?(coder: NSCoder) {

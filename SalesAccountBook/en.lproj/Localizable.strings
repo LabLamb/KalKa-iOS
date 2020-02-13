@@ -21,3 +21,5 @@
 "Cancel" = "Cancel";
 "Required(Input)" = "Required";
 "Optional(Input)" = "Optional";
+"ConfirmationTitle" = "Confirmation";
+"ConfirmationMessage" = "Are you sure?";
