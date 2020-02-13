@@ -225,7 +225,14 @@ class MerchDetailViewController: UIViewController {
             self.uploadByLibrary()
         }))
         
+        let resetBtn = UIAlertAction(title: NSLocalizedString("Remove", comment: "Collections of images."), style: .destructive, handler: { _ in
+            self.resetIconDefault()
+        })
+        actionSheet.addAction(resetBtn)
+        
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil))
+        
+        resetBtn.isEnabled = !(self.merchPic.iconImage.image == #imageLiteral(resourceName: "MerchDefault"))
         
         self.present(actionSheet, animated: true, completion: nil)
     }
@@ -241,7 +248,6 @@ class MerchDetailViewController: UIViewController {
     }
     
     private func uploadByLibrary() {
-        
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let picker = UIImagePickerController()
             picker.allowsEditing = true
@@ -249,6 +255,10 @@ class MerchDetailViewController: UIViewController {
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }
+    }
+    
+    private func resetIconDefault() {
+        self.merchPic.iconImage.image = #imageLiteral(resourceName: "MerchDefault")
     }
 }
 

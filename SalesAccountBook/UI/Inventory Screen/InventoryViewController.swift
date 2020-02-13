@@ -58,7 +58,8 @@ class InventoryViewController: UIViewController {
         self.unfocusSearchBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         DispatchQueue.main.async {
             self.inventory.fullFetch(completion: { [weak self] in
                 guard let `self` = self  else { return }
