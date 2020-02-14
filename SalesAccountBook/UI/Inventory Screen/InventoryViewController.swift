@@ -34,11 +34,11 @@ class InventoryViewController: SearchTableViewController {
     }
     
     @objc private func navToAddMerchView() {
-        let merchConfig: MerchDetailsConfigurator = {
+        let merchConfig: DetailsConfigurator = {
             if let delegate = self.onSelectRowDelegate {
-                return MerchDetailsConfigurator(action: .add, merchName: nil, inventory: self.list as? Inventory, onSelectRow: delegate)
+                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: delegate)
             } else {
-                return MerchDetailsConfigurator(action: .add, merchName: nil, inventory: self.list as? Inventory, onSelectRow: nil)
+                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: nil)
             }
         }()
         
@@ -64,7 +64,7 @@ extension InventoryViewController {
         if let delegate = self.onSelectRowDelegate {
             delegate(merchName)
         } else {
-            let merchConfig = MerchDetailsConfigurator(action: .edit, merchName: merchName, inventory: self.list as? Inventory, onSelectRow: nil)
+            let merchConfig = DetailsConfigurator(action: .edit, id: merchName, viewModel: self.list, onSelectRow: nil)
             let editMerchVC = MerchDetailViewController(config: merchConfig)
             self.navigationController?.pushViewController(editMerchVC, animated: true)
         }

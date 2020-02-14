@@ -6,7 +6,7 @@ import SnapKit
 
 class CustomerFieldsContainer: UIView {
     
-    let customerPic: CustomerIconView
+    let customerPic: IconView
     let customerName: TitleWithTextField
     let customerPhone: TitleWithTextField
     let customerAddress: TitleWithTextView
@@ -14,7 +14,7 @@ class CustomerFieldsContainer: UIView {
     let lastContacted: TitleWithDatePicker
     
     init() {
-        self.customerPic = CustomerIconView()
+        self.customerPic = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
         
         self.customerName = TitleWithTextField(title: NSLocalizedString("Name", comment: ""),
                                                placeholder: NSLocalizedString("Required(Input)", comment: "Must input."), maxTextLength: 24)

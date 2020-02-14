@@ -4,12 +4,12 @@
 
 import SnapKit
 
-class CustomerIconView: UIView {
+class IconView: UIView {
     
     let iconImage: UIImageView
     
-    init() {
-        self.iconImage = UIImageView(image: #imageLiteral(resourceName: "AvatarDefault"))
+    init(image: UIImage) {
+        self.iconImage = UIImageView(image: image)
         super.init(frame: .zero)
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in

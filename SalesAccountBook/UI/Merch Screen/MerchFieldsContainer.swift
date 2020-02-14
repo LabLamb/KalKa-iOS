@@ -6,14 +6,14 @@ import SnapKit
 
 class MerchFieldsContainer: UIView {
     
-    let merchPic: MerchIconView
+    let merchPic: IconView
     let merchName: TitleWithTextField
     let merchPrice: TitleWithTextField
     let merchQty: TitleWithTextField
     let merchRemark: TitleWithTextField
     
     init() {
-        self.merchPic = MerchIconView()
+        self.merchPic = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
         self.merchName = TitleWithTextField(title: NSLocalizedString("Name", comment: "Name of product."))
         self.merchPrice = TitleWithTextField(title: NSLocalizedString("Price", comment: "Price of product."))
         self.merchQty = TitleWithTextField(title: NSLocalizedString("Qty", comment: "Quantity of product."))

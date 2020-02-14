@@ -15,12 +15,12 @@ class MerchDetailViewController: UIViewController {
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    init(config: MerchDetailsConfigurator) {
+    init(config: DetailsConfigurator) {
         self.containerView = MerchFieldsContainer()
         
         self.actionType = config.action
-        self.currentMerchName = config.merchName
-        self.inventory = config.inventory
+        self.currentMerchName = config.id
+        self.inventory = config.viewModel as? Inventory
         self.onSelectRowDelegate = config.onSelectRow
         
         super.init(nibName: nil, bundle: nil)

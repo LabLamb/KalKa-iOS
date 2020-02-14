@@ -2,9 +2,9 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-struct MerchDetailsConfigurator {
+struct DetailsConfigurator {
     let action: DetailsViewActionType
-    let merchName: String?
-    let inventory: Inventory?
+    let id: String?
+    let viewModel: ViewModel?
     let onSelectRow: ((String) -> Void)?
 }

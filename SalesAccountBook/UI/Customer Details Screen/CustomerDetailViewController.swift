@@ -4,11 +4,10 @@
 
 import SnapKit
 
-class CustomerDetailViewController: UIViewController {
+class CustomerDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
     private let containerView: CustomerFieldsContainer
-    private let scrollView: UIScrollView
     
     let actionType: DetailsViewActionType
     var currentCustomerName: String?
@@ -16,19 +15,15 @@ class CustomerDetailViewController: UIViewController {
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    init(config: CustomerDetailsConfigurator) {
+    init(config: DetailsConfigurator) {
         self.containerView = CustomerFieldsContainer()
-        self.scrollView = UIScrollView()
         
         self.actionType = config.action
-        self.currentCustomerName = config.customerName
-        self.customerList = config.customerList
+        self.currentCustomerName = config.id
+        self.customerList = config.viewModel as? CustomerList
         self.onSelectRowDelegate = config.onSelectRow
         
-        super.init(nibName: nil, bundle: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+        super.init()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -100,21 +95,6 @@ class CustomerDetailViewController: UIViewController {
         self.containerView.customerPic.isUserInteractionEnabled = true
     }
     
-    @objc private func keyboardDidAppear(noti: NSNotification) {
-        guard let info = noti.userInfo else { return }
-        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
-        let kbSize = rect.size
-
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-        self.scrollView.contentInset = insets
-        self.scrollView.scrollIndicatorInsets = insets
-    }
-    
-    @objc private func keboardDidDisappeared() {
-        scrollView.contentInset = UIEdgeInsets.zero
-        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
-    }
-    
     
     // MARK: - Data
     @objc private func submitCustomerDetails () {
@@ -124,7 +104,7 @@ class CustomerDetailViewController: UIViewController {
             
             let customerNameText = self.containerView.customerName.text
             if  customerNameText == "" {
-                self.promptEmptyCustomerNameError()
+                self.promptEmptyFieldError(field: self.containerView.customerName.textField)
                 return
             }
             
@@ -207,22 +187,6 @@ class CustomerDetailViewController: UIViewController {
                                             self.navigationController?.popViewController(animated: true)
         })
     }
-    
-    
-    // MARK: - Errors
-    private func promptCustomerNameExistsError() {
-        let errorMessage = NSLocalizedString("ErrorCustomerExists", comment: "Error Message - Customer exists with the same name.")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
-    }
-    
-    private func promptEmptyCustomerNameError() {
-        let errorMessage = NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field .")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
-        
-        self.containerView.customerName.textField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Required(Input)", comment: "Must input."),
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.5)])
-    }
 }
 
 // MARK: - Camera
@@ -286,6 +250,4 @@ extension CustomerDetailViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
 }

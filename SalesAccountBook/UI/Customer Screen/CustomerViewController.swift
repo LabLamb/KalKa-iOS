@@ -37,11 +37,11 @@ class CustomerViewController: SearchTableViewController {
     }
     
     @objc private func navToAddCustomerView() {
-        let customerConfig: CustomerDetailsConfigurator = {
+        let customerConfig: DetailsConfigurator = {
             if let delegate = self.onSelectRowDelegate {
-                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.list as? CustomerList, onSelectRow: delegate)
+                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: delegate)
             } else {
-                return CustomerDetailsConfigurator(action: .add, customerName: nil, customerList: self.list as? CustomerList, onSelectRow: nil)
+                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: nil)
             }
         }()
         
@@ -68,7 +68,7 @@ extension CustomerViewController {
         if let delegate = self.onSelectRowDelegate {
             delegate(customerName)
         } else {
-            let customerConfig = CustomerDetailsConfigurator(action: .edit, customerName: customerName, customerList: self.list as? CustomerList, onSelectRow: nil)
+            let customerConfig = DetailsConfigurator(action: .edit, id: customerName, viewModel: self.list, onSelectRow: nil)
             let editCustomerVC = CustomerDetailViewController(config: customerConfig)
             self.navigationController?.pushViewController(editCustomerVC, animated: true)
         }
