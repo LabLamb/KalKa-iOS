@@ -53,7 +53,7 @@ class CustomerDetailViewController: UIViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let customerDetails = self.customerList?.getCustomer(name: self.currentCustomerName ?? "") else {
+        guard let customerDetails = self.customerList?.get(name: self.currentCustomerName ?? "") as? CustomerDetails else {
             fatalError()
         }
         
@@ -135,7 +135,7 @@ class CustomerDetailViewController: UIViewController {
                 if self.currentCustomerName == customerNameText {
                     self.editCustomer(customerDetails: customerDetails)
                 } else {
-                    self.customerList?.existsCustomer(name: customerNameText,
+                    self.customerList?.exists(name: customerNameText,
                                                       completion: { [weak self] exists in
                                                         guard let `self` = self else { return }
                                                         if exists {
@@ -146,7 +146,7 @@ class CustomerDetailViewController: UIViewController {
                     })
                 }
             } else if self.actionType == .add {
-                self.customerList?.existsCustomer(name: customerNameText,
+                self.customerList?.exists(name: customerNameText,
                                                   completion: { [weak self] exists in
                                                     guard let `self` = self else { return }
                                                     if exists {
@@ -186,7 +186,7 @@ class CustomerDetailViewController: UIViewController {
     }
     
     private func addCustomer(customerDetails: CustomerDetails) {
-        self.customerList?.addCustomer(details: customerDetails)
+        self.customerList?.add(details: customerDetails)
         
         if let delegate = self.onSelectRowDelegate {
             delegate(customerDetails.name)
@@ -201,7 +201,7 @@ class CustomerDetailViewController: UIViewController {
             fatalError()
         }
         
-        self.customerList?.editCustomer(oldName: oldName,
+        self.customerList?.edit(oldName: oldName,
                                         details: customerDetails,
                                         completion: {
                                             self.navigationController?.popViewController(animated: true)

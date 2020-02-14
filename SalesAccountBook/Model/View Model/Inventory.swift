@@ -6,26 +6,22 @@ import Foundation
 import CoreData
 import UIKit
 
-class Inventory {
+class Inventory: ViewModel {
     
-    private let persistentContainer: NSPersistentContainer
-    var merchs: [Merch]
-    
-    init() {
-        self.merchs = [Merch]()
-        self.persistentContainer = CoreStack.shared.persistentContainer
-    }
-    
-    public func fullFetch(completion: (() -> Void)? = nil) {
+    public override func fetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.sortDescriptors = [sortDesc]
         let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Merch]
-        self.merchs = result ?? [Merch]()
+        self.items = result ?? [Merch]()
         completion?()
     }
     
-    public func addMerch(details: MerchDetails) {
+    public override func add(details: Any) {
+        guard let `details` = details as? MerchDetails else {
+            fatalError("Passed wrong datatype to add.")
+        }
+        
         let context = self.persistentContainer.newBackgroundContext()
         if let entity = NSEntityDescription.entity(forEntityName: "Merch", in: context) {
             let newMerch = Merch(entity: entity, insertInto: context)
@@ -37,11 +33,11 @@ class Inventory {
             
             try? context.save()
             
-            self.fullFetch()
+            self.fetch()
         }
     }
     
-    private func queryMerch(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Merch]? {
+    override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -52,9 +48,9 @@ class Inventory {
         
     }
     
-    public func getMerch(name: String) -> MerchDetails? {
+    public override func get(name: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", name)
-        guard let result = self.queryMerch(clause: predicate) else { return nil}
+        guard let result = self.query(clause: predicate) as? [Merch] else { return nil}
         guard let merch = result.first else { return nil }
         let merchImage: UIImage? = {
             if let imgData = merch.image {
@@ -67,10 +63,15 @@ class Inventory {
         return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    public func editMerch(oldName: String, details: MerchDetails, completion: (() -> Void)) {
+    public override func edit(oldName: String, details: Any, completion: (() -> Void)) {
+        guard let `details` = details as? MerchDetails else {
+            fatalError("Passed wrong datatype to add.")
+        }
+        
         let context = self.persistentContainer.newBackgroundContext()
         let predicate = NSPredicate(format: "name = %@", oldName)
-        guard let result = self.queryMerch(clause: predicate, incContext: context) else {
+        
+        guard let result = self.query(clause: predicate, incContext: context) as? [Merch] else {
             fatalError("Trying to edit an non-existing Merch. (Query returned nil)")
         }
         
@@ -89,9 +90,9 @@ class Inventory {
         completion()
     }
     
-    public func existsMerch(name: String, completion: ((Bool) -> Void)) {
+    public override func exists(name: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", name)
-        if let result = self.queryMerch(clause: predicate) {
+        if let result = self.query(clause: predicate) {
             completion(result.count > 0)
         } else {
             completion(false)

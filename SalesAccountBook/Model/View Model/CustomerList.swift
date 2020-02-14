@@ -6,26 +6,22 @@ import Foundation
 import CoreData
 import UIKit
 
-class CustomerList {
+class CustomerList: ViewModel {
     
-    private let persistentContainer: NSPersistentContainer
-    var customers: [Customer]
-    
-    init() {
-        self.customers = [Customer]()
-        self.persistentContainer = CoreStack.shared.persistentContainer
-    }
-    
-    public func fullFetch(completion: (() -> Void)? = nil) {
+    override func fetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         fetchRequest.sortDescriptors = [sortDesc]
         let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Customer]
-        self.customers = result ?? [Customer]()
+        self.items = result ?? [Customer]()
         completion?()
     }
     
-    public func addCustomer(details: CustomerDetails) {
+    override func add(details: Any) {
+        guard let `details` = details as? CustomerDetails else {
+            fatalError("Passed wrong datatype to add.")
+        }
+        
         let context = self.persistentContainer.newBackgroundContext()
         if let entity = NSEntityDescription.entity(forEntityName: "Customer", in: context) {
             let newCustomer = Customer(entity: entity, insertInto: context)
@@ -39,11 +35,11 @@ class CustomerList {
             
             try? context.save()
             
-            self.fullFetch()
+            self.fetch()
         }
     }
     
-    private func queryCustomer(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Customer]? {
+    override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -54,9 +50,9 @@ class CustomerList {
         
     }
     
-    public func getCustomer(name: String) -> CustomerDetails? {
+    override func get(name: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", name)
-        guard let result = self.queryCustomer(clause: predicate) else { return nil}
+        guard let result = self.query(clause: predicate) as? [Customer] else { return nil}
         guard let customer = result.first else { return nil }
         let customerImage: UIImage? = {
             if let imgData = customer.image {
@@ -69,10 +65,15 @@ class CustomerList {
         return (image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
     }
     
-    public func editCustomer(oldName: String, details: CustomerDetails, completion: (() -> Void)) {
+    override func edit(oldName: String, details: Any, completion: (() -> Void)) {
+        guard let `details` = details as? CustomerDetails else {
+            fatalError("Passed wrong datatype to add.")
+        }
+        
         let context = self.persistentContainer.newBackgroundContext()
         let predicate = NSPredicate(format: "name = %@", oldName)
-        guard let result = self.queryCustomer(clause: predicate, incContext: context) else {
+        
+        guard let result = self.query(clause: predicate, incContext: context) as? [Customer] else {
             fatalError("Trying to edit an non-existing Customer. (Query returned nil)")
         }
         
@@ -92,9 +93,9 @@ class CustomerList {
         completion()
     }
     
-    public func existsCustomer(name: String, completion: ((Bool) -> Void)) {
+    override func exists(name: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", name)
-        if let result = self.queryCustomer(clause: predicate) {
+        if let result = self.query(clause: predicate) {
             completion(result.count > 0)
         } else {
             completion(false)

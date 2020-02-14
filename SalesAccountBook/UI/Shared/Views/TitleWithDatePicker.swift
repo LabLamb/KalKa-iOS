@@ -8,7 +8,7 @@ class TitleWithDatePicker: TitleWithTextField {
     
     let datePicker: UIDatePicker
     
-    override init(title: String,
+    init(title: String,
                   placeholder: String = Date().toString(format: Constants.System.DateFormat),
          textAlign: NSTextAlignment = .left) {
         self.datePicker = UIDatePicker()

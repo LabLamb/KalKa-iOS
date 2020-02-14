@@ -5,6 +5,13 @@
 import UIKit
 
 class Constants {
+    
+    static let System = (
+        DateFormat: "yyyy-MM-dd",
+        SupportedMiniumScreenHeight: 667.0,
+        SupportedMiniumScreenWidth: 375.0
+    )
+    
     static let UI = (
         TabBarHeight: 49,
         Spacing: (
@@ -76,9 +83,4 @@ class Constants {
         )
     )
     
-    static let System = (
-        DateFormat: "yyyy-MM-dd",
-        SupportedMiniumScreenHeight: 667.0,
-        SupportedMiniumScreenWidth: 375.0
-    )
 }

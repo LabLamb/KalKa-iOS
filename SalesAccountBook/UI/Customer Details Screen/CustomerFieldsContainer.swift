@@ -17,9 +17,9 @@ class CustomerFieldsContainer: UIView {
         self.customerPic = CustomerIconView()
         
         self.customerName = TitleWithTextField(title: NSLocalizedString("Name", comment: ""),
-                                               placeholder: NSLocalizedString("Required(Input)", comment: "Must input."))
+                                               placeholder: NSLocalizedString("Required(Input)", comment: "Must input."), maxTextLength: 24)
         self.customerPhone = TitleWithTextField(title: NSLocalizedString("Phone", comment: ""),
-                                                placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
+                                                placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."), maxTextLength: 11)
         self.customerAddress = TitleWithTextView(title: NSLocalizedString("Address", comment: ""),
                                                  placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
         self.customerRemark = TitleWithTextView(title: NSLocalizedString("Remark", comment: ""),
@@ -36,9 +36,7 @@ class CustomerFieldsContainer: UIView {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            if let superView = self.superview {
-                make.height.equalTo(superView).dividedBy(5)
-            }
+            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.customerPic.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
         self.customerPic.backgroundColor = .white

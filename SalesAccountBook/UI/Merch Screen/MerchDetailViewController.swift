@@ -49,7 +49,7 @@ class MerchDetailViewController: UIViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let merchDetails = self.inventory?.getMerch(name: self.currentMerchName ?? "") else {
+        guard let merchDetails = self.inventory?.get(name: self.currentMerchName ?? "") as? MerchDetails else {
             fatalError()
         }
         
@@ -101,7 +101,7 @@ class MerchDetailViewController: UIViewController {
                 if self.currentMerchName == merchNameText {
                     self.editMerch(merchDetails: merchDetails)
                 } else {
-                    self.inventory?.existsMerch(name: merchNameText,
+                    self.inventory?.exists(name: merchNameText,
                                                 completion: { [weak self] exists in
                                                     guard let `self` = self else { return }
                                                     if exists {
@@ -112,7 +112,7 @@ class MerchDetailViewController: UIViewController {
                     })
                 }
             } else if self.actionType == .add {
-                self.inventory?.existsMerch(name: merchNameText,
+                self.inventory?.exists(name: merchNameText,
                                             completion: { [weak self] exists in
                                                 guard let `self` = self else { return }
                                                 if exists {
@@ -147,7 +147,7 @@ class MerchDetailViewController: UIViewController {
     }
     
     private func addMerch(merchDetails: MerchDetails) {
-        self.inventory?.addMerch(details: merchDetails)
+        self.inventory?.add(details: merchDetails)
         
         if let delegate = self.onSelectRowDelegate {
             delegate(merchDetails.name)
@@ -162,7 +162,7 @@ class MerchDetailViewController: UIViewController {
             fatalError()
         }
         
-        self.inventory?.editMerch(oldName: oldName,
+        self.inventory?.edit(oldName: oldName,
                                   details: merchDetails,
                                   completion: {
                                     self.navigationController?.popViewController(animated: true)

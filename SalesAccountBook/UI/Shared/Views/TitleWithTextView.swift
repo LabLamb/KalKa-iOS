@@ -4,23 +4,23 @@
 
 import SnapKit
 
-class TitleWithTextField: UIView {
+class TitleWithTextView: UIView {
     
     let title: UILabel
-    let textField: UITextField
+    let textView: UITextView
     var text: String {
         get {
-            return self.textField.text ?? ""
+            return self.textView.text ?? ""
         }
         
         set {
-            self.textField.text = newValue
+            self.textView.text = newValue
         }
     }
     
     var spacing: CGFloat {
         didSet {
-            self.textField.snp.updateConstraints { make in
+            self.textView.snp.updateConstraints { make in
                 make.left.equalTo(self.title.snp.right).offset(self.spacing)
             }
             self.layoutIfNeeded()
@@ -29,7 +29,7 @@ class TitleWithTextField: UIView {
     
     init(title: String, placeholder: String = "", textAlign: NSTextAlignment = .left) {
         self.title = UILabel()
-        self.textField = UITextField()
+        self.textView = UITextView()
         self.spacing = 5
         
         super.init(frame: .zero)
@@ -43,23 +43,28 @@ class TitleWithTextField: UIView {
         self.title.textAlignment = .left
         self.title.numberOfLines = 0
         
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(focusTextField))
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(focusTextView))
         self.title.isUserInteractionEnabled = true
         self.title.addGestureRecognizer(tapGest)
         
-        self.addSubview(self.textField)
-        self.textField.snp.makeConstraints({ make in
+        self.addSubview(self.textView)
+        self.textView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.title.snp.right).offset(self.spacing)
         })
         
-        self.textField.placeholder = placeholder
-        self.textField.textAlignment = textAlign
+        self.textView.textColor = UIColor.lightGray
         
+        self.textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        
+        self.textView.textAlignment = textAlign
+        self.textView.isScrollEnabled = false
+//        self.textView.textContainerInset.left = .zero
+        self.textView.textContainer.lineFragmentPadding = 0
     }
     
-    @objc func focusTextField() {
-        self.textField.becomeFirstResponder()
+    @objc func focusTextView() {
+        self.textView.becomeFirstResponder()
     }
     
     required init?(coder: NSCoder) {
