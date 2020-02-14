@@ -14,6 +14,8 @@
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D223CD1723F57F2B003A8EF6 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223CD1623F57F2B003A8EF6 /* String+Date.swift */; };
 		D223CD1923F5859D003A8EF6 /* TitleWithDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223CD1823F5859C003A8EF6 /* TitleWithDatePicker.swift */; };
+		D223CD1B23F5A5E7003A8EF6 /* TitleWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223CD1A23F5A5E7003A8EF6 /* TitleWithTextView.swift */; };
+		D223CD1D23F5B819003A8EF6 /* IconWithTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223CD1C23F5B819003A8EF6 /* IconWithTextView.swift */; };
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
 		D2364E2623F54D6600F93973 /* CustomerFieldsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2223F54D6600F93973 /* CustomerFieldsContainer.swift */; };
@@ -89,6 +91,8 @@
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D223CD1623F57F2B003A8EF6 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
 		D223CD1823F5859C003A8EF6 /* TitleWithDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithDatePicker.swift; sourceTree = "<group>"; };
+		D223CD1A23F5A5E7003A8EF6 /* TitleWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithTextView.swift; sourceTree = "<group>"; };
+		D223CD1C23F5B819003A8EF6 /* IconWithTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextView.swift; sourceTree = "<group>"; };
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2364E2223F54D6600F93973 /* CustomerFieldsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerFieldsContainer.swift; sourceTree = "<group>"; };
@@ -369,7 +373,9 @@
 			isa = PBXGroup;
 			children = (
 				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
+				D223CD1C23F5B819003A8EF6 /* IconWithTextView.swift */,
 				D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */,
+				D223CD1A23F5A5E7003A8EF6 /* TitleWithTextView.swift */,
 				D223CD1823F5859C003A8EF6 /* TitleWithDatePicker.swift */,
 			);
 			path = Shared;
@@ -618,6 +624,7 @@
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
 				D2D6BA7723F527FA007894FD /* CustomerViewController.swift in Sources */,
+				D223CD1D23F5B819003A8EF6 /* IconWithTextView.swift in Sources */,
 				D2D6BA5023F522CE007894FD /* CustomerList.swift in Sources */,
 				D2D6BA7C23F52DE8007894FD /* Order+CoreDataProperties.swift in Sources */,
 				D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */,
@@ -646,6 +653,7 @@
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
 				D2044B8C23F42841008DFDB1 /* TitleWithTextField.swift in Sources */,
 				D2D6BA7F23F52DE8007894FD /* Order+CoreDataClass.swift in Sources */,
+				D223CD1B23F5A5E7003A8EF6 /* TitleWithTextView.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

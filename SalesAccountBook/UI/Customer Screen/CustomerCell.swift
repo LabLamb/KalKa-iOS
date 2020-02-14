@@ -14,40 +14,39 @@ class CustomerCell: UITableViewCell {
     
     lazy var nameLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.LargeBold
+        result.font = Constants.UI.Font.MediumBold
         return result
     }()
     
-//    lazy var priceLabel: UILabel = {
-//        let result = UILabel()
-//        return result
-//    }()
-//
-//    lazy var qtyLabel: UILabel = {
-//        let result = UILabel()
-//        result.textAlignment = .right
-//        return result
-//    }()
+    lazy var phoneLabel: IconWithTextLabel = {
+        let result = IconWithTextLabel(icon: #imageLiteral(resourceName: "Phone"))
+        result.textLabel.font = Constants.UI.Font.Small
+        result.spacing = 2.5
+        return result
+    }()
     
-    lazy var remarkLabel: UILabel = {
-        let result = UILabel()
-        result.textColor = Constants.UI.Color.Grey
-        result.font = Constants.UI.Font.Small
+    lazy var addressLabel: IconWithTextView = {
+        let result = IconWithTextView(icon: #imageLiteral(resourceName: "Address"), text: "", textAlign: .left)
+        result.textView.font = Constants.UI.Font.Small
+        result.spacing = 2.5
+        return result
+    }()
+    
+    lazy var remarkLabel: IconWithTextView = {
+        let result = IconWithTextView(icon: #imageLiteral(resourceName: "Remark"))
+        result.textView.font = Constants.UI.Font.Small
+        result.spacing = 2.5
         return result
     }()
     
     private func setupLayout(remarkExists: Bool) {
-        DispatchQueue.main.async {
-            self.layer.cornerRadius = self.frame.height / 4
-            self.clipsToBounds = true
-        }
         
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.width.equalTo(self.iconImage.snp.height)
+            make.width.equalToSuperview().dividedBy(6)
+            make.height.equalTo(self.iconImage.snp.width)
         }
         self.iconImage.clipsToBounds = true
         DispatchQueue.main.async {
@@ -56,41 +55,35 @@ class CustomerCell: UITableViewCell {
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Medium)
-            make.width.equalToSuperview().dividedBy(3)
-            if remarkExists {
-                make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
-                make.height.equalToSuperview().dividedBy(3)
-            } else {
-                make.top.bottom.equalToSuperview()
-            }
+            make.leading.equalTo(self.iconImage.snp.trailing).offset(Constants.UI.Spacing.Small)
+            make.width.equalToSuperview().multipliedBy(0.45)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.height.equalToSuperview().multipliedBy(0.139)
         }
         
-        if remarkExists {
-            self.addSubview(self.remarkLabel)
-            self.remarkLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.ExSmall)
-                make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Medium)
-                make.width.equalToSuperview().dividedBy(3)
-                make.height.equalToSuperview().dividedBy(3)
-            }
+        self.addSubview(self.phoneLabel)
+        self.phoneLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.nameLabel.snp.trailing).offset(Constants.UI.Spacing.Small)
+            make.width.equalToSuperview().multipliedBy(0.275)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.height.equalToSuperview().multipliedBy(0.139)
         }
         
-//        self.addSubview(self.priceLabel)
-//        self.priceLabel.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Medium)
-//            make.height.equalToSuperview().dividedBy(3)
-//            make.width.equalToSuperview().dividedBy(5)
-//        }
-//
-//        self.addSubview(self.qtyLabel)
-//        self.qtyLabel.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.ExSmall)
-//            make.height.equalToSuperview().dividedBy(3)
-//            make.width.equalToSuperview().dividedBy(7)
-//        }
+        self.addSubview(self.addressLabel)
+        self.addressLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.iconImage.snp.trailing).offset(Constants.UI.Spacing.Small)
+            make.width.equalToSuperview().multipliedBy(0.75)
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.ExSmall)
+            make.height.equalToSuperview().multipliedBy(0.278)
+        }
+        
+        self.addSubview(self.remarkLabel)
+        self.remarkLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.iconImage.snp.trailing).offset(Constants.UI.Spacing.Small)
+            make.width.equalToSuperview().multipliedBy(0.75)
+            make.top.equalTo(self.addressLabel.snp.bottom).offset(Constants.UI.Spacing.ExSmall)
+            make.height.equalToSuperview().multipliedBy(0.278)
+        }
     }
     
     private func setupData(data: Customer) {
@@ -99,10 +92,10 @@ class CustomerCell: UITableViewCell {
         } else {
             self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
         }
-        self.nameLabel.text = data.name
-        self.remarkLabel.text = data.remark
-//        self.priceLabel.text = "$\(data.price)"
-//        self.qtyLabel.text = String(data.qty)
+        self.nameLabel.text = data.name == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.name
+        self.phoneLabel.text = data.phone == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.phone
+        self.addressLabel.text = data.address == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.address
+        self.remarkLabel.text = data.remark == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.remark
     }
     
     public func setup(data: Customer) {
@@ -113,8 +106,8 @@ class CustomerCell: UITableViewCell {
     
     override func prepareForReuse() {
         self.nameLabel.text = ""
-//        self.priceLabel.text = ""
-//        self.qtyLabel.text = ""
+        //        self.priceLabel.text = ""
+        //        self.qtyLabel.text = ""
         self.remarkLabel.text = ""
         self.iconImage.image = nil
         

@@ -7,7 +7,8 @@ import SnapKit
 class CustomerDetailViewController: UIViewController {
     
     // MARK: - Variables
-    let containerView: CustomerFieldsContainer
+    private let containerView: CustomerFieldsContainer
+    private let scrollView: UIScrollView
     
     let actionType: DetailsViewActionType
     var currentCustomerName: String?
@@ -17,6 +18,7 @@ class CustomerDetailViewController: UIViewController {
     // MARK: - Initializion
     init(config: CustomerDetailsConfigurator) {
         self.containerView = CustomerFieldsContainer()
+        self.scrollView = UIScrollView()
         
         self.actionType = config.action
         self.currentCustomerName = config.customerName
@@ -25,6 +27,8 @@ class CustomerDetailViewController: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -66,10 +70,22 @@ class CustomerDetailViewController: UIViewController {
     private func setup() {
         self.view.backgroundColor = .groupTableViewBackground
         
-        self.view.addSubview(self.containerView)
-        self.containerView.snp.makeConstraints { make in
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
-            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        self.scrollView.setContentOffset(.init(x: 0, y: self.scrollView.contentOffset.y), animated: false)
+        self.scrollView.isDirectionalLockEnabled = true
+        
+        self.scrollView.addSubview(self.containerView)
+        self.containerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         self.containerView.backgroundColor = .white
         
@@ -82,6 +98,21 @@ class CustomerDetailViewController: UIViewController {
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.showImageUploadOption))
         self.containerView.customerPic.addGestureRecognizer(tapGest)
         self.containerView.customerPic.isUserInteractionEnabled = true
+    }
+    
+    @objc private func keyboardDidAppear(noti: NSNotification) {
+        guard let info = noti.userInfo else { return }
+        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let kbSize = rect.size
+
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        self.scrollView.contentInset = insets
+        self.scrollView.scrollIndicatorInsets = insets
+    }
+    
+    @objc private func keboardDidDisappeared() {
+        scrollView.contentInset = UIEdgeInsets.zero
+        scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
     }
     
     

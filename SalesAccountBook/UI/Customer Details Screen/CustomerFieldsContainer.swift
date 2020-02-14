@@ -9,17 +9,23 @@ class CustomerFieldsContainer: UIView {
     let customerPic: CustomerIconView
     let customerName: TitleWithTextField
     let customerPhone: TitleWithTextField
-    let customerAddress: TitleWithTextField
-    let customerRemark: TitleWithTextField
+    let customerAddress: TitleWithTextView
+    let customerRemark: TitleWithTextView
     let lastContacted: TitleWithDatePicker
     
     init() {
         self.customerPic = CustomerIconView()
-        self.customerName = TitleWithTextField(title: NSLocalizedString("Name", comment: ""))
-        self.customerPhone = TitleWithTextField(title: NSLocalizedString("Phone", comment: ""))
-        self.customerAddress = TitleWithTextField(title: NSLocalizedString("Address", comment: ""))
-        self.customerRemark = TitleWithTextField(title: NSLocalizedString("Remark", comment: ""))
-        self.lastContacted = TitleWithDatePicker(title: NSLocalizedString("LastContacted", comment: "Date of last contact."))
+        
+        self.customerName = TitleWithTextField(title: NSLocalizedString("Name", comment: ""),
+                                               placeholder: NSLocalizedString("Required(Input)", comment: "Must input."))
+        self.customerPhone = TitleWithTextField(title: NSLocalizedString("Phone", comment: ""),
+                                                placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
+        self.customerAddress = TitleWithTextView(title: NSLocalizedString("Address", comment: ""),
+                                                 placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
+        self.customerRemark = TitleWithTextView(title: NSLocalizedString("Remark", comment: ""),
+                                                placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
+        self.lastContacted = TitleWithDatePicker(title: NSLocalizedString("LastContacted", comment: "Date of last contact."),
+                                                 placeholder: NSLocalizedString("Optional(Input)", comment: "Can leave blank."))
         
         super.init(frame: .zero)
     }
@@ -69,9 +75,8 @@ class CustomerFieldsContainer: UIView {
             make.top.equalTo(self.customerPhone.snp.bottom)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
         }
-        self.customerAddress.textField.clearButtonMode = .whileEditing
+        self.customerAddress.textView.font = UITextField().font
         self.customerAddress.backgroundColor = .white
         self.customerAddress.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
         
@@ -80,9 +85,8 @@ class CustomerFieldsContainer: UIView {
             make.top.equalTo(self.customerAddress.snp.bottom)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
         }
-        self.customerRemark.textField.clearButtonMode = .whileEditing
+        self.customerRemark.textView.font = UITextField().font
         self.customerRemark.backgroundColor = .white
         self.customerRemark.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
         
@@ -97,15 +101,6 @@ class CustomerFieldsContainer: UIView {
         self.lastContacted.textField.clearButtonMode = .whileEditing
         self.lastContacted.backgroundColor = .white
         self.lastContacted.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
-        
-        self.setupPlaceholders()
-    }
-    
-    private func setupPlaceholders() {
-        self.customerName.textField.placeholder = NSLocalizedString("Required(Input)", comment: "Must input.")
-        self.customerPhone.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
-        self.customerAddress.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
-        self.customerRemark.textField.placeholder = NSLocalizedString("Optional(Input)", comment: "Can leave blank.")
     }
     
     

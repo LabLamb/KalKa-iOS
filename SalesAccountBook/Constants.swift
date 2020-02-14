@@ -6,6 +6,7 @@ import UIKit
 
 class Constants {
     static let UI = (
+        TabBarHeight: 49,
         Spacing: (ExSmall: 5, Small: 10, Medium: 15, Large: 25, ExLarge: 40),
         Font: (ExSmallBold: UIFont.boldSystemFont(ofSize: 12),
                SmallBold: UIFont.boldSystemFont(ofSize: 14),

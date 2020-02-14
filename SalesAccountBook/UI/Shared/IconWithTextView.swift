@@ -4,23 +4,23 @@
 
 import SnapKit
 
-class IconWithTextLabel: UIView {
+class IconWithTextView: UIView {
     
     let icon: UIImageView
-    let textLabel: UILabel
+    let textView: UITextView
     var text: String {
         get {
-            return self.textLabel.text ?? ""
+            return self.textView.text ?? ""
         }
         
         set {
-            self.textLabel.text = newValue
+            self.textView.text = newValue
         }
     }
     
     var spacing: CGFloat {
         didSet {
-            self.textLabel.snp.updateConstraints { make in
+            self.textView.snp.updateConstraints { make in
                 make.left.equalTo(self.icon.snp.right).offset(self.spacing)
             }
             self.layoutIfNeeded()
@@ -29,7 +29,7 @@ class IconWithTextLabel: UIView {
     
     init(icon: UIImage, text: String = "", textAlign: NSTextAlignment = .left) {
         self.icon = UIImageView(image: icon)
-        self.textLabel = UILabel()
+        self.textView = UITextView()
         self.spacing = 0
         
         super.init(frame: .zero)
@@ -37,18 +37,24 @@ class IconWithTextLabel: UIView {
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints({ make in
             make.top.left.equalToSuperview()
-            make.height.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(2)
             make.width.equalTo(self.icon.snp.height)
         })
         
-        self.addSubview(self.textLabel)
-        self.textLabel.snp.makeConstraints({ make in
-            make.left.equalTo(self.icon.snp.right).offset(self.spacing)
+        self.addSubview(self.textView)
+        self.textView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
+            make.left.equalTo(self.icon.snp.right).offset(self.spacing)
         })
         
-        self.textLabel.text = text
-        self.textLabel.textAlignment = textAlign
+        self.textView.isEditable = false
+        self.textView.isSelectable = false
+        self.textView.isUserInteractionEnabled = false
+        self.textView.isScrollEnabled = false
+        self.textView.text = text
+        self.textView.textAlignment = textAlign
+        self.textView.textContainerInset = .zero
+        self.textView.textContainer.lineFragmentPadding = 0
         
     }
     

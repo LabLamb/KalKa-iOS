@@ -23,10 +23,8 @@ class CustomerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.tableView.register(CustomerCell.self, forCellReuseIdentifier: "CustomerListCell")
-//        self.tableView.register(customerListHeader.self, forHeaderFooterViewReuseIdentifier: "customerListHeader")
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.separatorStyle = .none
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.unfocusSearchBar))
         self.tableView.backgroundView = UIView()
@@ -39,6 +37,9 @@ class CustomerViewController: UIViewController {
         
         self.searchBar.delegate = self
         self.searchBar.placeholder = NSLocalizedString("Search", comment: "The action to look for something.")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -100,6 +101,21 @@ class CustomerViewController: UIViewController {
         }
     }
     
+    @objc private func keyboardDidAppear(noti: NSNotification) {
+        guard let info = noti.userInfo else { return }
+        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
+        let kbSize = rect.size
+
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+        self.tableView.contentInset = insets
+        self.tableView.scrollIndicatorInsets = insets
+    }
+    
+    @objc private func keboardDidDisappeared() {
+        self.tableView.contentInset = UIEdgeInsets.zero
+        self.tableView.scrollIndicatorInsets = UIEdgeInsets.zero
+    }
+    
 }
 
 
@@ -130,11 +146,9 @@ extension CustomerViewController: UITableViewDataSource, UITableViewDelegate {
         return self.filteredCustomers.count
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = self.tableView.dequeueReusableHeaderFooterView(withIdentifier: "customerListHeader") as! customerListHeader
-//        header.setup()
-//        return header
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
 }
 
 // MARK: - Refreshable
