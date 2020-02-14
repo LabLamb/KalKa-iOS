@@ -28,9 +28,7 @@ class MerchFieldsContainer: UIView {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            if let superView = self.superview {
-                make.height.equalTo(superView).dividedBy(5)
-            }
+            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.merchPic.addLine(position: .LINE_POSITION_BOTTOM, color: .groupTableViewBackground, width: 1)
         self.merchPic.backgroundColor = .white
@@ -42,9 +40,9 @@ class MerchFieldsContainer: UIView {
         self.addSubview(self.merchName)
         self.merchName.snp.makeConstraints { make in
             make.top.equalTo(self.merchPic.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
         }
         self.merchName.textField.clearButtonMode = .whileEditing
         self.merchName.backgroundColor = .white
@@ -53,9 +51,9 @@ class MerchFieldsContainer: UIView {
         self.addSubview(self.merchPrice)
         self.merchPrice.snp.makeConstraints { make in
             make.top.equalTo(self.merchName.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
         }
         self.merchPrice.textField.clearButtonMode = .whileEditing
         self.merchPrice.textField.keyboardType = .numberPad
@@ -65,9 +63,9 @@ class MerchFieldsContainer: UIView {
         self.addSubview(self.merchQty)
         self.merchQty.snp.makeConstraints { make in
             make.top.equalTo(self.merchPrice.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
         }
         self.merchQty.textField.clearButtonMode = .whileEditing
         self.merchQty.textField.keyboardType = .numberPad
@@ -77,9 +75,9 @@ class MerchFieldsContainer: UIView {
         self.addSubview(self.merchRemark)
         self.merchRemark.snp.makeConstraints { make in
             make.top.equalTo(self.merchQty.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
             make.bottom.equalToSuperview()
         }
         self.merchRemark.textField.clearButtonMode = .whileEditing

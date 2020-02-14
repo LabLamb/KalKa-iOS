@@ -50,9 +50,9 @@ class CustomerFieldsContainer: UIView {
         self.addSubview(self.customerName)
         self.customerName.snp.makeConstraints { make in
             make.top.equalTo(self.customerPic.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
         }
         self.customerName.textField.clearButtonMode = .whileEditing
         self.customerName.backgroundColor = .white
@@ -61,9 +61,9 @@ class CustomerFieldsContainer: UIView {
         self.addSubview(self.customerPhone)
         self.customerPhone.snp.makeConstraints { make in
             make.top.equalTo(self.customerName.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
         }
         self.customerPhone.textField.clearButtonMode = .whileEditing
         self.customerPhone.textField.keyboardType = .numberPad
@@ -73,8 +73,8 @@ class CustomerFieldsContainer: UIView {
         self.addSubview(self.customerAddress)
         self.customerAddress.snp.makeConstraints { make in
             make.top.equalTo(self.customerPhone.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         self.customerAddress.textView.font = UITextField().font
         self.customerAddress.backgroundColor = .white
@@ -83,8 +83,8 @@ class CustomerFieldsContainer: UIView {
         self.addSubview(self.customerRemark)
         self.customerRemark.snp.makeConstraints { make in
             make.top.equalTo(self.customerAddress.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         self.customerRemark.textView.font = UITextField().font
         self.customerRemark.backgroundColor = .white
@@ -93,9 +93,9 @@ class CustomerFieldsContainer: UIView {
         self.addSubview(self.lastContacted)
         self.lastContacted.snp.makeConstraints { make in
             make.top.equalTo(self.customerRemark.snp.bottom)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Small)
-            make.height.equalTo(44)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
             make.bottom.equalToSuperview()
         }
         self.lastContacted.textField.clearButtonMode = .whileEditing

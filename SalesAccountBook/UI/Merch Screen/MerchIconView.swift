@@ -13,9 +13,9 @@ class MerchIconView: UIView {
         super.init(frame: .zero)
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.width.equalTo(self.iconImage.snp.height)
         }
         self.iconImage.backgroundColor = Constants.UI.Color.Grey

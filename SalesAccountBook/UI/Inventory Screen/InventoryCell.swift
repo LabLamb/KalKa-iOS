@@ -14,7 +14,7 @@ class InventoryCell: UITableViewCell {
     
     lazy var nameLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.LargeBold
+        result.font = Constants.UI.Font.Bold.Large
         return result
     }()
     
@@ -32,7 +32,7 @@ class InventoryCell: UITableViewCell {
     lazy var remarkLabel: UILabel = {
         let result = UILabel()
         result.textColor = Constants.UI.Color.Grey
-        result.font = Constants.UI.Font.Small
+        result.font = Constants.UI.Font.Plain.Small
         return result
     }()
     
@@ -44,9 +44,9 @@ class InventoryCell: UITableViewCell {
         
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Small)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Small)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.width.equalTo(self.iconImage.snp.height)
         }
         self.iconImage.clipsToBounds = true
@@ -56,10 +56,10 @@ class InventoryCell: UITableViewCell {
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Medium)
+            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
             make.width.equalToSuperview().dividedBy(3)
             if remarkExists {
-                make.top.equalToSuperview().offset(Constants.UI.Spacing.Small)
+                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
                 make.height.equalToSuperview().dividedBy(3)
             } else {
                 make.top.bottom.equalToSuperview()
@@ -69,8 +69,8 @@ class InventoryCell: UITableViewCell {
         if remarkExists {
             self.addSubview(self.remarkLabel)
             self.remarkLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.ExSmall)
-                make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Medium)
+                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+                make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
                 make.width.equalToSuperview().dividedBy(3)
                 make.height.equalToSuperview().dividedBy(3)
             }
@@ -79,7 +79,7 @@ class InventoryCell: UITableViewCell {
         self.addSubview(self.priceLabel)
         self.priceLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Medium)
+            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Width.Medium)
             make.height.equalToSuperview().dividedBy(3)
             make.width.equalToSuperview().dividedBy(5)
         }
@@ -87,7 +87,7 @@ class InventoryCell: UITableViewCell {
         self.addSubview(self.qtyLabel)
         self.qtyLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.ExSmall)
+            make.left.equalTo(self.priceLabel.snp.right).offset(Constants.UI.Spacing.Width.ExSmall)
             make.height.equalToSuperview().dividedBy(3)
             make.width.equalToSuperview().dividedBy(7)
         }

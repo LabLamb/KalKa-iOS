@@ -62,7 +62,7 @@ class CustomerDetailViewController: UIViewController {
         }
         self.containerView.customerName.text = customerDetails.name
         self.containerView.customerAddress.text = customerDetails.address
-        self.containerView.lastContacted.text = customerDetails.lastContacted.toString(format: Constants.Data.DateFormat)
+        self.containerView.lastContacted.text = customerDetails.lastContacted.toString(format: Constants.System.DateFormat)
         self.containerView.customerPhone.text = customerDetails.phone
         self.containerView.customerRemark.text = customerDetails.remark
     }
@@ -178,7 +178,7 @@ class CustomerDetailViewController: UIViewController {
         
         return (image: img,
                 address: self.containerView.customerAddress.text,
-                lastContacted: self.containerView.lastContacted.text.toDate(format: Constants.Data.DateFormat) ?? Date(),
+                lastContacted: self.containerView.lastContacted.text.toDate(format: Constants.System.DateFormat) ?? Date(),
                 name: name,
                 phone: self.containerView.customerPhone.text,
                 orders: nil,

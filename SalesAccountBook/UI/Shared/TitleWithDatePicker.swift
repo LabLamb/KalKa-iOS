@@ -9,7 +9,7 @@ class TitleWithDatePicker: TitleWithTextField {
     let datePicker: UIDatePicker
     
     override init(title: String,
-         placeholder: String = Date().toString(format: Constants.Data.DateFormat),
+                  placeholder: String = Date().toString(format: Constants.System.DateFormat),
          textAlign: NSTextAlignment = .left) {
         self.datePicker = UIDatePicker()
         
@@ -37,7 +37,7 @@ class TitleWithDatePicker: TitleWithTextField {
     }
     
     @objc func dateDidPick(){
-        self.textField.text = self.datePicker.date.toString(format: Constants.Data.DateFormat)
+        self.textField.text = self.datePicker.date.toString(format: Constants.System.DateFormat)
         self.endEditing(true)
     }
     
