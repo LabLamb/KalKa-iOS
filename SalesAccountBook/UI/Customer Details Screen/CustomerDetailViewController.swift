@@ -86,13 +86,11 @@ class CustomerDetailViewController: DetailFormViewController {
         
         self.containerView.setup()
         
+        self.containerView.customerPic.cameraOptionPresenter = self
+        
         if self.actionType == .edit {
             self.prefillFieldsForEdit()
         }
-        
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.showImageUploadOption))
-        self.containerView.customerPic.addGestureRecognizer(tapGest)
-        self.containerView.customerPic.isUserInteractionEnabled = true
     }
     
     
@@ -186,68 +184,5 @@ class CustomerDetailViewController: DetailFormViewController {
                                         completion: {
                                             self.navigationController?.popViewController(animated: true)
         })
-    }
-}
-
-// MARK: - Camera
-extension CustomerDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    
-    @objc private func showImageUploadOption() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
-            self.uploadByCamera()
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Photos", comment: "Collections of images."), style: .default, handler: { _ in
-            self.uploadByLibrary()
-        }))
-        
-        let resetBtn = UIAlertAction(title: NSLocalizedString("Remove", comment: "Collections of images."), style: .destructive, handler: { _ in
-            self.resetIconDefault()
-        })
-        actionSheet.addAction(resetBtn)
-        
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil))
-        
-        resetBtn.isEnabled = !(self.containerView.customerPic.iconImage.image?.isEqual(#imageLiteral(resourceName: "AvatarDefault")) ?? false)
-        
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    private func uploadByCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let picker = UIImagePickerController()
-            picker.allowsEditing = true
-            picker.delegate = self
-            picker.sourceType = .camera
-            self.present(picker, animated: true, completion: nil)
-        }
-    }
-    
-    private func uploadByLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let picker = UIImagePickerController()
-            picker.allowsEditing = true
-            picker.delegate = self
-            picker.sourceType = .photoLibrary
-            self.present(picker, animated: true, completion: nil)
-        }
-    }
-    
-    private func resetIconDefault() {
-        self.containerView.customerPic.iconImage.image = #imageLiteral(resourceName: "AvatarDefault")
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.containerView.customerPic.iconImage.image = img
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
     }
 }

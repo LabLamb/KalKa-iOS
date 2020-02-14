@@ -284,8 +284,8 @@
 		D2C3E8B523F3B48400C0F33B /* Merch Screen */ = {
 			isa = PBXGroup;
 			children = (
-				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
 				D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */,
+				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
 			);
 			path = "Merch Screen";
 			sourceTree = "<group>";
