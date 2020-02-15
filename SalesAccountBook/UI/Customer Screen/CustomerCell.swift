@@ -32,33 +32,7 @@ class CustomerCell: UITableViewCell {
         return result
     }()
     
-//    private func setupLayout(remarkExists: Bool) {}
-    
-    @objc func linkWhatsapp() {
-        let whatsAppUrl = URL(string: "https://api.whatsapp.com/send?phone=\(self.phoneLabel.text!)")
-        if UIApplication.shared.canOpenURL(whatsAppUrl!) {
-            UIApplication.shared.open(whatsAppUrl!, options: [:], completionHandler: nil)
-        }
-    }
-    
-    private func setupData(data: Customer) {
-        if let imageData = data.image {
-            self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
-        } else {
-            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
-        }
-        self.nameLabel.text = data.name == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.name
-        self.phoneLabel.text = data.phone == "" ? NSLocalizedString("Absent", comment: "Missing info.") : data.phone
-    }
-    
-    public func setup(data: Customer) {
-        self.selectionStyle = .none
-        self.setupData(data: data)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    private func setupLayout() {
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
@@ -66,8 +40,6 @@ class CustomerCell: UITableViewCell {
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium)
             make.width.equalTo(self.iconImage.snp.height)
         }
-        self.iconImage.clipsToBounds = true
-        self.iconImage.layer.cornerRadius = self.iconImage.bounds.width / 2
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
@@ -89,6 +61,36 @@ class CustomerCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         }
+    }
+    
+    @objc func linkWhatsapp() {
+        let whatsAppUrl = URL(string: "https://api.whatsapp.com/send?phone=\(self.phoneLabel.text!)")
+        if UIApplication.shared.canOpenURL(whatsAppUrl!) {
+            UIApplication.shared.open(whatsAppUrl!, options: [:], completionHandler: nil)
+        }
+    }
+    
+    private func setupData(data: Customer) {
+        if let imageData = data.image {
+            self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
+        } else {
+            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
+        }
+        self.nameLabel.text = data.name == "" ? .absent : data.name
+        self.phoneLabel.text = data.phone == "" ? .absent : data.phone
+    }
+    
+    public func setup(data: Customer) {
+        self.selectionStyle = .none
+        self.setupLayout()
+        self.setupData(data: data)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.iconImage.clipsToBounds = true
+        self.iconImage.layer.cornerRadius = self.iconImage.bounds.width / 2
     }
     
     override func prepareForReuse() {

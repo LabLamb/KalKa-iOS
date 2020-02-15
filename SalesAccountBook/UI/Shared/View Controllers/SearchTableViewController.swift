@@ -36,7 +36,7 @@ class SearchTableViewController: UIViewController {
         }
         
         self.searchBar.delegate = self
-        self.searchBar.placeholder = NSLocalizedString("Search", comment: "The action to look for something.")
+        self.searchBar.placeholder = .search
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)

@@ -51,16 +51,16 @@ extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     @objc private func showImageUploadOption() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Photos", comment: "Collections of images."), style: .default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: .cameraRoll, style: .default, handler: { _ in
             self.uploadByLibrary()
         }))
         
-        let resetBtn = UIAlertAction(title: NSLocalizedString("Remove", comment: "Collections of images."), style: .destructive, handler: { _ in
+        let resetBtn = UIAlertAction(title: .remove, style: .destructive, handler: { _ in
             self.resetIconDefault()
         })
         actionSheet.addAction(resetBtn)
         
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: .cancel, style: .cancel, handler: nil))
         
         resetBtn.isEnabled = !(self.iconImage.image?.isEqual(self.defaultImage) ?? false)
         

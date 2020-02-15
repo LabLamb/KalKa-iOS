@@ -28,7 +28,7 @@ class InventoryViewController: SearchTableViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = Constants.UI.Label.Inventory
+        self.navigationItem.title = .inventory
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
     }
     

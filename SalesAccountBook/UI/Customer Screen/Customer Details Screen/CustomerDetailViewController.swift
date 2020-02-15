@@ -21,19 +21,20 @@ class CustomerDetailViewController: DetailFormViewController {
         self.inputFieldsSection = InputFieldsSection(fields:
             [
                 iconView,
-                TitleWithTextField(title: Constants.UI.Label.Name,
-                                   placeholder: Constants.UI.Label.Required,
+                TitleWithTextField(title: .name,
+                                   placeholder: .required,
                                    spacing: 2.5),
-                TitleWithTextField(title: Constants.UI.Label.Phone,
-                                   placeholder: Constants.UI.Label.Optional,
+                TitleWithTextField(title: .phone,
+                                   placeholder: .optional,
                                    spacing: 2.5),
-                TitleWithTextView(title: Constants.UI.Label.Address,
-                                  placeholder: Constants.UI.Label.Optional,
+                TitleWithTextView(title: .address,
+                                  placeholder: .optional,
                                   spacing: 2.5),
-                TitleWithTextView(title: Constants.UI.Label.Remark,
-                                  placeholder: Constants.UI.Label.Optional,
+                TitleWithTextView(title: .remark,
+                                  placeholder: .optional,
                                   spacing: 2.5),
-                TitleWithDatePicker(title: Constants.UI.Label.LastContacted, placeholder: Constants.UI.Label.Optional)
+                TitleWithDatePicker(title: .lastContacted,
+                                    placeholder: .optional)
             ]
         )
         
@@ -55,7 +56,7 @@ class CustomerDetailViewController: DetailFormViewController {
     override func viewDidLoad() {
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentId ?? "")"
+                return "\(String.edit) \(self.currentId ?? "")"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewCustomer", comment: "New entry of product.")
             } else {
@@ -63,7 +64,7 @@ class CustomerDetailViewController: DetailFormViewController {
             }
         }()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: "The action of storing data on disc."), style: .done, target: self, action: #selector(self.submitCustomerDetails))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: .save, style: .done, target: self, action: #selector(self.submitCustomerDetails))
         
         self.setup()
     }
@@ -73,12 +74,12 @@ class CustomerDetailViewController: DetailFormViewController {
             fatalError()
         }
         
-        let valueMap = [
-            Constants.UI.Label.Name: customerDetails.name,
-            Constants.UI.Label.Phone: customerDetails.phone,
-            Constants.UI.Label.Address: customerDetails.address,
-            Constants.UI.Label.Remark: customerDetails.remark,
-            Constants.UI.Label.LastContacted: customerDetails.lastContacted.toString(format: Constants.System.DateFormat),
+        let valueMap: [String: String] = [
+            .name: customerDetails.name,
+            .phone: customerDetails.phone,
+            .address: customerDetails.address,
+            .remark: customerDetails.remark,
+            .lastContacted: customerDetails.lastContacted.toString(format: Constants.System.DateFormat),
         ]
         
         self.inputFieldsSection.prefillValues(values: valueMap)
@@ -99,9 +100,9 @@ class CustomerDetailViewController: DetailFormViewController {
         
         self.scrollView.addSubview(self.inputFieldsSection)
         self.inputFieldsSection.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.95)
             make.bottom.equalToSuperview()
         }
         self.inputFieldsSection.backgroundColor = .white
@@ -118,7 +119,7 @@ class CustomerDetailViewController: DetailFormViewController {
         let customerDetails = self.makeCustomerDetails()
         if customerDetails.name == "" {
             if let textField = self.inputFieldsSection
-                .getView(labelText: Constants.UI.Label.Name) as? TitleWithTextField {
+                .getView(labelText: .name) as? TitleWithTextField {
                 self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField.textView as! UITextField)
             }
             return
@@ -140,19 +141,28 @@ class CustomerDetailViewController: DetailFormViewController {
     
     private func makeCustomerDetails() -> CustomerDetails {
         let extractedValues = self.inputFieldsSection.extractValues(valMapping: [
-            Constants.UI.Label.Name,
-            Constants.UI.Label.Phone,
-            Constants.UI.Label.Address,
-            Constants.UI.Label.Remark,
-            Constants.UI.Label.LastContacted
+            .name,
+            .phone,
+            .address,
+            .remark,
+            .lastContacted
         ])
         
-        return (image: nil,
-                name: extractedValues[Constants.UI.Label.Name] ?? "",
-                phone: extractedValues[Constants.UI.Label.Phone] ?? "",
-                address: extractedValues[Constants.UI.Label.Address] ?? "",
-                remark: extractedValues[Constants.UI.Label.Remark] ?? "",
-                lastContacted: extractedValues[Constants.UI.Label.LastContacted]?
+        let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
+        let image: UIImage? = {
+            if let img = iconView?.iconImage.image {
+                return img  == #imageLiteral(resourceName: "MerchDefault") ? nil : img
+            } else {
+                return nil
+            }
+        }()
+        
+        return (image: image,
+                name: extractedValues[.name] ?? "",
+                phone: extractedValues[.phone] ?? "",
+                address: extractedValues[.address] ?? "",
+                remark: extractedValues[.remark] ?? "",
+                lastContacted: extractedValues[.lastContacted]?
                     .toDate(format: Constants.System.DateFormat) ?? Date(),
                 orders: nil)
         

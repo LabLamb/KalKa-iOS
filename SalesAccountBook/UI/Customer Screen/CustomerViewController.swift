@@ -32,7 +32,7 @@ class CustomerViewController: SearchTableViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Customers", comment: "The human purchasing products.")
+        self.navigationItem.title = .customers
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddCustomerView))
     }
     

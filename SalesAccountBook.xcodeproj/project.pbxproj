@@ -31,6 +31,7 @@
 		D26BF52D23F2830A00EDB259 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BF52C23F2830A00EDB259 /* StoreKit.framework */; };
 		D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52E23F28FEE00EDB259 /* CoreStack.swift */; };
 		D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */; };
+		D2A411A523F8530C00842111 /* String+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A411A423F8530C00842111 /* String+Constant.swift */; };
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
@@ -111,6 +112,7 @@
 		D26BF52C23F2830A00EDB259 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D26BF52E23F28FEE00EDB259 /* CoreStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStack.swift; sourceTree = "<group>"; };
 		D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Factory.swift"; sourceTree = "<group>"; };
+		D2A411A423F8530C00842111 /* String+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Constant.swift"; sourceTree = "<group>"; };
 		D2A559F823F152AD00022E9A /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559F923F152C100022E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */,
 				D2364E2C23F57E0600F93973 /* Date+String.swift */,
 				D223CD1623F57F2B003A8EF6 /* String+Date.swift */,
+				D2A411A423F8530C00842111 /* String+Constant.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */,
+				D2A411A523F8530C00842111 /* String+Constant.swift in Sources */,
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2D6BA7E23F52DE8007894FD /* OrderItem+CoreDataProperties.swift in Sources */,

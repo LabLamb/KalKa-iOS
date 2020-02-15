@@ -13,19 +13,6 @@ class Constants {
     )
     
     static let UI = (
-        Label: (
-            Inventory: NSLocalizedString("Inventory", comment: "The collections of goods."),
-            Name: NSLocalizedString("Name", comment: "The reference for something."),
-            Phone: NSLocalizedString("Phone", comment: "The number for contacting."),
-            Address: NSLocalizedString("Address", comment: "A string that reference to a location."),
-            Remark: NSLocalizedString("Remark", comment: "Misc information."),
-            LastContacted: NSLocalizedString("LastContacted", comment: "Date of last contact."),
-            Required: NSLocalizedString("Required(Input)", comment: "Cannot leave blank."),
-            Optional: NSLocalizedString("Optional(Input)", comment: "Can leave blank."),
-            Price: NSLocalizedString("Price", comment: "Price of product."),
-            Quantity: NSLocalizedString("Qty", comment: "Quantity of product.")
-        ),
-        
         TabBarHeight: 49,
         
         Spacing: (

@@ -40,6 +40,46 @@ class InventoryCell: UITableViewCell {
         return result
     }()
     
+    private func setupLayout() {
+        self.addSubview(self.iconImage)
+        self.iconImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium)
+            make.width.equalTo(self.iconImage.snp.height)
+        }
+        
+        self.addSubview(self.nameLabel)
+                self.nameLabel.snp.makeConstraints { make in
+                    make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+                    make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
+                    make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+                }
+                
+        //        self.addSubview(self.remarkLabel)
+        //        self.remarkLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+        //            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
+        //            make.width.equalToSuperview().dividedBy(3)
+        //        }
+                
+                self.addSubview(self.priceLabel)
+                self.priceLabel.snp.makeConstraints { make in
+                    make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+                    make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
+                    make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+                }
+                
+                self.addSubview(self.qtyLabel)
+                self.qtyLabel.snp.makeConstraints { make in
+                    make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+                    make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+                    make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+                    make.width.equalTo(self.qtyLabel.snp.height)
+                }
+                self.qtyLabel.icon.addSpinAnimation()
+    }
+    
     private func setupData(data: Merch) {
         if let imageData = data.image {
             self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
@@ -54,52 +94,14 @@ class InventoryCell: UITableViewCell {
     
     public func setup(data: Merch) {
         self.selectionStyle = .none
+        self.setupLayout()
         self.setupData(data: data)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.addSubview(self.iconImage)
-        self.iconImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium)
-            make.width.equalTo(self.iconImage.snp.height)
-        }
         self.iconImage.clipsToBounds = true
         self.iconImage.layer.cornerRadius = self.iconImage.frame.width / 2
-        
-        
-        self.addSubview(self.nameLabel)
-        self.nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-        }
-        
-//        self.addSubview(self.remarkLabel)
-//        self.remarkLabel.snp.makeConstraints { make in
-//            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-//            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
-//            make.width.equalToSuperview().dividedBy(3)
-//        }
-        
-        self.addSubview(self.priceLabel)
-        self.priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-        }
-        
-        self.addSubview(self.qtyLabel)
-        self.qtyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-            make.width.equalTo(self.qtyLabel.snp.height)
-        }
-        self.qtyLabel.icon.addSpinAnimation()
     }
     
     override func prepareForReuse() {

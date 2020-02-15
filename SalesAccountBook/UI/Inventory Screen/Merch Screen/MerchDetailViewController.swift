@@ -19,10 +19,10 @@ class MerchDetailViewController: DetailFormViewController {
         
         let fields = [
             iconView,
-            TitleWithTextField(title: Constants.UI.Label.Name, placeholder: Constants.UI.Label.Required),
-            TitleWithTextField(title: Constants.UI.Label.Price, placeholder: Constants.UI.Label.Optional),
-            TitleWithTextField(title: Constants.UI.Label.Quantity, placeholder: Constants.UI.Label.Optional),
-            TitleWithTextField(title: Constants.UI.Label.Remark, placeholder: Constants.UI.Label.Optional),
+            TitleWithTextField(title: .name, placeholder: .required),
+            TitleWithTextField(title: .price, placeholder: .optional),
+            TitleWithTextField(title: .quantity, placeholder: .optional),
+            TitleWithTextField(title: .remark, placeholder: .optional),
         ]
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)
@@ -46,7 +46,7 @@ class MerchDetailViewController: DetailFormViewController {
     override func viewDidLoad() {
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentId ?? "")"
+                return "\(String.edit) \(self.currentId ?? "")"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewMerch", comment: "New entry of product.")
             } else {
@@ -64,11 +64,11 @@ class MerchDetailViewController: DetailFormViewController {
             fatalError()
         }
         
-        let valueMap = [
-            Constants.UI.Label.Name: merchDetails.name,
-            Constants.UI.Label.Price: String(merchDetails.price),
-            Constants.UI.Label.Quantity: String(merchDetails.qty),
-            Constants.UI.Label.Remark: merchDetails.remark
+        let valueMap: [String: String] = [
+            .name: merchDetails.name,
+            .price: String(merchDetails.price),
+            .quantity: String(merchDetails.qty),
+            .remark: merchDetails.remark
         ]
         
         self.inputFieldsSection.prefillValues(values: valueMap)
@@ -99,7 +99,7 @@ class MerchDetailViewController: DetailFormViewController {
                 .first(where: { view in
                     let abc = (view as? TitleWithTextField)
                     let abcDesc = (abc?.desc as? String)
-                    return abcDesc == Constants.UI.Label.Name
+                    return abcDesc == .name
                 }) as! TitleWithTextField
             self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: textField.textView as! UITextField)
             return
@@ -121,10 +121,10 @@ class MerchDetailViewController: DetailFormViewController {
     
     private func makeMerchDetails() -> MerchDetails {
         let extractedValue = self.inputFieldsSection.extractValues(valMapping: [
-            Constants.UI.Label.Name,
-            Constants.UI.Label.Price,
-            Constants.UI.Label.Quantity,
-            Constants.UI.Label.Remark
+            .name,
+            .price,
+            .quantity,
+            .remark
         ])
         
         let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
@@ -136,13 +136,13 @@ class MerchDetailViewController: DetailFormViewController {
             }
         }()
         
-        let parsedPrice = Double(extractedValue[Constants.UI.Label.Price] ?? "") ?? 0.0
-        let parsedQty = Int(extractedValue[Constants.UI.Label.Quantity] ?? "") ?? 0
+        let parsedPrice = Double(extractedValue[.price] ?? "") ?? 0.0
+        let parsedQty = Int(extractedValue[.quantity] ?? "") ?? 0
         
-        return (name: extractedValue[Constants.UI.Label.Name] ?? "",
+        return (name: extractedValue[.name] ?? "",
                 price: parsedPrice,
                 qty: parsedQty,
-                remark: extractedValue[Constants.UI.Label.Remark] ?? "",
+                remark: extractedValue[.remark] ?? "",
                 image: image)
         
     }

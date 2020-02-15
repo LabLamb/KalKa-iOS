@@ -7,7 +7,9 @@ enum DetailsViewActionType {
     case edit
 }
 
-enum LINE_POSITION {
-    case LINE_POSITION_TOP
-    case LINE_POSITION_BOTTOM
+enum LinePosition {
+    case top
+    case bottom
+    case left
+    case right
 }

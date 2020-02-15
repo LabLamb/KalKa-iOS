@@ -26,7 +26,7 @@ class InputFieldsSection: CustomView {
     }
     
     override func setupLayout() {
-        self.addLine(position: .LINE_POSITION_BOTTOM, color: self.separatorColor, width: 1)
+        self.addLine(position: .bottom, color: self.separatorColor, weight: 1.0)
         
         self.addSubview(self.stackView)
         self.stackView.snp.makeConstraints { make in
@@ -42,9 +42,10 @@ class InputFieldsSection: CustomView {
                     make.width.equalTo(Constants.System.SupportedMiniumScreenWidth - (Constants.UI.Spacing.Width.Medium * 2))
                 }
                 view.backgroundColor = .white
-                view.addLine(position: .LINE_POSITION_BOTTOM, color: self.separatorColor, width: 1)
+                view.addLine(position: .bottom, color: self.separatorColor, weight: 1)
             }
         }
+        self.addShadow()
     }
     
     public func getView(labelText: String) -> UIView? {
