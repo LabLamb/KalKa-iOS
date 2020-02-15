@@ -70,7 +70,7 @@ class Constants {
                      Medium: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.25),
                      Large: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.5),
                      ExLarge: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.75),
-                     TextFieldDefault: CGFloat(44)
+                     TextFieldDefault: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.05 * 1.25)
             ),
             
             Width: (

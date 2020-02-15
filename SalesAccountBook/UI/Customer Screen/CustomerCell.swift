@@ -14,46 +14,30 @@ class CustomerCell: UITableViewCell {
     
     lazy var nameLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.Plain.ExLarge
-        result.numberOfLines = 2
+        result.font = Constants.UI.Font.Plain.Medium
         return result
     }()
     
     lazy var phoneLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.Plain.Medium
+        result.font = Constants.UI.Font.Plain.Small
         result.textColor = Constants.UI.Color.Grey
         return result
     }()
     
-    private func setupLayout(remarkExists: Bool) {
-        
-        self.addSubview(self.iconImage)
-        self.iconImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
-            make.width.equalTo(self.iconImage.snp.height)
-        }
-        self.iconImage.clipsToBounds = true
-        DispatchQueue.main.async {
-            self.iconImage.layer.cornerRadius = self.iconImage.frame.width / 2
-        }
-        
-        self.addSubview(self.nameLabel)
-        self.nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Large)
-            make.width.equalTo(Constants.UI.Sizing.Width.Large)
-        }
-        
-        self.addSubview(self.phoneLabel)
-        self.phoneLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.height.equalTo(Constants.UI.Sizing.Height.ExSmall / 2)
-            make.left.equalTo(self.nameLabel.snp.right).offset(Constants.UI.Spacing.Width.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+    lazy var quickChatBtn: UIButton = {
+        let result = UIButton()
+        result.setImage(#imageLiteral(resourceName: "Address"), for: .normal)
+        result.addTarget(self, action: #selector(self.linkWhatsapp), for: .touchUpInside)
+        return result
+    }()
+    
+//    private func setupLayout(remarkExists: Bool) {}
+    
+    @objc func linkWhatsapp() {
+        let whatsAppUrl = URL(string: "https://api.whatsapp.com/send?phone=\(self.phoneLabel.text!)")
+        if UIApplication.shared.canOpenURL(whatsAppUrl!) {
+            UIApplication.shared.open(whatsAppUrl!, options: [:], completionHandler: nil)
         }
     }
     
@@ -69,8 +53,42 @@ class CustomerCell: UITableViewCell {
     
     public func setup(data: Customer) {
         self.selectionStyle = .none
-        self.setupLayout(remarkExists: data.remark != "")
         self.setupData(data: data)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.addSubview(self.iconImage)
+        self.iconImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium)
+            make.width.equalTo(self.iconImage.snp.height)
+        }
+        self.iconImage.clipsToBounds = true
+        self.iconImage.layer.cornerRadius = self.iconImage.bounds.width / 2
+        
+        self.addSubview(self.nameLabel)
+        self.nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Large)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+        }
+        
+        self.addSubview(self.phoneLabel)
+        self.phoneLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Large)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+        }
+        
+        self.addSubview(self.quickChatBtn)
+        self.quickChatBtn.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+        }
     }
     
     override func prepareForReuse() {

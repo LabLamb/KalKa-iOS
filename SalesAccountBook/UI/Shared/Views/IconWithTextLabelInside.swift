@@ -4,7 +4,7 @@
 
 import SnapKit
 
-class IconWithTextLabel: UIView {
+class IconWithTextLabelInside: CustomView {
     
     let icon: UIImageView
     let textLabel: UILabel
@@ -24,29 +24,31 @@ class IconWithTextLabel: UIView {
         }
     }
     
-    init(icon: UIImage, text: String = "", textAlign: NSTextAlignment = .left) {
+    init(icon: UIImage, text: String = "") {
         self.icon = UIImageView(image: icon)
         self.textLabel = UILabel()
         self.spacing = 0
         
-        super.init(frame: .zero)
+        super.init()
         
-        self.textLabel.text = text
-        self.textLabel.textAlignment = textAlign
+        self.setupLayout()
     }
     
-    func setupLayout() {
+    override func setupLayout() {
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints({ make in
-            make.top.left.equalToSuperview()
-            make.height.equalToSuperview()
-            make.width.equalTo(self.icon.snp.height)
+            make.top.bottom.left.right.equalToSuperview()
         })
+        
         self.addSubview(self.textLabel)
         self.textLabel.snp.makeConstraints({ make in
-            make.left.equalTo(self.icon.snp.right).offset(self.spacing)
-            make.top.right.bottom.equalToSuperview()
+            make.centerY.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.7)
         })
+        
+        self.textLabel.text = text
+        self.textLabel.textAlignment = .center
+        self.textLabel.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {

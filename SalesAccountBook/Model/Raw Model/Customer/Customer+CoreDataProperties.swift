@@ -1,9 +1,5 @@
 //
-//  Customer+CoreDataProperties.swift
-//  
-//
-//  Created by LabLamb on 13/2/2020.
-//
+//  Copyright © 2019 LabLambWorks. All rights reserved.
 //
 
 import Foundation

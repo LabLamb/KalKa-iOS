@@ -4,7 +4,7 @@
 
 import SnapKit
 
-class IconWithTextView: UIView {
+class IconWithTextView: CustomView {
     
     let icon: UIImageView
     let textView: UITextView
@@ -20,9 +20,6 @@ class IconWithTextView: UIView {
     
     var spacing: CGFloat {
         didSet {
-            self.textView.snp.updateConstraints { make in
-                make.left.equalTo(self.icon.snp.right).offset(self.spacing)
-            }
             self.layoutIfNeeded()
         }
     }
@@ -32,8 +29,20 @@ class IconWithTextView: UIView {
         self.textView = UITextView()
         self.spacing = 0
         
-        super.init(frame: .zero)
+        super.init()
         
+        self.textView.isEditable = false
+        self.textView.isSelectable = false
+        self.textView.isUserInteractionEnabled = false
+        self.textView.isScrollEnabled = false
+        self.textView.text = text
+        self.textView.textAlignment = textAlign
+        self.textView.textContainerInset = .zero
+        self.textView.textContainer.lineFragmentPadding = 0
+        self.textView.backgroundColor = .clear
+    }
+    
+    override func setupLayout() {
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints({ make in
             make.top.left.equalToSuperview()
@@ -46,16 +55,6 @@ class IconWithTextView: UIView {
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.icon.snp.right).offset(self.spacing)
         })
-        
-        self.textView.isEditable = false
-        self.textView.isSelectable = false
-        self.textView.isUserInteractionEnabled = false
-        self.textView.isScrollEnabled = false
-        self.textView.text = text
-        self.textView.textAlignment = textAlign
-        self.textView.textContainerInset = .zero
-        self.textView.textContainer.lineFragmentPadding = 0
-        
     }
     
     required init?(coder: NSCoder) {

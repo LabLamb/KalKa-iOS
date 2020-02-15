@@ -7,6 +7,7 @@ import SnapKit
 class DetailFormViewController: UIViewController {
     
     let scrollView: UIScrollView
+    var itemExistsErrorMsg: String = ""
     
     init() {
         self.scrollView = UIScrollView()
@@ -37,14 +38,12 @@ class DetailFormViewController: UIViewController {
     }
     
     // MARK: - Errors
-    internal func promptCustomerNameExistsError() {
-        let errorMessage = NSLocalizedString("ErrorCustomerExists", comment: "Error Message - Customer exists with the same name.")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
+    internal func promptItemExistsError() {
+        self.present(UIAlertController.makeError(message: self.itemExistsErrorMsg), animated: true, completion: nil)
     }
     
-    internal func promptEmptyFieldError(field: UITextField) {
-        let errorMessage = NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field .")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
+    internal func promptEmptyFieldError(errorMsg: String, field: UITextField) {
+        self.present(UIAlertController.makeError(message: errorMsg), animated: true, completion: nil)
         
         field.attributedPlaceholder = NSAttributedString(
             string: NSLocalizedString("Required(Input)", comment: "Must input."),

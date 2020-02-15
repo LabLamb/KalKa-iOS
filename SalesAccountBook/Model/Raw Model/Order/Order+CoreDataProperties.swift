@@ -1,9 +1,5 @@
 //
-//  Order+CoreDataProperties.swift
-//  
-//
-//  Created by LabLamb on 13/2/2020.
-//
+//  Copyright © 2019 LabLambWorks. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +13,7 @@ extension Order {
     }
 
     @NSManaged public var isShipped: Bool
-    @NSManaged public var number: Int32
+    @NSManaged public var number: String
     @NSManaged public var openedOn: Date
     @NSManaged public var customer: Customer
     @NSManaged public var items: [OrderItem]

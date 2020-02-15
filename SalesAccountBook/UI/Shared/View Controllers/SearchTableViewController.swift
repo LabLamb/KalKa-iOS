@@ -139,18 +139,22 @@ extension SearchTableViewController: Refreshable {
 //MARK: - SearchBar
 extension SearchTableViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.text = ""
+        self.unfocusSearchBar()
+        self.filterListByString("")
+    }
+    
     internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty {
-            self.filterListByString(searchText)
-        } else {
-            self.refresh()
-            DispatchQueue.main.async {
-                self.unfocusSearchBar()
-            }
-        }
+        self.filterListByString(searchText)
     }
     
     @objc private func unfocusSearchBar() {
+        self.searchBar.setShowsCancelButton(false, animated: true)
         self.searchBar.resignFirstResponder()
     }
 }

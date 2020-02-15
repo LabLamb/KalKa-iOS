@@ -4,7 +4,7 @@
 
 import SnapKit
 
-class TitleWithTextField: UIView {
+class TitleWithTextField: CustomView {
     
     let title: UILabel
     let textField: UITextField
@@ -20,10 +20,7 @@ class TitleWithTextField: UIView {
     
     var spacing: CGFloat {
         didSet {
-            self.textField.snp.updateConstraints { make in
-                make.left.equalTo(self.title.snp.right).offset(self.spacing)
-            }
-            self.layoutIfNeeded()
+            self.layoutSubviews()
         }
     }
     
@@ -35,31 +32,32 @@ class TitleWithTextField: UIView {
         self.spacing = 5
         self.maxTextLength = maxTextLength
         
-        super.init(frame: .zero)
-        
-        self.addSubview(self.title)
-        self.title.snp.makeConstraints({ make in
-            make.top.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
-        })
-        self.title.text = title
-        self.title.textAlignment = .left
-        self.title.numberOfLines = 0
+        super.init()
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(focusTextField))
         self.title.isUserInteractionEnabled = true
         self.title.addGestureRecognizer(tapGest)
-        
-        self.addSubview(self.textField)
-        self.textField.snp.makeConstraints({ make in
-            make.top.right.bottom.equalToSuperview()
-            make.left.equalTo(self.title.snp.right).offset(self.spacing)
-        })
+        self.title.text = title
+        self.title.textAlignment = .left
+        self.title.numberOfLines = 0
         
         self.textField.placeholder = placeholder
         self.textField.textAlignment = textAlign
         self.textField.delegate = self
-        
+    }
+    
+    override func setupLayout() {
+        self.addSubview(self.title)
+               self.title.snp.makeConstraints({ make in
+                   make.top.left.bottom.equalToSuperview()
+                   make.width.equalToSuperview().dividedBy(3)
+               })
+               
+               self.addSubview(self.textField)
+               self.textField.snp.makeConstraints({ make in
+                   make.top.right.bottom.equalToSuperview()
+                   make.left.equalTo(self.title.snp.right).offset(self.spacing)
+               })
     }
     
     @objc func focusTextField() {

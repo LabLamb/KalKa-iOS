@@ -17,24 +17,34 @@ class Inventory: ViewModel {
         completion?()
     }
     
-    public override func add(details: Any) {
+    public override func add(details: Any, completion: ((_ success: Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to add.")
         }
         
-        let context = self.persistentContainer.newBackgroundContext()
-        if let entity = NSEntityDescription.entity(forEntityName: "Merch", in: context) {
-            let newMerch = Merch(entity: entity, insertInto: context)
-            newMerch.name = details.name
-            newMerch.price = details.price
-            newMerch.qty = Int32(details.qty)
-            newMerch.remark = details.remark
-            newMerch.image = details.image?.pngData()
-            
-            try? context.save()
-            
-            self.fetch()
-        }
+        self.exists(name: details.name,
+                    completion: {exists in
+                        
+                        if exists {
+                            completion(false)
+                        } else {
+                            let context = self.persistentContainer.newBackgroundContext()
+                            if let entity = NSEntityDescription.entity(forEntityName: "Merch", in: context) {
+                                let newMerch = Merch(entity: entity, insertInto: context)
+                                newMerch.name = details.name
+                                newMerch.price = details.price
+                                newMerch.qty = Int32(details.qty)
+                                newMerch.remark = details.remark
+                                newMerch.image = details.image?.pngData()
+                                
+                                try? context.save()
+                                
+                                self.fetch()
+                            }
+                            completion(true)
+                        }
+        })
+        
     }
     
     override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
@@ -63,7 +73,7 @@ class Inventory: ViewModel {
         return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    public override func edit(oldName: String, details: Any, completion: (() -> Void)) {
+    public override func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -87,7 +97,7 @@ class Inventory: ViewModel {
         
         try? context.save()
         
-        completion()
+        completion(true)
     }
     
     public override func exists(name: String, completion: ((Bool) -> Void)) {

@@ -51,9 +51,14 @@ class CustomerViewController: SearchTableViewController {
     
     override func filterListByString(_ searchText: String) {
         let allCustomers = self.list.items as! [Customer]
-        self.fileredList = allCustomers.filter({ customer in
-            return customer.name.lowercased().contains(searchText.lowercased()) || customer.phone.lowercased().contains(searchText.lowercased())
-        })
+        if searchText != "" {
+            
+            self.fileredList = allCustomers.filter({ customer in
+                return customer.name.lowercased().contains(searchText.lowercased()) || customer.phone.lowercased().contains(searchText.lowercased())
+            })
+        } else {
+            self.fileredList = self.list.items
+        }
         self.tableView.reloadData()
     }
     
@@ -84,6 +89,6 @@ extension CustomerViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.UI.Sizing.Height.Small
+        return Constants.UI.Sizing.Height.Small * 1.05
     }
 }

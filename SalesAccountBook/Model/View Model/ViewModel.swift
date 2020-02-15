@@ -20,7 +20,7 @@ class ViewModel {
         fatalError("fetch is not implemented.")
     }
 
-    public func add(details: Any) {
+    public func add(details: Any, completion: ((Bool) -> Void)) {
         fatalError("Add is not implemented.")
     }
 
@@ -28,7 +28,7 @@ class ViewModel {
         fatalError("Get is not implemented.")
     }
 
-    func edit(oldName: String, details: Any, completion: (() -> Void)) {
+    func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
         fatalError("Edit is not implemented.")
     }
 

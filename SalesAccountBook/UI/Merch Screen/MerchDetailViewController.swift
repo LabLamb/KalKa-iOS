@@ -4,7 +4,7 @@
 
 import SnapKit
 
-class MerchDetailViewController: UIViewController {
+class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
     let containerView: MerchFieldsContainer
@@ -23,7 +23,9 @@ class MerchDetailViewController: UIViewController {
         self.inventory = config.viewModel as? Inventory
         self.onSelectRowDelegate = config.onSelectRow
         
-        super.init(nibName: nil, bundle: nil)
+        super.init()
+        
+        self.itemExistsErrorMsg = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch name text field .")
         
     }
     
@@ -71,9 +73,6 @@ class MerchDetailViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
         self.containerView.backgroundColor = .white
-        
-        self.containerView.setup()
-        
         self.containerView.merchPic.cameraOptionPresenter = self
         
         if self.actionType == .edit {
@@ -89,36 +88,16 @@ class MerchDetailViewController: UIViewController {
             guard let `self` = self else { return }
             
             guard let merchNameText = self.containerView.merchName.textField.text, self.containerView.merchName.textField.text != "" else {
-                self.promptEmptyMerchNameError()
+                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: self.containerView.merchName.textField)
                 return
             }
             
             let merchDetails = self.makeMerchDetails(name: merchNameText)
             
             if self.actionType == .edit {
-                if self.currentMerchName == merchNameText {
-                    self.editMerch(merchDetails: merchDetails)
-                } else {
-                    self.inventory?.exists(name: merchNameText,
-                                                completion: { [weak self] exists in
-                                                    guard let `self` = self else { return }
-                                                    if exists {
-                                                        self.promptMerchNameExistsError()
-                                                    } else {
-                                                        self.editMerch(merchDetails: merchDetails)
-                                                    }
-                    })
-                }
+                self.editMerch(merchDetails: merchDetails)
             } else if self.actionType == .add {
-                self.inventory?.exists(name: merchNameText,
-                                            completion: { [weak self] exists in
-                                                guard let `self` = self else { return }
-                                                if exists {
-                                                    self.promptMerchNameExistsError()
-                                                } else {
-                                                    self.addMerch(merchDetails: merchDetails)
-                                                }
-                })
+                self.addMerch(merchDetails: merchDetails)
             }
             
             
@@ -145,7 +124,11 @@ class MerchDetailViewController: UIViewController {
     }
     
     private func addMerch(merchDetails: MerchDetails) {
-        self.inventory?.add(details: merchDetails)
+        self.inventory?.add(details: merchDetails, completion: { success in
+            if !success {
+                self.promptItemExistsError()
+            }
+        })
         
         if let delegate = self.onSelectRowDelegate {
             delegate(merchDetails.name)
@@ -161,25 +144,13 @@ class MerchDetailViewController: UIViewController {
         }
         
         self.inventory?.edit(oldName: oldName,
-                                  details: merchDetails,
-                                  completion: {
+                             details: merchDetails,
+                             completion: { success in
+                                if success {
                                     self.navigationController?.popViewController(animated: true)
+                                } else {
+                                    self.promptItemExistsError()
+                                }
         })
-    }
-    
-    
-    // MARK: - Errors
-    private func promptMerchNameExistsError() {
-        let errorMessage = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch exists with the same name.")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
-    }
-    
-    private func promptEmptyMerchNameError() {
-        let errorMessage = NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field .")
-        self.present(UIAlertController.makeError(message: errorMessage), animated: true, completion: nil)
-        
-        self.containerView.merchName.textField.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Required(Input)", comment: "Must input."),
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.5)])
     }
 }

@@ -9,7 +9,7 @@ class TitleWithDatePicker: TitleWithTextField {
     let datePicker: UIDatePicker
     
     init(title: String,
-                  placeholder: String = Date().toString(format: Constants.System.DateFormat),
+         placeholder: String = Date().toString(format: Constants.System.DateFormat),
          textAlign: NSTextAlignment = .left) {
         self.datePicker = UIDatePicker()
         

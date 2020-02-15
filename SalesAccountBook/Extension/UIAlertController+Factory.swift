@@ -18,14 +18,14 @@ extension UIAlertController {
     static func makeConfirmation(confirmHandler: @escaping (UIAlertAction) -> Void) -> UIAlertController {
         let alertCtrl = UIAlertController(title: NSLocalizedString("ConfirmationTitle", comment: "Confirmation title."), message: NSLocalizedString("ConfirmationMessage", comment: "Confirmation message."), preferredStyle: .alert)
         
-        let proceed = UIAlertAction(title: NSLocalizedString("OK", comment: "Word of confirming an action."), style: .default, handler: confirmHandler)
         
-        alertCtrl.addAction(proceed)
-        
-        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .default, handler: nil)
+        let cancel = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Decide an event will not take place."), style: .cancel, handler: nil)
         alertCtrl.addAction(cancel)
         
         
+        let proceed = UIAlertAction(title: NSLocalizedString("OK", comment: "Word of confirming an action."), style: .default, handler: confirmHandler)
+        
+        alertCtrl.addAction(proceed)
         
         
         

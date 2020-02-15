@@ -4,7 +4,7 @@
 
 import SnapKit
 
-class IconView: UIView {
+class IconView: CustomView {
     
     let iconImage: UIImageView
     let defaultImage: UIImage
@@ -13,20 +13,31 @@ class IconView: UIView {
     init(image: UIImage) {
         self.defaultImage = image
         self.iconImage = UIImageView(image: self.defaultImage)
-        super.init(frame: .zero)
-        self.addSubview(self.iconImage)
-        self.iconImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
-            make.width.equalTo(self.iconImage.snp.height)
-        }
-        self.iconImage.backgroundColor = Constants.UI.Color.Grey
+        
+        super.init()
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.showImageUploadOption))
         self.iconImage.addGestureRecognizer(tapGest)
         self.iconImage.isUserInteractionEnabled = true
     }
+    
+    override func setupLayout() {
+        self.addSubview(self.iconImage)
+        self.iconImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.width.equalTo(self.iconImage.snp.height)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.iconImage.backgroundColor = Constants.UI.Color.Grey
+        self.iconImage.clipsToBounds = true
+        self.iconImage.layer.cornerRadius = (self.iconImage.frame.width + self.iconImage.frame.height) / 4
+    }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,13 +48,12 @@ class IconView: UIView {
 // MARK: - Camera
 extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
     @objc private func showImageUploadOption() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
-            self.uploadByCamera()
-        }))
+//        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
+//            self.uploadByCamera()
+//        }))
         
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Photos", comment: "Collections of images."), style: .default, handler: { _ in
             self.uploadByLibrary()
@@ -61,15 +71,15 @@ extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         self.cameraOptionPresenter?.present(actionSheet, animated: true, completion: nil)
     }
     
-    private func uploadByCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let picker = UIImagePickerController()
-            picker.allowsEditing = true
-            picker.delegate = self
-            picker.sourceType = .camera
-            self.cameraOptionPresenter?.present(picker, animated: true, completion: nil)
-        }
-    }
+//    private func uploadByCamera() {
+//        if UIImagePickerController.isSourceTypeAvailable(.camera){
+//            let picker = UIImagePickerController()
+//            picker.allowsEditing = true
+//            picker.delegate = self
+//            picker.sourceType = .camera
+//            self.cameraOptionPresenter?.present(picker, animated: true, completion: nil)
+//        }
+//    }
     
     private func uploadByLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -82,7 +92,7 @@ extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     }
     
     private func resetIconDefault() {
-        self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault")
+        self.iconImage.image = self.defaultImage
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

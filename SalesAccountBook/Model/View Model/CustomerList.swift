@@ -17,7 +17,7 @@ class CustomerList: ViewModel {
         completion?()
     }
     
-    override func add(details: Any) {
+    override func add(details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -25,7 +25,7 @@ class CustomerList: ViewModel {
         let context = self.persistentContainer.newBackgroundContext()
         if let entity = NSEntityDescription.entity(forEntityName: "Customer", in: context) {
             let newCustomer = Customer(entity: entity, insertInto: context)
-
+            
             newCustomer.name = details.name
             newCustomer.address = details.address
             newCustomer.phone = details.phone
@@ -65,11 +65,27 @@ class CustomerList: ViewModel {
         return (image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
     }
     
-    override func edit(oldName: String, details: Any, completion: (() -> Void)) {
+    override func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
         
+        if oldName == details.name {
+            self.storeEdit(oldName: oldName, details: details)
+            completion(true)
+        } else {
+            self.exists(name: details.name) { exists in
+                if exists {
+                    completion(false)
+                } else {
+                    self.storeEdit(oldName: oldName, details: details)
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    private func storeEdit(oldName: String, details: CustomerDetails) {
         let context = self.persistentContainer.newBackgroundContext()
         let predicate = NSPredicate(format: "name = %@", oldName)
         
@@ -89,16 +105,11 @@ class CustomerList: ViewModel {
         editingCustomer.image = details.image?.pngData()
         
         try? context.save()
-        
-        completion()
     }
     
     override func exists(name: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", name)
-        if let result = self.query(clause: predicate) {
-            completion(result.count > 0)
-        } else {
-            completion(false)
-        }
+        guard let result = self.query(clause: predicate) else { return }
+        completion(result.count > 0)
     }
 }

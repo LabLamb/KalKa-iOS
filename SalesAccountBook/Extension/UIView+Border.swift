@@ -4,11 +4,6 @@
 
 import UIKit
 
-enum LINE_POSITION {
-    case LINE_POSITION_TOP
-    case LINE_POSITION_BOTTOM
-}
-
 extension UIView {
     func addLine(position : LINE_POSITION, color: UIColor, width: Double) {
         let lineView = UIView()
@@ -28,6 +23,7 @@ extension UIView {
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lineView(width)]|", options:NSLayoutConstraint.FormatOptions(rawValue: 0), metrics:metrics, views:views))
             break
         }
+        self.layoutIfNeeded()
     }
 }
 

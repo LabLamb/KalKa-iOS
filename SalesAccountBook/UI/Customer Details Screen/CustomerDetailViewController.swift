@@ -24,6 +24,8 @@ class CustomerDetailViewController: DetailFormViewController {
         self.onSelectRowDelegate = config.onSelectRow
         
         super.init()
+        
+        self.itemExistsErrorMsg = NSLocalizedString("ErrorCustomerExists", comment: "Error Message - Customer exists with the same name.")
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -83,9 +85,6 @@ class CustomerDetailViewController: DetailFormViewController {
             make.bottom.equalToSuperview()
         }
         self.containerView.backgroundColor = .white
-        
-        self.containerView.setup()
-        
         self.containerView.customerPic.cameraOptionPresenter = self
         
         if self.actionType == .edit {
@@ -102,7 +101,7 @@ class CustomerDetailViewController: DetailFormViewController {
             
             let customerNameText = self.containerView.customerName.text
             if  customerNameText == "" {
-                self.promptEmptyFieldError(field: self.containerView.customerName.textField)
+                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: self.containerView.customerName.textField)
                 return
             }
             
@@ -114,24 +113,24 @@ class CustomerDetailViewController: DetailFormViewController {
                     self.editCustomer(customerDetails: customerDetails)
                 } else {
                     self.customerList?.exists(name: customerNameText,
-                                                      completion: { [weak self] exists in
-                                                        guard let `self` = self else { return }
-                                                        if exists {
-                                                            self.promptCustomerNameExistsError()
-                                                        } else {
-                                                            self.editCustomer(customerDetails: customerDetails)
-                                                        }
+                                              completion: { [weak self] exists in
+                                                guard let `self` = self else { return }
+                                                if exists {
+                                                    self.promptItemExistsError()
+                                                } else {
+                                                    self.editCustomer(customerDetails: customerDetails)
+                                                }
                     })
                 }
             } else if self.actionType == .add {
                 self.customerList?.exists(name: customerNameText,
-                                                  completion: { [weak self] exists in
-                                                    guard let `self` = self else { return }
-                                                    if exists {
-                                                        self.promptCustomerNameExistsError()
-                                                    } else {
-                                                        self.addCustomer(customerDetails: customerDetails)
-                                                    }
+                                          completion: { [weak self] exists in
+                                            guard let `self` = self else { return }
+                                            if exists {
+                                                self.promptItemExistsError()
+                                            } else {
+                                                self.addCustomer(customerDetails: customerDetails)
+                                            }
                 })
             }
             
@@ -164,7 +163,11 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func addCustomer(customerDetails: CustomerDetails) {
-        self.customerList?.add(details: customerDetails)
+        self.customerList?.add(details: customerDetails, completion: { success in
+            if !success {
+                self.promptItemExistsError()
+            }
+        })
         
         if let delegate = self.onSelectRowDelegate {
             delegate(customerDetails.name)
@@ -180,9 +183,13 @@ class CustomerDetailViewController: DetailFormViewController {
         }
         
         self.customerList?.edit(oldName: oldName,
-                                        details: customerDetails,
-                                        completion: {
-                                            self.navigationController?.popViewController(animated: true)
+                                details: customerDetails,
+                                completion: { success in 
+                                    if success {
+                                        self.navigationController?.popViewController(animated: true)
+                                    } else {
+                                        self.promptItemExistsError()
+                                    }
         })
     }
 }

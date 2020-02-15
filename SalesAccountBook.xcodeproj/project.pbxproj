@@ -21,6 +21,8 @@
 		D2364E2623F54D6600F93973 /* CustomerFieldsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2223F54D6600F93973 /* CustomerFieldsContainer.swift */; };
 		D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */; };
 		D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2C23F57E0600F93973 /* Date+String.swift */; };
+		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
+		D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F523F7BE3700B6E955 /* CustomView.swift */; };
 		D23A385223F5100E00488DFD /* MerchFieldsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */; };
 		D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */; };
 		D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945123F6AF250015B6E6 /* ViewModel.swift */; };
@@ -99,6 +101,8 @@
 		D2364E2223F54D6600F93973 /* CustomerFieldsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerFieldsContainer.swift; sourceTree = "<group>"; };
 		D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
 		D2364E2C23F57E0600F93973 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
+		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
+		D23778F523F7BE3700B6E955 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		D23A385123F5100E00488DFD /* MerchFieldsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchFieldsContainer.swift; sourceTree = "<group>"; };
 		D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		D25E945123F6AF250015B6E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -225,8 +229,10 @@
 		D25E945323F6C1860015B6E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D23778F523F7BE3700B6E955 /* CustomView.swift */,
 				D2D3F70F23F40CE90034D83F /* IconView.swift */,
 				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
+				D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */,
 				D223CD1C23F5B819003A8EF6 /* IconWithTextView.swift */,
 				D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */,
 				D223CD1A23F5A5E7003A8EF6 /* TitleWithTextView.swift */,
@@ -275,6 +281,7 @@
 		D2A55A0123F1584C00022E9A /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 				D2D6BA4F23F522CE007894FD /* CustomerList.swift */,
 				D2A559FF23F1584800022E9A /* Inventory.swift */,
 			);
@@ -394,7 +401,6 @@
 			children = (
 				D2D6D98B23F2545E003CDFAC /* Refreshable.swift */,
 				D2C3E8B123F3A16B00C0F33B /* Enums.swift */,
-				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */,
 				D2D6BA8223F52DF5007894FD /* Customer+CoreDataClass.swift in Sources */,
 				D223CD1723F57F2B003A8EF6 /* String+Date.swift in Sources */,
+				D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */,
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
 				D2D6BA7D23F52DE8007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */,
@@ -683,6 +690,7 @@
 				D2D6BA7F23F52DE8007894FD /* Order+CoreDataClass.swift in Sources */,
 				D223CD1B23F5A5E7003A8EF6 /* TitleWithTextView.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
+				D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
