@@ -7,7 +7,7 @@ import SnapKit
 class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
-    let containerView: MerchFieldsContainer
+    let inputFieldsSection: InputFieldsSection
     
     let actionType: DetailsViewActionType
     var currentMerchName: String?
@@ -16,7 +16,16 @@ class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Initializion
     init(config: DetailsConfigurator) {
-        self.containerView = MerchFieldsContainer()
+        let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
+        let fields = [
+            iconView,
+            TitleWithTextField(title: Constants.UI.Label.Name, placeholder: Constants.UI.Label.Required),
+            TitleWithTextField(title: Constants.UI.Label.Price, placeholder: Constants.UI.Label.Optional),
+            TitleWithTextField(title: Constants.UI.Label.Quantity, placeholder: Constants.UI.Label.Optional),
+            TitleWithTextField(title: Constants.UI.Label.Remark, placeholder: Constants.UI.Label.Optional),
+        ]
+        
+        self.inputFieldsSection = InputFieldsSection(fields: fields)
         
         self.actionType = config.action
         self.currentMerchName = config.id
@@ -25,8 +34,8 @@ class MerchDetailViewController: DetailFormViewController {
         
         super.init()
         
+        iconView.cameraOptionPresenter = self
         self.itemExistsErrorMsg = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch name text field .")
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -55,25 +64,27 @@ class MerchDetailViewController: DetailFormViewController {
             fatalError()
         }
         
-        if let img = merchDetails.image {
-            self.containerView.merchPic.iconImage.image = img
-        }
-        self.containerView.merchName.textField.text = merchDetails.name
-        self.containerView.merchPrice.textField.text = String(merchDetails.price)
-        self.containerView.merchQty.textField.text = String(merchDetails.qty)
-        self.containerView.merchRemark.textField.text = merchDetails.remark
+        let valueMap = [
+            Constants.UI.Label.Name: merchDetails.name,
+            Constants.UI.Label.Price: String(merchDetails.price),
+            Constants.UI.Label.Quantity: String(merchDetails.qty),
+            Constants.UI.Label.Remark: merchDetails.remark
+        ]
+        
+        self.inputFieldsSection.prefillValues(values: valueMap)
+        
+        self.inputFieldsSection.prefillValues(values: valueMap)
     }
     
     private func setup() {
         self.view.backgroundColor = .groupTableViewBackground
         
-        self.view.addSubview(self.containerView)
-        self.containerView.snp.makeConstraints { make in
+        self.view.addSubview(self.inputFieldsSection)
+        self.inputFieldsSection.snp.makeConstraints { make in
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
             make.left.right.equalToSuperview()
         }
-        self.containerView.backgroundColor = .white
-        self.containerView.merchPic.cameraOptionPresenter = self
+        self.inputFieldsSection.backgroundColor = .white
         
         if self.actionType == .edit {
             self.prefillFieldsForEdit()
@@ -83,24 +94,19 @@ class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Data
     @objc private func submitMerchDetails () {
+        let merchDetails = self.makeMerchDetails()
+        if merchDetails.name == "" {
+            //            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: self.inputFieldsSection.merchName.textField)
+            return
+        }
         
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
             guard let `self` = self else { return }
-            
-            guard let merchNameText = self.containerView.merchName.textField.text, self.containerView.merchName.textField.text != "" else {
-                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: self.containerView.merchName.textField)
-                return
-            }
-            
-            let merchDetails = self.makeMerchDetails(name: merchNameText)
-            
             if self.actionType == .edit {
                 self.editMerch(merchDetails: merchDetails)
             } else if self.actionType == .add {
                 self.addMerch(merchDetails: merchDetails)
             }
-            
-            
         }
         
         let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
@@ -108,19 +114,32 @@ class MerchDetailViewController: DetailFormViewController {
         self.present(confirmationAlert, animated: true, completion: nil)
     }
     
-    private func makeMerchDetails(name: String) -> MerchDetails {
-        let parsedPrice = Double(self.containerView.merchPrice.textField.text ?? "") ?? 0.0
-        let parsedQty = Int(self.containerView.merchQty.textField.text ?? "") ?? 0
+    private func makeMerchDetails() -> MerchDetails {
+        let extractedValue = self.inputFieldsSection.extractValues(valMapping: [
+            Constants.UI.Label.Name,
+            Constants.UI.Label.Price,
+            Constants.UI.Label.Quantity,
+            Constants.UI.Label.Remark
+        ])
         
-        let img: UIImage? = {
-            if self.containerView.merchPic.iconImage.image == #imageLiteral(resourceName: "MerchDefault") {
-                return nil
+        let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
+        let image: UIImage? = {
+            if let img = iconView?.iconImage.image {
+                return img  == #imageLiteral(resourceName: "MerchDefault") ? nil : img
             } else {
-                return self.containerView.merchPic.iconImage.image
+                return nil
             }
         }()
         
-        return (name: name, price: parsedPrice, qty: parsedQty, remark: (self.containerView.merchRemark.textField.text) ?? "", image: img)
+        let parsedPrice = Double(extractedValue[Constants.UI.Label.Price] ?? "") ?? 0.0
+        let parsedQty = Int(extractedValue[Constants.UI.Label.Quantity] ?? "") ?? 0
+        
+        return (name: extractedValue[Constants.UI.Label.Name] ?? "",
+                price: parsedPrice,
+                qty: parsedQty,
+                remark: extractedValue[Constants.UI.Label.Remark] ?? "",
+                image: image)
+        
     }
     
     private func addMerch(merchDetails: MerchDetails) {

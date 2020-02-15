@@ -28,7 +28,7 @@ class InventoryViewController: SearchTableViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = NSLocalizedString("Inventory", comment: "The collections of goods.")
+        self.navigationItem.title = Constants.UI.Label.Inventory
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
     }
     
@@ -58,7 +58,7 @@ class InventoryViewController: SearchTableViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.UI.Sizing.Height.Small * 1.05
+        return Constants.UI.Sizing.Height.Small * 1.25
     }
 }
 

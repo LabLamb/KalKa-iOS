@@ -89,6 +89,6 @@ extension CustomerViewController {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.UI.Sizing.Height.Small * 1.05
+        return Constants.UI.Sizing.Height.Small * 1.25
     }
 }

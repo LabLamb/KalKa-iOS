@@ -31,13 +31,13 @@ class TitleWithDatePicker: TitleWithTextField {
             return result
         }()
         
-        self.textField.inputAccessoryView = toolbar
-        self.textField.inputView = self.datePicker
+        (self.textView as? UITextField)?.inputAccessoryView = toolbar
+        (self.textView as? UITextField)?.inputView = self.datePicker
         
     }
     
     @objc func dateDidPick(){
-        self.textField.text = self.datePicker.date.toString(format: Constants.System.DateFormat)
+        (self.textView as? UITextField)?.text = self.datePicker.date.toString(format: Constants.System.DateFormat)
         self.endEditing(true)
     }
     

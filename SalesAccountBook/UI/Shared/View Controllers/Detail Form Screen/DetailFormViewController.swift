@@ -46,7 +46,7 @@ class DetailFormViewController: UIViewController {
         self.present(UIAlertController.makeError(message: errorMsg), animated: true, completion: nil)
         
         field.attributedPlaceholder = NSAttributedString(
-            string: NSLocalizedString("Required(Input)", comment: "Must input."),
+            string: Constants.UI.Label.Required,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.5)])
     }
 }

@@ -13,7 +13,7 @@
 "GenericError" = "錯誤";
 "ErrorMerchExists" = "貨品名稱已被取用";
 "OK" = "確定";
-"ErrorMerchInputEmpty" = "請輸入貨品名稱";
+"ErrorMerchInputEmpty" = "貨品名稱不能為空";
 "Save" = "儲存";
 "Edit" = "編輯";
 "Camera" = "攝影機";
@@ -27,7 +27,7 @@
 "Remove" = "移除";
 "LastContacted" = "上次聯絡";
 "ErrorCustomerExists" = "客戶名稱已被取用";
-"ErrorCustomerInputEmpty" = "請輸入客戶名稱";
+"ErrorCustomerInputEmpty" = "客戶名稱不能為空";
 "NewCustomer" = "新客戶";
 "Phone" = "電話號碼";
 "Address" = "地址";

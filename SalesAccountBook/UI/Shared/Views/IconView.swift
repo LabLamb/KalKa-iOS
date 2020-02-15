@@ -51,10 +51,6 @@ extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
     @objc private func showImageUploadOption() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-//        actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Camera", comment: "Tools of taking pictures."), style: .default, handler: { _ in
-//            self.uploadByCamera()
-//        }))
-        
         actionSheet.addAction(UIAlertAction(title: NSLocalizedString("Photos", comment: "Collections of images."), style: .default, handler: { _ in
             self.uploadByLibrary()
         }))
@@ -70,16 +66,6 @@ extension IconView: UIImagePickerControllerDelegate, UINavigationControllerDeleg
         
         self.cameraOptionPresenter?.present(actionSheet, animated: true, completion: nil)
     }
-    
-//    private func uploadByCamera() {
-//        if UIImagePickerController.isSourceTypeAvailable(.camera){
-//            let picker = UIImagePickerController()
-//            picker.allowsEditing = true
-//            picker.delegate = self
-//            picker.sourceType = .camera
-//            self.cameraOptionPresenter?.present(picker, animated: true, completion: nil)
-//        }
-//    }
     
     private func uploadByLibrary() {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
