@@ -14,7 +14,7 @@ class TitleWithDatePicker: TitleWithTextField {
         self.datePicker = UIDatePicker()
         
         super.init(title: title, placeholder: placeholder, textAlign: textAlign)
-        
+
         self.datePicker.datePickerMode = .date
         
         let toolbar: UIToolbar = {

@@ -16,14 +16,32 @@ class TitleWithTextField: DescWithText {
         }
     }
     
+    override var desc: Any {
+        get {
+            return (self.descView as? UILabel)?.text ?? ""
+        }
+        
+        set {
+            (self.descView as? UILabel)?.text = newValue as? String
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            return CGSize(width: 0, height: Constants.UI.Sizing.Height.TextFieldDefault)
+        }
+    }
+    
     private let maxTextLength: Int
     
-    init(title: String, placeholder: String = "", textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
+    init(title: String, placeholder: String = "", spacing: CGFloat = 0, textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
         let tagView = UILabel()
         let textView = UITextField()
         self.maxTextLength = maxTextLength
         
         super.init(tagView: tagView, textView: textView)
+        
+        self.spacing = spacing
         
         tagView.text = title
         tagView.textAlignment = .left
@@ -32,6 +50,20 @@ class TitleWithTextField: DescWithText {
         textView.placeholder = placeholder
         textView.textAlignment = textAlign
         textView.delegate = self
+    }
+    
+    override func setupLayout() {
+        self.addSubview(self.descView)
+        self.descView.snp.makeConstraints({ make in
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(3)
+        })
+        
+        self.addSubview(self.textView)
+        self.textView.snp.makeConstraints({ make in
+            make.top.right.bottom.equalToSuperview()
+            make.left.equalTo(self.descView.snp.right).offset(self.spacing)
+        })
     }
     
     required init?(coder: NSCoder) {

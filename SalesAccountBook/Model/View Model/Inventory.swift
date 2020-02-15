@@ -73,13 +73,13 @@ class Inventory: ViewModel {
         return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    public override func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
+    public override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
-            fatalError("Passed wrong datatype to add.")
+            fatalError("Passed wrong datatype to edit.")
         }
         
         let context = self.persistentContainer.newBackgroundContext()
-        let predicate = NSPredicate(format: "name = %@", oldName)
+        let predicate = NSPredicate(format: "name = %@", oldId)
         
         guard let result = self.query(clause: predicate, incContext: context) as? [Merch] else {
             fatalError("Trying to edit an non-existing Merch. (Query returned nil)")

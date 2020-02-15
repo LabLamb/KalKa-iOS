@@ -10,7 +10,11 @@ class InputFieldsSection: CustomView {
     private let separatorColor: UIColor = .groupTableViewBackground
     
     init(fields: [CustomView]) {
-        self.stackView = UIStackView()
+        let sv = UIStackView()
+        fields.forEach { view in
+            sv.addArrangedSubview(view)
+        }
+        self.stackView = sv
         
         super.init()
         
@@ -18,9 +22,7 @@ class InputFieldsSection: CustomView {
         self.stackView.alignment = .fill
         self.stackView.distribution = .fill
         self.stackView.alignment = .center
-        fields.forEach { view in
-            self.stackView.addArrangedSubview(view)
-        }
+        
     }
     
     override func setupLayout() {
@@ -38,7 +40,6 @@ class InputFieldsSection: CustomView {
                     make.height.equalTo(Constants.UI.Sizing.Height.Medium)
                 } else {
                     make.width.equalTo(Constants.System.SupportedMiniumScreenWidth - (Constants.UI.Spacing.Width.Medium * 2))
-                    make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
                 }
                 view.backgroundColor = .white
                 view.addLine(position: .LINE_POSITION_BOTTOM, color: self.separatorColor, width: 1)
@@ -46,9 +47,15 @@ class InputFieldsSection: CustomView {
         }
     }
     
-    public func getView<T>(viewType: T) -> [UIView] {
+    public func getView(labelText: String) -> UIView? {
+        return self.extractFieldsViews().first(where: { view in
+            (view.desc as? String) == labelText
+        })
+    }
+    
+    public func getView(viewType: AnyClass) -> [UIView] {
         return self.stackView.arrangedSubviews.filter({ view in
-            type(of: view) == type(of: viewType)
+            type(of: view) == viewType
         })
     }
     

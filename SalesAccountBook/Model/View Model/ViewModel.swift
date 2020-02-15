@@ -28,7 +28,7 @@ class ViewModel {
         fatalError("Get is not implemented.")
     }
 
-    func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         fatalError("Edit is not implemented.")
     }
 

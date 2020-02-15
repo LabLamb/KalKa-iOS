@@ -10,31 +10,40 @@ class CustomerDetailViewController: DetailFormViewController {
     private let inputFieldsSection: InputFieldsSection
     
     let actionType: DetailsViewActionType
-    var currentCustomerName: String?
     weak var customerList: CustomerList?
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    init(config: DetailsConfigurator) {
+    override init(config: DetailsConfigurator) {
         let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
+        
+        
         self.inputFieldsSection = InputFieldsSection(fields:
             [
                 iconView,
-                TitleWithTextField(title: Constants.UI.Label.Name, placeholder: Constants.UI.Label.Required),
-                TitleWithTextField(title: Constants.UI.Label.Phone, placeholder: Constants.UI.Label.Optional),
-                TitleWithTextView(title: Constants.UI.Label.Address, placeholder: Constants.UI.Label.Optional),
-                TitleWithTextView(title: Constants.UI.Label.Remark, placeholder: Constants.UI.Label.Optional),
+                TitleWithTextField(title: Constants.UI.Label.Name,
+                                   placeholder: Constants.UI.Label.Required,
+                                   spacing: 2.5),
+                TitleWithTextField(title: Constants.UI.Label.Phone,
+                                   placeholder: Constants.UI.Label.Optional,
+                                   spacing: 2.5),
+                TitleWithTextView(title: Constants.UI.Label.Address,
+                                  placeholder: Constants.UI.Label.Optional,
+                                  spacing: 2.5),
+                TitleWithTextView(title: Constants.UI.Label.Remark,
+                                  placeholder: Constants.UI.Label.Optional,
+                                  spacing: 2.5),
                 TitleWithDatePicker(title: Constants.UI.Label.LastContacted, placeholder: Constants.UI.Label.Optional)
             ]
         )
         
         self.actionType = config.action
-        self.currentCustomerName = config.id
         self.customerList = config.viewModel as? CustomerList
         self.onSelectRowDelegate = config.onSelectRow
         
-        super.init()
-        
+        super.init(config: config)
+        iconView.cameraOptionPresenter = self
+    
         self.itemExistsErrorMsg = NSLocalizedString("ErrorCustomerExists", comment: "Error Message - Customer exists with the same name.")
     }
     
@@ -46,7 +55,7 @@ class CustomerDetailViewController: DetailFormViewController {
     override func viewDidLoad() {
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentCustomerName ?? "")"
+                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentId ?? "")"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewCustomer", comment: "New entry of product.")
             } else {
@@ -60,7 +69,7 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let customerDetails = self.customerList?.get(name: self.currentCustomerName ?? "") as? CustomerDetails else {
+        guard let customerDetails = self.customerList?.get(name: self.currentId ?? "") as? CustomerDetails else {
             fatalError()
         }
         
@@ -96,7 +105,7 @@ class CustomerDetailViewController: DetailFormViewController {
             make.bottom.equalToSuperview()
         }
         self.inputFieldsSection.backgroundColor = .white
-        //        self.inputFieldsSection.customerPic.cameraOptionPresenter = self
+        (self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView)?.cameraOptionPresenter = self
         
         if self.actionType == .edit {
             self.prefillFieldsForEdit()
@@ -107,23 +116,26 @@ class CustomerDetailViewController: DetailFormViewController {
     // MARK: - Data
     @objc private func submitCustomerDetails () {
         let customerDetails = self.makeCustomerDetails()
-               if customerDetails.name == "" {
-                   //            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: self.inputFieldsSection.merchName.textField)
-                   return
-               }
-               
-               let handler: (UIAlertAction) -> Void = { [weak self] alert in
-                   guard let `self` = self else { return }
-                   if self.actionType == .edit {
-                       self.editCustomer(customerDetails: customerDetails)
-                   } else if self.actionType == .add {
-                       self.editCustomer(customerDetails: customerDetails)
-                   }
-               }
-               
-               let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
-               
-               self.present(confirmationAlert, animated: true, completion: nil)
+        if customerDetails.name == "" {
+            if let textField = self.inputFieldsSection
+                .getView(labelText: Constants.UI.Label.Name) as? TitleWithTextField {
+                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField.textView as! UITextField)
+            }
+            return
+        }
+        
+        let handler: (UIAlertAction) -> Void = { [weak self] alert in
+            guard let `self` = self else { return }
+            if self.actionType == .edit {
+                self.editItem(details: customerDetails)
+            } else if self.actionType == .add {
+                self.addCustomer(customerDetails: customerDetails)
+            }
+        }
+        
+        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
+        
+        self.present(confirmationAlert, animated: true, completion: nil)
     }
     
     private func makeCustomerDetails() -> CustomerDetails {
@@ -159,21 +171,5 @@ class CustomerDetailViewController: DetailFormViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
-    }
-    
-    private func editCustomer(customerDetails: CustomerDetails) {
-        guard let oldName = self.currentCustomerName else {
-            fatalError()
-        }
-        
-        self.customerList?.edit(oldName: oldName,
-                                details: customerDetails,
-                                completion: { success in 
-                                    if success {
-                                        self.navigationController?.popViewController(animated: true)
-                                    } else {
-                                        self.promptItemExistsError()
-                                    }
-        })
     }
 }

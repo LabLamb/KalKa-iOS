@@ -65,29 +65,29 @@ class CustomerList: ViewModel {
         return (image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
     }
     
-    override func edit(oldName: String, details: Any, completion: ((Bool) -> Void)) {
+    override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
         
-        if oldName == details.name {
-            self.storeEdit(oldName: oldName, details: details)
+        if oldId == details.name {
+            self.storeEdit(oldId: oldId, details: details)
             completion(true)
         } else {
             self.exists(name: details.name) { exists in
                 if exists {
                     completion(false)
                 } else {
-                    self.storeEdit(oldName: oldName, details: details)
+                    self.storeEdit(oldId: oldId, details: details)
                     completion(true)
                 }
             }
         }
     }
     
-    private func storeEdit(oldName: String, details: CustomerDetails) {
+    private func storeEdit(oldId: String, details: CustomerDetails) {
         let context = self.persistentContainer.newBackgroundContext()
-        let predicate = NSPredicate(format: "name = %@", oldName)
+        let predicate = NSPredicate(format: "name = %@", oldId)
         
         guard let result = self.query(clause: predicate, incContext: context) as? [Customer] else {
             fatalError("Trying to edit an non-existing Customer. (Query returned nil)")

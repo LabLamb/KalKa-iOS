@@ -10,13 +10,13 @@ class MerchDetailViewController: DetailFormViewController {
     let inputFieldsSection: InputFieldsSection
     
     let actionType: DetailsViewActionType
-    var currentMerchName: String?
     weak var inventory: Inventory?
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    init(config: DetailsConfigurator) {
+    override init(config: DetailsConfigurator) {
         let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
+        
         let fields = [
             iconView,
             TitleWithTextField(title: Constants.UI.Label.Name, placeholder: Constants.UI.Label.Required),
@@ -28,13 +28,13 @@ class MerchDetailViewController: DetailFormViewController {
         self.inputFieldsSection = InputFieldsSection(fields: fields)
         
         self.actionType = config.action
-        self.currentMerchName = config.id
         self.inventory = config.viewModel as? Inventory
         self.onSelectRowDelegate = config.onSelectRow
         
-        super.init()
+        super.init(config: config)
         
         iconView.cameraOptionPresenter = self
+        
         self.itemExistsErrorMsg = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch name text field .")
     }
     
@@ -46,7 +46,7 @@ class MerchDetailViewController: DetailFormViewController {
     override func viewDidLoad() {
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentMerchName ?? "")"
+                return "\(NSLocalizedString("Edit", comment: "The action to change.")) \(self.currentId ?? "")"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewMerch", comment: "New entry of product.")
             } else {
@@ -60,7 +60,7 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let merchDetails = self.inventory?.get(name: self.currentMerchName ?? "") as? MerchDetails else {
+        guard let merchDetails = self.inventory?.get(name: self.currentId ?? "") as? MerchDetails else {
             fatalError()
         }
         
@@ -70,8 +70,6 @@ class MerchDetailViewController: DetailFormViewController {
             Constants.UI.Label.Quantity: String(merchDetails.qty),
             Constants.UI.Label.Remark: merchDetails.remark
         ]
-        
-        self.inputFieldsSection.prefillValues(values: valueMap)
         
         self.inputFieldsSection.prefillValues(values: valueMap)
     }
@@ -96,14 +94,21 @@ class MerchDetailViewController: DetailFormViewController {
     @objc private func submitMerchDetails () {
         let merchDetails = self.makeMerchDetails()
         if merchDetails.name == "" {
-            //            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: self.inputFieldsSection.merchName.textField)
+            let textField = self.inputFieldsSection
+                .getView(viewType: TitleWithTextField.self)
+                .first(where: { view in
+                    let abc = (view as? TitleWithTextField)
+                    let abcDesc = (abc?.desc as? String)
+                    return abcDesc == Constants.UI.Label.Name
+                }) as! TitleWithTextField
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: textField.textView as! UITextField)
             return
         }
         
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
             guard let `self` = self else { return }
             if self.actionType == .edit {
-                self.editMerch(merchDetails: merchDetails)
+                self.editItem(details: merchDetails)
             } else if self.actionType == .add {
                 self.addMerch(merchDetails: merchDetails)
             }
@@ -154,22 +159,5 @@ class MerchDetailViewController: DetailFormViewController {
         } else {
             self.navigationController?.popViewController(animated: true)
         }
-        
-    }
-    
-    private func editMerch(merchDetails: MerchDetails) {
-        guard let oldName = self.currentMerchName else {
-            fatalError()
-        }
-        
-        self.inventory?.edit(oldName: oldName,
-                             details: merchDetails,
-                             completion: { success in
-                                if success {
-                                    self.navigationController?.popViewController(animated: true)
-                                } else {
-                                    self.promptItemExistsError()
-                                }
-        })
     }
 }

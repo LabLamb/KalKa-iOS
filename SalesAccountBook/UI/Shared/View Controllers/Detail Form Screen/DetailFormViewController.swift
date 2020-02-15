@@ -8,9 +8,13 @@ class DetailFormViewController: UIViewController {
     
     let scrollView: UIScrollView
     var itemExistsErrorMsg: String = ""
+    var currentId: String?
+    var list: ViewModel?
     
-    init() {
+    init(config: DetailsConfigurator) {
         self.scrollView = UIScrollView()
+        self.currentId = config.id
+        self.list = config.viewModel
         
         super.init(nibName: nil, bundle: nil)
         
@@ -48,5 +52,21 @@ class DetailFormViewController: UIViewController {
         field.attributedPlaceholder = NSAttributedString(
             string: Constants.UI.Label.Required,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.red.withAlphaComponent(0.5)])
+    }
+    
+    internal func editItem(details: Any) {
+        guard let oldId = self.currentId else {
+            fatalError()
+        }
+        
+        self.list?.edit(oldId: oldId,
+                                details: details,
+                                completion: { success in
+                                    if success {
+                                        self.navigationController?.popViewController(animated: true)
+                                    } else {
+                                        self.promptItemExistsError()
+                                    }
+        })
     }
 }

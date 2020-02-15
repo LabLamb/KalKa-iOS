@@ -10,16 +10,33 @@ class TitleWithTextView: DescWithText {
         get {
             return (self.textView as? UITextView)?.text ?? ""
         }
-
+        
         set {
+            self.placeholderLabel.isHidden = newValue != ""
             (self.textView as? UITextView)?.text = newValue
+        }
+    }
+    
+    override var desc: Any {
+        get {
+            return (self.descView as? UILabel)?.text ?? ""
+        }
+        
+        set {
+            (self.descView as? UILabel)?.text = newValue as? String
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            return CGSize(width: 0, height: Constants.UI.Sizing.Height.TextFieldDefault)
         }
     }
     
     let defaultPlaceholder: String
     let placeholderLabel: UILabel
     
-    init(title: String, placeholder: String = "", textAlign: NSTextAlignment = .left) {
+    init(title: String, placeholder: String = "", spacing: CGFloat = 0, textAlign: NSTextAlignment = .left) {
         let tagView = UILabel()
         let textView = UITextView()
         
@@ -28,15 +45,21 @@ class TitleWithTextView: DescWithText {
         
         super.init(tagView: tagView, textView: textView)
         
+        self.spacing = spacing
+        
         textView.delegate = self
         
         tagView.text = title
         tagView.textAlignment = .left
         tagView.numberOfLines = 0
         
+        textView.textContainer.heightTracksTextView = true
+        textView.textContainer.widthTracksTextView = false
         textView.textAlignment = textAlign
         textView.isScrollEnabled = false
         textView.textContainer.lineFragmentPadding = 0
+        textView.font = UITextField().font
+        textView.textContainerInset = .init(top: 10.515, left: 0, bottom: 10.515, right: 0)
         
         self.placeholderLabel.text = self.defaultPlaceholder
         self.placeholderLabel.textColor = UIColor(red: 0.24, green: 0.24, blue: 0.26, alpha: 0.3)
@@ -46,7 +69,17 @@ class TitleWithTextView: DescWithText {
     }
     
     override func setupLayout() {
-        super.setupLayout()
+        self.addSubview(self.descView)
+        self.descView.snp.makeConstraints({ make in
+            make.top.left.bottom.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(3)
+        })
+        
+        self.addSubview(self.textView)
+        self.textView.snp.makeConstraints({ make in
+            make.top.right.bottom.equalToSuperview()
+            make.left.equalTo(self.descView.snp.right).offset(self.spacing)
+        })
         
         self.addSubview(self.placeholderLabel)
         self.placeholderLabel.snp.makeConstraints { make in
