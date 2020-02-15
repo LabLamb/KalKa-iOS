@@ -45,7 +45,6 @@ class InputFieldsSection: CustomView {
                 view.addLine(position: .bottom, color: self.separatorColor, weight: 1)
             }
         }
-        self.addShadow()
     }
     
     public func getView(labelText: String) -> UIView? {
