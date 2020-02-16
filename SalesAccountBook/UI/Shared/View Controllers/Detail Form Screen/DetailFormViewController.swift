@@ -30,7 +30,6 @@ class DetailFormViewController: UIViewController {
         guard let info = noti.userInfo else { return }
         let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
         let kbSize = rect.size
-
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
         self.scrollView.contentInset = insets
         self.scrollView.scrollIndicatorInsets = insets
@@ -60,13 +59,13 @@ class DetailFormViewController: UIViewController {
         }
         
         self.list?.edit(oldId: oldId,
-                                details: details,
-                                completion: { success in
-                                    if success {
-                                        self.navigationController?.popViewController(animated: true)
-                                    } else {
-                                        self.promptItemExistsError()
-                                    }
+                        details: details,
+                        completion: { success in
+                            if success {
+                                self.navigationController?.popViewController(animated: true)
+                            } else {
+                                self.promptItemExistsError()
+                            }
         })
     }
 }

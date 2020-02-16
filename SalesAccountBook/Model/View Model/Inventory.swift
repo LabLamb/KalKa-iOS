@@ -24,7 +24,6 @@ class Inventory: ViewModel {
         
         self.exists(name: details.name,
                     completion: {exists in
-                        
                         if exists {
                             completion(false)
                         } else {

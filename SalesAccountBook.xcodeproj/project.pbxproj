@@ -33,6 +33,7 @@
 		D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */; };
 		D2A411A523F8530C00842111 /* String+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A411A423F8530C00842111 /* String+Constant.swift */; };
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
+		D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
 		D2C3E8B423F3B31700C0F33B /* DetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */; };
@@ -117,6 +118,7 @@
 		D2A559F923F152C100022E9A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Factory.swift"; sourceTree = "<group>"; };
 		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsConfigurator.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				D2364E2C23F57E0600F93973 /* Date+String.swift */,
 				D223CD1623F57F2B003A8EF6 /* String+Date.swift */,
 				D2A411A423F8530C00842111 /* String+Constant.swift */,
+				D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2D6BA7E23F52DE8007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
+				D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */,
 				D2C3E8B423F3B31700C0F33B /* DetailsConfigurator.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
 				D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */,

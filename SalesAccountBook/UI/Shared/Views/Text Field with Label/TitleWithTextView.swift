@@ -60,6 +60,7 @@ class TitleWithTextView: DescWithText {
         textView.textContainer.lineFragmentPadding = 0
         textView.font = UITextField().font
         textView.textContainerInset = .init(top: 10.515, left: 0, bottom: 10.515, right: 0)
+        textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
         
         self.placeholderLabel.text = self.defaultPlaceholder
         self.placeholderLabel.textColor = UIColor(red: 0.24, green: 0.24, blue: 0.26, alpha: 0.3)
@@ -85,6 +86,10 @@ class TitleWithTextView: DescWithText {
         self.placeholderLabel.snp.makeConstraints { make in
             make.top.bottom.left.right.equalTo(self.textView)
         }
+    }
+    
+    @objc func unfocusTextView() {
+        self.textView.resignFirstResponder()
     }
     
     required init?(coder: NSCoder) {

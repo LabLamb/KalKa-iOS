@@ -22,21 +22,28 @@ class CustomerList: ViewModel {
             fatalError("Passed wrong datatype to add.")
         }
         
-        let context = self.persistentContainer.newBackgroundContext()
-        if let entity = NSEntityDescription.entity(forEntityName: "Customer", in: context) {
-            let newCustomer = Customer(entity: entity, insertInto: context)
-            
-            newCustomer.name = details.name
-            newCustomer.address = details.address
-            newCustomer.phone = details.phone
-            newCustomer.remark = details.remark
-            newCustomer.lastContacted = Date()
-            newCustomer.image = details.image?.pngData()
-            
-            try? context.save()
-            
-            self.fetch()
-        }
+        self.exists(name: details.name, completion: { exists in
+            if !exists {
+                let context = self.persistentContainer.newBackgroundContext()
+                if let entity = NSEntityDescription.entity(forEntityName: "Customer", in: context) {
+                    let newCustomer = Customer(entity: entity, insertInto: context)
+                    
+                    newCustomer.name = details.name
+                    newCustomer.address = details.address
+                    newCustomer.phone = details.phone
+                    newCustomer.remark = details.remark
+                    newCustomer.lastContacted = Date()
+                    newCustomer.image = details.image?.pngData()
+                    
+                    try? context.save()
+                    
+                    self.fetch()
+                }
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
     }
     
     override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {

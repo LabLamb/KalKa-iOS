@@ -26,17 +26,17 @@ class SearchTableViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.unfocusSearchBar))
-        self.tableView.backgroundView = UIView()
-        self.tableView.backgroundView?.addGestureRecognizer(tapGest)
-        self.tableView.backgroundView?.isUserInteractionEnabled = true
-        
         DispatchQueue.main.async {
             self.refresh()
         }
         
         self.searchBar.delegate = self
         self.searchBar.placeholder = .search
+        self.searchBar.showsScopeBar = true
+//        self.searchBar.scopeButtonTitles = [.customers, .inventory]
+        self.searchBar.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusSearchBar))
+        self.searchBar.backgroundImage = UIImage()
+//        self.searchBar
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -70,6 +70,9 @@ class SearchTableViewController: UIViewController {
     }
     
     private func setup() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
         self.view.backgroundColor = .groupTableViewBackground
         
         self.view.addSubview(self.searchBar)
@@ -80,7 +83,7 @@ class SearchTableViewController: UIViewController {
         
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { make in
-            make.top.equalTo(self.searchBar.snp.bottom)
+            make.top.equalTo(self.searchBar.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             make.left.right.bottom.equalToSuperview()
         }
     }
@@ -139,22 +142,11 @@ extension SearchTableViewController: Refreshable {
 //MARK: - SearchBar
 extension SearchTableViewController: UISearchBarDelegate {
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        self.searchBar.setShowsCancelButton(true, animated: true)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchBar.text = ""
-        self.unfocusSearchBar()
-        self.filterListByString("")
-    }
-    
     internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filterListByString(searchText)
     }
     
     @objc private func unfocusSearchBar() {
-        self.searchBar.setShowsCancelButton(false, animated: true)
         self.searchBar.resignFirstResponder()
     }
 }
