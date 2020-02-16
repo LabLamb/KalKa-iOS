@@ -17,11 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         let invVC = UINavigationController(rootViewController: InventoryViewController())
-        invVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Inventory", comment: "The collections of goods."), image: #imageLiteral(resourceName: "Inventory"), tag: 1)
+        invVC.tabBarItem = UITabBarItem(title: .inventory, image: #imageLiteral(resourceName: "Inventory"), tag: 1)
+        
+        let cusVC = UINavigationController(rootViewController: CustomerViewController())
+        cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
         let tabController = UITabBarController()
         tabController.viewControllers = [
-            invVC
+            invVC, cusVC
         ]
         
         self.window?.rootViewController = tabController

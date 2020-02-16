@@ -6,7 +6,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    public func addShakeAnimation() {
+    func addShakeAnimation() {
         UIView.animateKeyframes(withDuration: 1.6, delay: 0, options: [.repeat], animations: {
             for i in 0...5 {
                 var angle: CGFloat = 0.25
@@ -22,6 +22,15 @@ extension UIView {
                 self.transform = .identity
             })
         }, completion: nil)
+    }
+    
+    func addSpinAnimation() {
+        let rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: -Float.pi * 2)
+        rotation.duration = 60
+        rotation.isCumulative = true
+        rotation.repeatCount = .greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
     }
 }
 

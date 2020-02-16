@@ -4,43 +4,51 @@
 
 import SnapKit
 
-class IconWithTextLabel: UIView {
+class IconWithTextLabelInside: CustomView {
     
     let icon: UIImageView
     let textLabel: UILabel
+    var text: String {
+        get {
+            return self.textLabel.text ?? ""
+        }
+        
+        set {
+            self.textLabel.text = newValue
+        }
+    }
     
     var spacing: CGFloat {
         didSet {
-            self.textLabel.snp.updateConstraints { make in
-                make.left.equalTo(self.icon.snp.right).offset(self.spacing)
-            }
             self.layoutIfNeeded()
         }
     }
     
-    init(icon: UIImage, text: String = "", textAlign: NSTextAlignment = .center) {
+    init(icon: UIImage, text: String = "") {
         self.icon = UIImageView(image: icon)
         self.textLabel = UILabel()
         self.spacing = 0
         
-        super.init(frame: .zero)
+        super.init()
         
+        self.setupLayout()
+    }
+    
+    override func setupLayout() {
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints({ make in
-            make.top.left.bottom.equalToSuperview()
-            make.width.equalTo(self.snp.height)
+            make.top.bottom.left.right.equalToSuperview()
         })
         
         self.addSubview(self.textLabel)
         self.textLabel.snp.makeConstraints({ make in
-            make.top.right.bottom.equalToSuperview()
-            make.left.equalTo(self.icon.snp.right).offset(self.spacing)
+            make.centerY.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.7)
         })
         
         self.textLabel.text = text
-        self.textLabel.numberOfLines = 1
-        self.textLabel.textAlignment = textAlign
-        
+        self.textLabel.textAlignment = .center
+        self.textLabel.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {
