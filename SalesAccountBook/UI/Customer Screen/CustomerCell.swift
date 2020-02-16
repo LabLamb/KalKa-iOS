@@ -26,12 +26,12 @@ class CustomerCell: CustomCell {
         return result
     }()
     
-    lazy var quickChatBtn: UIButton = {
-        let result = UIButton()
-        result.setImage(#imageLiteral(resourceName: "Address"), for: .normal)
-        result.addTarget(self, action: #selector(self.linkWhatsapp), for: .touchUpInside)
-        return result
-    }()
+//    lazy var quickChatBtn: UIButton = {
+//        let result = UIButton()
+//        result.setImage(#imageLiteral(resourceName: "Address"), for: .normal)
+//        result.addTarget(self, action: #selector(self.linkWhatsapp), for: .touchUpInside)
+//        return result
+//    }()
     
     override func setupLayout() {
         super.setupLayout()
@@ -58,12 +58,12 @@ class CustomerCell: CustomCell {
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         }
         
-        self.paddingView.addSubview(self.quickChatBtn)
-        self.quickChatBtn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-        }
+//        self.paddingView.addSubview(self.quickChatBtn)
+//        self.quickChatBtn.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+//            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+//            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+//        }
     }
     
     @objc func linkWhatsapp() {

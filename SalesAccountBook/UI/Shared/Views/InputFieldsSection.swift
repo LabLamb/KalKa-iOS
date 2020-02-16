@@ -7,7 +7,7 @@ import SnapKit
 class InputFieldsSection: CustomView {
     
     let stackView: UIStackView
-    private let separatorColor: UIColor = .groupTableViewBackground
+    private let separatorColor: UIColor = .background
     
     init(fields: [CustomView]) {
         let sv = UIStackView()
@@ -22,7 +22,6 @@ class InputFieldsSection: CustomView {
         self.stackView.alignment = .fill
         self.stackView.distribution = .fill
         self.stackView.alignment = .center
-        
     }
     
     override func setupLayout() {
@@ -41,7 +40,7 @@ class InputFieldsSection: CustomView {
                 } else {
                     make.width.equalToSuperview().multipliedBy(0.95)
                 }
-                view.backgroundColor = .white
+                view.backgroundColor = .primary
                 view.addLine(position: .bottom, color: self.separatorColor, weight: 1)
             }
         }

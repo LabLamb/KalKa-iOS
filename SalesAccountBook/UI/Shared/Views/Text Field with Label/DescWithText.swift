@@ -43,6 +43,7 @@ class DescWithText: CustomView {
     }
     
     override func setupLayout() {
+        
         self.addSubview(self.descView)
         self.descView.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()

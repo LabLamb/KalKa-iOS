@@ -20,7 +20,7 @@ class InventoryHeader: UITableViewHeaderFooterView {
     
     public func setup() {
         self.backgroundView = UIView()
-        self.backgroundView?.backgroundColor = .white
+        self.backgroundView?.backgroundColor = .clear
             
         self.addSubview(self.priceTag)
         self.priceTag.snp.makeConstraints { make in

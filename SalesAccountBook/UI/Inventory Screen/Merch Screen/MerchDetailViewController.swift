@@ -88,7 +88,7 @@ class MerchDetailViewController: DetailFormViewController {
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
             make.left.right.equalToSuperview()
         }
-        self.inputFieldsSection.backgroundColor = .white
+        self.inputFieldsSection.backgroundColor = .primary
         
         if self.actionType == .edit {
             self.prefillFieldsForEdit()

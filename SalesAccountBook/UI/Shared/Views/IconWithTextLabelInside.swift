@@ -37,7 +37,8 @@ class IconWithTextLabelInside: CustomView {
     override func setupLayout() {
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints({ make in
-            make.top.bottom.left.right.equalToSuperview()
+            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium)
+            make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         })
         
         self.addSubview(self.textLabel)

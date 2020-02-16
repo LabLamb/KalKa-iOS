@@ -102,7 +102,7 @@ class CustomerDetailViewController: DetailFormViewController {
             make.width.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        self.inputFieldsSection.backgroundColor = .white
+        self.inputFieldsSection.backgroundColor = .primary
         (self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView)?.cameraOptionPresenter = self
         
         if self.actionType == .edit {

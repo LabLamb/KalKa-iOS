@@ -15,7 +15,7 @@ class InventoryCell: CustomCell {
     
     lazy var nameLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.Plain.ExLarge
+        result.font = Constants.UI.Font.Plain.Large
         result.textColor = .text
         return result
     }()
@@ -30,9 +30,9 @@ class InventoryCell: CustomCell {
     lazy var qtyLabel: IconWithTextLabelInside = {
         let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "Remaining").withRenderingMode(.alwaysTemplate))
         result.icon.tintColor = .accent
-        result.icon.alpha = 0.25
+        result.icon.alpha = 0.1
         result.textLabel.textColor = .text
-        result.textLabel.font = Constants.UI.Font.Bold.Large
+        result.textLabel.font = Constants.UI.Font.Bold.Medium
         return result
     }()
     
@@ -69,9 +69,8 @@ class InventoryCell: CustomCell {
         
         self.paddingView.addSubview(self.qtyLabel)
         self.qtyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
+            make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.width.equalTo(self.qtyLabel.snp.height)
         }
     }

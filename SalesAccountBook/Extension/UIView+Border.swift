@@ -12,21 +12,13 @@ extension UIView {
         lineView.snp.makeConstraints { make in
             switch position {
             case .top:
-                make.top.equalToSuperview()
-                make.width.equalToSuperview()
-                make.height.equalTo(weight)
+                make.top.centerX.width.equalToSuperview()
             case .bottom:
-                make.bottom.equalToSuperview()
-                make.width.equalToSuperview()
-                make.height.equalTo(weight)
+                make.bottom.centerX.width.equalToSuperview()
             case .left:
-                make.left.equalToSuperview()
-                make.width.equalTo(weight)
-                make.height.equalToSuperview()
+                make.left.centerY.height.equalToSuperview()
             case .right:
-                make.right.equalToSuperview()
-                make.width.equalTo(weight)
-                make.height.equalToSuperview()
+                make.right.centerY.height.equalToSuperview()
             }
             
         }
