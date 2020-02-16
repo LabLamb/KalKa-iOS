@@ -39,7 +39,7 @@ class InputFieldsSection: CustomView {
                     make.width.equalToSuperview()
                     make.height.equalTo(Constants.UI.Sizing.Height.Medium)
                 } else {
-                    make.width.equalTo(Constants.System.SupportedMiniumScreenWidth - (Constants.UI.Spacing.Width.Medium * 2))
+                    make.width.equalToSuperview().multipliedBy(0.95)
                 }
                 view.backgroundColor = .white
                 view.addLine(position: .bottom, color: self.separatorColor, weight: 1)

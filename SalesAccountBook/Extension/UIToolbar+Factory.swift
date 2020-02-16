@@ -21,14 +21,14 @@ extension UIToolbar {
     static func makeKeyboardToolbar(target: Any?, doneAction: Selector, cancelAction: Selector) -> UIToolbar {
         let result = UIToolbar()
         result.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: doneAction)
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
 
         let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: target, action: cancelAction)
+        
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: doneAction)
 
-        result.setItems([doneButton, spaceButton, cancelButton], animated: false)
+        result.setItems([cancelButton, spaceButton, doneButton], animated: false)
         
         return result
     }

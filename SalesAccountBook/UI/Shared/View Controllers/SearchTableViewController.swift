@@ -13,6 +13,7 @@ class SearchTableViewController: UIViewController {
     let searchBar: UISearchBar
     let tableView: UITableView
     var onSelectRowDelegate: ((String) -> Void)?
+    var cellIdentifier: String
     
     // MARK: - Initializion
     init(onSelectRow: ((String) -> Void)? = nil) {
@@ -21,10 +22,14 @@ class SearchTableViewController: UIViewController {
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
         self.onSelectRowDelegate = onSelectRow
+        self.cellIdentifier = ""
+        
         super.init(nibName: nil, bundle: nil)
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = .clear
         
         DispatchQueue.main.async {
             self.refresh()
@@ -33,10 +38,8 @@ class SearchTableViewController: UIViewController {
         self.searchBar.delegate = self
         self.searchBar.placeholder = .search
         self.searchBar.showsScopeBar = true
-//        self.searchBar.scopeButtonTitles = [.customers, .inventory]
         self.searchBar.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusSearchBar))
         self.searchBar.backgroundImage = UIImage()
-//        self.searchBar
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -48,6 +51,7 @@ class SearchTableViewController: UIViewController {
     
     // MARK: - UI
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.setup()
     }
     
@@ -72,8 +76,16 @@ class SearchTableViewController: UIViewController {
     private func setup() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = .buttonIcon
+        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.text
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        } else {
+            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        }
         
-        self.view.backgroundColor = .groupTableViewBackground
+        self.view.backgroundColor = .background
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints { make in
@@ -90,17 +102,15 @@ class SearchTableViewController: UIViewController {
     
     @objc private func keyboardDidAppear(noti: NSNotification) {
         guard let info = noti.userInfo else { return }
-        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
-        let kbSize = rect.size
-
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-        self.tableView.contentInset = insets
-        self.tableView.scrollIndicatorInsets = insets
+        let rect: CGRect = info[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let kbHeight = rect.size.height - (self.tabBarController?.tabBar.frame.height ?? 0)
+        self.tableView.contentInset.bottom = kbHeight
+        self.tableView.scrollIndicatorInsets.bottom = kbHeight
     }
     
     @objc private func keboardDidDisappeared() {
-        self.tableView.contentInset = UIEdgeInsets.zero
-        self.tableView.scrollIndicatorInsets = UIEdgeInsets.zero
+        self.tableView.contentInset.bottom = 0
+        self.tableView.scrollIndicatorInsets.bottom = 0
     }
     
     internal func filterListByString(_ searchText: String) {
@@ -117,12 +127,28 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
         fatalError("Did select row is not implemented.")
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        fatalError("Did select row is not implemented.")
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fileredList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = self.fileredList[indexPath.row]
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! CustomCell
+        cell.setup(data: data)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (Constants.UI.Sizing.Height.Small * 1.25) + (Constants.UI.Spacing.Height.Medium * 0.75)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return Constants.UI.Spacing.Height.Medium * 0.75
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 }
 

@@ -63,4 +63,8 @@ class DescWithText: CustomView {
         self.textView.becomeFirstResponder()
     }
     
+    @objc func unfocusTextView() {
+        self.textView.resignFirstResponder()
+    }
+    
 }

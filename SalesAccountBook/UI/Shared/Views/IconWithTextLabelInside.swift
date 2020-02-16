@@ -42,13 +42,13 @@ class IconWithTextLabelInside: CustomView {
         
         self.addSubview(self.textLabel)
         self.textLabel.snp.makeConstraints({ make in
-            make.centerY.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.7)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.width.equalToSuperview()
         })
         
         self.textLabel.text = text
         self.textLabel.textAlignment = .center
-        self.textLabel.adjustsFontSizeToFitWidth = true
     }
     
     required init?(coder: NSCoder) {

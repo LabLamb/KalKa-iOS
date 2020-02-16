@@ -54,6 +54,7 @@ class CustomerDetailViewController: DetailFormViewController {
     
     // MARK: - UI
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.navigationItem.title = {
             if self.actionType == .edit {
                 return "\(String.edit) \(self.currentId ?? "")"
@@ -64,7 +65,8 @@ class CustomerDetailViewController: DetailFormViewController {
             }
         }()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: .save, style: .done, target: self, action: #selector(self.submitCustomerDetails))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: .save, style: .done, target: self, action: #selector(self.submitCustomerDetails))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitCustomerDetails))
         
         self.setup()
     }
@@ -82,27 +84,22 @@ class CustomerDetailViewController: DetailFormViewController {
             .lastContacted: customerDetails.lastContacted.toString(format: Constants.System.DateFormat),
         ]
         
+        let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
+        if customerDetails.image != nil {
+            iconView?.iconImage.image = customerDetails.image
+        }
+        
         self.inputFieldsSection.prefillValues(values: valueMap)
     }
     
     private func setup() {
         self.view.backgroundColor = .groupTableViewBackground
         
-        self.view.addSubview(self.scrollView)
-        self.scrollView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
-            make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        self.scrollView.setContentOffset(.init(x: 0, y: self.scrollView.contentOffset.y), animated: false)
-        self.scrollView.isDirectionalLockEnabled = true
-        
         self.scrollView.addSubview(self.inputFieldsSection)
         self.inputFieldsSection.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         self.inputFieldsSection.backgroundColor = .white

@@ -16,7 +16,8 @@ class InventoryViewController: SearchTableViewController {
     override init(onSelectRow: ((String) -> Void)? = nil) {
         super.init(onSelectRow: onSelectRow)
         
-        self.tableView.register(InventoryCell.self, forCellReuseIdentifier: "InventoryCell")
+        self.cellIdentifier = "InventoryCell"
+        self.tableView.register(InventoryCell.self, forCellReuseIdentifier: self.cellIdentifier)
         
         self.list = Inventory()
     }
@@ -56,10 +57,6 @@ class InventoryViewController: SearchTableViewController {
         }
         self.tableView.reloadData()
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.UI.Sizing.Height.Small * 1.25
-    }
 }
 
 
@@ -75,13 +72,5 @@ extension InventoryViewController {
             let editMerchVC = MerchDetailViewController(config: merchConfig)
             self.navigationController?.pushViewController(editMerchVC, animated: true)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.filteredMerchs[indexPath.row]
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "InventoryCell", for: indexPath) as! InventoryCell
-        cell.setup(data: data)
-        
-        return cell
     }
 }

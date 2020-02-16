@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         self.window = UIWindow()
-        self.window?.makeKeyAndVisible()
         
         let invVC = UINavigationController(rootViewController: InventoryViewController())
         invVC.tabBarItem = UITabBarItem(title: .inventory, image: #imageLiteral(resourceName: "Inventory"), tag: 1)
@@ -22,12 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cusVC = UINavigationController(rootViewController: CustomerViewController())
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
-        let tabController = UITabBarController()
-        tabController.viewControllers = [
-            invVC, cusVC
-        ]
+        let tabController: UITabBarController = {
+            let result = UITabBarController()
+            result.tabBar.barTintColor = .background
+            result.tabBar.backgroundImage = UIImage()
+            result.tabBar.shadowImage = UIImage()
+            result.tabBar.isTranslucent = false
+            result.tabBar.tintColor = .buttonIcon
+            return result
+        }()
+        
+        tabController.viewControllers = [invVC, cusVC]
         
         self.window?.rootViewController = tabController
+        self.window?.makeKeyAndVisible()
         
         return true
     }

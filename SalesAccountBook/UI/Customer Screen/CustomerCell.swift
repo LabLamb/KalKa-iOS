@@ -3,12 +3,13 @@
 //
 
 import SnapKit
+import CoreData
 
-class CustomerCell: UITableViewCell {
+class CustomerCell: CustomCell {
     
     lazy var iconImage: UIImageView = {
         let result = UIImageView()
-        result.backgroundColor = Constants.UI.Color.Grey
+        result.backgroundColor = .accent
         return result
     }()
     
@@ -21,7 +22,7 @@ class CustomerCell: UITableViewCell {
     lazy var phoneLabel: UILabel = {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Small
-        result.textColor = Constants.UI.Color.Grey
+        result.textColor = .accent
         return result
     }()
     
@@ -32,8 +33,10 @@ class CustomerCell: UITableViewCell {
         return result
     }()
     
-    private func setupLayout() {
-        self.addSubview(self.iconImage)
+    override func setupLayout() {
+        super.setupLayout()
+        
+        self.paddingView.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
@@ -41,21 +44,21 @@ class CustomerCell: UITableViewCell {
             make.width.equalTo(self.iconImage.snp.height)
         }
         
-        self.addSubview(self.nameLabel)
+        self.paddingView.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Large)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         }
         
-        self.addSubview(self.phoneLabel)
+        self.paddingView.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Large)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         }
         
-        self.addSubview(self.quickChatBtn)
+        self.paddingView.addSubview(self.quickChatBtn)
         self.quickChatBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
@@ -70,7 +73,8 @@ class CustomerCell: UITableViewCell {
         }
     }
     
-    private func setupData(data: Customer) {
+    override func setupData(data: NSManagedObject) {
+        guard let `data` = data as? Customer else { return }
         if let imageData = data.image {
             self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
         } else {
@@ -80,15 +84,8 @@ class CustomerCell: UITableViewCell {
         self.phoneLabel.text = data.phone == "" ? .absent : data.phone
     }
     
-    public func setup(data: Customer) {
-        self.selectionStyle = .none
-        self.setupLayout()
-        self.setupData(data: data)
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         self.iconImage.clipsToBounds = true
         self.iconImage.layer.cornerRadius = self.iconImage.bounds.width / 2
     }

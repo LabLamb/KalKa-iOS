@@ -34,6 +34,8 @@
 		D2A411A523F8530C00842111 /* String+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A411A423F8530C00842111 /* String+Constant.swift */; };
 		D2A55A0023F1584800022E9A /* Inventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A559FF23F1584800022E9A /* Inventory.swift */; };
 		D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */; };
+		D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */; };
+		D2A6A75923F93F47007E144A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75823F93F47007E144A /* CustomCell.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
 		D2C3E8B423F3B31700C0F33B /* DetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */; };
@@ -119,6 +121,8 @@
 		D2A559FA23F155A200022E9A /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D2A559FF23F1584800022E9A /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
 		D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Factory.swift"; sourceTree = "<group>"; };
+		D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constant.swift"; sourceTree = "<group>"; };
+		D2A6A75823F93F47007E144A /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsConfigurator.swift; sourceTree = "<group>"; };
@@ -232,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				D23A385123F5100E00488DFD /* InputFieldsSection.swift */,
+				D2A6A75823F93F47007E144A /* CustomCell.swift */,
 				D23778F523F7BE3700B6E955 /* CustomView.swift */,
 				D2D3F70F23F40CE90034D83F /* IconView.swift */,
 				D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */,
@@ -437,6 +442,7 @@
 				D223CD1623F57F2B003A8EF6 /* String+Date.swift */,
 				D2A411A423F8530C00842111 /* String+Constant.swift */,
 				D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */,
+				D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -664,6 +670,7 @@
 				D2D3F71023F40CE90034D83F /* IconView.swift in Sources */,
 				D223CD1923F5859D003A8EF6 /* TitleWithDatePicker.swift in Sources */,
 				D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */,
+				D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
@@ -682,6 +689,7 @@
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
 				D2D6BA7D23F52DE8007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D26BF52B23F281C100EDB259 /* Merch+CoreDataClass.swift in Sources */,
+				D2A6A75923F93F47007E144A /* CustomCell.swift in Sources */,
 				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
 				D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,

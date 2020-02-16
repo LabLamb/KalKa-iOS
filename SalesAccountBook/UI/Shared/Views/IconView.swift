@@ -33,7 +33,7 @@ class IconView: CustomView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.iconImage.backgroundColor = Constants.UI.Color.Grey
+        self.iconImage.backgroundColor = .accent
         self.iconImage.clipsToBounds = true
         self.iconImage.layer.cornerRadius = (self.iconImage.frame.width + self.iconImage.frame.height) / 4
     }

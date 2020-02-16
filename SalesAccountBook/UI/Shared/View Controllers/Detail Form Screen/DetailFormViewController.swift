@@ -10,6 +10,7 @@ class DetailFormViewController: UIViewController {
     var itemExistsErrorMsg: String = ""
     var currentId: String?
     var list: ViewModel?
+    let mimimumBottomInset = Constants.UI.Spacing.Height.Medium * 0.75
     
     init(config: DetailsConfigurator) {
         self.scrollView = UIScrollView()
@@ -17,9 +18,22 @@ class DetailFormViewController: UIViewController {
         self.list = config.viewModel
         
         super.init(nibName: nil, bundle: nil)
+        self.scrollView.setContentOffset(.init(x: 0, y: self.mimimumBottomInset), animated: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        self.scrollView.isDirectionalLockEnabled = true
     }
     
     required init?(coder: NSCoder) {
@@ -28,16 +42,15 @@ class DetailFormViewController: UIViewController {
     
     @objc private func keyboardDidAppear(noti: NSNotification) {
         guard let info = noti.userInfo else { return }
-        let rect: CGRect = info[UIResponder.keyboardFrameBeginUserInfoKey] as! CGRect
-        let kbSize = rect.size
-        let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
-        self.scrollView.contentInset = insets
-        self.scrollView.scrollIndicatorInsets = insets
+        let rect: CGRect = info[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+        let kbHeight = rect.size.height - (self.tabBarController?.tabBar.frame.height ?? 0) + self.mimimumBottomInset
+        self.scrollView.contentInset.bottom = kbHeight
+        self.scrollView.scrollIndicatorInsets.bottom = kbHeight
     }
     
     @objc private func keboardDidDisappeared() {
-        self.scrollView.contentInset = UIEdgeInsets.zero
-        self.scrollView.scrollIndicatorInsets = UIEdgeInsets.zero
+        self.scrollView.contentInset.bottom = self.mimimumBottomInset
+        self.scrollView.scrollIndicatorInsets.bottom = self.mimimumBottomInset
     }
     
     // MARK: - Errors

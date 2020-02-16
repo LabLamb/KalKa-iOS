@@ -59,12 +59,6 @@ class Constants {
             )
         ),
         
-        Color: (
-            Grey: UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1),
-            DarkGrey: UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 1),
-            Black: UIColor.black
-        ),
-        
         Sizing: (
             Height: (ExSmall: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.05),
                      Small: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.1),

@@ -50,6 +50,7 @@ class TitleWithTextField: DescWithText {
         textView.placeholder = placeholder
         textView.textAlignment = textAlign
         textView.delegate = self
+        textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
     }
     
     override func setupLayout() {

@@ -17,21 +17,7 @@ class TitleWithDatePicker: TitleWithTextField {
 
         self.datePicker.datePickerMode = .date
         
-        let toolbar: UIToolbar = {
-            let result = UIToolbar()
-            result.sizeToFit()
-            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(dateDidPick))
-            
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            
-            let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancelDatePicker))
-            
-            result.setItems([doneButton, spaceButton, cancelButton], animated: false)
-            
-            return result
-        }()
-        
-        (self.textView as? UITextField)?.inputAccessoryView = toolbar
+        (self.textView as? UITextField)?.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.dateDidPick), cancelAction: #selector(self.cancelDatePicker))
         (self.textView as? UITextField)?.inputView = self.datePicker
         
     }

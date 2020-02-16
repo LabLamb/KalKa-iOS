@@ -44,6 +44,7 @@ class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - UI
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.navigationItem.title = {
             if self.actionType == .edit {
                 return "\(String.edit) \(self.currentId ?? "")"
@@ -54,7 +55,7 @@ class MerchDetailViewController: DetailFormViewController {
             }
         }()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Save", comment: "The action of storing data on disc."), style: .done, target: self, action: #selector(self.submitMerchDetails))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitMerchDetails))
         
         self.setup()
     }
@@ -70,6 +71,11 @@ class MerchDetailViewController: DetailFormViewController {
             .quantity: String(merchDetails.qty),
             .remark: merchDetails.remark
         ]
+        
+        let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
+        if merchDetails.image != nil {
+            iconView?.iconImage.image = merchDetails.image
+        }
         
         self.inputFieldsSection.prefillValues(values: valueMap)
     }

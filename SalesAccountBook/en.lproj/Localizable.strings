@@ -25,7 +25,7 @@
 "ConfirmationMessage" = "Are you sure?";
 "Customers" = "Customers";
 "Remove" = "Remove";
-"LastContacted" = "Last Contacted";
+"LastContacted" = "Last Contact";
 "ErrorCustomerExists" = "Customer with the same name already exists";
 "ErrorCustomerInputEmpty" = "Please enter a cusomter name";
 "NewCustomer" = "New customer";
