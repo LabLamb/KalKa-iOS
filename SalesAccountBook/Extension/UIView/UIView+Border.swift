@@ -13,12 +13,16 @@ extension UIView {
             switch position {
             case .top:
                 make.top.centerX.width.equalToSuperview()
+                make.height.equalTo(weight)
             case .bottom:
                 make.bottom.centerX.width.equalToSuperview()
+                make.height.equalTo(weight)
             case .left:
                 make.left.centerY.height.equalToSuperview()
+                make.width.equalTo(weight)
             case .right:
                 make.right.centerY.height.equalToSuperview()
+                make.width.equalTo(weight)
             }
             
         }

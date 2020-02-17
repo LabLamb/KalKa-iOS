@@ -26,7 +26,9 @@ class CustomerDetailViewController: DetailFormViewController {
                                    spacing: 2.5),
                 TitleWithTextField(title: .phone,
                                    placeholder: .optional,
-                                   spacing: 2.5),
+                                   spacing: 2.5,
+                                   inputKeyboardType: .numberPad,
+                                   maxTextLength: 15),
                 TitleWithTextView(title: .address,
                                   placeholder: .optional,
                                   spacing: 2.5),
@@ -65,7 +67,6 @@ class CustomerDetailViewController: DetailFormViewController {
             }
         }()
         
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: .save, style: .done, target: self, action: #selector(self.submitCustomerDetails))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitCustomerDetails))
         
         self.setup()
@@ -93,16 +94,22 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .groupTableViewBackground
+        self.view.backgroundColor = .background
         
         self.scrollView.addSubview(self.inputFieldsSection)
         self.inputFieldsSection.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
         }
         self.inputFieldsSection.backgroundColor = .primary
+        self.inputFieldsSection.clipsToBounds = true
+        
+        DispatchQueue.main.async {
+            self.inputFieldsSection.layer.cornerRadius = self.inputFieldsSection.frame.width / 24
+        }
+        
         (self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView)?.cameraOptionPresenter = self
         
         if self.actionType == .edit {

@@ -36,7 +36,7 @@ class TitleWithTextView: DescWithText {
     let defaultPlaceholder: String
     let placeholderLabel: UILabel
     
-    init(title: String, placeholder: String = "", spacing: CGFloat = 0, textAlign: NSTextAlignment = .left) {
+    init(title: String, placeholder: String = "", spacing: CGFloat = 0, inputKeyboardType: UIKeyboardType = .default, textAlign: NSTextAlignment = .left) {
         let tagView = UILabel()
         let textView = UITextView()
         
@@ -52,6 +52,7 @@ class TitleWithTextView: DescWithText {
         tagView.text = title
         tagView.textAlignment = .left
         tagView.numberOfLines = 0
+        tagView.backgroundColor = .clear
         
         textView.textContainer.heightTracksTextView = true
         textView.textContainer.widthTracksTextView = false
@@ -61,9 +62,16 @@ class TitleWithTextView: DescWithText {
         textView.font = UITextField().font
         textView.textContainerInset = .init(top: 10.515, left: 0, bottom: 10.515, right: 0)
         textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
-        
+        textView.backgroundColor = .clear
+        textView.keyboardType = inputKeyboardType
+
         self.placeholderLabel.text = self.defaultPlaceholder
-        self.placeholderLabel.textColor = UIColor(red: 0.24, green: 0.24, blue: 0.26, alpha: 0.3)
+        self.placeholderLabel.textColor = {
+            let tempUITextField = UITextField()
+            tempUITextField.placeholder = "temp"
+            let inspect = tempUITextField.attributedPlaceholder!
+            return inspect.attribute(NSAttributedString.Key.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
+        }()
         self.placeholderLabel.textAlignment = .left
         self.placeholderLabel.font = UIFont.systemFont(ofSize: 17)
         self.placeholderLabel.backgroundColor = .clear
@@ -96,20 +104,8 @@ class TitleWithTextView: DescWithText {
 
 extension TitleWithTextView: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let isAtBeginning: Bool = (textView.selectedTextRange?.start == textView.beginningOfDocument)
-        
-        let isDeletingLastChar: Bool = (textView.text.count == 1) //1 Charater remaining
-            && (text == "") // is deleting action
-            && !isAtBeginning // cursor is not at beginning
-        
-        let isDeletingNothing: Bool = (textView.text.count == 0) //
-            && (text == "")
-        
-        if isDeletingLastChar || isDeletingNothing {
-            self.placeholderLabel.isHidden = false
-        } else {
-            self.placeholderLabel.isHidden = true
-        }
+        let isDeletingAll: Bool = (range.length == textView.text.count) && (text == "")
+        self.placeholderLabel.isHidden = isDeletingAll
         return true
     }
 }

@@ -19,10 +19,20 @@ class MerchDetailViewController: DetailFormViewController {
         
         let fields = [
             iconView,
-            TitleWithTextField(title: .name, placeholder: .required),
-            TitleWithTextField(title: .price, placeholder: .optional),
-            TitleWithTextField(title: .quantity, placeholder: .optional),
-            TitleWithTextField(title: .remark, placeholder: .optional),
+            TitleWithTextField(title: .name,
+                placeholder: .required,
+                maxTextLength: 15),
+            TitleWithTextField(title: .price,
+                placeholder: .optional,
+                inputKeyboardType: .decimalPad,
+                maxTextLength: 9),
+            TitleWithTextField(title: .quantity,
+                placeholder: .optional,
+                inputKeyboardType: .numberPad,
+                maxTextLength: 6),
+            TitleWithTextField(title: .remark,
+                placeholder: .optional,
+                maxTextLength: 20),
         ]
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)
@@ -32,7 +42,6 @@ class MerchDetailViewController: DetailFormViewController {
         self.onSelectRowDelegate = config.onSelectRow
         
         super.init(config: config)
-        
         iconView.cameraOptionPresenter = self
         
         self.itemExistsErrorMsg = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch name text field .")
@@ -81,14 +90,21 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .groupTableViewBackground
+        self.view.backgroundColor = .background
         
-        self.view.addSubview(self.inputFieldsSection)
+        self.scrollView.addSubview(self.inputFieldsSection)
         self.inputFieldsSection.snp.makeConstraints { make in
-            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
-            make.left.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
+            make.bottom.equalToSuperview()
         }
         self.inputFieldsSection.backgroundColor = .primary
+        self.inputFieldsSection.clipsToBounds = true
+        
+        DispatchQueue.main.async {
+            self.inputFieldsSection.layer.cornerRadius = self.inputFieldsSection.frame.width / 24
+        }
         
         if self.actionType == .edit {
             self.prefillFieldsForEdit()

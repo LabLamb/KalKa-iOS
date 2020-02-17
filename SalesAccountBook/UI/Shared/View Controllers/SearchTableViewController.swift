@@ -74,6 +74,9 @@ class SearchTableViewController: UIViewController {
     }
     
     private func setup() {
+        
+        self.view.backgroundColor = .background
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = .buttonIcon
@@ -84,8 +87,6 @@ class SearchTableViewController: UIViewController {
             let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
             navigationController?.navigationBar.titleTextAttributes = textAttributes
         }
-        
-        self.view.backgroundColor = .background
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints { make in

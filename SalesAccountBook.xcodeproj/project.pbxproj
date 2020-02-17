@@ -36,6 +36,7 @@
 		D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */; };
 		D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */; };
 		D2A6A75923F93F47007E144A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A75823F93F47007E144A /* CustomCell.swift */; };
+		D2A6A76323FAB06E007E144A /* Number+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A76223FAB06E007E144A /* Number+Format.swift */; };
 		D2C3E8AE23F30D7500C0F33B /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
 		D2C3E8B423F3B31700C0F33B /* DetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */; };
@@ -123,6 +124,7 @@
 		D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Factory.swift"; sourceTree = "<group>"; };
 		D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Constant.swift"; sourceTree = "<group>"; };
 		D2A6A75823F93F47007E144A /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		D2A6A76223FAB06E007E144A /* Number+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Format.swift"; sourceTree = "<group>"; };
 		D2C3E8AD23F30D7500C0F33B /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D2C3E8B323F3B31700C0F33B /* DetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsConfigurator.swift; sourceTree = "<group>"; };
@@ -292,6 +294,25 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		D2A6A76023FAAF72007E144A /* String */ = {
+			isa = PBXGroup;
+			children = (
+				D223CD1623F57F2B003A8EF6 /* String+Date.swift */,
+				D2A411A423F8530C00842111 /* String+Constant.swift */,
+				D2A6A76223FAB06E007E144A /* Number+Format.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		D2A6A76123FAAF7E007E144A /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
+				D2044B9123F44C54008DFDB1 /* UIView+Border.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		D2C3E8B523F3B48400C0F33B /* Merch Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,13 +455,11 @@
 		D2F6008723F1B16A003AAA58 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */,
-				D2044B9123F44C54008DFDB1 /* UIView+Border.swift */,
+				D2A6A76023FAAF72007E144A /* String */,
+				D2A6A76123FAAF7E007E144A /* UIView */,
 				D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */,
 				D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */,
 				D2364E2C23F57E0600F93973 /* Date+String.swift */,
-				D223CD1623F57F2B003A8EF6 /* String+Date.swift */,
-				D2A411A423F8530C00842111 /* String+Constant.swift */,
 				D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */,
 				D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */,
 			);
@@ -695,6 +714,7 @@
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */,
+				D2A6A76323FAB06E007E144A /* Number+Format.swift in Sources */,
 				D2A411A523F8530C00842111 /* String+Constant.swift in Sources */,
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,

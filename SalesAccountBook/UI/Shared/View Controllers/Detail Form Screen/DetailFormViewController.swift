@@ -18,7 +18,8 @@ class DetailFormViewController: UIViewController {
         self.list = config.viewModel
         
         super.init(nibName: nil, bundle: nil)
-        self.scrollView.setContentOffset(.init(x: 0, y: self.mimimumBottomInset), animated: false)
+        
+        self.scrollView.contentInset = .init(top: mimimumBottomInset, left: mimimumBottomInset, bottom: mimimumBottomInset, right: mimimumBottomInset)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -29,9 +30,7 @@ class DetailFormViewController: UIViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
-            make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
+            make.bottom.left.right.equalToSuperview()
         }
         self.scrollView.isDirectionalLockEnabled = true
     }

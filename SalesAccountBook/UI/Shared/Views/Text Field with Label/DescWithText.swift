@@ -48,12 +48,14 @@ class DescWithText: CustomView {
         self.descView.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()
         })
+        self.descView.backgroundColor = .clear
         
         self.addSubview(self.textView)
         self.textView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.descView.snp.right).offset(self.spacing)
         })
+        self.textView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

@@ -34,7 +34,7 @@ class TitleWithTextField: DescWithText {
     
     private let maxTextLength: Int
     
-    init(title: String, placeholder: String = "", spacing: CGFloat = 0, textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
+    init(title: String, placeholder: String = "", spacing: CGFloat = 0, inputKeyboardType: UIKeyboardType = .default, textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
         let tagView = UILabel()
         let textView = UITextField()
         self.maxTextLength = maxTextLength
@@ -47,6 +47,7 @@ class TitleWithTextField: DescWithText {
         tagView.textAlignment = .left
         tagView.numberOfLines = 0
         
+        textView.keyboardType = inputKeyboardType
         textView.placeholder = placeholder
         textView.textAlignment = textAlign
         textView.delegate = self

@@ -15,7 +15,7 @@ class InventoryCell: CustomCell {
     
     lazy var nameLabel: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.Plain.Large
+        result.font = Constants.UI.Font.Bold.Medium
         result.textColor = .text
         return result
     }()
@@ -30,7 +30,7 @@ class InventoryCell: CustomCell {
     lazy var qtyLabel: IconWithTextLabelInside = {
         let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "Remaining").withRenderingMode(.alwaysTemplate))
         result.icon.tintColor = .accent
-        result.icon.alpha = 0.1
+        result.icon.alpha = 0.075
         result.textLabel.textColor = .text
         result.textLabel.font = Constants.UI.Font.Bold.Medium
         return result
@@ -39,32 +39,20 @@ class InventoryCell: CustomCell {
     lazy var remarkLabel: UILabel = {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Small
-        result.textColor = .text
+        result.textColor = .accent
         return result
     }()
     
     override func setupLayout() {
         super.setupLayout()
         
+        let remarkTextExists = self.remarkLabel.text != ""
+
         self.paddingView.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
+            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium * 0.75)
             make.width.equalTo(self.iconImage.snp.height)
-        }
-        
-        self.paddingView.addSubview(self.nameLabel)
-        self.nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-        }
-        
-        self.paddingView.addSubview(self.priceLabel)
-        self.priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
         }
         
         self.paddingView.addSubview(self.qtyLabel)
@@ -72,6 +60,42 @@ class InventoryCell: CustomCell {
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
             make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.width.equalTo(self.qtyLabel.snp.height)
+        }
+        
+        self.paddingView.addSubview(self.nameLabel)
+        self.nameLabel.snp.makeConstraints { make in
+            if remarkTextExists {
+                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            } else {
+                make.bottom.equalTo(self.paddingView.snp.centerY)
+                .offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
+            }
+            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.right.equalTo(self.qtyLabel.snp.left).offset(-Constants.UI.Spacing.Width.Small)
+        }
+        
+        self.paddingView.addSubview(self.priceLabel)
+        self.priceLabel.snp.makeConstraints { make in
+            if remarkTextExists {
+                make.top.equalTo(self.nameLabel.snp.bottom)
+                .offset(Constants.UI.Spacing.Height.ExSmall)
+            } else {
+                
+                make.top.equalTo(self.paddingView.snp.centerY)
+                    .offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
+            }
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.right.equalTo(self.qtyLabel.snp.left).offset(-Constants.UI.Spacing.Width.Small)
+        }
+        
+        if remarkTextExists {
+            self.paddingView.addSubview(self.remarkLabel)
+            self.remarkLabel.snp.makeConstraints { make in
+                make.top.equalTo(self.priceLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+                make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+                make.right.equalTo(self.qtyLabel.snp.left).offset(-Constants.UI.Spacing.Width.Small)
+            }
         }
     }
     
@@ -85,8 +109,8 @@ class InventoryCell: CustomCell {
         }
         self.nameLabel.text = data.name
         self.remarkLabel.text = data.remark
-        self.priceLabel.text = "$\(data.price)"
-        self.qtyLabel.text = String(data.qty)
+        self.priceLabel.text = "$\(data.price.toLocalCurrency(fractDigits: 1) ?? "")"
+        self.qtyLabel.text = data.qty.toLocalCurrency() ?? ""
     }
     
     override func layoutSubviews() {
@@ -103,6 +127,7 @@ class InventoryCell: CustomCell {
         self.iconImage.image = nil
         
         self.nameLabel.removeFromSuperview()
+        self.priceLabel.removeFromSuperview()
         self.remarkLabel.removeFromSuperview()
     }
 }

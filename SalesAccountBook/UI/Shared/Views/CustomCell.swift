@@ -28,8 +28,8 @@ class CustomCell: UITableViewCell {
     
     public func setup(data: NSManagedObject) {
         self.selectionStyle = .none
-        self.setupLayout()
         self.setupData(data: data)
+        self.setupLayout()
     }
     
     override func layoutSubviews() {
