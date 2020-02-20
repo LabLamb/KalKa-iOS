@@ -105,7 +105,7 @@ class TitleWithTextView: DescWithText {
 extension TitleWithTextView: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let isDeletingAll: Bool = (range.length == textView.text.count) && (text == "")
-        self.placeholderLabel.isHidden = isDeletingAll
+        self.placeholderLabel.isHidden = !isDeletingAll
         return true
     }
 }
