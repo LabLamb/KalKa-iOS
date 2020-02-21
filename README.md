@@ -3,7 +3,7 @@ An iOS that helps internet store / small buinesses to manage their sales, custom
 
 # Prerequisite
 - [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)
-- XCode 13+
+- XCode 11.3+
 
 # Usage
 1. Clone the project.
