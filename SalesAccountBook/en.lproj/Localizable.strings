@@ -34,7 +34,7 @@
 "Absent" = "N/A";
 "Statistics" = "Statistics";
 "Settings" = "Settings";
-"OrderNumber" = "Order Number";
-"OpenedOn" = "Opened On";
+"OrderNumber" = "Order number";
+"OpenedOn" = "Opened on";
 "Status" = "Status";
-"NewOrder" = "New Order";
+"NewOrder" = "New order";

@@ -26,9 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let staVC = UINavigationController(rootViewController: UIViewController())
         staVC.tabBarItem = UITabBarItem(title: .stats, image: #imageLiteral(resourceName: "Statistics"), tag: 3)
+        staVC.tabBarItem.isEnabled = false
         
         let setVC = UINavigationController(rootViewController: UIViewController())
         setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)
+        setVC.tabBarItem.isEnabled = false
         
         let tabController: UITabBarController = {
             let result = UITabBarController()
@@ -45,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = tabController
         self.window?.makeKeyAndVisible()
+        self.window?.tintColor = .buttonIcon
         
         return true
     }
