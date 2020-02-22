@@ -24,7 +24,7 @@ class ViewModel {
         fatalError("Add is not implemented.")
     }
 
-    public func get(name: String) -> Any? {
+    public func get(id: String) -> Any? {
         fatalError("Get is not implemented.")
     }
 
@@ -32,7 +32,7 @@ class ViewModel {
         fatalError("Edit is not implemented.")
     }
 
-    func exists(name: String, completion: ((Bool) -> Void)) {
+    func exists(id: String, completion: ((Bool) -> Void)) {
         fatalError("Exists is not implemented.")
     }
     

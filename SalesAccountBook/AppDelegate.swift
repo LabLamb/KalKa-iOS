@@ -15,11 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow()
         
+        let ordVC = UINavigationController(rootViewController: OrderViewController())
+        ordVC.tabBarItem = UITabBarItem(title: .orders, image: #imageLiteral(resourceName: "Orders"), tag: 0)
+        
         let invVC = UINavigationController(rootViewController: InventoryViewController())
         invVC.tabBarItem = UITabBarItem(title: .inventory, image: #imageLiteral(resourceName: "Inventory"), tag: 1)
         
         let cusVC = UINavigationController(rootViewController: CustomerViewController())
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
+        
+        let staVC = UINavigationController(rootViewController: UIViewController())
+        staVC.tabBarItem = UITabBarItem(title: .stats, image: #imageLiteral(resourceName: "Statistics"), tag: 3)
+        
+        let setVC = UINavigationController(rootViewController: UIViewController())
+        setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)
         
         let tabController: UITabBarController = {
             let result = UITabBarController()
@@ -31,7 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return result
         }()
         
-        tabController.viewControllers = [invVC, cusVC]
+        tabController.viewControllers = [cusVC, invVC, ordVC, staVC, setVC]
+        tabController.selectedIndex = 2
         
         self.window?.rootViewController = tabController
         self.window?.makeKeyAndVisible()

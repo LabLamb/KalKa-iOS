@@ -21,3 +21,11 @@ typealias CustomerDetails = (
     orders: [Order]?,
     remark: String
 )
+
+typealias OrderDetails = (
+    number: String,
+    openedOn: Date,
+    status: String,
+    items: [OrderItem]?,
+    customer: Customer
+)

@@ -32,3 +32,9 @@
 "Phone" = "電話號碼";
 "Address" = "地址";
 "Absent" = "暫缺";
+"Statistics" = "統計";
+"Settings" = "設定";
+"OrderNumber" = "訂單編號";
+"OpenedOn" = "開單日期";
+"Status" = "狀態";
+"NewOrder" = "新訂單";

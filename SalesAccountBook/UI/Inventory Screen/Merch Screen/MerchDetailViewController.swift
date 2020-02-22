@@ -70,7 +70,7 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let merchDetails = self.inventory?.get(name: self.currentId ?? "") as? MerchDetails else {
+        guard let merchDetails = self.inventory?.get(id: self.currentId ?? "") as? MerchDetails else {
             fatalError()
         }
         

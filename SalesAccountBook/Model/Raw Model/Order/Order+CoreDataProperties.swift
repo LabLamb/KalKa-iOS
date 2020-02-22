@@ -12,11 +12,11 @@ extension Order {
         return NSFetchRequest<Order>(entityName: "Order")
     }
 
-    @NSManaged public var isShipped: Bool
     @NSManaged public var number: String
     @NSManaged public var openedOn: Date
+    @NSManaged public var status: String
+    @NSManaged public var items: NSSet?
     @NSManaged public var customer: Customer
-    @NSManaged public var items: [OrderItem]
 
 }
 

@@ -17,9 +17,9 @@
         <attribute name="remark" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
-        <attribute name="isShipped" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="number" attributeType="String"/>
         <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="orders" inverseEntity="Customer"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem"/>
     </entity>

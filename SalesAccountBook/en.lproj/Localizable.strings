@@ -32,3 +32,9 @@
 "Phone" = "Phone";
 "Address" = "Address";
 "Absent" = "N/A";
+"Statistics" = "Statistics";
+"Settings" = "Settings";
+"OrderNumber" = "Order Number";
+"OpenedOn" = "Opened On";
+"Status" = "Status";
+"NewOrder" = "New Order";

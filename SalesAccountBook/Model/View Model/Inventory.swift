@@ -22,7 +22,7 @@ class Inventory: ViewModel {
             fatalError("Passed wrong datatype to add.")
         }
         
-        self.exists(name: details.name,
+        self.exists(id: details.name,
                     completion: {exists in
                         if exists {
                             completion(false)
@@ -57,8 +57,8 @@ class Inventory: ViewModel {
         
     }
     
-    public override func get(name: String) -> Any? {
-        let predicate = NSPredicate(format: "name = %@", name)
+    public override func get(id: String) -> Any? {
+        let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Merch] else { return nil}
         guard let merch = result.first else { return nil }
         let merchImage: UIImage? = {
@@ -99,8 +99,8 @@ class Inventory: ViewModel {
         completion(true)
     }
     
-    public override func exists(name: String, completion: ((Bool) -> Void)) {
-        let predicate = NSPredicate(format: "name = %@", name)
+    public override func exists(id: String, completion: ((Bool) -> Void)) {
+        let predicate = NSPredicate(format: "name = %@", id)
         if let result = self.query(clause: predicate) {
             completion(result.count > 0)
         } else {

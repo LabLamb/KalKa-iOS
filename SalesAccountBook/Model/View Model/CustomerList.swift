@@ -22,7 +22,7 @@ class CustomerList: ViewModel {
             fatalError("Passed wrong datatype to add.")
         }
         
-        self.exists(name: details.name, completion: { exists in
+        self.exists(id: details.name, completion: { exists in
             if !exists {
                 let context = self.persistentContainer.newBackgroundContext()
                 if let entity = NSEntityDescription.entity(forEntityName: "Customer", in: context) {
@@ -57,8 +57,8 @@ class CustomerList: ViewModel {
         
     }
     
-    override func get(name: String) -> Any? {
-        let predicate = NSPredicate(format: "name = %@", name)
+    override func get(id: String) -> Any? {
+        let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Customer] else { return nil}
         guard let customer = result.first else { return nil }
         let customerImage: UIImage? = {
@@ -81,7 +81,7 @@ class CustomerList: ViewModel {
             self.storeEdit(oldId: oldId, details: details)
             completion(true)
         } else {
-            self.exists(name: details.name) { exists in
+            self.exists(id: details.name) { exists in
                 if exists {
                     completion(false)
                 } else {
@@ -114,8 +114,8 @@ class CustomerList: ViewModel {
         try? context.save()
     }
     
-    override func exists(name: String, completion: ((Bool) -> Void)) {
-        let predicate = NSPredicate(format: "name = %@", name)
+    override func exists(id: String, completion: ((Bool) -> Void)) {
+        let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) else { return }
         completion(result.count > 0)
     }

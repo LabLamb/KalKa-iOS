@@ -34,13 +34,7 @@ class InventoryViewController: SearchTableViewController {
     }
     
     @objc private func navToAddMerchView() {
-        let merchConfig: DetailsConfigurator = {
-            if let delegate = self.onSelectRowDelegate {
-                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: delegate)
-            } else {
-                return DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: nil)
-            }
-        }()
+        let merchConfig = DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
         
         let newMerchVC = MerchDetailViewController(config: merchConfig)
         self.navigationController?.pushViewController(newMerchVC, animated: true)

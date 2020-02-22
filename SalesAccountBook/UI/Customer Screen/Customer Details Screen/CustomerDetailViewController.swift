@@ -73,7 +73,7 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let customerDetails = self.customerList?.get(name: self.currentId ?? "") as? CustomerDetails else {
+        guard let customerDetails = self.customerList?.get(id: self.currentId ?? "") as? CustomerDetails else {
             fatalError()
         }
         

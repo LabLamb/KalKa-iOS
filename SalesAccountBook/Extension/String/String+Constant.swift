@@ -25,4 +25,10 @@ extension String {
     static let OK = NSLocalizedString("OK", comment: "Word of confirming an action.")
     static let edit = NSLocalizedString("Edit", comment: "The action to change.")
     static let save = NSLocalizedString("Save", comment: "The action of storing data on disk.")
+    static let orders = NSLocalizedString("Orders", comment: "")
+    static let settings = NSLocalizedString("Settings", comment: "")
+    static let stats = NSLocalizedString("Statistics", comment: "")
+    static let orderNumber = NSLocalizedString("OrderNumber", comment: "")
+    static let openedOn = NSLocalizedString("OpenedOn", comment: "")
+    static let status = NSLocalizedString("Status", comment: "")
 }

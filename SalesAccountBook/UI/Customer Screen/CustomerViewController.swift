@@ -18,7 +18,8 @@ class CustomerViewController: SearchTableViewController {
         
         self.list = CustomerList()
         
-        self.tableView.register(CustomerCell.self, forCellReuseIdentifier: "CustomerListCell")
+        self.cellIdentifier = "CustomerListCell"
+        self.tableView.register(CustomerCell.self, forCellReuseIdentifier: self.cellIdentifier)
         
         DispatchQueue.main.async {
             self.refresh()
@@ -52,7 +53,6 @@ class CustomerViewController: SearchTableViewController {
     override func filterListByString(_ searchText: String) {
         let allCustomers = self.list.items as! [Customer]
         if searchText != "" {
-            
             self.fileredList = allCustomers.filter({ customer in
                 return customer.name.lowercased().contains(searchText.lowercased()) || customer.phone.lowercased().contains(searchText.lowercased())
             })
@@ -77,14 +77,5 @@ extension CustomerViewController {
             let editCustomerVC = CustomerDetailViewController(config: customerConfig)
             self.navigationController?.pushViewController(editCustomerVC, animated: true)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.filteredCustomers[indexPath.row]
-        
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "CustomerListCell", for: indexPath) as! CustomerCell
-        cell.setup(data: data)
-        
-        return cell
     }
 }

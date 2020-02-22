@@ -17,5 +17,4 @@ extension Merch {
     @NSManaged public var price: Double
     @NSManaged public var qty: Int32
     @NSManaged public var remark: String
-
 }
