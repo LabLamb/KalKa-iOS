@@ -1,5 +1,9 @@
 //
-//  Copyright © 2019 LabLambWorks. All rights reserved.
+//  Order+CoreDataProperties.swift
+//  
+//
+//  Created by LabLamb on 23/2/2020.
+//
 //
 
 import Foundation
@@ -12,11 +16,15 @@ extension Order {
         return NSFetchRequest<Order>(entityName: "Order")
     }
 
-    @NSManaged public var number: String
-    @NSManaged public var openedOn: Date
-    @NSManaged public var status: String
-    @NSManaged public var items: NSSet?
+    @NSManaged public var number: Int64
+    @NSManaged public var remark: String
+    @NSManaged public var openedOn: Date?
+    @NSManaged public var isShipped: Bool
+    @NSManaged public var isPaid: Bool
+    @NSManaged public var isDeposit: Bool
+    @NSManaged public var isClosed: Bool
     @NSManaged public var customer: Customer
+    @NSManaged public var items: [OrderItem]?
 
 }
 

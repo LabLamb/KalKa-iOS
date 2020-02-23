@@ -57,7 +57,7 @@ class Inventory: ViewModel {
         
     }
     
-    public override func get(id: String) -> Any? {
+    public override func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Merch] else { return nil}
         guard let merch = result.first else { return nil }

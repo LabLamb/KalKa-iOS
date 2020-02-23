@@ -16,23 +16,23 @@ class ViewModel {
         self.persistentContainer = CoreStack.shared.persistentContainer
     }
     
-    public func fetch(completion: (() -> Void)? = nil) {
+    internal func fetch(completion: (() -> Void)? = nil) {
         fatalError("fetch is not implemented.")
     }
 
-    public func add(details: Any, completion: ((Bool) -> Void)) {
+    internal func add(details: Any, completion: ((Bool) -> Void)) {
         fatalError("Add is not implemented.")
     }
 
-    public func get(id: String) -> Any? {
+    internal func getDetails(id: String) -> Any? {
         fatalError("Get is not implemented.")
     }
 
-    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    internal func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         fatalError("Edit is not implemented.")
     }
 
-    func exists(id: String, completion: ((Bool) -> Void)) {
+    internal func exists(id: String, completion: ((Bool) -> Void)) {
         fatalError("Exists is not implemented.")
     }
     

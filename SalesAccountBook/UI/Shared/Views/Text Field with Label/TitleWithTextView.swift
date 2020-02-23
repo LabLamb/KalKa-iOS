@@ -4,16 +4,16 @@
 
 import SnapKit
 
-class TitleWithTextView: DescWithText {
+class TitleWithTextView: DescWithValue {
     
-    override var text: String {
+    override var value: String {
         get {
-            return (self.textView as? UITextView)?.text ?? ""
+            return (self.valueView as? UITextView)?.text ?? ""
         }
         
         set {
             self.placeholderLabel.isHidden = newValue != ""
-            (self.textView as? UITextView)?.text = newValue
+            (self.valueView as? UITextView)?.text = newValue
         }
     }
     
@@ -84,15 +84,15 @@ class TitleWithTextView: DescWithText {
             make.width.equalToSuperview().dividedBy(3)
         })
         
-        self.addSubview(self.textView)
-        self.textView.snp.makeConstraints({ make in
+        self.addSubview(self.valueView)
+        self.valueView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.descView.snp.right).offset(self.spacing)
         })
         
         self.addSubview(self.placeholderLabel)
         self.placeholderLabel.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalTo(self.textView)
+            make.top.bottom.left.right.equalTo(self.valueView)
         }
     }
     

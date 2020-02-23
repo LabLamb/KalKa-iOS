@@ -31,4 +31,7 @@ extension String {
     static let orderNumber = NSLocalizedString("OrderNumber", comment: "")
     static let openedOn = NSLocalizedString("OpenedOn", comment: "")
     static let status = NSLocalizedString("Status", comment: "")
+    static let all = NSLocalizedString("All", comment: "")
+    static let open = NSLocalizedString("Open", comment: "")
+    static let closed = NSLocalizedString("Closed", comment: "")
 }

@@ -38,3 +38,6 @@
 "OpenedOn" = "開單日期";
 "Status" = "狀態";
 "NewOrder" = "新訂單";
+"All" = "全部";
+"Open" = "未完成";
+"Closed" = "已完成";

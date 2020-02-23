@@ -17,13 +17,13 @@ class TitleWithDatePicker: TitleWithTextField {
 
         self.datePicker.datePickerMode = .date
         
-        (self.textView as? UITextField)?.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.dateDidPick), cancelAction: #selector(self.cancelDatePicker))
-        (self.textView as? UITextField)?.inputView = self.datePicker
+        (self.valueView as? UITextField)?.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.dateDidPick), cancelAction: #selector(self.cancelDatePicker))
+        (self.valueView as? UITextField)?.inputView = self.datePicker
         
     }
     
     @objc func dateDidPick(){
-        (self.textView as? UITextField)?.text = self.datePicker.date.toString(format: Constants.System.DateFormat)
+        (self.valueView as? UITextField)?.text = self.datePicker.date.toString(format: Constants.System.DateFormat)
         self.endEditing(true)
     }
     

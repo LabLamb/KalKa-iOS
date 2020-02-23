@@ -24,8 +24,12 @@ typealias CustomerDetails = (
 
 typealias OrderDetails = (
     number: String,
+    remark: String,
     openedOn: Date,
-    status: String,
-    items: [OrderItem]?,
-    customer: Customer
+    isShipped: Bool,
+    isPaid: Bool,
+    isDeposit: Bool,
+    isClosed: Bool,
+    customerName: String,
+    items: [OrderItem]?
 )

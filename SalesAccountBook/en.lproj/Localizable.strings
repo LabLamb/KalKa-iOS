@@ -38,3 +38,6 @@
 "OpenedOn" = "Opened on";
 "Status" = "Status";
 "NewOrder" = "New order";
+"All" = "All";
+"Open" = "Open";
+"Closed" = "Closed";

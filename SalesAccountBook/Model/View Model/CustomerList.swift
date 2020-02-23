@@ -54,10 +54,9 @@ class CustomerList: ViewModel {
         } else {
             return try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Customer]
         }
-        
     }
     
-    override func get(id: String) -> Any? {
+    override func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Customer] else { return nil}
         guard let customer = result.first else { return nil }
@@ -71,6 +70,14 @@ class CustomerList: ViewModel {
         
         return (image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
     }
+    
+    func getCustomer(id: String) -> Customer? {
+        let predicate = NSPredicate(format: "name = %@", id)
+        guard let result = self.query(clause: predicate) as? [Customer] else { return nil }
+        guard let customer = result.first else { return nil }
+        return customer
+    }
+    
     
     override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {

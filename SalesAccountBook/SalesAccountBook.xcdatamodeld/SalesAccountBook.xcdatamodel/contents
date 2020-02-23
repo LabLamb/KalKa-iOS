@@ -17,9 +17,13 @@
         <attribute name="remark" attributeType="String" defaultValueString=""/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
-        <attribute name="number" attributeType="String"/>
+        <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isDeposit" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isPaid" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isShipped" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="number" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="status" attributeType="String"/>
+        <attribute name="remark" optional="YES" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="orders" inverseEntity="Customer"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem"/>
     </entity>
@@ -33,7 +37,7 @@
     <elements>
         <element name="Customer" positionX="-63" positionY="18" width="128" height="148"/>
         <element name="Merch" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Order" positionX="-63" positionY="27" width="128" height="118"/>
+        <element name="Order" positionX="-63" positionY="27" width="128" height="178"/>
         <element name="OrderItem" positionX="-54" positionY="54" width="128" height="118"/>
     </elements>
 </model>

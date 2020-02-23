@@ -16,30 +16,6 @@ class OrderDetailViewController: DetailFormViewController {
     
     // MARK: - Initializion
     override init(config: DetailsConfigurator) {
-        let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
-        
-        
-//        self.inputFieldsSection = InputFieldsSection(fields:
-//            [
-//                iconView,
-//                TitleWithTextField(title: .name,
-//                                   placeholder: .required,
-//                                   spacing: 2.5),
-//                TitleWithTextField(title: .phone,
-//                                   placeholder: .optional,
-//                                   spacing: 2.5,
-//                                   inputKeyboardType: .numberPad,
-//                                   maxTextLength: 15),
-//                TitleWithTextView(title: .address,
-//                                  placeholder: .optional,
-//                                  spacing: 2.5),
-//                TitleWithTextView(title: .remark,
-//                                  placeholder: .optional,
-//                                  spacing: 2.5),
-//                TitleWithDatePicker(title: .lastContacted,
-//                                    placeholder: .optional)
-//            ]
-//        )
         
         self.orderInfoFieldsSection = InputFieldsSection(fields: [])
         self.custInfoFieldsSection = InputFieldsSection(fields: [])
@@ -49,7 +25,6 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderList = config.viewModel as? OrderList
         
         super.init(config: config)
-        iconView.cameraOptionPresenter = self
     
         self.itemExistsErrorMsg = NSLocalizedString("ErrorOrderExists", comment: "Error Message - Order exists with the same name.")
     }
@@ -77,7 +52,7 @@ class OrderDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let orderDetails = self.orderList?.get(id: self.currentId ?? "") as? OrderDetails else {
+        guard let orderDetails = self.orderList?.getDetails(id: self.currentId ?? "") as? OrderDetails else {
             fatalError()
         }
         
@@ -153,22 +128,18 @@ class OrderDetailViewController: DetailFormViewController {
         let extractedItems = [OrderItem]()
         let extractedCustomer = Customer()
         
-//        return (image: image,
-//                name: extractedValues[.name] ?? "",
-//                phone: extractedValues[.phone] ?? "",
-//                address: extractedValues[.address] ?? "",
-//                remark: extractedValues[.remark] ?? "",
-//                lastContacted: extractedValues[.lastContacted]?
-//                    .toDate(format: Constants.System.DateFormat) ?? Date(),
-//                orders: nil)
-        
         return (
             number: extractedValues[.orderNumber] ?? "",
+            remark: extractedValues[.remark] ?? "",
             openedOn: extractedValues[.openedOn]?.toDate(format: Constants.System.DateFormat) ?? Date(),
-            status: extractedValues[.status] ?? "",
-            items: extractedItems,
-            customer: extractedCustomer
+            isShipped: false,
+            isPaid: false,
+            isDeposit: false,
+            isClosed: false,
+            customerName: extractedCustomer.name,
+            items: extractedItems
         )
+
         
     }
     

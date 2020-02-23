@@ -8,12 +8,22 @@ import UIKit
 
 class OrderList: ViewModel {
     
+    var groupedItems: [String: [Order]] = [:]
+    
     override func fetch(completion: (() -> Void)? = nil) {
-        let sortDesc = NSSortDescriptor(key: "number", ascending: true)
+        let sortDesc = NSSortDescriptor(key: "number", ascending: false)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Order")
         fetchRequest.sortDescriptors = [sortDesc]
-        let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Order]
-        self.items = result ?? [Order]()
+        if let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Order] {
+            self.items = result
+            self.groupedItems = Dictionary(grouping: result, by: {
+                if $0.isClosed {
+                    return "Closed"
+                } else {
+                    return "Open"
+                }
+            })
+        }
         completion?()
     }
     
@@ -22,19 +32,28 @@ class OrderList: ViewModel {
             fatalError("Passed wrong datatype to add.")
         }
         
-        self.exists(id: details.number, completion: { exists in
+        self.exists(id: String(details.number), completion: { exists in
             if !exists {
                 let context = self.persistentContainer.newBackgroundContext()
-                if let entity = NSEntityDescription.entity(forEntityName: "Order", in: context) {
+                let predicate = NSPredicate(format: "name = %@", details.customerName)
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
+                fetchRequest.predicate = predicate
+                if let entity = NSEntityDescription.entity(forEntityName: "Order", in: context),
+                    let result = try? context.fetch(fetchRequest),
+                    let customer = result.first,
+                    let num = Int64(details.number) {
                     let newOrder = Order(entity: entity, insertInto: context)
-                    
-                    newOrder.number = details.number
-                    
+                    newOrder.number = num
+                    newOrder.openedOn = details.openedOn
+                    newOrder.items = details.items
+                    newOrder.customer = customer as! Customer
+                    newOrder.isClosed = details.isClosed
                     try? context.save()
-                    
                     self.fetch()
+                    completion(true)
+                } else {
+                    completion(false)
                 }
-                completion(true)
             } else {
                 completion(false)
             }
@@ -52,24 +71,27 @@ class OrderList: ViewModel {
         
     }
     
-    override func get(id: String) -> Any? {
+    override func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) as? [Order] else { return nil}
         guard let order = result.first else { return nil }
-//        let OrderImage: UIImage? = {
-//            if let imgData = Order.image {
-//                return UIImage(data: imgData)
-//            } else {
-//                return nil
-//            }
-//        }()
+        //        let OrderImage: UIImage? = {
+        //            if let imgData = Order.image {
+        //                return UIImage(data: imgData)
+        //            } else {
+        //                return nil
+        //            }
+        //        }()
         
         return (
             number: order.number,
             openedOn: order.openedOn,
-            status: order.status,
-            items: order.items,
-            customer: order.customer
+            isShipped: order.isShipped,
+            isPaid: order.isPaid,
+            isDeposit: order.isDeposit,
+            isClosed: order.isClosed,
+            customerName: order.customer.name,
+            items: order.items
         )
     }
     
@@ -82,7 +104,7 @@ class OrderList: ViewModel {
             self.storeEdit(oldId: oldId, details: details)
             completion(true)
         } else {
-            self.exists(id: details.number) { exists in
+            self.exists(id: String(details.number)) { exists in
                 if exists {
                     completion(false)
                 } else {
@@ -105,12 +127,16 @@ class OrderList: ViewModel {
             fatalError("Trying to edit an non-existing Order. (Array is empty)")
         }
         
-        editingOrder.number = details.number
-//        editingOrder.address = details.address
-//        editingOrder.phone = details.phone
-//        editingOrder.remark = details.remark
-//        editingOrder.lastContacted = details.lastContacted
-//        editingOrder.image = details.image?.pngData()
+        guard let num = Int64(details.number) else {
+            fatalError("Id unable to be cast as Integer.")
+        }
+        
+        editingOrder.number = num
+        //        editingOrder.address = details.address
+        //        editingOrder.phone = details.phone
+        //        editingOrder.remark = details.remark
+        //        editingOrder.lastContacted = details.lastContacted
+        //        editingOrder.image = details.image?.pngData()
         
         try? context.save()
     }
@@ -119,5 +145,18 @@ class OrderList: ViewModel {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) else { return }
         completion(result.count > 0)
+    }
+    
+    public func getNextId() -> String {
+        let sortDesc = NSSortDescriptor(key: "number", ascending: false)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Order")
+        fetchRequest.fetchLimit = 1
+        fetchRequest.sortDescriptors = [sortDesc]
+        if let result = try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Order],
+            let num = result.first?.number {
+            return String(num + 1)
+        } else {
+            return "1";
+        }
     }
 }

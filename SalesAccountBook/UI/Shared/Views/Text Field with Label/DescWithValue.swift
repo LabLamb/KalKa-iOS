@@ -4,10 +4,10 @@
 
 import SnapKit
 
-class DescWithText: CustomView {
+class DescWithValue: CustomView {
     
     internal var descView: UIView
-    internal var textView: UIView
+    internal var valueView: UIView
     
     var desc: Any {
         get {
@@ -15,7 +15,7 @@ class DescWithText: CustomView {
         }
     }
     
-    var text: String {
+    var value: String {
         get {
             return ""
         }
@@ -32,7 +32,7 @@ class DescWithText: CustomView {
     
     init(tagView: UIView, textView: UIView) {
         self.descView = tagView
-        self.textView = textView
+        self.valueView = textView
         self.spacing = 0
         
         super.init()
@@ -50,12 +50,12 @@ class DescWithText: CustomView {
         })
         self.descView.backgroundColor = .clear
         
-        self.addSubview(self.textView)
-        self.textView.snp.makeConstraints({ make in
+        self.addSubview(self.valueView)
+        self.valueView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.descView.snp.right).offset(self.spacing)
         })
-        self.textView.backgroundColor = .clear
+        self.valueView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -63,11 +63,11 @@ class DescWithText: CustomView {
     }
     
     @objc func focusTextView() {
-        self.textView.becomeFirstResponder()
+        self.valueView.becomeFirstResponder()
     }
     
     @objc func unfocusTextView() {
-        self.textView.resignFirstResponder()
+        self.valueView.resignFirstResponder()
     }
     
 }

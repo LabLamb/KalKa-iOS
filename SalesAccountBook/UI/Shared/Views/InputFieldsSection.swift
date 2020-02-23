@@ -58,14 +58,14 @@ class InputFieldsSection: CustomView {
         })
     }
     
-    private func extractFieldsViews() -> [DescWithText] {
-        return self.stackView.arrangedSubviews.filter({ $0 is DescWithText }) as! [DescWithText]
+    private func extractFieldsViews() -> [DescWithValue] {
+        return self.stackView.arrangedSubviews.filter({ $0 is DescWithValue }) as! [DescWithValue]
     }
     
     public func prefillValues(values: [String: String]) {
         self.extractFieldsViews().forEach({ field in
             if let desc = field.desc as? String, let value = values[desc] {
-                field.text = value
+                field.value = value
             }
         })
     }
@@ -74,7 +74,7 @@ class InputFieldsSection: CustomView {
         var result: [String: String] = [:]
         self.extractFieldsViews().forEach({ field in
             if let desc = field.desc as? String {
-                result[desc] = field.text
+                result[desc] = field.value
             }
         })
         return result

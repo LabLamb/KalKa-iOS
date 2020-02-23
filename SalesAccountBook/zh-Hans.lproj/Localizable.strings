@@ -35,6 +35,8 @@
 "Statistics" = "统计";
 "Settings" = "设定";
 "OrderNumber" = "订单号";
-"OpenedOn" = "开单日期";
+"OpenedOn" = "下单日期";
 "Status" = "状态";
-"NewOrder" = "新订单";
+"All" = "全部";
+"Open" = "未完成";
+"Closed" = "已完成";

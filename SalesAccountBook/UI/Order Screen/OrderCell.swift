@@ -7,22 +7,26 @@ import CoreData
 
 class OrderCell: CustomCell {
     
-    lazy var iconImage: UIImageView = {
-        let result = UIImageView()
-        result.backgroundColor = .accent
+    lazy var orderNumLabel: IconWithTextLabelInside = {
+        let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate))
+        result.icon.tintColor = .accent
+        result.icon.alpha = 0.25
+        result.textLabel.textColor = .text
+        result.textLabel.font = Constants.UI.Font.Bold.Medium
         return result
     }()
     
-    lazy var nameLabel: UILabel = {
+    lazy var dateLabel: UILabel = {
+        let result = UILabel()
+        result.font = Constants.UI.Font.Bold.Medium
+        result.textColor = .text
+        return result
+    }()
+    
+    lazy var custNameLabel: UILabel = {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Medium
-        return result
-    }()
-    
-    lazy var phoneLabel: UILabel = {
-        let result = UILabel()
-        result.font = Constants.UI.Font.Plain.Small
-        result.textColor = .accent
+        result.textColor = .text
         return result
     }()
     
@@ -33,88 +37,115 @@ class OrderCell: CustomCell {
         return result
     }()
     
+    lazy var isShippedIcon: UIImageView = {
+        let icon = #imageLiteral(resourceName: "isShipped").withRenderingMode(.alwaysTemplate)
+        let result = UIImageView(image: icon)
+        result.tintColor = .text
+        result.alpha = 0.1
+        return result
+    }()
+
+    lazy var isPaidIcon: UIImageView = {
+        let icon = #imageLiteral(resourceName: "isPaid").withRenderingMode(.alwaysTemplate)
+        let result = UIImageView(image: icon)
+        result.tintColor = .text
+        result.alpha = 0.1
+        return result
+    }()
+    
+    lazy var isDepositIcon: UIImageView = {
+        let icon = #imageLiteral(resourceName: "isDeposit").withRenderingMode(.alwaysTemplate)
+        let result = UIImageView(image: icon)
+        result.tintColor = .text
+        result.alpha = 0.1
+        return result
+    }()
+    
     override func setupLayout() {
         super.setupLayout()
         
-        let remarkTextExists = self.remarkLabel.text != ""
-
-        self.paddingView.addSubview(self.iconImage)
-        self.iconImage.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium * 0.75)
-            make.width.equalTo(self.iconImage.snp.height)
+        self.paddingView.addSubview(self.orderNumLabel)
+        self.orderNumLabel.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.ExSmall * 0.75)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.ExSmall * 0.75)
+            make.width.equalTo(self.orderNumLabel.snp.height)
         }
         
-        self.paddingView.addSubview(self.nameLabel)
-        self.nameLabel.snp.makeConstraints { make in
-            if remarkTextExists {
-                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
-            } else {
-                make.bottom.equalTo(self.paddingView.snp.centerY)
-                .offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
-            }
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+        self.paddingView.addSubview(self.isShippedIcon)
+        self.isShippedIcon.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+            make.width.equalTo(self.isShippedIcon.snp.height)
         }
         
-        self.paddingView.addSubview(self.phoneLabel)
-        self.phoneLabel.snp.makeConstraints { make in
-            if remarkTextExists {
-                make.top.equalTo(self.nameLabel.snp.bottom)
-                .offset(Constants.UI.Spacing.Height.ExSmall)
-            } else {
-                
-                make.top.equalTo(self.paddingView.snp.centerY)
-                    .offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
-            }
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+        self.paddingView.addSubview(self.isPaidIcon)
+        self.isPaidIcon.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+            make.right.equalTo(self.isShippedIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
+            make.width.equalTo(self.isPaidIcon.snp.height)
         }
         
-        if remarkTextExists {
-            self.paddingView.addSubview(self.remarkLabel)
-            self.remarkLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-                make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
-                make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
-            }
-        }
-    }
-    
-    @objc func linkWhatsapp() {
-        let whatsAppUrl = URL(string: "https://api.whatsapp.com/send?phone=\(self.phoneLabel.text!)")
-        if UIApplication.shared.canOpenURL(whatsAppUrl!) {
-            UIApplication.shared.open(whatsAppUrl!, options: [:], completionHandler: nil)
+        self.paddingView.addSubview(self.isDepositIcon)
+        self.isDepositIcon.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+            make.right.equalTo(self.isPaidIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
+            make.width.equalTo(self.isDepositIcon.snp.height)
         }
     }
     
     override func setupData(data: NSManagedObject) {
-        guard let `data` = data as? Customer else { return }
-        if let imageData = data.image {
-            self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
-        } else {
-            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
+        guard let `data` = data as? Order else { return }
+        
+        self.orderNumLabel.text = "#\(data.number)"
+        if data.isClosed {
+            self.orderNumLabel.icon.image = #imageLiteral(resourceName: "isClosed")
         }
-        self.nameLabel.text = data.name == "" ? .absent : data.name
-        self.phoneLabel.text = data.phone == "" ? .absent : data.phone
-        self.remarkLabel.text = data.remark
+        
+        if data.isShipped {
+            self.isShippedIcon.tintColor = .green
+            self.isShippedIcon.alpha = 1
+        }
+        
+        if data.isPaid {
+            self.isPaidIcon.tintColor = .green
+            self.isPaidIcon.alpha = 1
+        }
+        
+        if data.isDeposit {
+            self.isDepositIcon.tintColor = .green
+            self.isDepositIcon.alpha = 1
+        }
+        
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.iconImage.clipsToBounds = true
-        self.iconImage.layer.cornerRadius = self.iconImage.bounds.width / 2
-    }
+    //    override func layoutSubviews() {
+    //        self.iconImage.clipsToBounds = true
+    //        self.iconImage.layer.cornerRadius = self.iconImage.frame.width / 2
+    //        super.layoutSubviews()
+    //    }
     
     override func prepareForReuse() {
-        self.nameLabel.text = ""
-        self.phoneLabel.text = ""
-        self.iconImage.image = nil
-        self.remarkLabel.text = ""
+        //        self.nameLabel.text = ""
+        //        self.priceLabel.text = ""
+        self.orderNumLabel.text = ""
+        self.orderNumLabel.icon.image = #imageLiteral(resourceName: "OrderNum")
         
-        self.nameLabel.removeFromSuperview()
-        self.phoneLabel.removeFromSuperview()
-        self.remarkLabel.removeFromSuperview()
+        self.isPaidIcon.tintColor = .text
+        self.isPaidIcon.alpha = 0.1
+        
+        self.isShippedIcon.tintColor = .text
+        self.isShippedIcon.alpha = 0.1
+        
+        self.isDepositIcon.tintColor = .text
+        self.isDepositIcon.alpha = 0.1
+        //        self.remarkLabel.text = ""
+        //        self.iconImage.image = nil
+        
+        //        self.nameLabel.removeFromSuperview()
+        //        self.priceLabel.removeFromSuperview()
+        //        self.remarkLabel.removeFromSuperview()
     }
 }

@@ -1,38 +1,22 @@
+////
+////  Copyright © 2019 LabLambWorks. All rights reserved.
+////
 //
-//  Copyright © 2019 LabLambWorks. All rights reserved.
+//import SnapKit
 //
-
-import SnapKit
-
-//class IconWithTextLabel: TagWithText {
-//    
-//    override var text: String {
-//        get {
-//            return self.textLabel.text ?? ""
-//        }
-//        
-//        set {
-//            self.textLabel.text = newValue
-//        }
-//    }
-//    
-//    var spacing: CGFloat {
-//        didSet {
-//            self.layoutIfNeeded()
-//        }
-//    }
-//    
-//    override init(icon: UIImage, text: String = "", textAlign: NSTextAlignment = .left) {
+//class IconWithTextLabel: DescWithText {
+//
+//    init(icon: UIImage, text: String = "", textAlign: NSTextAlignment = .left) {
 //        self.tagView = UIImageView(image: icon)
 //        self.textView = UILabel()
 //        self.spacing = 0
-//        
+//
 //        super.init(frame: .zero)
-//        
+//
 //        self.textLabel.text = text
 //        self.textLabel.textAlignment = textAlign
 //    }
-//    
+//
 //    func setupLayout() {
 //        self.addSubview(self.icon)
 //        self.icon.snp.makeConstraints({ make in
@@ -46,9 +30,9 @@ import SnapKit
 //            make.top.right.bottom.equalToSuperview()
 //        })
 //    }
-//    
+//
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
-//    
+//
 //}

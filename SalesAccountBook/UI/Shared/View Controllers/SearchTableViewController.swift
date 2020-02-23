@@ -157,10 +157,7 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
 extension SearchTableViewController: Refreshable {
     func refresh() {
         self.list.fetch(completion: {
-            self.searchBar.text = ""
-            self.fileredList = self.list.items
-            self.tableView.reloadData()
-            self.tableView.refreshControl?.endRefreshing()
+            self.filterListByString(self.searchBar.text ?? "")
         })
     }
 }

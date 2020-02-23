@@ -4,15 +4,15 @@
 
 import SnapKit
 
-class TitleWithTextField: DescWithText {
+class TitleWithTextField: DescWithValue {
     
-    override var text: String {
+    override var value: String {
         get {
-            return (self.textView as? UITextField)?.text ?? ""
+            return (self.valueView as? UITextField)?.text ?? ""
         }
 
         set {
-            (self.textView as? UITextField)?.text = newValue
+            (self.valueView as? UITextField)?.text = newValue
         }
     }
     
@@ -61,8 +61,8 @@ class TitleWithTextField: DescWithText {
             make.width.equalToSuperview().dividedBy(3)
         })
         
-        self.addSubview(self.textView)
-        self.textView.snp.makeConstraints({ make in
+        self.addSubview(self.valueView)
+        self.valueView.snp.makeConstraints({ make in
             make.top.right.bottom.equalToSuperview()
             make.left.equalTo(self.descView.snp.right).offset(self.spacing)
         })

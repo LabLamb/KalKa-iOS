@@ -21,6 +21,12 @@ class OrderViewController: SearchTableViewController {
         self.cellIdentifier = "OrderListCell"
         self.tableView.register(OrderCell.self, forCellReuseIdentifier: self.cellIdentifier)
         
+        self.searchBar.scopeButtonTitles = [.all, .open, .closed]
+        self.searchBar.selectedScopeButtonIndex = 1
+        self.searchBar.showsScopeBar = true
+        self.tableView.reloadData()
+        self.searchBar.scopeBarBackgroundImage = UIImage()
+        
         DispatchQueue.main.async {
             self.refresh()
         }
@@ -33,6 +39,7 @@ class OrderViewController: SearchTableViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItem.title = .orders
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddOrderView))
     }
@@ -47,26 +54,47 @@ class OrderViewController: SearchTableViewController {
     override func filterListByString(_ searchText: String) {
         let allOrders = self.list.items as! [Order]
         if searchText != "" {
-            
             self.fileredList = allOrders.filter({ order in
-                return order.number.lowercased().contains(searchText.lowercased()) || order.customer.phone.lowercased().contains(searchText.lowercased()) ||
+                if self.searchBar.selectedScopeButtonIndex == 0 {
+                    return true
+                } else if self.searchBar.selectedScopeButtonIndex == 1 {
+                    return order.isClosed == false
+                } else {
+                    return order.isClosed
+                }
+            }).filter({ order in
+                return String(order.number).lowercased().contains(searchText.lowercased()) || order.customer.phone.lowercased().contains(searchText.lowercased()) ||
                     order.customer.name.lowercased().contains(searchText.lowercased()) ||
                     order.customer.remark.lowercased().contains(searchText.lowercased())
             })
         } else {
-            self.fileredList = self.list.items
+            self.fileredList = allOrders.filter({ order in
+                if self.searchBar.selectedScopeButtonIndex == 0 {
+                    return true
+                } else if self.searchBar.selectedScopeButtonIndex == 1 {
+                    return order.isClosed == false
+                } else {
+                    return order.isClosed
+                }
+            })
         }
         self.tableView.reloadData()
     }
     
 }
 
+// MARK: - SearchBar
+extension OrderViewController {
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.filterListByString(self.searchBar.text ?? "")
+    }
+}
 
 // MARK: - TableView
 extension OrderViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderName = self.fileredOrders[indexPath.row].number
+        let orderName = String(self.fileredOrders[indexPath.row].number)
         if let delegate = self.onSelectRowDelegate {
             delegate(orderName)
         } else {

@@ -1,5 +1,9 @@
 //
-//  Copyright © 2019 LabLambWorks. All rights reserved.
+//  Order+CoreDataClass.swift
+//  
+//
+//  Created by LabLamb on 23/2/2020.
+//
 //
 
 import Foundation

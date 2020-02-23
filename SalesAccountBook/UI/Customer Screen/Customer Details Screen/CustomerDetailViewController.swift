@@ -73,7 +73,7 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let customerDetails = self.customerList?.get(id: self.currentId ?? "") as? CustomerDetails else {
+        guard let customerDetails = self.customerList?.getDetails(id: self.currentId ?? "") as? CustomerDetails else {
             fatalError()
         }
         
@@ -124,7 +124,7 @@ class CustomerDetailViewController: DetailFormViewController {
         if customerDetails.name == "" {
             if let textField = self.inputFieldsSection
                 .getView(labelText: .name) as? TitleWithTextField {
-                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField.textView as! UITextField)
+                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField.valueView as! UITextField)
             }
             return
         }

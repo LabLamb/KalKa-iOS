@@ -70,7 +70,7 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let merchDetails = self.inventory?.get(id: self.currentId ?? "") as? MerchDetails else {
+        guard let merchDetails = self.inventory?.getDetails(id: self.currentId ?? "") as? MerchDetails else {
             fatalError()
         }
         
@@ -123,7 +123,7 @@ class MerchDetailViewController: DetailFormViewController {
                     let abcDesc = (abc?.desc as? String)
                     return abcDesc == .name
                 }) as! TitleWithTextField
-            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: textField.textView as! UITextField)
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: textField.valueView as! UITextField)
             return
         }
         
