@@ -42,7 +42,7 @@ class SearchTableViewController: UIViewController {
         self.searchBar.backgroundImage = UIImage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -53,6 +53,7 @@ class SearchTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddDetailView))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,6 +102,16 @@ class SearchTableViewController: UIViewController {
         }
     }
     
+    @objc private func navToAddDetailView() {
+        let config = DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
+        self.navigateToDetailView(config: config)
+    }
+    
+    internal func navigateToDetailView(config: DetailsConfigurator) {
+        let editVC = DetailFormViewController(config: config)
+        self.navigationController?.pushViewController(editVC, animated: true)
+    }
+    
     @objc private func keyboardDidAppear(noti: NSNotification) {
         guard let info = noti.userInfo else { return }
         let rect: CGRect = info[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
@@ -109,7 +120,7 @@ class SearchTableViewController: UIViewController {
         self.tableView.scrollIndicatorInsets.bottom = kbHeight
     }
     
-    @objc private func keboardDidDisappeared() {
+    @objc private func keyboardDidDisappeared() {
         self.tableView.contentInset.bottom = 0
         self.tableView.scrollIndicatorInsets.bottom = 0
     }
@@ -123,10 +134,6 @@ class SearchTableViewController: UIViewController {
 
 // MARK: - TableView
 extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        fatalError("Did select row is not implemented.")
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.fileredList.count
@@ -150,6 +157,16 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = self.fileredList[indexPath.row].id
+        if let delegate = self.onSelectRowDelegate {
+            delegate(id)
+        } else {
+            let detailConfig = DetailsConfigurator(action: .edit, id: id, viewModel: self.list, onSelectRow: nil)
+            self.navigateToDetailView(config: detailConfig)
+        }
     }
 }
 

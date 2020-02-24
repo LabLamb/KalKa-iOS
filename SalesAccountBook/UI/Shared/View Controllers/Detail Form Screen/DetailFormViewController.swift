@@ -22,7 +22,7 @@ class DetailFormViewController: UIViewController {
         self.scrollView.contentInset = .init(top: mimimumBottomInset, left: mimimumBottomInset, bottom: mimimumBottomInset, right: mimimumBottomInset)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class DetailFormViewController: UIViewController {
         self.scrollView.scrollIndicatorInsets.bottom = kbHeight
     }
     
-    @objc private func keboardDidDisappeared() {
+    @objc private func keyboardDidDisappeared() {
         self.scrollView.contentInset.bottom = self.mimimumBottomInset
         self.scrollView.scrollIndicatorInsets.bottom = self.mimimumBottomInset
     }

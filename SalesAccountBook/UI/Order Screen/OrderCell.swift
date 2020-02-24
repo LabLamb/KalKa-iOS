@@ -166,8 +166,8 @@ class OrderCell: CustomCell {
                     return item.price * Double(item.qty)
                 }
             }) ?? []
-            
-            self.profitLabel.text = "$\(allProfits.reduce(0, +))"
+            let totalProfit = allProfits.reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
+            self.profitLabel.text = "$\(totalProfit)"
             self.profitLabel.isHidden = false
             self.isShippedIcon.isHidden = true
             self.isPaidIcon.isHidden = true

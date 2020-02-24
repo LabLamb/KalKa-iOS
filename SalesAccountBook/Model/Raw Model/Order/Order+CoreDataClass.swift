@@ -11,5 +11,9 @@ import CoreData
 
 @objc(Order)
 public class Order: NSManagedObject {
-
+    override var id: String {
+        get {
+            return String(self.number)
+        }
+    }
 }

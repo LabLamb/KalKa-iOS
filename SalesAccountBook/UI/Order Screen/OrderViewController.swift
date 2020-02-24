@@ -12,6 +12,8 @@ class OrderViewController: SearchTableViewController {
         }
     }
     
+    var customerName: String?
+    
     // MARK: - Initializion
     override init(onSelectRow: ((String) -> Void)? = nil) {
         super.init(onSelectRow: onSelectRow)
@@ -41,14 +43,6 @@ class OrderViewController: SearchTableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = .orders
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddOrderView))
-    }
-    
-    @objc private func navToAddOrderView() {
-        let orderConfig = DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
-        
-        let newOrderVC = OrderDetailViewController(config: orderConfig)
-        self.navigationController?.pushViewController(newOrderVC, animated: true)
     }
     
     override func filterListByString(_ searchText: String) {
@@ -63,7 +57,8 @@ class OrderViewController: SearchTableViewController {
                     return order.isClosed
                 }
             }).filter({ order in
-                return String(order.number).lowercased().contains(searchText.lowercased()) || order.customer.phone.lowercased().contains(searchText.lowercased()) ||
+                let dateString = order.openedOn?.toString(format: Constants.System.DateFormat) ?? ""
+                return String(order.number).lowercased().contains(searchText.lowercased()) || dateString.lowercased().contains(searchText.lowercased()) ||
                     order.customer.name.lowercased().contains(searchText.lowercased()) ||
                     order.customer.remark.lowercased().contains(searchText.lowercased())
             })
@@ -81,26 +76,16 @@ class OrderViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
+    override func navigateToDetailView(config: DetailsConfigurator) {
+        let editVC = OrderDetailViewController(config: config)
+        self.navigationController?.pushViewController(editVC, animated: true)
+    }
+    
 }
 
 // MARK: - SearchBar
 extension OrderViewController {
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         self.filterListByString(self.searchBar.text ?? "")
-    }
-}
-
-// MARK: - TableView
-extension OrderViewController {
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let orderName = String(self.fileredOrders[indexPath.row].number)
-        if let delegate = self.onSelectRowDelegate {
-            delegate(orderName)
-        } else {
-            let orderConfig = DetailsConfigurator(action: .edit, id: orderName, viewModel: self.list, onSelectRow: nil)
-            let editOrderVC = OrderDetailViewController(config: orderConfig)
-            self.navigationController?.pushViewController(editOrderVC, animated: true)
-        }
     }
 }

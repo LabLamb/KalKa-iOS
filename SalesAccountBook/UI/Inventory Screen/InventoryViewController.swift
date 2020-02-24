@@ -30,14 +30,6 @@ class InventoryViewController: SearchTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = .inventory
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navToAddMerchView))
-    }
-    
-    @objc private func navToAddMerchView() {
-        let merchConfig = DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
-        
-        let newMerchVC = MerchDetailViewController(config: merchConfig)
-        self.navigationController?.pushViewController(newMerchVC, animated: true)
     }
     
     override func filterListByString(_ searchText: String) {
@@ -51,20 +43,9 @@ class InventoryViewController: SearchTableViewController {
         }
         self.tableView.reloadData()
     }
-}
-
-
-// MARK: - TableView
-extension InventoryViewController {
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let merchName = self.filteredMerchs[indexPath.row].name
-        if let delegate = self.onSelectRowDelegate {
-            delegate(merchName)
-        } else {
-            let merchConfig = DetailsConfigurator(action: .edit, id: merchName, viewModel: self.list, onSelectRow: nil)
-            let editMerchVC = MerchDetailViewController(config: merchConfig)
-            self.navigationController?.pushViewController(editMerchVC, animated: true)
-        }
+    override func navigateToDetailView(config: DetailsConfigurator) {
+        let editVC = MerchDetailViewController(config: config)
+        self.navigationController?.pushViewController(editVC, animated: true)
     }
 }

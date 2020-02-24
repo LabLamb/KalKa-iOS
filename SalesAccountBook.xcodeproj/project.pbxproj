@@ -33,6 +33,8 @@
 		D26BF52D23F2830A00EDB259 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D26BF52C23F2830A00EDB259 /* StoreKit.framework */; };
 		D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF52E23F28FEE00EDB259 /* CoreStack.swift */; };
 		D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */; };
+		D2727B8C2402D5C3004CBB7E /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B8B2402D5C3004CBB7E /* DataPicker.swift */; };
+		D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B8D2403E152004CBB7E /* NSManagedObject+Property.swift */; };
 		D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A224003A4F0049D780 /* OrderViewController.swift */; };
 		D28E57A624003B580049D780 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A524003B580049D780 /* OrderCell.swift */; };
 		D2A411A523F8530C00842111 /* String+Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A411A423F8530C00842111 /* String+Constant.swift */; };
@@ -61,6 +63,8 @@
 		D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D6D98B23F2545E003CDFAC /* Refreshable.swift */; };
 		D2DACB01240197BF005FDE3E /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACAFF240197BF005FDE3E /* Order+CoreDataProperties.swift */; };
 		D2DACB02240197BF005FDE3E /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB00240197BF005FDE3E /* Order+CoreDataClass.swift */; };
+		D2DACB042402BD67005FDE3E /* TitleWithTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB032402BD67005FDE3E /* TitleWithTextLabel.swift */; };
+		D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */; };
 		D2E8AE1823F7E971000A6A7C /* DescWithValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E8AE1723F7E971000A6A7C /* DescWithValue.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -122,6 +126,8 @@
 		D26BF52C23F2830A00EDB259 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D26BF52E23F28FEE00EDB259 /* CoreStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStack.swift; sourceTree = "<group>"; };
 		D26BF53023F2F7F600EDB259 /* UIAlertController+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Factory.swift"; sourceTree = "<group>"; };
+		D2727B8B2402D5C3004CBB7E /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		D2727B8D2403E152004CBB7E /* NSManagedObject+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Property.swift"; sourceTree = "<group>"; };
 		D28E57A224003A4F0049D780 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D28E57A524003B580049D780 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D2A411A423F8530C00842111 /* String+Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Constant.swift"; sourceTree = "<group>"; };
@@ -159,6 +165,8 @@
 		D2D6D98B23F2545E003CDFAC /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		D2DACAFF240197BF005FDE3E /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D2DACB00240197BF005FDE3E /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D2DACB032402BD67005FDE3E /* TitleWithTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithTextLabel.swift; sourceTree = "<group>"; };
+		D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDescCard.swift; sourceTree = "<group>"; };
 		D2E8AE1723F7E971000A6A7C /* DescWithValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescWithValue.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -289,7 +297,7 @@
 			children = (
 				D28E57A224003A4F0049D780 /* OrderViewController.swift */,
 				D28E57A524003B580049D780 /* OrderCell.swift */,
-				D25FD8B9240055EB005E6162 /* OrderDetailViewController.swift */,
+				D2DACB052402C99A005FDE3E /* Order Details Screen */,
 			);
 			path = "Order Screen";
 			sourceTree = "<group>";
@@ -446,8 +454,18 @@
 			children = (
 				D2D6D98B23F2545E003CDFAC /* Refreshable.swift */,
 				D2C3E8B123F3A16B00C0F33B /* Enums.swift */,
+				D2727B8B2402D5C3004CBB7E /* DataPicker.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		D2DACB052402C99A005FDE3E /* Order Details Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D25FD8B9240055EB005E6162 /* OrderDetailViewController.swift */,
+				D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */,
+			);
+			path = "Order Details Screen";
 			sourceTree = "<group>";
 		};
 		D2E8AE1923F807AC000A6A7C /* Text Field with Label */ = {
@@ -456,6 +474,7 @@
 				D2E8AE1723F7E971000A6A7C /* DescWithValue.swift */,
 				D2F6008923F1B16A003AAA58 /* IconWithTextLabel.swift */,
 				D223CD1C23F5B819003A8EF6 /* IconWithTextView.swift */,
+				D2DACB032402BD67005FDE3E /* TitleWithTextLabel.swift */,
 				D2044B8B23F42841008DFDB1 /* TitleWithTextField.swift */,
 				D223CD1A23F5A5E7003A8EF6 /* TitleWithTextView.swift */,
 				D223CD1823F5859C003A8EF6 /* TitleWithDatePicker.swift */,
@@ -482,6 +501,7 @@
 				D2364E2C23F57E0600F93973 /* Date+String.swift */,
 				D2A6A75423F91373007E144A /* UIToolbar+Factory.swift */,
 				D2A6A75623F93CB2007E144A /* UIColor+Constant.swift */,
+				D2727B8D2403E152004CBB7E /* NSManagedObject+Property.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -712,7 +732,9 @@
 				D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* SalesAccountBook.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
+				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
+				D2DACB042402BD67005FDE3E /* TitleWithTextLabel.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
 				D2D6BA7723F527FA007894FD /* CustomerViewController.swift in Sources */,
@@ -732,6 +754,7 @@
 				D2A6A75923F93F47007E144A /* CustomCell.swift in Sources */,
 				D2F6008D23F1B16A003AAA58 /* IconWithTextLabel.swift in Sources */,
 				D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */,
+				D2727B8C2402D5C3004CBB7E /* DataPicker.swift in Sources */,
 				D2DACB02240197BF005FDE3E /* Order+CoreDataClass.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
@@ -744,6 +767,7 @@
 				D2D6BA7E23F52DE8007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
 				D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */,
 				D2C3E8B423F3B31700C0F33B /* DetailsConfigurator.swift in Sources */,
+				D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
 				D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */,
 				D23A385223F5100E00488DFD /* InputFieldsSection.swift in Sources */,

@@ -10,10 +10,11 @@ class TitleWithDatePicker: TitleWithTextField {
     
     init(title: String,
          placeholder: String = Date().toString(format: Constants.System.DateFormat),
-         textAlign: NSTextAlignment = .left) {
+         textAlign: NSTextAlignment = .left,
+         spacing: CGFloat = 0) {
         self.datePicker = UIDatePicker()
         
-        super.init(title: title, placeholder: placeholder, textAlign: textAlign)
+        super.init(title: title, placeholder: placeholder, spacing: spacing, textAlign: textAlign)
 
         self.datePicker.datePickerMode = .date
         

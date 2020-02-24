@@ -4,15 +4,15 @@
 
 import SnapKit
 
-class TitleWithTextField: DescWithValue {
+class TitleWithTextLabel: DescWithValue {
     
     override var value: String {
         get {
-            return (self.valueView as? UITextField)?.text ?? ""
+            return (self.valueView as? UILabel)?.text ?? ""
         }
 
         set {
-            (self.valueView as? UITextField)?.text = newValue
+            (self.valueView as? UILabel)?.text = newValue
         }
     }
     
@@ -34,11 +34,9 @@ class TitleWithTextField: DescWithValue {
     
     private let maxTextLength: Int
     
-    init(title: String, placeholder: String = "",
-         spacing: CGFloat = 0, inputKeyboardType: UIKeyboardType = .default,
-         textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
+    init(title: String, spacing: CGFloat = 0, inputKeyboardType: UIKeyboardType = .default, textAlign: NSTextAlignment = .left, maxTextLength: Int = .max) {
         let tagView = UILabel()
-        let textView = UITextField()
+        let textView = UILabel()
         self.maxTextLength = maxTextLength
         
         super.init(tagView: tagView, textView: textView)
@@ -49,11 +47,7 @@ class TitleWithTextField: DescWithValue {
         tagView.textAlignment = .left
         tagView.numberOfLines = 0
         
-        textView.keyboardType = inputKeyboardType
-        textView.placeholder = placeholder
         textView.textAlignment = textAlign
-        textView.delegate = self
-        textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
     }
     
     override func setupLayout() {
@@ -74,10 +68,4 @@ class TitleWithTextField: DescWithValue {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-extension TitleWithTextField: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textField.text?.count ?? 0 < self.maxTextLength || string == ""
-    }
 }
