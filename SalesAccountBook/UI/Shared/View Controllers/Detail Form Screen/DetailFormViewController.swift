@@ -8,7 +8,7 @@ class DetailFormViewController: UIViewController {
     
     let scrollView: UIScrollView
     var itemExistsErrorMsg: String = ""
-    var currentId: String?
+    var currentId: String
     var list: ViewModel?
     let mimimumBottomInset = Constants.UI.Spacing.Height.Medium * 0.75
     
@@ -66,11 +66,7 @@ class DetailFormViewController: UIViewController {
     }
     
     internal func editItem(details: Any) {
-        guard let oldId = self.currentId else {
-            fatalError()
-        }
-        
-        self.list?.edit(oldId: oldId,
+        self.list?.edit(oldId: self.currentId,
                         details: details,
                         completion: { success in
                             if success {

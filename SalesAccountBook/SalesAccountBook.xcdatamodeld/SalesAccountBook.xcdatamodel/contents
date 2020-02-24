@@ -31,13 +31,12 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="remark" attributeType="String"/>
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="18" width="128" height="148"/>
         <element name="Merch" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Order" positionX="-63" positionY="27" width="128" height="178"/>
-        <element name="OrderItem" positionX="-54" positionY="54" width="128" height="118"/>
+        <element name="OrderItem" positionX="-54" positionY="54" width="128" height="103"/>
     </elements>
 </model>

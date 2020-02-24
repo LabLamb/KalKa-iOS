@@ -14,6 +14,7 @@ class SearchTableViewController: UIViewController {
     let tableView: UITableView
     var onSelectRowDelegate: ((String) -> Void)?
     var cellIdentifier: String
+    let betweenCellPadding = Constants.UI.Spacing.Height.Medium * 0.75
     
     // MARK: - Initializion
     init(onSelectRow: ((String) -> Void)? = nil) {
@@ -103,7 +104,7 @@ class SearchTableViewController: UIViewController {
     }
     
     @objc private func navToAddDetailView() {
-        let config = DetailsConfigurator(action: .add, id: nil, viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
+        let config = DetailsConfigurator(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
         self.navigateToDetailView(config: config)
     }
     
@@ -148,11 +149,11 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (Constants.UI.Sizing.Height.Small * 1.25) + (Constants.UI.Spacing.Height.Medium * 0.75)
+        return (Constants.UI.Sizing.Height.Small * 1.25) + self.betweenCellPadding
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return Constants.UI.Spacing.Height.Medium * 0.75
+        return self.betweenCellPadding
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

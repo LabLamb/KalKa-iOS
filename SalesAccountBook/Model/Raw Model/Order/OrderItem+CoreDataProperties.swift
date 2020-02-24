@@ -15,7 +15,6 @@ extension OrderItem {
     @NSManaged public var name: String
     @NSManaged public var qty: Int32
     @NSManaged public var price: Double
-    @NSManaged public var remark: String
     @NSManaged public var order: Order
 
 }

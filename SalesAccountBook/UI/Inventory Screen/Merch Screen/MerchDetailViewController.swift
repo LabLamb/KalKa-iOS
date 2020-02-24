@@ -29,10 +29,9 @@ class MerchDetailViewController: DetailFormViewController {
             TitleWithTextField(title: .quantity,
                 placeholder: .optional,
                 inputKeyboardType: .numberPad,
-                maxTextLength: 6),
-            TitleWithTextField(title: .remark,
-                placeholder: .optional,
-                maxTextLength: 20),
+                maxTextLength: 7),
+            TitleWithTextView(title: .remark,
+                placeholder: .optional),
         ]
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)
@@ -56,7 +55,7 @@ class MerchDetailViewController: DetailFormViewController {
         super.viewDidLoad()
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(String.edit) \(self.currentId ?? "")"
+                return "\(String.edit) \(self.currentId)"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewMerch", comment: "New entry of product.")
             } else {
@@ -70,7 +69,7 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let merchDetails = self.inventory?.getDetails(id: self.currentId ?? "") as? MerchDetails else {
+        guard let merchDetails = self.inventory?.getDetails(id: self.currentId) as? MerchDetails else {
             fatalError()
         }
         

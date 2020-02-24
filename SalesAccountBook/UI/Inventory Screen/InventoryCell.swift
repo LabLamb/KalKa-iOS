@@ -57,8 +57,8 @@ class InventoryCell: CustomCell {
         
         self.paddingView.addSubview(self.qtyLabel)
         self.qtyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
-            make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.ExSmall)
+            make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.ExSmall)
             make.width.equalTo(self.qtyLabel.snp.height)
         }
         

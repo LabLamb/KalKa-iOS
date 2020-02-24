@@ -27,7 +27,7 @@ class CustomerDetailViewController: DetailFormViewController {
                 TitleWithTextField(title: .phone,
                                    placeholder: .optional,
                                    spacing: 2.5,
-                                   inputKeyboardType: .numberPad,
+                                   inputKeyboardType: .phonePad,
                                    maxTextLength: 15),
                 TitleWithTextView(title: .address,
                                   placeholder: .optional,
@@ -59,7 +59,7 @@ class CustomerDetailViewController: DetailFormViewController {
         super.viewDidLoad()
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(String.edit) \(self.currentId ?? "")"
+                return "\(String.edit) \(self.currentId)"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewCustomer", comment: "New entry of product.")
             } else {
@@ -73,7 +73,7 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func prefillFieldsForEdit() {
-        guard let customerDetails = self.customerList?.getDetails(id: self.currentId ?? "") as? CustomerDetails else {
+        guard let customerDetails = self.customerList?.getDetails(id: self.currentId) as? CustomerDetails else {
             fatalError()
         }
         

@@ -37,7 +37,11 @@ class OrderDetailViewController: DetailFormViewController {
             fatalError("Unable to retrieve next id.")
         }
         
-        orderNumberField.value = "#\(nextId)"
+        if self.actionType == .add {
+            orderNumberField.value = "#\(nextId)"
+        } else {
+            orderNumberField.value = "#\(self.currentId)"
+        }
         orderNumberField.valueView.alpha = 0.5
         
         self.customerCard.delegate = self
@@ -54,7 +58,7 @@ class OrderDetailViewController: DetailFormViewController {
         super.viewDidLoad()
         self.navigationItem.title = {
             if self.actionType == .edit {
-                return "\(String.edit) \(self.currentId ?? "")"
+                return "\(String.edit) \(self.currentId)"
             } else if self.actionType == .add {
                 return NSLocalizedString("NewOrder", comment: "New entry of product.")
             } else {
@@ -193,16 +197,16 @@ class OrderDetailViewController: DetailFormViewController {
 extension OrderDetailViewController: DataPicker {
     func pickCustomer() {
         let customerPicker = CustomerViewController(onSelectRow: { customerName in
-            print(customerName)
-            self.navigationController?.popViewController(animated: true)
+            // Insert customerName to this VC
+            self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(customerPicker, animated: true)
     }
     
     func pickOrderItem() {
         let merchPicker = InventoryViewController(onSelectRow: { merchName in
-            print(merchName)
-            self.navigationController?.popViewController(animated: true)
+            // Insert merchName to this VC
+            self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(merchPicker, animated: true)
     }

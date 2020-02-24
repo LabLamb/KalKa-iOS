@@ -53,7 +53,13 @@ class TitleWithTextField: DescWithValue {
         textView.placeholder = placeholder
         textView.textAlignment = textAlign
         textView.delegate = self
-        textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
+        textView.inputAccessoryView = {
+            if inputKeyboardType == .numberPad {
+                return UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView), plusOrMinusAction: #selector(self.plusOrMinusPressed))
+            } else {
+                return UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
+            }
+        }()
     }
     
     override func setupLayout() {
@@ -72,6 +78,10 @@ class TitleWithTextField: DescWithValue {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func plusOrMinusPressed() {
+        (self.valueView as? UITextField)?.plusMinusPressed()
     }
     
 }

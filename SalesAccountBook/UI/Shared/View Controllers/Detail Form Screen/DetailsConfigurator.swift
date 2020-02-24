@@ -4,7 +4,7 @@
 
 struct DetailsConfigurator {
     let action: DetailsViewActionType
-    let id: String?
+    let id: String
     let viewModel: ViewModel?
     let onSelectRow: ((String) -> Void)?
 }
