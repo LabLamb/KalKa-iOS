@@ -30,10 +30,10 @@ class DescWithValue: CustomView {
         }
     }
     
-    init(descView: UIView, valueView: UIView) {
+    init(descView: UIView, valueView: UIView, spacing: CGFloat) {
         self.descView = descView
         self.valueView = valueView
-        self.spacing = 0
+        self.spacing = spacing
         
         super.init()
         

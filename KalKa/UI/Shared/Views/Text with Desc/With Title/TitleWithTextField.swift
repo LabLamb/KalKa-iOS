@@ -41,9 +41,7 @@ class TitleWithTextField: DescWithValue {
         let textView = UITextField()
         self.maxTextLength = maxTextLength
         
-        super.init(descView: tagView, valueView: textView)
-        
-        self.spacing = spacing
+        super.init(descView: tagView, valueView: textView, spacing: spacing)
         
         tagView.text = title
         tagView.textAlignment = .left

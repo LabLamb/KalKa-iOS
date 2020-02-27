@@ -60,10 +60,8 @@ class TitleWithSwitch: DescWithValue {
         self.maxTextLength = maxTextLength
         self.checkedImage = UIImageView()
         
-        super.init(descView: tagView, valueView: switchView)
-        
-        self.spacing = spacing
-
+        super.init(descView: tagView, valueView: switchView, spacing: spacing)
+    
         self.checkedImage.tintColor = .buttonIcon
         
         switchView.addTarget(self, action: #selector(self.focusTextView), for: .touchUpInside)

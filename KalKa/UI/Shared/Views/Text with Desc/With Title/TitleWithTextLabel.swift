@@ -39,9 +39,7 @@ class TitleWithTextLabel: DescWithValue {
         let textView = UILabel()
         self.maxTextLength = maxTextLength
         
-        super.init(descView: tagView, valueView: textView)
-        
-        self.spacing = spacing
+        super.init(descView: tagView, valueView: textView, spacing: spacing)
         
         tagView.text = title
         tagView.textAlignment = .left

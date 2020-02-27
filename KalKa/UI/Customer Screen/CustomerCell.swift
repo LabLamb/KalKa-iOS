@@ -26,7 +26,7 @@ class CustomerCell: CustomCell {
         return result
     }()
     
-    lazy var remarkLabel: UILabel = {
+    lazy var addressLabel: UILabel = {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Small
         result.textColor = .accent
@@ -36,7 +36,7 @@ class CustomerCell: CustomCell {
     override func setupLayout() {
         super.setupLayout()
         
-        let remarkTextExists = self.remarkLabel.text != ""
+        let remarkTextExists = self.addressLabel.text != ""
 
         self.paddingView.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
@@ -50,8 +50,7 @@ class CustomerCell: CustomCell {
             if remarkTextExists {
                 make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
             } else {
-                make.bottom.equalTo(self.paddingView.snp.centerY)
-                .offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
+                make.bottom.equalTo(self.paddingView.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
             }
             make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
@@ -60,8 +59,7 @@ class CustomerCell: CustomCell {
         self.paddingView.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
             if remarkTextExists {
-                make.top.equalTo(self.nameLabel.snp.bottom)
-                .offset(Constants.UI.Spacing.Height.ExSmall)
+                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             } else {
                 
                 make.top.equalTo(self.paddingView.snp.centerY)
@@ -73,8 +71,8 @@ class CustomerCell: CustomCell {
         }
         
         if remarkTextExists {
-            self.paddingView.addSubview(self.remarkLabel)
-            self.remarkLabel.snp.makeConstraints { make in
+            self.paddingView.addSubview(self.addressLabel)
+            self.addressLabel.snp.makeConstraints { make in
                 make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
                 make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
                 make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
@@ -98,7 +96,7 @@ class CustomerCell: CustomCell {
         }
         self.nameLabel.text = data.name == "" ? .absent : data.name
         self.phoneLabel.text = data.phone == "" ? .absent : data.phone
-        self.remarkLabel.text = data.remark
+        self.addressLabel.text = data.address
     }
     
     override func layoutSubviews() {
@@ -111,10 +109,10 @@ class CustomerCell: CustomCell {
         self.nameLabel.text = ""
         self.phoneLabel.text = ""
         self.iconImage.image = nil
-        self.remarkLabel.text = ""
+        self.addressLabel.text = ""
         
         self.nameLabel.removeFromSuperview()
         self.phoneLabel.removeFromSuperview()
-        self.remarkLabel.removeFromSuperview()
+        self.addressLabel.removeFromSuperview()
     }
 }

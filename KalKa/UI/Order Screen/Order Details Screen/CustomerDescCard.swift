@@ -10,7 +10,6 @@ class CustomerDescCard: CustomView {
     let nameLabel: UILabel
     let phoneLabel: UILabel
     let addressLabel: UILabel
-    let remarkLabel: UILabel
     
     var delegate: DataPicker?
     
@@ -21,10 +20,13 @@ class CustomerDescCard: CustomView {
         self.nameLabel = UILabel()
         self.phoneLabel = UILabel()
         self.addressLabel = UILabel()
-        self.remarkLabel = UILabel()
         self.placeholder = UILabel()
         
         super.init()
+        
+        self.nameLabel.font = Constants.UI.Font.Bold.Medium
+        self.phoneLabel.font = Constants.UI.Font.Plain.Medium
+        self.addressLabel.font = Constants.UI.Font.Plain.Medium
         
         self.placeholder.text = "+ \(String.addCustomer)"
         self.placeholder.font = Constants.UI.Font.Plain.ExLarge
@@ -40,10 +42,6 @@ class CustomerDescCard: CustomView {
     
     @objc private func callPickCustomer() {
         self.delegate?.pickCustomer()
-    }
-    
-    func updateData() {
-        
     }
     
     override func setupLayout() {
@@ -69,14 +67,14 @@ class CustomerDescCard: CustomView {
         
         self.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
         self.addSubview(self.addressLabel)
         self.addressLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }

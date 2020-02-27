@@ -23,20 +23,21 @@ class CustomerDetailViewController: DetailFormViewController {
                 iconView,
                 TitleWithTextField(title: .name,
                                    placeholder: .required,
-                                   spacing: 2.5),
+                                   spacing: Constants.UI.Spacing.Width.Medium),
                 TitleWithTextField(title: .phone,
                                    placeholder: .optional,
-                                   spacing: 2.5,
+                                   spacing: Constants.UI.Spacing.Width.Medium,
                                    inputKeyboardType: .phonePad,
                                    maxTextLength: 15),
                 TitleWithTextView(title: .address,
                                   placeholder: .optional,
-                                  spacing: 2.5),
+                                  spacing: Constants.UI.Spacing.Width.Medium),
                 TitleWithTextView(title: .remark,
                                   placeholder: .optional,
-                                  spacing: 2.5),
+                                  spacing: Constants.UI.Spacing.Width.Medium),
                 TitleWithDatePicker(title: .lastContacted,
-                                    placeholder: .optional)
+                                    placeholder: .optional,
+                                    spacing: Constants.UI.Spacing.Width.Medium)
             ]
         )
         
@@ -155,7 +156,7 @@ class CustomerDetailViewController: DetailFormViewController {
         let iconView = self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView
         let image: UIImage? = {
             if let img = iconView?.iconImage.image {
-                return img  == #imageLiteral(resourceName: "MerchDefault") ? nil : img
+                return img  == #imageLiteral(resourceName: "AvatarDefault") ? nil : img
             } else {
                 return nil
             }

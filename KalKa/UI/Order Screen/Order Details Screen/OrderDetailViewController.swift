@@ -13,6 +13,7 @@ class OrderDetailViewController: DetailFormViewController {
     
     let actionType: DetailsViewActionType
     weak var orderList: OrderList?
+    var currentCustomerId: String?
     
     let isClosed: Bool
     
@@ -25,15 +26,15 @@ class OrderDetailViewController: DetailFormViewController {
             self.isClosed = false
         }
         
-        let orderNumberField = TitleWithTextLabel(title: .orderNumber)
+        let orderNumberField = TitleWithTextLabel(title: .orderNumber, spacing: Constants.UI.Spacing.Width.Medium)
         
         self.orderInfoFieldsSection = InputFieldsSection(fields: [
             orderNumberField,
-            TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: 2.5),
-            TitleWithTextView(title: .remark, placeholder: .optional, spacing: 2.5),
-            TitleWithSwitch(title: .deposited, spacing: 2.5),
-            TitleWithSwitch(title: .paid, spacing: 2.5),
-            TitleWithSwitch(title: .shipped, spacing: 2.5),
+            TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
+            TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
+            TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
+            TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
+            TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
         ])
         
         self.customerCard = CustomerDescCard()
@@ -50,7 +51,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         if self.actionType == .add {
             orderNumberField.value = "#\(nextId)"
-//            orderNumberField.value = "✔️"
+            //            orderNumberField.value = "✔️"
         } else {
             orderNumberField.value = "#\(self.currentId)"
         }
@@ -89,6 +90,34 @@ class OrderDetailViewController: DetailFormViewController {
         self.setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fillCustomerCard()
+    }
+    
+    private func fillCustomerCard() {
+        let customerList = CustomerList()
+        
+        if let id = self.currentCustomerId,
+            let customer = customerList.getCustomer(id: id) {
+            
+            self.customerCard.placeholder.isHidden = true
+            self.customerCard.nameLabel.text = customer.name
+            self.customerCard.addressLabel.text = customer.address
+            self.customerCard.phoneLabel.text = customer.phone
+            
+            let customerImage: UIImage? = {
+                if let imgData = customer.image {
+                    return UIImage(data: imgData)
+                } else {
+                    return nil
+                }
+            }()
+            
+            self.customerCard.icon.image = customerImage ?? #imageLiteral(resourceName: "AvatarDefault")
+        }
+    }
+    
     private func prefillFieldsForEdit() {
         //        guard let orderDetails = self.orderList?.getDetails(id: self.currentId ?? "") as? OrderDetails else {
         //            fatalError()
@@ -122,7 +151,7 @@ class OrderDetailViewController: DetailFormViewController {
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
-        
+
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
             make.top.equalTo(self.customerCard.snp.bottom)
@@ -213,7 +242,8 @@ class OrderDetailViewController: DetailFormViewController {
 extension OrderDetailViewController: DataPicker {
     func pickCustomer() {
         let customerPicker = CustomerViewController(onSelectRow: { customerName in
-            // Insert customerName to this VC
+            self.currentCustomerId = customerName
+            self.fillCustomerCard()
             self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(customerPicker, animated: true)

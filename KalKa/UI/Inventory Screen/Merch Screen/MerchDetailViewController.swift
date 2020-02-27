@@ -21,17 +21,21 @@ class MerchDetailViewController: DetailFormViewController {
             iconView,
             TitleWithTextField(title: .name,
                 placeholder: .required,
+                spacing: Constants.UI.Spacing.Width.Medium,
                 maxTextLength: 15),
             TitleWithTextField(title: .price,
                 placeholder: .optional,
+                spacing: Constants.UI.Spacing.Width.Medium,
                 inputKeyboardType: .decimalPad,
                 maxTextLength: 9),
             TitleWithTextField(title: .quantity,
                 placeholder: .optional,
+                spacing: Constants.UI.Spacing.Width.Medium,
                 inputKeyboardType: .numberPad,
                 maxTextLength: 7),
             TitleWithTextView(title: .remark,
-                placeholder: .optional),
+                placeholder: .optional,
+                spacing: Constants.UI.Spacing.Width.Medium)
         ]
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)

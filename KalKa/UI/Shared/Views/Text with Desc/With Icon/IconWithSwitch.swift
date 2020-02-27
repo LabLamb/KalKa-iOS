@@ -58,9 +58,7 @@ class IconWithSwitch: DescWithValue {
         self.checkedImage = UIImageView()
         self.iconImage = UIImageView(image: icon)
         
-        super.init(descView: tagView, valueView: switchView)
-        
-        self.spacing = spacing
+        super.init(descView: tagView, valueView: switchView, spacing: spacing)
         
         self.iconImage.tintColor = .text
         self.checkedImage.tintColor = .buttonIcon

@@ -43,7 +43,7 @@ class TitleWithTextView: DescWithValue {
         self.defaultPlaceholder = placeholder
         self.placeholderLabel = UILabel()
         
-        super.init(descView: tagView, valueView: textView)
+        super.init(descView: tagView, valueView: textView, spacing: spacing)
         
         self.spacing = spacing
         

@@ -12,8 +12,6 @@ class OrderViewController: SearchTableViewController {
         }
     }
     
-    var customerName: String?
-    
     // MARK: - Initializion
     override init(onSelectRow: ((String) -> Void)? = nil) {
         super.init(onSelectRow: onSelectRow)
