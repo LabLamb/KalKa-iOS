@@ -14,28 +14,28 @@ class MerchDetailViewController: DetailFormViewController {
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    override init(config: DetailsConfigurator) {
+    override init(config: DetailsConfiguration) {
         let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
         
         let fields = [
             iconView,
             TitleWithTextField(title: .name,
-                placeholder: .required,
-                spacing: Constants.UI.Spacing.Width.Medium,
-                maxTextLength: 15),
+                               placeholder: .required,
+                               spacing: Constants.UI.Spacing.Width.Medium,
+                               maxTextLength: 15),
             TitleWithTextField(title: .price,
-                placeholder: .optional,
-                spacing: Constants.UI.Spacing.Width.Medium,
-                inputKeyboardType: .decimalPad,
-                maxTextLength: 9),
+                               placeholder: .optional,
+                               spacing: Constants.UI.Spacing.Width.Medium,
+                               inputKeyboardType: .decimalPad,
+                               maxTextLength: 9),
             TitleWithTextField(title: .quantity,
-                placeholder: .optional,
-                spacing: Constants.UI.Spacing.Width.Medium,
-                inputKeyboardType: .numberPad,
-                maxTextLength: 7),
+                               placeholder: .optional,
+                               spacing: Constants.UI.Spacing.Width.Medium,
+                               inputKeyboardType: .numberPad,
+                               maxTextLength: 7),
             TitleWithTextView(title: .remark,
-                placeholder: .optional,
-                spacing: Constants.UI.Spacing.Width.Medium)
+                              placeholder: .optional,
+                              spacing: Constants.UI.Spacing.Width.Medium)
         ]
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)
@@ -164,11 +164,11 @@ class MerchDetailViewController: DetailFormViewController {
         let parsedPrice = Double(extractedValue[.price] ?? "") ?? 0.0
         let parsedQty = Int(extractedValue[.quantity] ?? "") ?? 0
         
-        return (name: extractedValue[.name] ?? "",
-                price: parsedPrice,
-                qty: parsedQty,
-                remark: extractedValue[.remark] ?? "",
-                image: image)
+        return MerchDetails(name: extractedValue[.name] ?? "",
+                            price: parsedPrice,
+                            qty: parsedQty,
+                            remark: extractedValue[.remark] ?? "",
+                            image: image)
         
     }
     

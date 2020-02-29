@@ -12,7 +12,7 @@ class DetailFormViewController: UIViewController {
     var list: ViewModel?
     let mimimumBottomInset = Constants.UI.Spacing.Height.Medium * 0.75
     
-    init(config: DetailsConfigurator) {
+    init(config: DetailsConfiguration) {
         self.scrollView = UIScrollView()
         self.currentId = config.id
         self.list = config.viewModel

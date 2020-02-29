@@ -39,6 +39,7 @@
 "OrderNumber" = "订单号";
 "OpenedOn" = "下单日期";
 "Status" = "状态";
+"NewOrder" = "新订单";
 "All" = "全部";
 "Open" = "未完成";
 "Closed" = "已完成";

@@ -2,7 +2,7 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-class OrderDetailsConfigurator: DetailsConfigurator {
+class OrderDetailsConfigurator: DetailsConfiguration {
     let isClosed: Bool
     
     init(action: DetailsViewActionType,

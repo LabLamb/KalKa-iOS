@@ -8,9 +8,11 @@ import UIKit
 
 class OrderList: ViewModel {
     
+    var persistentContainer: NSPersistentContainer = CoreStack.shared.persistentContainer
+    var items: [NSManagedObject] = [Order]()
     var groupedItems: [String: [Order]] = [:]
     
-    override func fetch(completion: (() -> Void)? = nil) {
+    func fetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "number", ascending: false)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Order")
         fetchRequest.sortDescriptors = [sortDesc]
@@ -27,7 +29,7 @@ class OrderList: ViewModel {
         completion?()
     }
     
-    override func add(details: Any, completion: ((Bool) -> Void)) {
+    func add(details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? OrderDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -60,7 +62,7 @@ class OrderList: ViewModel {
         })
     }
     
-    override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Order")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -71,7 +73,7 @@ class OrderList: ViewModel {
         
     }
     
-    override func getDetails(id: String) -> Any? {
+    func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) as? [Order] else { return nil}
         guard let order = result.first else { return nil }
@@ -95,7 +97,7 @@ class OrderList: ViewModel {
         )
     }
     
-    override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? OrderDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -141,7 +143,7 @@ class OrderList: ViewModel {
         try? context.save()
     }
     
-    override func exists(id: String, completion: ((Bool) -> Void)) {
+    func exists(id: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) else { return }
         completion(result.count > 0)

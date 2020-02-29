@@ -7,9 +7,26 @@ import SnapKit
 class CustomerDescCard: CustomView {
     
     let icon: UIImageView
-    let nameLabel: UILabel
-    let phoneLabel: UILabel
-    let addressLabel: UILabel
+    
+    lazy var nameLabel: UILabel = {
+        let result = UILabel()
+        result.font = Constants.UI.Font.Plain.Medium
+        return result
+    }()
+    
+    lazy var phoneLabel: UILabel = {
+        let result = UILabel()
+        result.font = Constants.UI.Font.Plain.Small
+        result.textColor = .accent
+        return result
+    }()
+    
+    lazy var addressLabel: UILabel = {
+        let result = UILabel()
+        result.font = Constants.UI.Font.Plain.Small
+        result.textColor = .accent
+        return result
+    }()
     
     var delegate: DataPicker?
     
@@ -17,16 +34,9 @@ class CustomerDescCard: CustomView {
     
     override init() {
         self.icon = UIImageView()
-        self.nameLabel = UILabel()
-        self.phoneLabel = UILabel()
-        self.addressLabel = UILabel()
         self.placeholder = UILabel()
         
         super.init()
-        
-        self.nameLabel.font = Constants.UI.Font.Bold.Medium
-        self.phoneLabel.font = Constants.UI.Font.Plain.Medium
-        self.addressLabel.font = Constants.UI.Font.Plain.Medium
         
         self.placeholder.text = "+ \(String.addCustomer)"
         self.placeholder.font = Constants.UI.Font.Plain.ExLarge
@@ -51,32 +61,46 @@ class CustomerDescCard: CustomView {
             make.centerY.equalToSuperview()
         }
         
+        let remarkTextExists = self.addressLabel.text != ""
+
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.5)
+            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium * 0.75)
             make.width.equalTo(self.icon.snp.height)
         }
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            if remarkTextExists {
+                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            } else {
+                make.bottom.equalTo(self.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
+                
+            }
             make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
         self.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
+            if remarkTextExists {
+                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+            } else {
+                make.top.equalTo(self.snp.centerY).offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
+            }
             make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
-        self.addSubview(self.addressLabel)
-        self.addressLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+        if remarkTextExists {
+            self.addSubview(self.addressLabel)
+            self.addressLabel.snp.makeConstraints { make in
+                make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+                make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+                make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            }
         }
     }
     

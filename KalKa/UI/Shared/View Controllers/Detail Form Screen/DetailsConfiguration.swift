@@ -2,7 +2,7 @@
 //  Copyright © 2020 LabLambWorks. All rights reserved.
 //
 
-class DetailsConfigurator {
+class DetailsConfiguration {
     let action: DetailsViewActionType
     let id: String
     let viewModel: ViewModel?

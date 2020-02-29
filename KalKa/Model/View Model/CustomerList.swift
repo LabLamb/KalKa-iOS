@@ -8,7 +8,10 @@ import UIKit
 
 class CustomerList: ViewModel {
     
-    override func fetch(completion: (() -> Void)? = nil) {
+    var persistentContainer: NSPersistentContainer = CoreStack.shared.persistentContainer
+    var items: [NSManagedObject] = [Customer]()
+    
+    func fetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         fetchRequest.sortDescriptors = [sortDesc]
@@ -17,7 +20,7 @@ class CustomerList: ViewModel {
         completion?()
     }
     
-    override func add(details: Any, completion: ((Bool) -> Void)) {
+    func add(details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -46,7 +49,7 @@ class CustomerList: ViewModel {
         })
     }
     
-    override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -56,7 +59,7 @@ class CustomerList: ViewModel {
         }
     }
     
-    override func getDetails(id: String) -> Any? {
+    func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Customer] else { return nil}
         guard let customer = result.first else { return nil }
@@ -79,7 +82,7 @@ class CustomerList: ViewModel {
     }
     
     
-    override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -121,7 +124,7 @@ class CustomerList: ViewModel {
         try? context.save()
     }
     
-    override func exists(id: String, completion: ((Bool) -> Void)) {
+    func exists(id: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) else { return }
         completion(result.count > 0)

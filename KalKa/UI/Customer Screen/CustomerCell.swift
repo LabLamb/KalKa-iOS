@@ -51,6 +51,7 @@ class CustomerCell: CustomCell {
                 make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
             } else {
                 make.bottom.equalTo(self.paddingView.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
+                
             }
             make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
@@ -90,9 +91,9 @@ class CustomerCell: CustomCell {
     override func setupData(data: NSManagedObject) {
         guard let `data` = data as? Customer else { return }
         if let imageData = data.image {
-            self.iconImage.image = UIImage(data: imageData)?.resizeImage(newWidth: 60)
+            self.iconImage.image = UIImage(data: imageData)
         } else {
-            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault").resizeImage(newWidth: 60)
+            self.iconImage.image = #imageLiteral(resourceName: "AvatarDefault")
         }
         self.nameLabel.text = data.name == "" ? .absent : data.name
         self.phoneLabel.text = data.phone == "" ? .absent : data.phone

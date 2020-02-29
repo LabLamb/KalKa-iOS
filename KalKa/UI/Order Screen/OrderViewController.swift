@@ -44,7 +44,7 @@ class OrderViewController: SearchTableViewController {
     }
     
     override func filterListByString(_ searchText: String) {
-        let allOrders = self.list.items as! [Order]
+        guard let allOrders = self.list?.items as? [Order] else { return }
         if searchText != "" {
             self.fileredList = allOrders.filter({ order in
                 if self.searchBar.selectedScopeButtonIndex == 0 {
@@ -74,7 +74,7 @@ class OrderViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfigurator) {
+    override func navigateToDetailView(config: DetailsConfiguration) {
         let editVC = OrderDetailViewController(config: config)
         self.navigationController?.pushViewController(editVC, animated: true)
     }

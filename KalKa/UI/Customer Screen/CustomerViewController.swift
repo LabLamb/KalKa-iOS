@@ -37,18 +37,18 @@ class CustomerViewController: SearchTableViewController {
     }
     
     override func filterListByString(_ searchText: String) {
-        let allCustomers = self.list.items as! [Customer]
+        guard let allCustomers = self.list?.items as? [Customer] else { return }
         if searchText != "" {
             self.fileredList = allCustomers.filter({ customer in
                 return customer.name.lowercased().contains(searchText.lowercased()) || customer.phone.lowercased().contains(searchText.lowercased())
             })
         } else {
-            self.fileredList = self.list.items
+            self.fileredList = allCustomers
         }
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfigurator) {
+    override func navigateToDetailView(config: DetailsConfiguration) {
         let editVC = CustomerDetailViewController(config: config)
         self.navigationController?.pushViewController(editVC, animated: true)
     }

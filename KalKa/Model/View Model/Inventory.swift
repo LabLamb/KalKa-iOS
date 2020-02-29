@@ -8,7 +8,11 @@ import UIKit
 
 class Inventory: ViewModel {
     
-    public override func fetch(completion: (() -> Void)? = nil) {
+    var persistentContainer: NSPersistentContainer = CoreStack.shared.persistentContainer
+    
+    var items: [NSManagedObject] = [Merch]()
+    
+    func fetch(completion: (() -> Void)? = nil) {
         let sortDesc = NSSortDescriptor(key: "name", ascending: true)
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.sortDescriptors = [sortDesc]
@@ -17,7 +21,7 @@ class Inventory: ViewModel {
         completion?()
     }
     
-    public override func add(details: Any, completion: ((_ success: Bool) -> Void)) {
+    func add(details: Any, completion: ((_ success: Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -46,7 +50,7 @@ class Inventory: ViewModel {
         
     }
     
-    override func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -57,7 +61,7 @@ class Inventory: ViewModel {
         
     }
     
-    public override func getDetails(id: String) -> Any? {
+    func getDetails(id: String) -> Any? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Merch] else { return nil}
         guard let merch = result.first else { return nil }
@@ -72,7 +76,7 @@ class Inventory: ViewModel {
         return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    public override func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to edit.")
         }
@@ -99,7 +103,7 @@ class Inventory: ViewModel {
         completion(true)
     }
     
-    public override func exists(id: String, completion: ((Bool) -> Void)) {
+    func exists(id: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", id)
         if let result = self.query(clause: predicate) {
             completion(result.count > 0)

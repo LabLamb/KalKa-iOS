@@ -33,9 +33,9 @@ class InventoryViewController: SearchTableViewController {
     }
     
     override func filterListByString(_ searchText: String) {
-        let merchs = self.list.items as! [Merch]
+        guard let merchs = self.list?.items as? [Merch] else { return }
         if searchText == "" {
-            self.fileredList = self.list.items
+            self.fileredList = merchs
         } else {
             self.fileredList = merchs.filter({ merch in
                 return merch.name.lowercased().contains(searchText.lowercased()) || merch.remark.lowercased().contains(searchText.lowercased())
@@ -44,7 +44,7 @@ class InventoryViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfigurator) {
+    override func navigateToDetailView(config: DetailsConfiguration) {
         let editVC = MerchDetailViewController(config: config)
         self.navigationController?.pushViewController(editVC, animated: true)
     }

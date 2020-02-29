@@ -13,10 +13,3 @@ enum LinePosition {
     case left
     case right
 }
-
-enum OrderStatus: String, CaseIterable {
-    case open = "Open"
-    case paymentReceived = "PaymentReceived"
-    case delivered = "Delivered"
-    case close = "Closed"
-}

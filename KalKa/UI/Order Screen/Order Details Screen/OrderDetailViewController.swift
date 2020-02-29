@@ -9,16 +9,18 @@ class OrderDetailViewController: DetailFormViewController {
     // MARK: - Variables
     private let orderInfoFieldsSection: InputFieldsSection
     private let customerCard: CustomerDescCard
-    private let orderItemInfoFieldsSectino: InputFieldsSection
+    private let orderItemTableView: UITableView
     
     let actionType: DetailsViewActionType
     weak var orderList: OrderList?
     var currentCustomerId: String?
     
+    var orderItemDetailsArr: [OrderItemDetails] = []
+    
     let isClosed: Bool
     
     // MARK: - Initializion
-    override init(config: DetailsConfigurator) {
+    override init(config: DetailsConfiguration) {
         
         if let orderConfig = config as? OrderDetailsConfigurator {
             self.isClosed = orderConfig.isClosed
@@ -39,19 +41,22 @@ class OrderDetailViewController: DetailFormViewController {
         
         self.customerCard = CustomerDescCard()
         //        self.custInfoFieldsSection = InputFieldsSection(fields: [])
-        self.orderItemInfoFieldsSectino = InputFieldsSection(fields: [])
+        self.orderItemTableView = UITableView()
         
         self.actionType = config.action
         self.orderList = config.viewModel as? OrderList
         
         super.init(config: config)
+        
+        self.orderItemTableView.delegate = self
+        self.orderItemTableView.dataSource = self
+        
         guard let nextId = self.orderList?.getNextId() else {
             fatalError("Unable to retrieve next id.")
         }
         
         if self.actionType == .add {
             orderNumberField.value = "#\(nextId)"
-            //            orderNumberField.value = "✔️"
         } else {
             orderNumberField.value = "#\(self.currentId)"
         }
@@ -151,7 +156,7 @@ class OrderDetailViewController: DetailFormViewController {
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
-
+        
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
             make.top.equalTo(self.customerCard.snp.bottom)
@@ -162,21 +167,21 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderInfoFieldsSection.backgroundColor = .primary
         self.orderInfoFieldsSection.clipsToBounds = true
         
-        self.scrollView.addSubview(self.orderItemInfoFieldsSectino)
-        self.orderItemInfoFieldsSectino.snp.makeConstraints { make in
+        self.scrollView.addSubview(self.orderItemTableView)
+        self.orderItemTableView.snp.makeConstraints { make in
             make.top.equalTo(self.orderInfoFieldsSection.snp.bottom)
                 .offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
         }
-        self.orderItemInfoFieldsSectino.backgroundColor = .primary
-        self.orderItemInfoFieldsSectino.clipsToBounds = true
+        self.orderItemTableView.backgroundColor = .primary
+        self.orderItemTableView.clipsToBounds = true
         
         DispatchQueue.main.async {
             self.customerCard.layer.cornerRadius = self.customerCard.frame.width / 24
             self.orderInfoFieldsSection.layer.cornerRadius = self.orderInfoFieldsSection.frame.width / 24
-            self.orderItemInfoFieldsSectino.layer.cornerRadius = self.orderItemInfoFieldsSectino.frame.width / 24
+            self.orderItemTableView.layer.cornerRadius = self.orderItemTableView.frame.width / 24
         }
         
         if self.actionType == .edit {
@@ -216,7 +221,7 @@ class OrderDetailViewController: DetailFormViewController {
         let extractedItems = [OrderItem]()
         let extractedCustomer = Customer()
         
-        return (
+        return OrderDetails(
             number: extractedValues[.orderNumber] ?? "",
             remark: extractedValues[.remark] ?? "",
             openedOn: extractedValues[.openedOn]?.toDate(format: Constants.System.DateFormat) ?? Date(),
@@ -255,5 +260,25 @@ extension OrderDetailViewController: DataPicker {
             self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(merchPicker, animated: true)
+    }
+}
+
+extension OrderDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.orderItemDetailsArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.orderItemTableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath) as! OrderItemCell
+        let data = self.orderItemDetailsArr[indexPath.row]
+        
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.UI.Sizing.Height.Small
     }
 }

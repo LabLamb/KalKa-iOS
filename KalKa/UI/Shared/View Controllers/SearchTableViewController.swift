@@ -8,7 +8,7 @@ import CoreData
 class SearchTableViewController: UIViewController {
     
     // MARK: - Variables
-    var list: ViewModel
+    var list: ViewModel?
     var fileredList: [NSManagedObject]
     let searchBar: UISearchBar
     let tableView: UITableView
@@ -18,7 +18,6 @@ class SearchTableViewController: UIViewController {
     
     // MARK: - Initializion
     init(onSelectRow: ((String) -> Void)? = nil) {
-        self.list = ViewModel()
         self.fileredList = [NSManagedObject]()
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
@@ -64,7 +63,7 @@ class SearchTableViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         DispatchQueue.main.async {
-            self.list.fetch(completion: { [weak self] in
+            self.list?.fetch(completion: { [weak self] in
                 guard let `self` = self  else { return }
                 if let txt = self.searchBar.text, txt != "" {
                     self.filterListByString(txt)
@@ -104,11 +103,11 @@ class SearchTableViewController: UIViewController {
     }
     
     @objc private func navToAddDetailView() {
-        let config = DetailsConfigurator(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
+        let config = DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
         self.navigateToDetailView(config: config)
     }
     
-    internal func navigateToDetailView(config: DetailsConfigurator) {
+    internal func navigateToDetailView(config: DetailsConfiguration) {
         let editVC = DetailFormViewController(config: config)
         self.navigationController?.pushViewController(editVC, animated: true)
     }
@@ -165,7 +164,7 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
         if let delegate = self.onSelectRowDelegate {
             delegate(id)
         } else {
-            let detailConfig = DetailsConfigurator(action: .edit, id: id, viewModel: self.list, onSelectRow: nil)
+            let detailConfig = DetailsConfiguration(action: .edit, id: id, viewModel: self.list, onSelectRow: nil)
             self.navigateToDetailView(config: detailConfig)
         }
     }
@@ -174,7 +173,7 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
 // MARK: - Refreshable
 extension SearchTableViewController: Refreshable {
     func refresh() {
-        self.list.fetch(completion: {
+        self.list?.fetch(completion: {
             self.filterListByString(self.searchBar.text ?? "")
         })
     }

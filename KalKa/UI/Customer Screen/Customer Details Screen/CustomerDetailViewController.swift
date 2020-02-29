@@ -14,7 +14,7 @@ class CustomerDetailViewController: DetailFormViewController {
     var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
-    override init(config: DetailsConfigurator) {
+    override init(config: DetailsConfiguration) {
         let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
         
         
@@ -162,14 +162,14 @@ class CustomerDetailViewController: DetailFormViewController {
             }
         }()
         
-        return (image: image,
-                name: extractedValues[.name] ?? "",
-                phone: extractedValues[.phone] ?? "",
-                address: extractedValues[.address] ?? "",
-                remark: extractedValues[.remark] ?? "",
-                lastContacted: extractedValues[.lastContacted]?
-                    .toDate(format: Constants.System.DateFormat) ?? Date(),
-                orders: nil)
+        return CustomerDetails(image: image,
+                               address: extractedValues[.name] ?? "",
+                               lastContacted: extractedValues[.lastContacted]?
+                               .toDate(format: Constants.System.DateFormat) ?? Date(),
+                               name: extractedValues[.address] ?? "",
+                               phone: extractedValues[.phone] ?? "",
+                               orders: nil,
+                               remark: extractedValues[.remark] ?? "")
         
     }
     
