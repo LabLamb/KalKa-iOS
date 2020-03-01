@@ -71,7 +71,7 @@ class CustomerList: ViewModel {
             }
         }()
         
-        return (image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
+        return CustomerDetails(image: customerImage, address: customer.address, lastContacted: customer.lastContacted, name: customer.name, phone: customer.phone, orders: customer.orders, remark: customer.remark)
     }
     
     func getCustomer(id: String) -> Customer? {

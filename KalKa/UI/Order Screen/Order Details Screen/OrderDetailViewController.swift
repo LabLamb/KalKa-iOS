@@ -9,13 +9,17 @@ class OrderDetailViewController: DetailFormViewController {
     // MARK: - Variables
     private let orderInfoFieldsSection: InputFieldsSection
     private let customerCard: CustomerDescCard
-    private let orderItemTableView: UITableView
+    private let orderItemTableView: OrderDetailsStackView
     
     let actionType: DetailsViewActionType
     weak var orderList: OrderList?
     var currentCustomerId: String?
     
-    var orderItemDetailsArr: [OrderItemDetails] = []
+    var orderItemDetailsArr: [OrderItemDetails] = [
+        OrderItemDetails(name: "test", qty: 1, price: 1)
+    ]
+    
+    let betweenCellPadding = Constants.UI.Spacing.Height.Medium * 0.75
     
     let isClosed: Bool
     
@@ -33,23 +37,28 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderInfoFieldsSection = InputFieldsSection(fields: [
             orderNumberField,
             TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
-            TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
+            TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
         ])
         
         self.customerCard = CustomerDescCard()
         //        self.custInfoFieldsSection = InputFieldsSection(fields: [])
-        self.orderItemTableView = UITableView()
+        self.orderItemTableView = OrderDetailsStackView(fields: [
+            OrderItemView(),
+            OrderItemView(),
+            OrderItemView(),
+            OrderItemView(),
+            OrderItemView(),
+            OrderItemView(),
+            OrderItemView()
+        ])
         
         self.actionType = config.action
         self.orderList = config.viewModel as? OrderList
         
         super.init(config: config)
-        
-        self.orderItemTableView.delegate = self
-        self.orderItemTableView.dataSource = self
         
         guard let nextId = self.orderList?.getNextId() else {
             fatalError("Unable to retrieve next id.")
@@ -110,6 +119,7 @@ class OrderDetailViewController: DetailFormViewController {
             self.customerCard.nameLabel.text = customer.name
             self.customerCard.addressLabel.text = customer.address
             self.customerCard.phoneLabel.text = customer.phone
+            self.customerCard.icon.backgroundColor = .accent
             
             let customerImage: UIImage? = {
                 if let imgData = customer.image {
@@ -159,8 +169,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
-            make.top.equalTo(self.customerCard.snp.bottom)
-                .offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.top.equalTo(self.customerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
@@ -169,8 +178,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         self.scrollView.addSubview(self.orderItemTableView)
         self.orderItemTableView.snp.makeConstraints { make in
-            make.top.equalTo(self.orderInfoFieldsSection.snp.bottom)
-                .offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.top.equalTo(self.orderInfoFieldsSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
@@ -216,9 +224,8 @@ class OrderDetailViewController: DetailFormViewController {
     }
     
     private func makeOrderDetails() -> OrderDetails {
-        let extractedValues = self.orderInfoFieldsSection.extractValues(valMapping: [])
+        let extractedValues = self.orderInfoFieldsSection.extractValues(mappingKeys: [])
         
-        let extractedItems = [OrderItem]()
         let extractedCustomer = Customer()
         
         return OrderDetails(
@@ -230,7 +237,7 @@ class OrderDetailViewController: DetailFormViewController {
             isDeposit: false,
             isClosed: false,
             customerName: extractedCustomer.name,
-            items: extractedItems
+            items: self.orderItemDetailsArr
         )
     }
     
@@ -260,25 +267,5 @@ extension OrderDetailViewController: DataPicker {
             self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(merchPicker, animated: true)
-    }
-}
-
-extension OrderDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.orderItemDetailsArr.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.orderItemTableView.dequeueReusableCell(withIdentifier: "OrderItemCell", for: indexPath) as! OrderItemCell
-        let data = self.orderItemDetailsArr[indexPath.row]
-        
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.UI.Sizing.Height.Small
     }
 }

@@ -73,7 +73,7 @@ class Inventory: ViewModel {
             }
         }()
         
-        return (name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
+        return MerchDetails(name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
     func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {

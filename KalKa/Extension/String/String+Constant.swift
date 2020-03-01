@@ -40,4 +40,6 @@ extension String {
     static let paid = NSLocalizedString("Paid", comment: "")
     static let shipped = NSLocalizedString("Shipped", comment: "")
     static let addCustomer = NSLocalizedString("AddCustomer", comment: "")
+    static let membership = NSLocalizedString("Membership", comment: "")
+    static let addOrderItem = NSLocalizedString("AddItem", comment: "")
 }

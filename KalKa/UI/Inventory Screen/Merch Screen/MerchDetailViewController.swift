@@ -145,7 +145,7 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     private func makeMerchDetails() -> MerchDetails {
-        let extractedValue = self.inputFieldsSection.extractValues(valMapping: [
+        let extractedValue = self.inputFieldsSection.extractValues(mappingKeys: [
             .name,
             .price,
             .quantity,

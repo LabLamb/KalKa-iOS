@@ -1,5 +1,5 @@
 # KalKa
-An iOS that helps internet store / small buinesses to manage their sales, customer, stock and performance.
+An iOS that helps internet stores / small buinesses to manage their sales, customer, stock and performance.
 
 # Prerequisite
 - [Cocoapods](https://guides.cocoapods.org/using/getting-started.html)

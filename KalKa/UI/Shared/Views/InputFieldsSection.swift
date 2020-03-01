@@ -70,7 +70,7 @@ class InputFieldsSection: CustomView {
         })
     }
     
-    public func extractValues(valMapping: [String]) -> [String: String] {
+    public func extractValues(mappingKeys: [String]) -> [String: String] {
         var result: [String: String] = [:]
         self.extractFieldsViews().forEach({ field in
             if let desc = field.desc as? String {

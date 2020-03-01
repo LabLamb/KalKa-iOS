@@ -13,5 +13,5 @@ struct OrderDetails {
     let isDeposit: Bool
     let isClosed: Bool
     let customerName: String
-    var items: [OrderItem]?
+    var items: [OrderItemDetails]?
 }

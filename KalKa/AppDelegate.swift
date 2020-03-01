@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cusVC = UINavigationController(rootViewController: CustomerViewController())
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
-        let staVC = UINavigationController(rootViewController: UIViewController())
-        staVC.tabBarItem = UITabBarItem(title: .stats, image: #imageLiteral(resourceName: "Statistics"), tag: 3)
-        staVC.tabBarItem.isEnabled = false
+        let memVC = UINavigationController(rootViewController: UIViewController())
+        memVC.tabBarItem = UITabBarItem(title: .membership, image: UIImage(named: "Membership"), tag: 3)
+        memVC.tabBarItem.isEnabled = false
         
         let setVC = UINavigationController(rootViewController: UIViewController())
         setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return result
         }()
         
-        tabController.viewControllers = [cusVC, invVC, ordVC, staVC, setVC]
+        tabController.viewControllers = [cusVC, invVC, ordVC, memVC, setVC]
         tabController.selectedIndex = 2
         
         self.window?.rootViewController = tabController

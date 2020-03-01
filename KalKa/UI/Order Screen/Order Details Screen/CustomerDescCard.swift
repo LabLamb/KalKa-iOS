@@ -30,18 +30,18 @@ class CustomerDescCard: CustomView {
     
     var delegate: DataPicker?
     
-    let placeholder: UILabel
+    let placeholder: IconWithTextLabel
     
     override init() {
         self.icon = UIImageView()
-        self.placeholder = UILabel()
+        self.placeholder = IconWithTextLabel(icon: UIImage(named: "Add")!, spacing: -Constants.UI.Spacing.Width.Medium)
         
         super.init()
         
-        self.placeholder.text = "+ \(String.addCustomer)"
-        self.placeholder.font = Constants.UI.Font.Plain.ExLarge
+        self.placeholder.value = .addCustomer
+        (self.placeholder.valueView as? UILabel)?.font = Constants.UI.Font.Plain.ExLarge
         
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.callPickCustomer))
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.pickCustomer))
         self.addGestureRecognizer(tapGest)
         self.isUserInteractionEnabled = true
     }
@@ -50,7 +50,7 @@ class CustomerDescCard: CustomView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func callPickCustomer() {
+    @objc private func pickCustomer() {
         self.delegate?.pickCustomer()
     }
     

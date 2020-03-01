@@ -145,7 +145,7 @@ class CustomerDetailViewController: DetailFormViewController {
     }
     
     private func makeCustomerDetails() -> CustomerDetails {
-        let extractedValues = self.inputFieldsSection.extractValues(valMapping: [
+        let extractedValues = self.inputFieldsSection.extractValues(mappingKeys: [
             .name,
             .phone,
             .address,
@@ -163,10 +163,9 @@ class CustomerDetailViewController: DetailFormViewController {
         }()
         
         return CustomerDetails(image: image,
-                               address: extractedValues[.name] ?? "",
-                               lastContacted: extractedValues[.lastContacted]?
-                               .toDate(format: Constants.System.DateFormat) ?? Date(),
-                               name: extractedValues[.address] ?? "",
+                               address: extractedValues[.address] ?? "",
+                               lastContacted: extractedValues[.lastContacted]?.toDate(format: Constants.System.DateFormat) ?? Date(),
+                               name: extractedValues[.name] ?? "",
                                phone: extractedValues[.phone] ?? "",
                                orders: nil,
                                remark: extractedValues[.remark] ?? "")

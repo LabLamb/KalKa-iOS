@@ -161,10 +161,7 @@ class OrderCell: CustomCell {
         if data.isClosed {
             self.orderNumLabel.icon.image = #imageLiteral(resourceName: "isClosed")
             let orderItems = data.items
-            let allProfits: [Double] = orderItems?.compactMap({
-                return $0.price * Double($0.qty)
-            }) ?? []
-            let totalProfit = allProfits.reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
+            let totalProfit = orderItems?.compactMap({ $0.price * Double($0.qty) }).reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
             self.profitLabel.text = "$\(totalProfit)"
             self.profitLabel.isHidden = false
             self.isShippedIcon.isHidden = true

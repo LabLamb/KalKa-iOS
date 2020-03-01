@@ -47,7 +47,9 @@ class OrderList: ViewModel {
                     let newOrder = Order(entity: entity, insertInto: context)
                     newOrder.number = num
                     newOrder.openedOn = details.openedOn
-                    newOrder.items = details.items
+                    
+//                    newOrder.items = details.items
+                    
                     newOrder.customer = customer as! Customer
                     newOrder.isClosed = details.isClosed
                     try? context.save()
@@ -77,23 +79,22 @@ class OrderList: ViewModel {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) as? [Order] else { return nil}
         guard let order = result.first else { return nil }
-        //        let OrderImage: UIImage? = {
-        //            if let imgData = Order.image {
-        //                return UIImage(data: imgData)
-        //            } else {
-        //                return nil
-        //            }
-        //        }()
+        guard let issueDate = order.openedOn else { return nil }
         
-        return (
-            number: order.number,
-            openedOn: order.openedOn,
+        let orderitemDetails = order.items?.compactMap({ orderItem in
+            return OrderItemDetails(name: orderItem.name, qty: orderItem.qty, price: orderItem.price)
+        })
+        
+        return OrderDetails(
+            number: String(order.number),
+            remark: order.remark,
+            openedOn: issueDate,
             isShipped: order.isShipped,
             isPaid: order.isPaid,
             isDeposit: order.isDeposit,
             isClosed: order.isClosed,
             customerName: order.customer.name,
-            items: order.items
+            items: orderitemDetails
         )
     }
     
@@ -130,7 +131,7 @@ class OrderList: ViewModel {
         }
         
         guard let num = Int64(details.number) else {
-            fatalError("Id unable to be cast as Integer.")
+            fatalError("ID unable to be cast as Integer.")
         }
         
         editingOrder.number = num

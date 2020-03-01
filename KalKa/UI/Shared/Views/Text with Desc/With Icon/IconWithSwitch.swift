@@ -70,7 +70,7 @@ class IconWithSwitch: DescWithValue {
         self.addSubview(self.descView)
         self.descView.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
+            make.width.equalTo(self.descView.snp.height)
         })
         
         self.descView.addSubview(self.iconImage)

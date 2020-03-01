@@ -71,7 +71,7 @@ class TitleWithSwitch: DescWithValue {
         self.addSubview(self.descView)
         self.descView.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 1.25)
         })
         
         self.addSubview(self.valueView)

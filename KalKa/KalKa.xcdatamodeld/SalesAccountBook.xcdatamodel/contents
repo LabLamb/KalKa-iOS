@@ -8,6 +8,7 @@
         <attribute name="phone" attributeType="String"/>
         <attribute name="remark" attributeType="String" defaultValueString=""/>
         <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="customer" inverseEntity="Order"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="customers" inverseEntity="Store"/>
     </entity>
     <entity name="Merch" representedClassName="Merch" syncable="YES">
         <attribute name="image" optional="YES" attributeType="Binary"/>
@@ -15,6 +16,7 @@
         <attribute name="price" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remark" attributeType="String" defaultValueString=""/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="merchs" inverseEntity="Store"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
         <attribute name="isClosed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -26,6 +28,7 @@
         <attribute name="remark" optional="YES" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="orders" inverseEntity="Customer"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="orders" inverseEntity="Store"/>
     </entity>
     <entity name="OrderItem" representedClassName="OrderItem" syncable="YES">
         <attribute name="name" attributeType="String"/>
@@ -33,10 +36,17 @@
         <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
     </entity>
+    <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
+        <attribute name="storeName" optional="YES" attributeType="String"/>
+        <relationship name="customers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Customer" inverseName="store" inverseEntity="Customer"/>
+        <relationship name="merchs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Merch" inverseName="store" inverseEntity="Merch"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="store" inverseEntity="Order"/>
+    </entity>
     <elements>
-        <element name="Customer" positionX="-63" positionY="18" width="128" height="148"/>
-        <element name="Merch" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Order" positionX="-63" positionY="27" width="128" height="178"/>
+        <element name="Customer" positionX="-63" positionY="18" width="128" height="163"/>
+        <element name="Merch" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Order" positionX="-63" positionY="27" width="128" height="193"/>
         <element name="OrderItem" positionX="-54" positionY="54" width="128" height="103"/>
+        <element name="Store" positionX="-54" positionY="81" width="128" height="103"/>
     </elements>
 </model>

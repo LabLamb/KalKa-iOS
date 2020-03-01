@@ -28,7 +28,7 @@ class TitleWithTextField: DescWithValue {
     
     override var intrinsicContentSize: CGSize {
         get {
-            return CGSize(width: 0, height: Constants.UI.Sizing.Height.TextFieldDefault)
+            return CGSize(width: 100, height: Constants.UI.Sizing.Height.TextFieldDefault)
         }
     }
     
@@ -64,7 +64,7 @@ class TitleWithTextField: DescWithValue {
         self.addSubview(self.descView)
         self.descView.snp.makeConstraints({ make in
             make.top.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(3)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 1.25)
         })
         
         self.addSubview(self.valueView)
