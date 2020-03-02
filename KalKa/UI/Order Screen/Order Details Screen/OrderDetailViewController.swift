@@ -37,22 +37,18 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderInfoFieldsSection = InputFieldsSection(fields: [
             orderNumberField,
             TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
-            TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
-            TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
-            TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
+            OrderDetailsStatusIcons(),
+//            TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
+//            TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
+//            TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
         ])
         
         self.customerCard = CustomerDescCard()
-        //        self.custInfoFieldsSection = InputFieldsSection(fields: [])
+        
+        let orderItemAddBtn = OrderItemAddBtn()
         self.orderItemTableView = OrderDetailsStackView(fields: [
-            OrderItemView(),
-            OrderItemView(),
-            OrderItemView(),
-            OrderItemView(),
-            OrderItemView(),
-            OrderItemView(),
-            OrderItemView()
+            orderItemAddBtn
         ])
         
         self.actionType = config.action
@@ -72,6 +68,7 @@ class OrderDetailViewController: DetailFormViewController {
         orderNumberField.valueView.alpha = 0.5
         
         self.customerCard.delegate = self
+        orderItemAddBtn.delegate = self
         
         self.itemExistsErrorMsg = NSLocalizedString("ErrorOrderExists", comment: "Error Message - Order exists with the same name.")
     }
@@ -130,6 +127,17 @@ class OrderDetailViewController: DetailFormViewController {
             }()
             
             self.customerCard.icon.image = customerImage ?? #imageLiteral(resourceName: "AvatarDefault")
+        }
+    }
+    
+    private func appendOrderItem(id: String) {
+        let inventory = Inventory()
+        
+        if let orderItem = inventory.getDetails(id: id) as? MerchDetails {
+            let orderItemView = OrderItemView()
+            orderItemView.nameLabel.text = orderItem.name
+            orderItemView.priceField.text = String(orderItem.price)
+            self.orderItemTableView.appendView(view: orderItemView)
         }
     }
     
@@ -263,7 +271,7 @@ extension OrderDetailViewController: DataPicker {
     
     func pickOrderItem() {
         let merchPicker = InventoryViewController(onSelectRow: { merchName in
-            // Insert merchName to this VC
+            self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
         })
         self.navigationController?.pushViewController(merchPicker, animated: true)

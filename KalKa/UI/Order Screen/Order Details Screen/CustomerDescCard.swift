@@ -30,15 +30,20 @@ class CustomerDescCard: CustomView {
     
     var delegate: DataPicker?
     
-    let placeholder: IconWithTextLabel
+    let placeholder: IconWithTextLabel = {
+        let result = IconWithTextLabel(icon: UIImage(named: "Plus")!, spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
+        (result.valueView as? UILabel)?.font = UITextField().font
+        (result.valueView as? UILabel)?.textColor = .buttonIcon
+        result.iconImage.tintColor = .buttonIcon
+        return result
+    }()
     
     override init() {
         self.icon = UIImageView()
-        self.placeholder = IconWithTextLabel(icon: UIImage(named: "Add")!, spacing: -Constants.UI.Spacing.Width.Medium)
         
         super.init()
         
-        self.placeholder.value = .addCustomer
+        self.placeholder.value = .customers
         (self.placeholder.valueView as? UILabel)?.font = Constants.UI.Font.Plain.ExLarge
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.pickCustomer))

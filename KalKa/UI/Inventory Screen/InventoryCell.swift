@@ -108,7 +108,7 @@ class InventoryCell: CustomCell {
         }
         self.nameLabel.text = data.name
         self.remarkLabel.text = data.remark
-        self.priceLabel.text = "$\(data.price.toLocalCurrency(fractDigits: 1) ?? "")"
+        self.priceLabel.text = "$\(data.price.toLocalCurrency(fractDigits: 2) ?? "")"
         self.qtyLabel.text = data.qty.toLocalCurrency() ?? ""
     }
     

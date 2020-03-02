@@ -9,7 +9,7 @@ class OrderItemView: CustomView {
     lazy var nameLabel: UILabel = {
         let result = UILabel()
         result.font = UITextField().font
-        result.text = "波波醬波波醬波波醬"
+        result.text = "波波醬"
         return result
     }()
     
@@ -17,7 +17,6 @@ class OrderItemView: CustomView {
         let result = UILabel()
         result.font = UITextField().font
         result.text = "$"
-        result.addLine(position: .bottom, color: .background, weight: 1)
         result.textAlignment = .center
         return result
     }()
@@ -42,7 +41,6 @@ class OrderItemView: CustomView {
         let result = UITextField()
         result.delegate = self
         result.text = "1"
-        result.addLine(position: .bottom, color: .background, weight: 1)
         result.keyboardType = .decimalPad
         result.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         result.textAlignment = .right
@@ -53,7 +51,6 @@ class OrderItemView: CustomView {
         let result = UITextField()
         result.delegate = self
         result.text = "1"
-        result.addLine(position: .bottom, color: .background, weight: 1)
         result.keyboardType = .numberPad
         result.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         result.textAlignment = .right
@@ -109,6 +106,7 @@ class OrderItemView: CustomView {
             make.right.equalTo(self.priceField.snp.left)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
+            make.width.equalTo(self.dollarSignOne.snp.height)
         }
         
         self.addSubview(self.nameLabel)
@@ -117,7 +115,6 @@ class OrderItemView: CustomView {
             make.right.equalTo(self.dollarSignOne.snp.left).offset(-Constants.UI.Spacing.Width.Small)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-//            make.width.equalTo(Constants.UI.Sizing.Width.Medium)
         }
         
         self.addSubview(self.dollarSignTwo)
@@ -141,7 +138,7 @@ class OrderItemView: CustomView {
 extension OrderItemView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textField.text?.count ?? 0 < 6 || string == ""
+        return textField.text?.count ?? 0 < 7 || string == ""
     }
     
     @objc func textFieldDidChange() {

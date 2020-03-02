@@ -14,6 +14,7 @@
 		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
 		D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B9123F44C54008DFDB1 /* UIView+Border.swift */; };
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
+		D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */; };
 		D21850F3240BB4C400B3D37F /* OrderDetailsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21850F2240BB4C400B3D37F /* OrderDetailsStackView.swift */; };
 		D21850F5240BBDEB00B3D37F /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21850F4240BBDEB00B3D37F /* OrderItemView.swift */; };
 		D223CD1723F57F2B003A8EF6 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D223CD1623F57F2B003A8EF6 /* String+Date.swift */; };
@@ -43,6 +44,8 @@
 		D2727B9524041766004CBB7E /* OrderDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B9424041766004CBB7E /* OrderDetailsConfigurator.swift */; };
 		D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A224003A4F0049D780 /* OrderViewController.swift */; };
 		D28E57A624003B580049D780 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A524003B580049D780 /* OrderCell.swift */; };
+		D297919E240BE331007BD3E5 /* OrderItemAddBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D297919D240BE331007BD3E5 /* OrderItemAddBtn.swift */; };
+		D29791A0240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D297919F240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift */; };
 		D2A2F03F240A2DD600272FC0 /* MerchDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A2F03E240A2DD600272FC0 /* MerchDetails.swift */; };
 		D2A2F041240A2E1500272FC0 /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A2F040240A2E1500272FC0 /* CustomerDetails.swift */; };
 		D2A2F043240A2E4000272FC0 /* OrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A2F042240A2E4000272FC0 /* OrderDetails.swift */; };
@@ -117,6 +120,7 @@
 		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D2044B9123F44C54008DFDB1 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
+		D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsStatusIcons.swift; sourceTree = "<group>"; };
 		D21850F2240BB4C400B3D37F /* OrderDetailsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsStackView.swift; sourceTree = "<group>"; };
 		D21850F4240BBDEB00B3D37F /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
 		D223CD1623F57F2B003A8EF6 /* String+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 		D2727B9424041766004CBB7E /* OrderDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsConfigurator.swift; sourceTree = "<group>"; };
 		D28E57A224003A4F0049D780 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D28E57A524003B580049D780 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		D297919D240BE331007BD3E5 /* OrderItemAddBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemAddBtn.swift; sourceTree = "<group>"; };
+		D297919F240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelUnder.swift; sourceTree = "<group>"; };
 		D2A2F03E240A2DD600272FC0 /* MerchDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetails.swift; sourceTree = "<group>"; };
 		D2A2F040240A2E1500272FC0 /* CustomerDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetails.swift; sourceTree = "<group>"; };
 		D2A2F042240A2E4000272FC0 /* OrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetails.swift; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 				D23A385123F5100E00488DFD /* InputFieldsSection.swift */,
 				D2D3F70F23F40CE90034D83F /* IconView.swift */,
 				D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */,
+				D297919F240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift */,
 				D2727B9124040754004CBB7E /* Custom Base Class */,
 				D2E8AE1923F807AC000A6A7C /* Text with Desc */,
 			);
@@ -520,6 +527,8 @@
 				D2727B9424041766004CBB7E /* OrderDetailsConfigurator.swift */,
 				D21850F2240BB4C400B3D37F /* OrderDetailsStackView.swift */,
 				D21850F4240BBDEB00B3D37F /* OrderItemView.swift */,
+				D297919D240BE331007BD3E5 /* OrderItemAddBtn.swift */,
+				D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */,
 			);
 			path = "Order Details Screen";
 			sourceTree = "<group>";
@@ -821,6 +830,8 @@
 				D2727B9524041766004CBB7E /* OrderDetailsConfigurator.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
 				D2A2F045240A2E6600272FC0 /* OrderItemDetails.swift in Sources */,
+				D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */,
+				D297919E240BE331007BD3E5 /* OrderItemAddBtn.swift in Sources */,
 				D26BF52A23F281C100EDB259 /* Merch+CoreDataProperties.swift in Sources */,
 				D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */,
 				D2A6A76323FAB06E007E144A /* Number+Format.swift in Sources */,
@@ -848,6 +859,7 @@
 				D223CD1B23F5A5E7003A8EF6 /* TitleWithTextView.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 				D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */,
+				D29791A0240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift in Sources */,
 				D2A2F03F240A2DD600272FC0 /* MerchDetails.swift in Sources */,
 				D21850F5240BBDEB00B3D37F /* OrderItemView.swift in Sources */,
 				D2E06E18240529ED00E4123E /* TitleWithSwitch.swift in Sources */,

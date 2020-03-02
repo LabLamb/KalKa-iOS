@@ -40,7 +40,11 @@ extension UIToolbar {
         let result = UIToolbar()
         result.sizeToFit()
 
-        let plusOrMinus = UIBarButtonItem(title: "+/-", style: UIBarButtonItem.Style.plain, target: target, action: plusOrMinusAction)
+        
+        
+        let plusOrMinus = UIBarButtonItem(image: UIImage(named: "PlusMinus"), style: .plain, target: target, action: plusOrMinusAction)
+        
+//        let plusOrMinus = UIBarButtonItem(title: "+/-", style: UIBarButtonItem.Style.plain, target: target, action: plusOrMinusAction)
         plusOrMinus.tintColor = .buttonIcon
 
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)

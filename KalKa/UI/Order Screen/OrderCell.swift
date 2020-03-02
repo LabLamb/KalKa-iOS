@@ -169,17 +169,17 @@ class OrderCell: CustomCell {
             self.isDepositIcon.isHidden = true
         } else {
             if data.isShipped {
-                self.isShippedIcon.tintColor = .green
+                self.isShippedIcon.tintColor = .buttonIcon
                 self.isShippedIcon.alpha = 1
             }
             
             if data.isPaid {
-                self.isPaidIcon.tintColor = .green
+                self.isPaidIcon.tintColor = .buttonIcon
                 self.isPaidIcon.alpha = 1
             }
             
             if data.isDeposit {
-                self.isDepositIcon.tintColor = .green
+                self.isDepositIcon.tintColor = .buttonIcon
                 self.isDepositIcon.alpha = 1
             }
         }

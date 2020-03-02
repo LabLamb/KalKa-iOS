@@ -7,7 +7,7 @@ import SnapKit
 class InputFieldsSection: CustomView {
     
     let stackView: UIStackView
-    private let separatorColor: UIColor = .background
+    let separatorColor: UIColor = .background
     
     init(fields: [CustomView]) {
         let sv = UIStackView()
@@ -34,10 +34,15 @@ class InputFieldsSection: CustomView {
         
         self.stackView.arrangedSubviews.forEach { view in
             view.snp.makeConstraints { make in
-                if type(of: view) == IconView.self {
+                
+                switch view {
+                case is IconView:
                     make.width.equalToSuperview()
                     make.height.equalTo(Constants.UI.Sizing.Height.Medium)
-                } else {
+                case is OrderDetailsStatusIcons:
+                    make.width.equalToSuperview().multipliedBy(0.95)
+                    make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault * 2)
+                default:
                     make.width.equalToSuperview().multipliedBy(0.95)
                 }
                 view.backgroundColor = .primary
