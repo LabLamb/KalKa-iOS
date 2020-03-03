@@ -20,6 +20,7 @@ extension Order {
     @NSManaged public var remark: String
     @NSManaged public var openedOn: Date?
     @NSManaged public var isShipped: Bool
+    @NSManaged public var isPreped: Bool
     @NSManaged public var isPaid: Bool
     @NSManaged public var isDeposit: Bool
     @NSManaged public var isClosed: Bool

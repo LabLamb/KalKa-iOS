@@ -8,13 +8,14 @@ class InventoryViewController: SearchTableViewController {
     
     private var filteredMerchs: [Merch] {
         get {
-            return self.fileredList as! [Merch]
+            return self.filteredList as! [Merch]
         }
     }
     
     // MARK: - Initializion
-    override init(onSelectRow: ((String) -> Void)? = nil) {
-        super.init(onSelectRow: onSelectRow)
+    override init(onSelectRow: ((String) -> Void)? = nil,
+                  preFilterIds: [String]? = nil) {
+        super.init(onSelectRow: onSelectRow, preFilterIds: preFilterIds)
         
         self.cellIdentifier = "InventoryCell"
         self.tableView.register(InventoryCell.self, forCellReuseIdentifier: self.cellIdentifier)
@@ -35,9 +36,9 @@ class InventoryViewController: SearchTableViewController {
     override func filterListByString(_ searchText: String) {
         guard let merchs = self.list?.items as? [Merch] else { return }
         if searchText == "" {
-            self.fileredList = merchs
+            self.filteredList = merchs
         } else {
-            self.fileredList = merchs.filter({ merch in
+            self.filteredList = merchs.filter({ merch in
                 return merch.name.lowercased().contains(searchText.lowercased()) || merch.remark.lowercased().contains(searchText.lowercased())
             })
         }

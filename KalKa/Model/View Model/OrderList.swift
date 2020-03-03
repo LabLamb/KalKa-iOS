@@ -90,6 +90,7 @@ class OrderList: ViewModel {
             remark: order.remark,
             openedOn: issueDate,
             isShipped: order.isShipped,
+            isPreped: order.isPreped,
             isPaid: order.isPaid,
             isDeposit: order.isDeposit,
             isClosed: order.isClosed,

@@ -9,7 +9,14 @@ class SearchTableViewController: UIViewController {
     
     // MARK: - Variables
     var list: ViewModel?
-    var fileredList: [NSManagedObject]
+    var filteredList: [NSManagedObject] {
+        didSet {
+            self.filteredList = self.filteredList.filter({
+                (self.preFilterIds?.contains($0.id) ?? false) == false
+            })
+        }
+    }
+    let preFilterIds: [String]?
     let searchBar: UISearchBar
     let tableView: UITableView
     var onSelectRowDelegate: ((String) -> Void)?
@@ -17,12 +24,14 @@ class SearchTableViewController: UIViewController {
     let betweenCellPadding = Constants.UI.Spacing.Height.Medium * 0.75
     
     // MARK: - Initializion
-    init(onSelectRow: ((String) -> Void)? = nil) {
-        self.fileredList = [NSManagedObject]()
+    init(onSelectRow: ((String) -> Void)? = nil,
+         preFilterIds: [String]? = nil) {
         self.searchBar = UISearchBar()
         self.tableView = UITableView()
         self.onSelectRowDelegate = onSelectRow
         self.cellIdentifier = ""
+        self.preFilterIds = preFilterIds
+        self.filteredList = [NSManagedObject]()
         
         super.init(nibName: nil, bundle: nil)
         
@@ -136,11 +145,11 @@ class SearchTableViewController: UIViewController {
 extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.fileredList.count
+        return self.filteredList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.fileredList[indexPath.row]
+        let data = self.filteredList[indexPath.row]
         let cell = self.tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! CustomCell
         cell.setup(data: data)
         
@@ -160,7 +169,7 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = self.fileredList[indexPath.row].id
+        let id = self.filteredList[indexPath.row].id
         if let delegate = self.onSelectRowDelegate {
             delegate(id)
         } else {

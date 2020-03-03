@@ -38,6 +38,7 @@ extension String {
     static let reopen = NSLocalizedString("Reopen", comment: "")
     static let deposited = NSLocalizedString("Deposited", comment: "")
     static let paid = NSLocalizedString("Paid", comment: "")
+    static let preped = NSLocalizedString("PreparedToShip", comment: "")
     static let shipped = NSLocalizedString("Shipped", comment: "")
     static let addCustomer = NSLocalizedString("AddCustomer", comment: "")
     static let membership = NSLocalizedString("Membership", comment: "")

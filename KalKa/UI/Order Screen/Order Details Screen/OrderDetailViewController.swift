@@ -7,8 +7,9 @@ import SnapKit
 class OrderDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
-    private let orderInfoFieldsSection: InputFieldsSection
     private let customerCard: CustomerDescCard
+    private let orderStatusControlSection: InputFieldsSection
+    private let orderInfoFieldsSection: InputFieldsSection
     private let orderItemTableView: OrderDetailsStackView
     
     let actionType: DetailsViewActionType
@@ -37,11 +38,24 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderInfoFieldsSection = InputFieldsSection(fields: [
             orderNumberField,
             TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
-            OrderDetailsStatusIcons(),
 //            TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
 //            TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
 //            TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
+        ])
+        
+        let tempBtn = UIButton()
+        tempBtn.setTitleColor(.buttonIcon, for: .normal)
+        tempBtn.setTitle("Mark as closed", for: .normal)
+        tempBtn.isEnabled = false
+        tempBtn.alpha = 0.5
+        
+        tempBtn.translatesAutoresizingMaskIntoConstraints = false
+        tempBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+        
+        self.orderStatusControlSection = InputFieldsSection(fields: [
+            OrderDetailsStatusIcons(),
+            tempBtn
         ])
         
         self.customerCard = CustomerDescCard()
@@ -115,7 +129,7 @@ class OrderDetailViewController: DetailFormViewController {
             self.customerCard.placeholder.isHidden = true
             self.customerCard.nameLabel.text = customer.name
             self.customerCard.addressLabel.text = customer.address
-            self.customerCard.phoneLabel.text = customer.phone
+            self.customerCard.phoneLabel.text = customer.phone == "" ? .absent : customer.phone
             self.customerCard.icon.backgroundColor = .accent
             
             let customerImage: UIImage? = {
@@ -127,6 +141,8 @@ class OrderDetailViewController: DetailFormViewController {
             }()
             
             self.customerCard.icon.image = customerImage ?? #imageLiteral(resourceName: "AvatarDefault")
+            
+            self.customerCard.setupLayout()
         }
     }
     
@@ -137,6 +153,8 @@ class OrderDetailViewController: DetailFormViewController {
             let orderItemView = OrderItemView()
             orderItemView.nameLabel.text = orderItem.name
             orderItemView.priceField.text = String(orderItem.price)
+            
+            self.orderItemDetailsArr.append(OrderItemDetails(name: orderItem.name, qty: 1, price: orderItem.price))
             self.orderItemTableView.appendView(view: orderItemView)
         }
     }
@@ -175,9 +193,19 @@ class OrderDetailViewController: DetailFormViewController {
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
         
+        self.scrollView.addSubview(self.orderStatusControlSection)
+        self.orderStatusControlSection.snp.makeConstraints { make in
+            make.top.equalTo(self.customerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+//            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault * 2)
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
+        }
+        self.orderStatusControlSection.backgroundColor = .primary
+        self.orderStatusControlSection.clipsToBounds = true
+        
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
-            make.top.equalTo(self.customerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.top.equalTo(self.orderStatusControlSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
@@ -196,6 +224,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         DispatchQueue.main.async {
             self.customerCard.layer.cornerRadius = self.customerCard.frame.width / 24
+            self.orderStatusControlSection.layer.cornerRadius = self.orderStatusControlSection.frame.width / 24
             self.orderInfoFieldsSection.layer.cornerRadius = self.orderInfoFieldsSection.frame.width / 24
             self.orderItemTableView.layer.cornerRadius = self.orderItemTableView.frame.width / 24
         }
@@ -241,6 +270,7 @@ class OrderDetailViewController: DetailFormViewController {
             remark: extractedValues[.remark] ?? "",
             openedOn: extractedValues[.openedOn]?.toDate(format: Constants.System.DateFormat) ?? Date(),
             isShipped: false,
+            isPreped: false,
             isPaid: false,
             isDeposit: false,
             isClosed: false,
@@ -261,19 +291,28 @@ class OrderDetailViewController: DetailFormViewController {
 
 extension OrderDetailViewController: DataPicker {
     func pickCustomer() {
-        let customerPicker = CustomerViewController(onSelectRow: { customerName in
+        
+        let onSelectRowHandler: (String) -> Void = { customerName in
             self.currentCustomerId = customerName
             self.fillCustomerCard()
             self.navigationController?.popToViewController(self, animated: true)
-        })
+        }
+        
+        let prefillIds = [self.currentCustomerId ?? ""]
+        
+        let customerPicker = CustomerViewController(onSelectRow: onSelectRowHandler, preFilterIds: prefillIds)
         self.navigationController?.pushViewController(customerPicker, animated: true)
     }
     
     func pickOrderItem() {
-        let merchPicker = InventoryViewController(onSelectRow: { merchName in
+        let onSelectRowHandler: (String) -> Void = { merchName in
             self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
-        })
+        }
+        let prefillIds = orderItemDetailsArr.compactMap({ $0.name })
+        
+        let merchPicker = InventoryViewController(onSelectRow: onSelectRowHandler, preFilterIds: prefillIds)
+        
         self.navigationController?.pushViewController(merchPicker, animated: true)
     }
 }

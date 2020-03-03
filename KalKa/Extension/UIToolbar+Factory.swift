@@ -6,7 +6,7 @@ import UIKit
 
 extension UIToolbar {
     static func makeKeyboardToolbar(target: Any?, doneAction: Selector) -> UIToolbar {
-        let result = UIToolbar()
+        let result = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.System.SupportedMiniumScreenWidth, height: 35))
         result.sizeToFit()
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: doneAction)
@@ -19,7 +19,7 @@ extension UIToolbar {
     }
     
     static func makeKeyboardToolbar(target: Any?, doneAction: Selector, cancelAction: Selector) -> UIToolbar {
-        let result = UIToolbar()
+        let result = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.System.SupportedMiniumScreenWidth, height: 35))
         result.sizeToFit()
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: target, action: cancelAction)
@@ -37,14 +37,10 @@ extension UIToolbar {
     
     
     static func makeKeyboardToolbar(target: Any?, doneAction: Selector, plusOrMinusAction: Selector) -> UIToolbar {
-        let result = UIToolbar()
+        let result = UIToolbar(frame: CGRect(x: 0, y: 0, width: Constants.System.SupportedMiniumScreenWidth, height: 35))
         result.sizeToFit()
-
-        
         
         let plusOrMinus = UIBarButtonItem(image: UIImage(named: "PlusMinus"), style: .plain, target: target, action: plusOrMinusAction)
-        
-//        let plusOrMinus = UIBarButtonItem(title: "+/-", style: UIBarButtonItem.Style.plain, target: target, action: plusOrMinusAction)
         plusOrMinus.tintColor = .buttonIcon
 
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)

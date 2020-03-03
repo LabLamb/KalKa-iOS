@@ -7,6 +7,15 @@ import CoreData
 
 class OrderCell: CustomCell {
     
+    lazy var iconStack: UIStackView = {
+        let result = UIStackView()
+        result.axis = .horizontal
+        result.alignment = .fill
+        result.distribution = .fill
+        result.alignment = .center
+        return result
+    }()
+    
     lazy var orderNumLabel: IconWithTextLabelInside = {
         let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate))
         result.icon.tintColor = .accent
@@ -45,6 +54,14 @@ class OrderCell: CustomCell {
         return result
     }()
     
+    lazy var isPrepedIcon: UIImageView = {
+        let icon = #imageLiteral(resourceName: "isPreped").withRenderingMode(.alwaysTemplate)
+        let result = UIImageView(image: icon)
+        result.tintColor = .text
+        result.alpha = 0.1
+        return result
+    }()
+    
     lazy var isPaidIcon: UIImageView = {
         let icon = #imageLiteral(resourceName: "isPaid").withRenderingMode(.alwaysTemplate)
         let result = UIImageView(image: icon)
@@ -75,6 +92,7 @@ class OrderCell: CustomCell {
         
         let remarkTextExists = self.remarkLabel.text != ""
         
+        
         self.paddingView.addSubview(self.orderNumLabel)
         self.orderNumLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.ExSmall * 0.75)
@@ -82,29 +100,50 @@ class OrderCell: CustomCell {
             make.width.equalTo(self.orderNumLabel.snp.height)
         }
         
-        self.paddingView.addSubview(self.isShippedIcon)
-        self.isShippedIcon.snp.makeConstraints { make in
+        [self.isShippedIcon,
+         self.isPrepedIcon,
+         self.isPaidIcon,
+         self.isDepositIcon].forEach({ icon in
+            self.iconStack.addArrangedSubview(icon)
+            icon.snp.makeConstraints { make in
+                make.height.equalToSuperview()
+                make.width.equalTo(Constants.UI.Sizing.Width.Medium)
+//                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+//                make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+//                make.width.equalTo(icon.snp.height)
+            }
+         })
+        
+        self.paddingView.addSubview(self.iconStack)
+        self.iconStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-            make.width.equalTo(self.isShippedIcon.snp.height)
         }
         
-        self.paddingView.addSubview(self.isPaidIcon)
-        self.isPaidIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-            make.right.equalTo(self.isShippedIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
-            make.width.equalTo(self.isPaidIcon.snp.height)
-        }
-        
-        self.paddingView.addSubview(self.isDepositIcon)
-        self.isDepositIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-            make.right.equalTo(self.isPaidIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
-            make.width.equalTo(self.isDepositIcon.snp.height)
-        }
+        //        self.paddingView.addSubview(self.isShippedIcon)
+        //        self.isShippedIcon.snp.makeConstraints { make in
+        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+        //            make.width.equalTo(self.isShippedIcon.snp.height)
+        //        }
+        //
+        //        self.paddingView.addSubview(self.isPaidIcon)
+        //        self.isPaidIcon.snp.makeConstraints { make in
+        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.right.equalTo(self.isShippedIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
+        //            make.width.equalTo(self.isPaidIcon.snp.height)
+        //        }
+        //
+        //        self.paddingView.addSubview(self.isDepositIcon)
+        //        self.isDepositIcon.snp.makeConstraints { make in
+        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
+        //            make.right.equalTo(self.isPaidIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
+        //            make.width.equalTo(self.isDepositIcon.snp.height)
+        //        }
         
         self.paddingView.addSubview(self.dateLabel)
         self.dateLabel.snp.makeConstraints { make in

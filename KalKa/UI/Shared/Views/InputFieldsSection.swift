@@ -9,7 +9,7 @@ class InputFieldsSection: CustomView {
     let stackView: UIStackView
     let separatorColor: UIColor = .background
     
-    init(fields: [CustomView]) {
+    init(fields: [UIView]) {
         let sv = UIStackView()
         fields.forEach { view in
             sv.addArrangedSubview(view)
@@ -19,7 +19,6 @@ class InputFieldsSection: CustomView {
         super.init()
         
         self.stackView.axis = .vertical
-        self.stackView.alignment = .fill
         self.stackView.distribution = .fill
         self.stackView.alignment = .center
     }
@@ -34,16 +33,17 @@ class InputFieldsSection: CustomView {
         
         self.stackView.arrangedSubviews.forEach { view in
             view.snp.makeConstraints { make in
-                
                 switch view {
                 case is IconView:
                     make.width.equalToSuperview()
                     make.height.equalTo(Constants.UI.Sizing.Height.Medium)
                 case is OrderDetailsStatusIcons:
-                    make.width.equalToSuperview().multipliedBy(0.95)
+                    make.left.equalToSuperview().offset(Constants.UI.Sizing.Width.ExSmall / 2)
+                    make.right.equalToSuperview().offset(-Constants.UI.Sizing.Width.ExSmall / 2)
                     make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault * 2)
                 default:
-                    make.width.equalToSuperview().multipliedBy(0.95)
+                    make.left.equalToSuperview().offset(Constants.UI.Sizing.Width.ExSmall / 2)
+                    make.right.equalToSuperview().offset(-Constants.UI.Sizing.Width.ExSmall / 2)
                 }
                 view.backgroundColor = .primary
                 view.addLine(position: .bottom, color: self.separatorColor, weight: 1)

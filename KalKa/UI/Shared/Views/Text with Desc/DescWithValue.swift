@@ -24,11 +24,7 @@ class DescWithValue: CustomView {
         }
     }
     
-    var spacing: CGFloat {
-        didSet {
-            self.layoutIfNeeded()
-        }
-    }
+    var spacing: CGFloat
     
     init(descView: UIView, valueView: UIView, spacing: CGFloat) {
         self.descView = descView

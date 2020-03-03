@@ -8,13 +8,14 @@ class OrderViewController: SearchTableViewController {
     
     private var fileredOrders: [Order] {
         get {
-            return self.fileredList as! [Order]
+            return self.filteredList as! [Order]
         }
     }
     
     // MARK: - Initializion
-    override init(onSelectRow: ((String) -> Void)? = nil) {
-        super.init(onSelectRow: onSelectRow)
+    override init(onSelectRow: ((String) -> Void)? = nil,
+                  preFilterIds: [String]? = nil) {
+        super.init(onSelectRow: onSelectRow, preFilterIds: preFilterIds)
         
         self.list = OrderList()
         
@@ -46,7 +47,7 @@ class OrderViewController: SearchTableViewController {
     override func filterListByString(_ searchText: String) {
         guard let allOrders = self.list?.items as? [Order] else { return }
         if searchText != "" {
-            self.fileredList = allOrders.filter({ order in
+            self.filteredList = allOrders.filter({ order in
                 if self.searchBar.selectedScopeButtonIndex == 0 {
                     return true
                 } else if self.searchBar.selectedScopeButtonIndex == 1 {
@@ -61,7 +62,7 @@ class OrderViewController: SearchTableViewController {
                     order.customer.remark.lowercased().contains(searchText.lowercased())
             })
         } else {
-            self.fileredList = allOrders.filter({ order in
+            self.filteredList = allOrders.filter({ order in
                 if self.searchBar.selectedScopeButtonIndex == 0 {
                     return true
                 } else if self.searchBar.selectedScopeButtonIndex == 1 {

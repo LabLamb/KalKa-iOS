@@ -46,13 +46,15 @@ class IconWithTextLabelUnder: CustomView {
         
         self.addSubview(self.textLabel)
         self.textLabel.snp.makeConstraints({ make in
-            make.bottom.left.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.right.equalToSuperview()
             make.height.equalTo(self.textLabel.font.lineHeight)
         })
         
         self.icon.snp.makeConstraints({ make in
-            make.top.equalToSuperview()
-            make.bottom.equalTo(self.textLabel.snp.top)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.ExSmall * 1.5)
+            make.bottom.equalTo(self.textLabel.snp.top).offset(-Constants.UI.Spacing.Height.ExSmall * 1.5)
             make.centerX.equalToSuperview()
             make.width.equalTo(self.icon.snp.height)
         })

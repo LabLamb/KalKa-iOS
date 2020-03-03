@@ -45,6 +45,7 @@
 "Closed" = "Closed";
 "Deposited" = "Deposited";
 "Paid" = "Paid";
+"PreparedToShip" = "Ready";
 "Shipped" = "Shipped";
 "Membership" = "Membership";
 "AddItem" = "Add item";

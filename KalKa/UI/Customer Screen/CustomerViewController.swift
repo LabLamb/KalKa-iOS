@@ -8,14 +8,14 @@ class CustomerViewController: SearchTableViewController {
     
     private var filteredCustomers: [Customer] {
         get {
-            return self.fileredList as! [Customer]
+            return self.filteredList as! [Customer]
         }
     }
     
     // MARK: - Initializion
-    override init(onSelectRow: ((String) -> Void)? = nil) {
-        super.init(onSelectRow: onSelectRow)
-        
+    override init(onSelectRow: ((String) -> Void)? = nil,
+                  preFilterIds: [String]? = nil) {
+        super.init(onSelectRow: onSelectRow, preFilterIds: preFilterIds)
         self.list = CustomerList()
         
         self.cellIdentifier = "CustomerListCell"
@@ -39,11 +39,11 @@ class CustomerViewController: SearchTableViewController {
     override func filterListByString(_ searchText: String) {
         guard let allCustomers = self.list?.items as? [Customer] else { return }
         if searchText != "" {
-            self.fileredList = allCustomers.filter({ customer in
+            self.filteredList = allCustomers.filter({ customer in
                 return customer.name.lowercased().contains(searchText.lowercased()) || customer.phone.lowercased().contains(searchText.lowercased())
             })
         } else {
-            self.fileredList = allCustomers
+            self.filteredList = allCustomers
         }
         self.tableView.reloadData()
     }

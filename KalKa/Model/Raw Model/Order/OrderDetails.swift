@@ -9,6 +9,7 @@ struct OrderDetails {
     let remark: String
     let openedOn: Date
     let isShipped: Bool
+    let isPreped: Bool
     let isPaid: Bool
     let isDeposit: Bool
     let isClosed: Bool

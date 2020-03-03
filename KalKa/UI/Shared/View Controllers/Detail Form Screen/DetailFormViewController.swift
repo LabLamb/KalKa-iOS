@@ -11,6 +11,8 @@ class DetailFormViewController: UIViewController {
     var currentId: String
     var list: ViewModel?
     let mimimumBottomInset = Constants.UI.Spacing.Height.Medium * 0.75
+    private var detailViewContext = 0
+    private var currentContentSize: CGSize = CGSize(width: 0, height: 0)
     
     init(config: DetailsConfiguration) {
         self.scrollView = UIScrollView()
@@ -20,9 +22,6 @@ class DetailFormViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.scrollView.contentInset = .init(top: mimimumBottomInset, left: mimimumBottomInset, bottom: mimimumBottomInset, right: mimimumBottomInset)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -33,6 +32,29 @@ class DetailFormViewController: UIViewController {
             make.bottom.left.right.equalToSuperview()
         }
         self.scrollView.isDirectionalLockEnabled = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.scrollView.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), options: [NSKeyValueObservingOptions.new], context: &detailViewContext)
+        
+        self.currentContentSize = self.scrollView.contentSize
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.scrollView.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if context == &detailViewContext,
+            keyPath == #keyPath(UIScrollView.contentSize),
+            let contentSize = change?[NSKeyValueChangeKey.newKey] as? CGSize {
+            self.scrollView.contentOffset.y += max(0, (contentSize.height - self.currentContentSize.height) * 0.99)
+            self.currentContentSize = contentSize
+        }
     }
     
     required init?(coder: NSCoder) {

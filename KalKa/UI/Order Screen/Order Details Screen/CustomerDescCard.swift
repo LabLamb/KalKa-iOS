@@ -60,13 +60,20 @@ class CustomerDescCard: CustomView {
     }
     
     override func setupLayout() {
+        
+        self.placeholder.removeFromSuperview()
+        self.icon.removeFromSuperview()
+        self.nameLabel.removeFromSuperview()
+        self.phoneLabel.removeFromSuperview()
+        self.addressLabel.removeFromSuperview()
+        
         self.addSubview(self.placeholder)
         self.placeholder.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
-        let remarkTextExists = self.addressLabel.text != ""
+        let addressTextExists = self.addressLabel.text != ""
 
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints { make in
@@ -77,7 +84,7 @@ class CustomerDescCard: CustomView {
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
-            if remarkTextExists {
+            if addressTextExists {
                 make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
             } else {
                 make.bottom.equalTo(self.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
@@ -89,7 +96,7 @@ class CustomerDescCard: CustomView {
         
         self.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
-            if remarkTextExists {
+            if addressTextExists {
                 make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             } else {
                 make.top.equalTo(self.snp.centerY).offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
@@ -99,7 +106,7 @@ class CustomerDescCard: CustomView {
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
-        if remarkTextExists {
+        if addressTextExists {
             self.addSubview(self.addressLabel)
             self.addressLabel.snp.makeConstraints { make in
                 make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)

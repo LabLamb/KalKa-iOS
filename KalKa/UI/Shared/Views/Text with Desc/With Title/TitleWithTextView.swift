@@ -45,8 +45,6 @@ class TitleWithTextView: DescWithValue {
         
         super.init(descView: tagView, valueView: textView, spacing: spacing)
         
-        self.spacing = spacing
-        
         textView.delegate = self
         
         tagView.text = title
