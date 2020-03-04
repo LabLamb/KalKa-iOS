@@ -5,4 +5,5 @@
 protocol DataPicker {
     func pickCustomer()
     func pickOrderItem()
+    func removeOrderItem(id: String)
 }

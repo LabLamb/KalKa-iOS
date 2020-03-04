@@ -128,9 +128,9 @@ class OrderDetailsStatusIcons: CustomView {
         self.addSubview(self.iconStack)
         self.iconStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium * 0.75)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
         }
     }
     

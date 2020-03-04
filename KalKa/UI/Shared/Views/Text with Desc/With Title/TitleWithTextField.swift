@@ -85,6 +85,7 @@ class TitleWithTextField: DescWithValue {
 }
 
 extension TitleWithTextField: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return textField.text?.count ?? 0 < self.maxTextLength || string == ""
     }

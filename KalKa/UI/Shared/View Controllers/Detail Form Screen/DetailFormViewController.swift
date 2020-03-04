@@ -14,6 +14,10 @@ class DetailFormViewController: UIViewController {
     private var detailViewContext = 0
     private var currentContentSize: CGSize = CGSize(width: 0, height: 0)
     
+    var focusedView: UIView?
+    var scrollOffset: CGFloat = 0
+    var distance: CGFloat = 0
+    
     init(config: DetailsConfiguration) {
         self.scrollView = UIScrollView()
         self.currentId = config.id
@@ -35,17 +39,14 @@ class DetailFormViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidAppear(noti:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidDisappeared), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         self.scrollView.addObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize), options: [NSKeyValueObservingOptions.new], context: &detailViewContext)
-        
         self.currentContentSize = self.scrollView.contentSize
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.scrollView.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
-        NotificationCenter.default.removeObserver(self)
+        if self.scrollView.observationInfo != nil {
+            self.scrollView.removeObserver(self, forKeyPath: #keyPath(UIScrollView.contentSize))
+        }
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -59,19 +60,6 @@ class DetailFormViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func keyboardDidAppear(noti: NSNotification) {
-        guard let info = noti.userInfo else { return }
-        let rect: CGRect = info[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
-        let kbHeight = rect.size.height - (self.tabBarController?.tabBar.frame.height ?? 0) + self.mimimumBottomInset
-        self.scrollView.contentInset.bottom = kbHeight
-        self.scrollView.scrollIndicatorInsets.bottom = kbHeight
-    }
-    
-    @objc private func keyboardDidDisappeared() {
-        self.scrollView.contentInset.bottom = self.mimimumBottomInset
-        self.scrollView.scrollIndicatorInsets.bottom = self.mimimumBottomInset
     }
     
     // MARK: - Errors

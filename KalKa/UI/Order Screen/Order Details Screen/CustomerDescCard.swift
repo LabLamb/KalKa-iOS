@@ -31,7 +31,8 @@ class CustomerDescCard: CustomView {
     var delegate: DataPicker?
     
     let placeholder: IconWithTextLabel = {
-        let result = IconWithTextLabel(icon: UIImage(named: "Plus")!, spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
+        let plusImg = UIImage(named: "Plus") ?? UIImage()
+        let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
         (result.valueView as? UILabel)?.font = UITextField().font
         (result.valueView as? UILabel)?.textColor = .buttonIcon
         result.iconImage.tintColor = .buttonIcon

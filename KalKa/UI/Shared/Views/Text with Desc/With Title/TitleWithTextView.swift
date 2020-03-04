@@ -62,7 +62,7 @@ class TitleWithTextView: DescWithValue {
         textView.inputAccessoryView = UIToolbar.makeKeyboardToolbar(target: self, doneAction: #selector(self.unfocusTextView))
         textView.backgroundColor = .clear
         textView.keyboardType = inputKeyboardType
-
+        
         self.placeholderLabel.text = self.defaultPlaceholder
         self.placeholderLabel.textColor = {
             let tempUITextField = UITextField()
@@ -101,6 +101,7 @@ class TitleWithTextView: DescWithValue {
 }
 
 extension TitleWithTextView: UITextViewDelegate {
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let isDeletingAll: Bool = (range.length == textView.text.count) && (text == "")
         self.placeholderLabel.isHidden = !isDeletingAll

@@ -152,7 +152,8 @@ class OrderDetailViewController: DetailFormViewController {
         if let orderItem = inventory.getDetails(id: id) as? MerchDetails {
             let orderItemView = OrderItemView()
             orderItemView.nameLabel.text = orderItem.name
-            orderItemView.priceField.text = String(orderItem.price)
+            orderItemView.priceField.textField.text = String(orderItem.price)
+            orderItemView.delegate = self
             
             self.orderItemDetailsArr.append(OrderItemDetails(name: orderItem.name, qty: 1, price: orderItem.price))
             self.orderItemTableView.appendView(view: orderItemView)
@@ -290,6 +291,7 @@ class OrderDetailViewController: DetailFormViewController {
 }
 
 extension OrderDetailViewController: DataPicker {
+    
     func pickCustomer() {
         
         let onSelectRowHandler: (String) -> Void = { customerName in
@@ -309,10 +311,14 @@ extension OrderDetailViewController: DataPicker {
             self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
         }
-        let prefillIds = orderItemDetailsArr.compactMap({ $0.name })
+        let prefillIds = self.orderItemDetailsArr.compactMap({ $0.name })
         
         let merchPicker = InventoryViewController(onSelectRow: onSelectRowHandler, preFilterIds: prefillIds)
         
         self.navigationController?.pushViewController(merchPicker, animated: true)
+    }
+    
+    func removeOrderItem(id: String) {
+        self.orderItemDetailsArr = self.orderItemDetailsArr.filter({ $0.name != id })
     }
 }

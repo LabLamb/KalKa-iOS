@@ -13,22 +13,6 @@ class OrderItemView: CustomView {
         return result
     }()
     
-    lazy var dollarSignOne: UILabel = {
-        let result = UILabel()
-        result.font = UITextField().font
-        result.text = "$"
-        result.textAlignment = .center
-        return result
-    }()
-    
-    lazy var dollarSignTwo: UILabel = {
-        let result = UILabel()
-        result.font = UITextField().font
-        result.text = "$"
-        result.textAlignment = .center
-        return result
-    }()
-    
     lazy var multipleSign: UILabel = {
         let result = UILabel()
         result.font = UITextField().font
@@ -37,37 +21,58 @@ class OrderItemView: CustomView {
         return result
     }()
     
-    lazy var priceField: UITextField = {
-        let result = UITextField()
-        result.delegate = self
-        result.text = "1"
-        result.keyboardType = .decimalPad
-        result.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
-        result.textAlignment = .right
+    lazy var priceField: TextFieldWithPrefix = {
+        let tf = UITextField()
+        tf.delegate = self
+        tf.text = "1"
+        tf.keyboardType = .decimalPad
+        tf.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        tf.textAlignment = .right
+        
+        let result = TextFieldWithPrefix(prefix: "$", textField: tf)
         return result
     }()
     
-    lazy var qtyField: UITextField = {
-        let result = UITextField()
-        result.delegate = self
-        result.text = "1"
-        result.keyboardType = .numberPad
-        result.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
-        result.textAlignment = .right
+    lazy var qtyField: TextFieldWithPrefix = {
+        let tf = UITextField()
+        tf.delegate = self
+        tf.text = "1"
+        tf.keyboardType = .decimalPad
+        tf.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        tf.textAlignment = .right
+        
+        let result = TextFieldWithPrefix(prefix: "$", textField: tf)
+        result.prefixLabel.text = ""
         return result
     }()
     
-    lazy var totalLabel: UILabel = {
-        let result = UILabel()
-        result.font = UITextField().font
-        if let priceValue = Double(self.priceField.text ?? "0"),
-            let qtyValue = Double(self.qtyField.text ?? "0") {
+    lazy var totalLabel: TextFieldWithPrefix = {
+        let tf = UITextField()
+        tf.delegate = self
+        tf.text = "1"
+        tf.textAlignment = .right
+        tf.isUserInteractionEnabled = false
+        
+        if let priceValue = Double(self.priceField.textField.text ?? "0"),
+            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
             let totalValue = priceValue * qtyValue
-            result.text = totalValue.toLocalCurrency(fractDigits: 2)
+            tf.text = totalValue.toLocalCurrency(fractDigits: 2)
         }
-        result.textAlignment = .right
+        
+        let result = TextFieldWithPrefix(prefix: "$", textField: tf)
         return result
     }()
+    
+    lazy var delBtn: UIButton = {
+        let result = UIButton()
+        let trashImg = UIImage(named: "Trash") ?? UIImage()
+        result.setImage(trashImg.withRenderingMode(.alwaysTemplate), for: .normal)
+        result.imageView?.tintColor = .buttonIcon
+        result.addTarget(self, action: #selector(self.remove), for: .touchUpInside)
+        return result
+    }()
+    
+    var delegate: DataPicker?
     
     override var intrinsicContentSize: CGSize {
         get {
@@ -82,7 +87,7 @@ class OrderItemView: CustomView {
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.75)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.85)
         }
         
         self.addSubview(self.priceField)
@@ -90,7 +95,7 @@ class OrderItemView: CustomView {
             make.right.equalTo(self.qtyField.snp.left).offset(-Constants.UI.Spacing.Width.ExLarge)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.75)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.85)
         }
         
         self.addSubview(self.multipleSign)
@@ -101,37 +106,34 @@ class OrderItemView: CustomView {
             make.bottom.equalTo(self.snp.centerY)
         }
         
-        self.addSubview(self.dollarSignOne)
-        self.dollarSignOne.snp.makeConstraints { make in
-            make.right.equalTo(self.priceField.snp.left)
-            make.top.equalToSuperview()
-            make.bottom.equalTo(self.snp.centerY)
-            make.width.equalTo(self.dollarSignOne.snp.height)
-        }
-        
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
-            make.right.equalTo(self.dollarSignOne.snp.left).offset(-Constants.UI.Spacing.Width.Small)
+            make.right.equalTo(self.priceField.snp.left).offset(-Constants.UI.Spacing.Width.Small)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-        }
-        
-        self.addSubview(self.dollarSignTwo)
-        self.dollarSignTwo.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
-            make.top.equalTo(self.snp.centerY)
-            make.bottom.equalToSuperview()
         }
         
         self.addSubview(self.totalLabel)
         self.totalLabel.snp.makeConstraints { make in
-            make.left.equalTo(self.dollarSignTwo.snp.right)
+            make.left.equalTo(self.priceField.snp.left)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
             make.top.equalTo(self.snp.centerY)
             make.bottom.equalToSuperview()
         }
         
+        self.addSubview(self.delBtn)
+        self.delBtn.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.centerY)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.bottom.equalToSuperview()
+//            make.right.equalTo(self.priceField.snp.left)
+        }
+    }
+    
+    @objc func remove() {
+        self.delegate?.removeOrderItem(id: self.nameLabel.text ?? "")
+        self.removeFromSuperview()
     }
 }
 
@@ -142,10 +144,10 @@ extension OrderItemView: UITextFieldDelegate {
     }
     
     @objc func textFieldDidChange() {
-        if let priceValue = Double(self.priceField.text ?? "0"),
-            let qtyValue = Double(self.qtyField.text ?? "0") {
+        if let priceValue = Double(self.priceField.textField.text ?? "0"),
+            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
             let totalValue = priceValue * qtyValue
-            self.totalLabel.text = totalValue.toLocalCurrency(fractDigits: 2)
+            self.totalLabel.textField.text = totalValue.toLocalCurrency(fractDigits: 2)
         }
     }
 }

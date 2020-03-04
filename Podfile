@@ -3,6 +3,7 @@ inhibit_all_warnings!
 
 target 'KalKa' do
   pod 'SnapKit'
+  pod 'IQKeyboardManagerSwift'
 
   target 'KalKaTests' do
     inherit! :search_paths
