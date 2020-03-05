@@ -42,14 +42,6 @@ class OrderCell: CustomCell {
         return result
     }()
     
-    lazy var remarkLabel: UILabel = {
-        let result = UILabel()
-        result.font = Constants.UI.Font.Plain.Small
-        result.textColor = .accent
-        result.numberOfLines = 0
-        return result
-    }()
-    
     lazy var isShippedIcon: UIImageView = {
         let icon = #imageLiteral(resourceName: "isShipped").withRenderingMode(.alwaysTemplate)
         let result = UIImageView(image: icon)
@@ -83,13 +75,12 @@ class OrderCell: CustomCell {
     }()
     
     lazy var profitLabel: IconWithTextLabelInside = {
-        let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "Earnings").withRenderingMode(.alwaysTemplate))
+        let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate))
         result.icon.tintColor = .accent
         result.icon.alpha = 0.075
         result.textLabel.textColor = .text
         result.textLabel.font = Constants.UI.Font.Bold.Medium
         result.textLabel.textAlignment = .center
-        result.textLabel.numberOfLines = 2
         return result
     }()
     
@@ -138,14 +129,14 @@ class OrderCell: CustomCell {
         self.paddingView.addSubview(self.iconStack)
         self.iconStack.snp.makeConstraints { make in
             make.top.equalTo(self.custPhoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.ExSmall)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium * 1.5)
             make.width.equalTo(self.iconStack.snp.height).multipliedBy(self.iconStack.arrangedSubviews.count + 1)
         }
         
         self.paddingView.addSubview(self.profitLabel)
         self.profitLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview()
             make.width.equalTo(self.profitLabel.snp.height)
@@ -159,7 +150,6 @@ class OrderCell: CustomCell {
         self.dateLabel.text = data.openedOn?.toString(format: Constants.System.DateFormat)
         self.custNameLabel.text = data.customer.name
         self.custPhoneLabel.text = data.customer.phone == "" ? "N/A" : data.customer.phone
-        self.remarkLabel.text = data.remark
         
         let orderItems = data.items
         let totalProfit = orderItems?.compactMap({ $0.price * Double($0.qty) }).reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
@@ -184,19 +174,20 @@ class OrderCell: CustomCell {
             self.isPrepedIcon.tintColor = .buttonIcon
             self.isPrepedIcon.alpha = 1
         }
+        
+        if data.isClosed {
+            self.profitLabel.icon.image = #imageLiteral(resourceName: "isClosed").withRenderingMode(.alwaysTemplate)
+        }
     }
     
     override func prepareForReuse() {
         self.orderNumLabel.text = ""
+        self.profitLabel.icon.image = #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate)
         
         self.iconStack.arrangedSubviews.forEach({ icon in
             icon.tintColor = .text
             icon.alpha = 0.1
             icon.isHidden = false
         })
-        
-        self.dateLabel.removeFromSuperview()
-        self.custNameLabel.removeFromSuperview()
-        self.remarkLabel.removeFromSuperview()
     }
 }
