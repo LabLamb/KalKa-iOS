@@ -1,0 +1,53 @@
+/*
+  Copyright © 2020 LabLambWorks. All rights reserved.
+*/
+
+"Inventory" = "仓存";
+"Orders" = "订单";
+"Search" = "搜寻";
+"Name" = "名称";
+"Price" = "价格";
+"Qty" = "数量";
+"Remark" = "备注";
+"NewMerch" = "新货品";
+"GenericError" = "错误";
+"ErrorMerchExists" = "货品名称已被取用";
+"OK" = "确定";
+"ErrorMerchInputEmpty" = "货品名称不能为空";
+"Save" = "储存";
+"Edit" = "编辑";
+"Camera" = "摄影机";
+"Photos" = "从相簿中选取";
+"Cancel" = "取消";
+"Required(Input)" = "必须输入";
+"Optional(Input)" = "选填";
+"ConfirmationTitle" = "确认";
+"ConfirmationMessage" = "确定要进行此动作？";
+"Customers" = "客户";
+"Add" = "新增";
+"Remove" = "移除";
+"LastContacted" = "上次联络";
+"ErrorCustomerExists" = "客户名称已被取用";
+"ErrorCustomerInputEmpty" = "客户名称不能为空";
+"NewCustomer" = "新客户";
+"AddCustomer" = "新增客户";
+"Phone" = "电话号码";
+"Address" = "地址";
+"Absent" = "暂缺";
+"Statistics" = "统计";
+"Settings" = "设定";
+"OrderNumber" = "订单号";
+"OpenedOn" = "下单日期";
+"Status" = "状态";
+"NewOrder" = "新订单";
+"All" = "全部";
+"Open" = "未完成";
+"Closed" = "已完成";
+"Deposited" = "已下订";
+"Paid" = "已收款";
+"Shipped" = "已寄出";
+"PreparedToShip" = "已包装";
+"Membership" = "会员功能";
+"AddItem" = "新增货品";
+"ErrorOrderNoCustomer" = "请先选取一名客户";
+"ErrorOrderNoOrderItem" = "订单货品不能为零";

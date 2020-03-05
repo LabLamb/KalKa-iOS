@@ -1,0 +1,53 @@
+/*
+  Copyright © 2020 LabLambWorks. All rights reserved.
+*/
+
+"Inventory" = "倉存";
+"Orders" = "訂單";
+"Search" = "搜尋";
+"Name" = "名稱";
+"Price" = "價格";
+"Qty" = "數量";
+"Remark" = "備註";
+"NewMerch" = "新貨品";
+"GenericError" = "錯誤";
+"ErrorMerchExists" = "貨品名稱已被取用";
+"OK" = "確定";
+"ErrorMerchInputEmpty" = "貨品名稱不能為空";
+"Save" = "儲存";
+"Edit" = "編輯";
+"Camera" = "攝影機";
+"Photos" = "從相簿中選取";
+"Cancel" = "取消";
+"Required(Input)" = "必須輸入";
+"Optional(Input)" = "選填";
+"ConfirmationTitle" = "確認";
+"ConfirmationMessage" = "確定要進行此動作？";
+"Customers" = "客戶";
+"Add" = "新增";
+"Remove" = "移除";
+"LastContacted" = "上次聯絡";
+"ErrorCustomerExists" = "客戶名稱已被取用";
+"ErrorCustomerInputEmpty" = "客戶名稱不能為空";
+"NewCustomer" = "新客戶";
+"AddCustomer" = "新增客戶";
+"Phone" = "電話號碼";
+"Address" = "地址";
+"Absent" = "暫缺";
+"Statistics" = "統計";
+"Settings" = "設定";
+"OrderNumber" = "訂單編號";
+"OpenedOn" = "開單日期";
+"Status" = "狀態";
+"NewOrder" = "新訂單";
+"All" = "全部";
+"Open" = "未完成";
+"Closed" = "已完成";
+"Deposited" = "已下訂";
+"Paid" = "已收款";
+"Shipped" = "已寄出";
+"PreparedToShip" = "已包裝";
+"Membership" = "會員功能";
+"AddItem" = "新增貨品";
+"ErrorOrderNoCustomer" = "請先選取一名客戶";
+"ErrorOrderNoOrderItem" = "訂單貨品不能為零";
