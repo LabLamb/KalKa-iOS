@@ -91,6 +91,11 @@ extension OrderViewController {
 
 // MARK: - TableView
 extension OrderViewController {
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (Constants.UI.Sizing.Height.Small * 1.5) + self.betweenCellPadding
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = String(self.fileredOrders[indexPath.row].number)
         let isClosed = self.fileredOrders[indexPath.row].isClosed
