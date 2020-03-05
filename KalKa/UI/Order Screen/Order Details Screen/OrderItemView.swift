@@ -48,17 +48,8 @@ class OrderItemView: CustomView {
     
     lazy var totalLabel: TextFieldWithPrefix = {
         let tf = UITextField()
-        tf.delegate = self
-        tf.text = "1"
         tf.textAlignment = .right
         tf.isUserInteractionEnabled = false
-        
-        if let priceValue = Double(self.priceField.textField.text ?? "0"),
-            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
-            let totalValue = priceValue * qtyValue
-            tf.text = totalValue.toLocalCurrency(fractDigits: 2)
-        }
-        
         let result = TextFieldWithPrefix(prefix: "$", textField: tf)
         return result
     }()
@@ -85,13 +76,12 @@ class OrderItemView: CustomView {
     }
     
     override func setupLayout() {
-        
         self.addSubview(self.qtyField)
         self.qtyField.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.85)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.9)
         }
         
         self.addSubview(self.priceField)
@@ -99,7 +89,7 @@ class OrderItemView: CustomView {
             make.right.equalTo(self.qtyField.snp.left).offset(-Constants.UI.Spacing.Width.ExLarge)
             make.top.equalToSuperview()
             make.bottom.equalTo(self.snp.centerY)
-            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.85)
+            make.width.equalTo(Constants.UI.Sizing.Width.Medium * 0.9)
         }
         
         self.addSubview(self.multipleSign)
@@ -134,6 +124,14 @@ class OrderItemView: CustomView {
         }
     }
     
+    public func updatePriceTotal() {
+        if let priceValue = Double(self.priceField.textField.text ?? "0"),
+            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
+            let totalValue = priceValue * qtyValue
+            self.totalLabel.textField.text = totalValue.toLocalCurrency(fractDigits: 2)
+        }
+    }
+    
     @objc func remove() {
         let confirmDialog = UIAlertController.makeConfirmation(confirmHandler: {_ in
             self.delegate?.removeOrderItem(id: self.nameLabel.text ?? "")
@@ -150,10 +148,6 @@ extension OrderItemView: UITextFieldDelegate {
     }
     
     @objc func textFieldDidChange() {
-        if let priceValue = Double(self.priceField.textField.text ?? "0"),
-            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
-            let totalValue = priceValue * qtyValue
-            self.totalLabel.textField.text = totalValue.toLocalCurrency(fractDigits: 2)
-        }
+        self.updatePriceTotal()
     }
 }

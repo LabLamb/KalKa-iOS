@@ -222,6 +222,24 @@ class OrderList: ViewModel {
         }
     }
     
+    func removeOrder(id: String, completion: ((Bool) -> Void)) {
+        let predicate = NSPredicate(format: "number = %@", id)
+        let context = self.persistentContainer.newBackgroundContext()
+        if let result = self.query(clause: predicate, incContext: context)?.first as? Order {
+            if let items = result.items {
+                let inv = Inventory()
+                for item in items {
+                    inv.updateInventoryQty(merchId: item.name, diff: -item.qty)
+                }
+            }
+            context.delete(result)
+            try? context.save()
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+    
     func exists(id: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "number = %@", id)
         guard let result = self.query(clause: predicate) else { return }

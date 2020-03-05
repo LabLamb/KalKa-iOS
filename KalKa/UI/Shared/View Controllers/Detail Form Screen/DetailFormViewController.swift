@@ -82,7 +82,8 @@ class DetailFormViewController: UIViewController {
     internal func editItem(details: Any) {
         self.list?.edit(oldId: self.currentId,
                         details: details,
-                        completion: { success in
+                        completion: { [weak self] success in
+                            guard let `self` = self else { return }
                             if success {
                                 self.navigationController?.popViewController(animated: true)
                             } else {

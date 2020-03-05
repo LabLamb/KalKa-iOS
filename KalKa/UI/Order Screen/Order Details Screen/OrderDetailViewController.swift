@@ -20,7 +20,7 @@ class OrderDetailViewController: DetailFormViewController {
     
     let betweenCellPadding = Constants.UI.Spacing.Height.Medium * 0.75
     
-    let isClosed: Bool
+    var isClosed: Bool
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
@@ -38,19 +38,14 @@ class OrderDetailViewController: DetailFormViewController {
             TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
         ])
-
-        let tempBtn = UIButton()
-        tempBtn.setTitleColor(.buttonIcon, for: .normal)
-        tempBtn.setTitle("Mark as closed", for: .normal)
-        tempBtn.isEnabled = false
-        tempBtn.alpha = 0.5
-
-        tempBtn.translatesAutoresizingMaskIntoConstraints = false
-        tempBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+        
+        let orderToggleBtn = UIButton()
+        let delOrderBtn = UIButton()
         
         self.orderStatusControlSection = InputFieldsSection(fields: [
             OrderDetailsStatusIcons(),
-            tempBtn
+            orderToggleBtn,
+            delOrderBtn
         ])
         
         self.customerCard = CustomerDescCard()
@@ -78,8 +73,38 @@ class OrderDetailViewController: DetailFormViewController {
         orderNumberField.value = "#\(self.currentId)"
         orderNumberField.valueView.alpha = 0.5
         
-        self.customerCard.delegate = self
-        orderItemAddBtn.delegate = self
+        if self.actionType == .add {
+            orderToggleBtn.removeFromSuperview()
+        } else {
+            orderToggleBtn.setTitleColor(.buttonIcon, for: .normal)
+            let btnTitle = self.isClosed ? "Return order" : "Close order"
+            orderToggleBtn.setTitle(btnTitle, for: .normal)
+            orderToggleBtn.isEnabled = (config.action == .edit)
+            orderToggleBtn.alpha = (config.action == .edit) ? 1 : 0.5
+            orderToggleBtn.addTarget(self, action: #selector(self.toggleOrder), for: .touchUpInside)
+            orderToggleBtn.translatesAutoresizingMaskIntoConstraints = false
+            orderToggleBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+        }
+        
+        if self.isClosed || self.actionType == .add {
+            delOrderBtn.removeFromSuperview()
+        } else {
+            delOrderBtn.setTitleColor(.red, for: .normal)
+            delOrderBtn.setTitle("Delete order", for: .normal)
+            delOrderBtn.isEnabled = (config.action == .edit)
+            delOrderBtn.alpha = (config.action == .edit) ? 1 : 0.5
+            delOrderBtn.addTarget(self, action: #selector(self.voidOrder), for: .touchUpInside)
+            delOrderBtn.translatesAutoresizingMaskIntoConstraints = false
+            delOrderBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+        }
+        
+        if self.isClosed {
+            orderItemAddBtn.removeFromSuperview()
+            self.customerCard.isUserInteractionEnabled = !isClosed
+        } else {
+            orderItemAddBtn.delegate = self
+            self.customerCard.delegate = self
+        }
         
         self.itemExistsErrorMsg = NSLocalizedString("ErrorOrderExists", comment: "Error Message - Order exists with the same name.")
     }
@@ -101,13 +126,9 @@ class OrderDetailViewController: DetailFormViewController {
             }
         }()
         
-        self.navigationItem.rightBarButtonItem = {
-            if self.isClosed {
-                return UIBarButtonItem(title: .reopen, style: .done, target: self, action: #selector(self.submitOrderDetails))
-            } else {
-                return UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitOrderDetails))
-            }
-        }()
+        if !self.isClosed {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitOrderDetails))
+        }
         
         self.setup()
     }
@@ -151,6 +172,8 @@ class OrderDetailViewController: DetailFormViewController {
         orderItemView.priceField.textField.text = String(orderItem.price)
         orderItemView.qtyField.textField.text = String(orderItem.qty)
         orderItemView.delegate = self
+        orderItemView.updatePriceTotal()
+        orderItemView.delBtn.isHidden = self.isClosed
         
         self.orderItemDetailsArr.append(orderItem)
         self.orderItemStackView.appendView(view: orderItemView)
@@ -183,6 +206,10 @@ class OrderDetailViewController: DetailFormViewController {
         ]
         
         self.orderInfoFieldsSection.prefillValues(values: valueMap)
+        self.orderInfoFieldsSection.stackView.arrangedSubviews.forEach({ [weak self] view in
+            guard let `self` = self else { return }
+            view.isUserInteractionEnabled = !self.isClosed
+        })
         
         self.currentCustomerId = orderDetails.customerName
         self.updateCustomerCard()
@@ -198,7 +225,32 @@ class OrderDetailViewController: DetailFormViewController {
             statusView.isShipped = orderDetails.isShipped
             statusView.isDeposit = orderDetails.isDeposit
             statusView.isPaid = orderDetails.isPaid
+            
+            statusView.iconStack.arrangedSubviews.forEach({ [weak self] view in
+                guard let `self` = self else { return }
+                view.alpha = self.isClosed ? 0.5 : 1
+                view.isUserInteractionEnabled = !self.isClosed
+            })
         }
+    }
+    
+    @objc func voidOrder() {
+        let handler: (UIAlertAction) -> Void = { [weak self] alert in
+            guard let `self` = self else { return }
+            self.orderList?.removeOrder(id: self.currentId, completion: { isDeleted in
+                if isDeleted {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
+        }
+        
+        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
+        self.present(confirmationAlert, animated: true, completion: nil)
+    }
+    
+    @objc func toggleOrder() {
+        self.isClosed = !self.isClosed
+        self.submitOrderDetails()
     }
     
     private func setup() {
@@ -209,7 +261,7 @@ class OrderDetailViewController: DetailFormViewController {
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-//            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
+            //            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
@@ -222,7 +274,7 @@ class OrderDetailViewController: DetailFormViewController {
         }
         self.orderStatusControlSection.backgroundColor = .primary
         self.orderStatusControlSection.clipsToBounds = true
-
+        
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
             make.top.equalTo(self.orderStatusControlSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
@@ -231,7 +283,7 @@ class OrderDetailViewController: DetailFormViewController {
         }
         self.orderInfoFieldsSection.backgroundColor = .primary
         self.orderInfoFieldsSection.clipsToBounds = true
-
+        
         self.scrollView.addSubview(self.orderItemStackView)
         self.orderItemStackView.snp.makeConstraints { make in
             make.top.equalTo(self.orderInfoFieldsSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
@@ -263,12 +315,12 @@ class OrderDetailViewController: DetailFormViewController {
             self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoCustomer", comment: "Error Message.")), animated: true, completion: nil)
             return
         }
-
+        
         if orderDetails.items?.isEmpty ?? false {
             self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoOrderItem", comment: "Error Message.")), animated: true, completion: nil)
             return
         }
-
+        
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
             guard let `self` = self else { return }
             if self.actionType == .edit {
@@ -293,21 +345,21 @@ class OrderDetailViewController: DetailFormViewController {
                 return ""
             }
         }()
-
+        
         let extractedInfo = self.orderInfoFieldsSection.extractValues(mappingKeys: [.remark,
                                                                                     .openedOn])
         let statusView = self.orderStatusControlSection.getViews(viewType: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons
-
+        
         let orderDetailsViews = self.orderItemStackView.getViews(viewType: OrderItemView.self) as? [OrderItemView]
         let latestDetails: [OrderItemDetails] = orderDetailsViews?.compactMap({ v in
             let name = v.nameLabel.text
             let qty = Int32(v.qtyField.textField.text ?? "0") ?? 0
             let price = Double(v.priceField.textField.text ?? "0") ?? 0
             return OrderItemDetails(name: name ?? "",
-                             qty: qty,
-                             price: price)
+                                    qty: qty,
+                                    price: price)
         }) ?? []
-
+        
         return OrderDetails(
             number: self.currentId,
             remark: extractedInfo[.remark] ?? "",
