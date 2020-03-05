@@ -9,7 +9,7 @@ class OrderCell: CustomCell {
     
     lazy var iconStack: UIStackView = {
         let result = UIStackView()
-        result.axis = .vertical
+        result.axis = .horizontal
         result.distribution = .equalCentering
         result.alignment = .center
         return result
@@ -96,12 +96,32 @@ class OrderCell: CustomCell {
     override func setupLayout() {
         super.setupLayout()
         
-        self.paddingView.addSubview(self.iconStack)
-        self.iconStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-            make.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.width.equalTo(self.iconStack.snp.height).dividedBy(5)
+        self.paddingView.addSubview(self.dateLabel)
+        self.dateLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
+            make.height.equalTo(self.dateLabel.font.lineHeight)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium * 1.5)
+        }
+        
+        self.paddingView.addSubview(self.orderNumLabel)
+        self.orderNumLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
+            make.height.equalTo(self.orderNumLabel.font.lineHeight)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium * 1.5)
+        }
+        
+        self.paddingView.addSubview(self.custNameLabel)
+        self.custNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.orderNumLabel.snp.bottom)
+            make.height.equalTo(self.custNameLabel.font.lineHeight)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium * 1.5)
+        }
+
+        self.paddingView.addSubview(self.custPhoneLabel)
+        self.custPhoneLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.custNameLabel.snp.bottom)
+            make.height.equalTo(self.custPhoneLabel.font.lineHeight)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium * 1.5)
         }
         
         [self.isDepositIcon,
@@ -110,43 +130,24 @@ class OrderCell: CustomCell {
          self.isShippedIcon].forEach({ icon in
             self.iconStack.addArrangedSubview(icon)
             icon.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
-                make.height.equalTo(icon.snp.width)
+                make.top.bottom.equalToSuperview()
+                make.width.equalTo(icon.snp.height)
             }
          })
         
-        self.paddingView.addSubview(self.dateLabel)
-        self.dateLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.height.equalTo(self.dateLabel.font.lineHeight)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
-        }
-        
-        self.paddingView.addSubview(self.orderNumLabel)
-        self.orderNumLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.height.equalTo(self.orderNumLabel.font.lineHeight)
-            make.left.equalTo(self.iconStack.snp.right).offset(Constants.UI.Spacing.Height.Medium * 1.5)
-        }
-        
-        self.paddingView.addSubview(self.custNameLabel)
-        self.custNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.orderNumLabel.snp.bottom)
-            make.height.equalTo(self.custNameLabel.font.lineHeight)
-            make.left.equalTo(self.iconStack.snp.right).offset(Constants.UI.Spacing.Height.Medium * 1.5)
-        }
-
-        self.paddingView.addSubview(self.custPhoneLabel)
-        self.custPhoneLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.custNameLabel.snp.bottom)
-            make.height.equalTo(self.custPhoneLabel.font.lineHeight)
-            make.left.equalTo(self.iconStack.snp.right).offset(Constants.UI.Spacing.Height.Medium * 1.5)
+        self.paddingView.addSubview(self.iconStack)
+        self.iconStack.snp.makeConstraints { make in
+            make.top.equalTo(self.custPhoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.ExSmall)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Medium * 1.5)
+            make.width.equalTo(self.iconStack.snp.height).multipliedBy(self.iconStack.arrangedSubviews.count + 1)
         }
         
         self.paddingView.addSubview(self.profitLabel)
         self.profitLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
-            make.bottom.right.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
+            make.bottom.equalToSuperview()
             make.width.equalTo(self.profitLabel.snp.height)
         }
     }
@@ -162,7 +163,7 @@ class OrderCell: CustomCell {
         
         let orderItems = data.items
         let totalProfit = orderItems?.compactMap({ $0.price * Double($0.qty) }).reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
-        self.profitLabel.text = "Subtotal:\n$\(totalProfit)"
+        self.profitLabel.text = "$\(totalProfit)"
         
         if data.isShipped {
             self.isShippedIcon.tintColor = .buttonIcon

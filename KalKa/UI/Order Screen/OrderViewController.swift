@@ -93,7 +93,7 @@ extension OrderViewController {
 extension OrderViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (Constants.UI.Sizing.Height.Medium) + self.betweenCellPadding
+        return (Constants.UI.Sizing.Height.Small * 1.5) + self.betweenCellPadding
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
