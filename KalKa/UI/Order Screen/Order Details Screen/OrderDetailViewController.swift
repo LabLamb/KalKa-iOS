@@ -93,7 +93,7 @@ class OrderDetailViewController: DetailFormViewController {
             delOrderBtn.setTitle("Delete order", for: .normal)
             delOrderBtn.isEnabled = (config.action == .edit)
             delOrderBtn.alpha = (config.action == .edit) ? 1 : 0.5
-            delOrderBtn.addTarget(self, action: #selector(self.voidOrder), for: .touchUpInside)
+            delOrderBtn.addTarget(self, action: #selector(self.deleteOrder), for: .touchUpInside)
             delOrderBtn.translatesAutoresizingMaskIntoConstraints = false
             delOrderBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
         }
@@ -234,7 +234,7 @@ class OrderDetailViewController: DetailFormViewController {
         }
     }
     
-    @objc func voidOrder() {
+    @objc func deleteOrder() {
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
             guard let `self` = self else { return }
             self.orderList?.removeOrder(id: self.currentId, completion: { isDeleted in
@@ -249,8 +249,19 @@ class OrderDetailViewController: DetailFormViewController {
     }
     
     @objc func toggleOrder() {
-        self.isClosed = !self.isClosed
-        self.submitOrderDetails()
+        let handler: (UIAlertAction) -> Void = { [weak self] alert in
+            guard let `self` = self else { return }
+            self.isClosed = !self.isClosed
+            let orderDetails = self.makeOrderDetails()
+            if orderDetails.items?.isEmpty ?? false {
+                self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoOrderItem", comment: "Error Message.")), animated: true, completion: nil)
+                self.isClosed = !self.isClosed
+                return
+            }
+            self.editItem(details: orderDetails)
+        }
+        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
+        self.present(confirmationAlert, animated: true, completion: nil)
     }
     
     private func setup() {

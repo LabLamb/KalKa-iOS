@@ -125,11 +125,10 @@ class OrderItemView: CustomView {
     }
     
     public func updatePriceTotal() {
-        if let priceValue = Double(self.priceField.textField.text ?? "0"),
-            let qtyValue = Double(self.qtyField.textField.text ?? "0") {
-            let totalValue = priceValue * qtyValue
-            self.totalLabel.textField.text = totalValue.toLocalCurrency(fractDigits: 2)
-        }
+        let priceValue = Double(self.priceField.textField.text ?? "0") ?? 0
+        let qtyValue = Double(self.qtyField.textField.text ?? "0") ?? 0
+        let totalValue = priceValue * qtyValue
+        self.totalLabel.textField.text = totalValue.toLocalCurrency(fractDigits: 2)
     }
     
     @objc func remove() {
