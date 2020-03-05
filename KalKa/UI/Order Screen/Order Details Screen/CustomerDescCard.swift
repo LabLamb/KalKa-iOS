@@ -11,6 +11,7 @@ class CustomerDescCard: CustomView {
     lazy var nameLabel: UILabel = {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Medium
+        result.textAlignment = .center
         return result
     }()
     
@@ -18,6 +19,7 @@ class CustomerDescCard: CustomView {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Small
         result.textColor = .accent
+        result.textAlignment = .center
         return result
     }()
     
@@ -25,6 +27,8 @@ class CustomerDescCard: CustomView {
         let result = UILabel()
         result.font = Constants.UI.Font.Plain.Small
         result.textColor = .accent
+        result.numberOfLines = 0
+        result.textAlignment = .center
         return result
     }()
     
@@ -74,47 +78,64 @@ class CustomerDescCard: CustomView {
             make.centerY.equalToSuperview()
         }
         
-        let addressTextExists = self.addressLabel.text != ""
+//        let addressTextExists = self.addressLabel.text != ""
 
         self.addSubview(self.icon)
         self.icon.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
-            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium * 0.75)
+            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Small)
+            make.height.equalTo(Constants.UI.Sizing.Height.Small)
+            make.centerX.equalToSuperview()
             make.width.equalTo(self.icon.snp.height)
         }
         
         self.addSubview(self.nameLabel)
         self.nameLabel.snp.makeConstraints { make in
-            if addressTextExists {
-                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
-            } else {
-                make.bottom.equalTo(self.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
-                
-            }
-            make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.top.equalTo(self.icon.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.height.equalTo(self.nameLabel.font.lineHeight)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+//            if addressTextExists {
+//                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium * 0.75)
+//            } else {
+//                make.bottom.equalTo(self.snp.centerY).offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
+//
+//            }
+//            make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+//            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
         self.addSubview(self.phoneLabel)
         self.phoneLabel.snp.makeConstraints { make in
-            if addressTextExists {
-                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            } else {
-                make.top.equalTo(self.snp.centerY).offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
-            }
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.top.equalTo(self.nameLabel.snp.bottom)
+            make.height.equalTo(self.phoneLabel.font.lineHeight)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+//            if addressTextExists {
+//                make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+//            } else {
+//                make.top.equalTo(self.snp.centerY).offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
+//            }
+//            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+//            make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+//            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
         
-        if addressTextExists {
-            self.addSubview(self.addressLabel)
-            self.addressLabel.snp.makeConstraints { make in
-                make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-                make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
-                make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
-            }
+        self.addSubview(self.addressLabel)
+        self.addressLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Small)
         }
+        
+//        if addressTextExists {
+//            self.addSubview(self.addressLabel)
+//            self.addressLabel.snp.makeConstraints { make in
+//                make.top.equalTo(self.phoneLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+//                make.left.equalTo(self.icon.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+//                make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+//            }
+//        }
     }
     
     override func layoutSubviews() {

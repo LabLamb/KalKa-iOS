@@ -209,7 +209,7 @@ class OrderDetailViewController: DetailFormViewController {
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo((Constants.UI.Sizing.Height.Small * 1.25))
+//            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
@@ -316,7 +316,7 @@ class OrderDetailViewController: DetailFormViewController {
             isPreped: statusView?.isPreped ?? false,
             isPaid: statusView?.isPaid ?? false,
             isDeposit: statusView?.isDeposit ?? false,
-            isClosed: false,
+            isClosed: self.isClosed,
             customerName: extractedCustomerName,
             items: latestDetails
         )

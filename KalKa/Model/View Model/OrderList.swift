@@ -162,6 +162,24 @@ class OrderList: ViewModel {
         editingOrder.isShipped = details.isShipped
         editingOrder.isDeposit = details.isDeposit
         
+        let customer: Customer? = {
+            let predicate = NSPredicate(format: "name = %@", details.customerName)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
+            fetchRequest.predicate = predicate
+            if let result = try? context.fetch(fetchRequest),
+                let customer = result.first as? Customer {
+                return customer
+            } else {
+                return nil
+            }
+        }()
+        
+        if let `customer` = customer {
+            editingOrder.customer = customer
+        } else {
+            fatalError("Attempted to attach a customer that does not exists.")
+        }
+        
         var itemQtyChanges: [(name: String, diff: Int32)] = []
         
         details.items?.forEach({ itemDet in

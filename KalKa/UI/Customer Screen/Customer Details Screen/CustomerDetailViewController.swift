@@ -78,6 +78,7 @@ class CustomerDetailViewController: DetailFormViewController {
             fatalError()
         }
         
+        // Add to past orders table view
         print("\(customerDetails.name) has \(customerDetails.orders?.count ?? 0) orders.")
         
         let valueMap: [String: String] = [

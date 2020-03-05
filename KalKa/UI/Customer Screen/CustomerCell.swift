@@ -66,7 +66,6 @@ class CustomerCell: CustomCell {
                 make.top.equalTo(self.paddingView.snp.centerY)
                     .offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
             }
-            make.top.equalTo(self.nameLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
             make.left.equalTo(self.iconImage.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
         }
