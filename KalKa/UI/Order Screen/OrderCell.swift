@@ -10,14 +10,14 @@ class OrderCell: CustomCell {
     lazy var iconStack: UIStackView = {
         let result = UIStackView()
         result.axis = .horizontal
-        result.alignment = .fill
-        result.distribution = .fill
+        result.distribution = .equalCentering
         result.alignment = .center
         return result
     }()
     
     lazy var orderNumLabel: IconWithTextLabelInside = {
-        let result = IconWithTextLabelInside(icon: #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate))
+        let icon = #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate)
+        let result = IconWithTextLabelInside(icon: icon)
         result.icon.tintColor = .accent
         result.icon.alpha = 0.25
         result.textLabel.textColor = .text
@@ -84,6 +84,7 @@ class OrderCell: CustomCell {
         result.icon.alpha = 0.075
         result.textLabel.textColor = .text
         result.textLabel.font = Constants.UI.Font.Bold.Medium
+        result.isHidden = true
         return result
     }()
     
@@ -92,58 +93,31 @@ class OrderCell: CustomCell {
         
         let remarkTextExists = self.remarkLabel.text != ""
         
-        
         self.paddingView.addSubview(self.orderNumLabel)
         self.orderNumLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(Constants.UI.Spacing.Height.ExSmall * 0.75)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.ExSmall * 0.75)
             make.width.equalTo(self.orderNumLabel.snp.height)
         }
-        
-        [self.isShippedIcon,
-         self.isPrepedIcon,
-         self.isPaidIcon,
-         self.isDepositIcon].forEach({ icon in
-            self.iconStack.addArrangedSubview(icon)
-            icon.snp.makeConstraints { make in
-                make.height.equalToSuperview()
-                make.width.equalTo(Constants.UI.Sizing.Width.Medium)
-//                make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-//                make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-//                make.width.equalTo(icon.snp.height)
-            }
-         })
-        
+//
         self.paddingView.addSubview(self.iconStack)
         self.iconStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Small)
+            make.left.equalTo(self.paddingView.snp.centerX).offset(Constants.UI.Spacing.Width.ExLarge * 1.25)
         }
         
-        //        self.paddingView.addSubview(self.isShippedIcon)
-        //        self.isShippedIcon.snp.makeConstraints { make in
-        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
-        //            make.width.equalTo(self.isShippedIcon.snp.height)
-        //        }
-        //
-        //        self.paddingView.addSubview(self.isPaidIcon)
-        //        self.isPaidIcon.snp.makeConstraints { make in
-        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.right.equalTo(self.isShippedIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
-        //            make.width.equalTo(self.isPaidIcon.snp.height)
-        //        }
-        //
-        //        self.paddingView.addSubview(self.isDepositIcon)
-        //        self.isDepositIcon.snp.makeConstraints { make in
-        //            make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Large * 0.75)
-        //            make.right.equalTo(self.isPaidIcon.snp.left).offset(-Constants.UI.Spacing.Width.Medium)
-        //            make.width.equalTo(self.isDepositIcon.snp.height)
-        //        }
+        [self.isDepositIcon,
+         self.isPrepedIcon,
+         self.isPaidIcon,
+         self.isShippedIcon].forEach({ icon in
+            self.iconStack.addArrangedSubview(icon)
+            icon.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview()
+                make.width.equalTo(icon.snp.height)
+            }
+         })
         
         self.paddingView.addSubview(self.dateLabel)
         self.dateLabel.snp.makeConstraints { make in
@@ -153,7 +127,7 @@ class OrderCell: CustomCell {
                 make.bottom.equalTo(self.paddingView.snp.centerY)
                     .offset(-Constants.UI.Spacing.Height.ExSmall * 0.5)
             }
-            make.left.equalTo(self.orderNumLabel.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.left.equalTo(self.orderNumLabel.snp.right).offset(Constants.UI.Spacing.Width.ExSmall)
             make.right.equalTo(self.isDepositIcon.snp.left).offset(-Constants.UI.Spacing.Width.Small)
         }
         
@@ -168,7 +142,7 @@ class OrderCell: CustomCell {
                     .offset(Constants.UI.Spacing.Height.ExSmall * 0.5)
             }
             make.top.equalTo(self.dateLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
-            make.left.equalTo(self.orderNumLabel.snp.right).offset(Constants.UI.Spacing.Width.Medium * 0.75)
+            make.left.equalTo(self.orderNumLabel.snp.right).offset(Constants.UI.Spacing.Width.ExSmall)
             make.right.equalTo(self.isDepositIcon.snp.left).offset(-Constants.UI.Spacing.Width.Small)
         }
         
@@ -203,9 +177,7 @@ class OrderCell: CustomCell {
             let totalProfit = orderItems?.compactMap({ $0.price * Double($0.qty) }).reduce(0, +).toLocalCurrencyWithoutFractionDigits() ?? "0"
             self.profitLabel.text = "$\(totalProfit)"
             self.profitLabel.isHidden = false
-            self.isShippedIcon.isHidden = true
-            self.isPaidIcon.isHidden = true
-            self.isDepositIcon.isHidden = true
+            self.iconStack.arrangedSubviews.forEach({ $0.isHidden = true })
         } else {
             if data.isShipped {
                 self.isShippedIcon.tintColor = .buttonIcon
@@ -221,16 +193,19 @@ class OrderCell: CustomCell {
                 self.isDepositIcon.tintColor = .buttonIcon
                 self.isDepositIcon.alpha = 1
             }
+            
+            if data.isPreped {
+                self.isPrepedIcon.tintColor = .buttonIcon
+                self.isPrepedIcon.alpha = 1
+            }
         }
     }
     
     override func prepareForReuse() {
         self.orderNumLabel.text = ""
-        self.orderNumLabel.icon.image = #imageLiteral(resourceName: "OrderNum")
+        self.orderNumLabel.icon.image = #imageLiteral(resourceName: "OrderNum").withRenderingMode(.alwaysTemplate)
         
-        [self.isShippedIcon,
-         self.isPaidIcon,
-         self.isDepositIcon].forEach({ icon in
+        self.iconStack.arrangedSubviews.forEach({ icon in
             icon.tintColor = .text
             icon.alpha = 0.1
             icon.isHidden = false

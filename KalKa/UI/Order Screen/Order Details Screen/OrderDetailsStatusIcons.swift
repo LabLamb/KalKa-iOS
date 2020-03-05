@@ -16,49 +16,57 @@ class OrderDetailsStatusIcons: CustomView {
     
     var isDeposit: Bool = false {
         didSet {
-            if self.isDeposit {
-                self.isDepositIcon.icon.tintColor = .buttonIcon
-                self.isDepositIcon.icon.alpha = 1
-            } else {
-                self.isDepositIcon.icon.tintColor = .text
-                self.isDepositIcon.icon.alpha = 0.1
-            }
+            UIView.animate(withDuration: 0.25, animations: {
+                if self.isDeposit {
+                    self.isDepositIcon.icon.tintColor = .buttonIcon
+                    self.isDepositIcon.icon.alpha = 1
+                } else {
+                    self.isDepositIcon.icon.tintColor = .text
+                    self.isDepositIcon.icon.alpha = 0.1
+                }
+            })
         }
     }
     
     var isPaid: Bool = false {
         didSet {
-            if self.isPaid {
-                self.isPaidIcon.icon.tintColor = .buttonIcon
-                self.isPaidIcon.icon.alpha = 1
-            } else {
-                self.isPaidIcon.icon.tintColor = .text
-                self.isPaidIcon.icon.alpha = 0.1
-            }
+            UIView.animate(withDuration: 0.25, animations: {
+                if self.isPaid {
+                    self.isPaidIcon.icon.tintColor = .buttonIcon
+                    self.isPaidIcon.icon.alpha = 1
+                } else {
+                    self.isPaidIcon.icon.tintColor = .text
+                    self.isPaidIcon.icon.alpha = 0.1
+                }
+            })
         }
     }
     
     var isPreped: Bool = false {
         didSet {
-            if self.isPreped {
-                self.isPrepedIcon.icon.tintColor = .buttonIcon
-                self.isPrepedIcon.icon.alpha = 1
-            } else {
-                self.isPrepedIcon.icon.tintColor = .text
-                self.isPrepedIcon.icon.alpha = 0.1
-            }
+            UIView.animate(withDuration: 0.25, animations: {
+                if self.isPreped {
+                    self.isPrepedIcon.icon.tintColor = .buttonIcon
+                    self.isPrepedIcon.icon.alpha = 1
+                } else {
+                    self.isPrepedIcon.icon.tintColor = .text
+                    self.isPrepedIcon.icon.alpha = 0.1
+                }
+            })
         }
     }
     
     var isShipped: Bool = false {
         didSet {
-            if self.isShipped {
-                self.isShippedIcon.icon.tintColor = .buttonIcon
-                self.isShippedIcon.icon.alpha = 1
-            } else {
-                self.isShippedIcon.icon.tintColor = .text
-                self.isShippedIcon.icon.alpha = 0.1
-            }
+            UIView.animate(withDuration: 0.25, animations: {
+                if self.isShipped {
+                    self.isShippedIcon.icon.tintColor = .buttonIcon
+                    self.isShippedIcon.icon.alpha = 1
+                } else {
+                    self.isShippedIcon.icon.tintColor = .text
+                    self.isShippedIcon.icon.alpha = 0.1
+                }
+            })
         }
     }
     

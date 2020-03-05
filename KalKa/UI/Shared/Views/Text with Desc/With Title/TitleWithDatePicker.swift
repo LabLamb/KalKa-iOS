@@ -12,7 +12,7 @@ class TitleWithDatePicker: TitleWithTextField {
         }
     }
     
-    let datePicker: UIDatePicker
+    var datePicker: UIDatePicker
     
     init(title: String,
          placeholder: String = Date().toString(format: Constants.System.DateFormat),

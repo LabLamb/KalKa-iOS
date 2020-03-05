@@ -10,15 +10,13 @@ class OrderDetailViewController: DetailFormViewController {
     private let customerCard: CustomerDescCard
     private let orderStatusControlSection: InputFieldsSection
     private let orderInfoFieldsSection: InputFieldsSection
-    private let orderItemTableView: OrderDetailsStackView
+    private let orderItemStackView: OrderDetailsStackView
     
     let actionType: DetailsViewActionType
     weak var orderList: OrderList?
     var currentCustomerId: String?
     
-    var orderItemDetailsArr: [OrderItemDetails] = [
-        OrderItemDetails(name: "test", qty: 1, price: 1)
-    ]
+    var orderItemDetailsArr: [OrderItemDetails]
     
     let betweenCellPadding = Constants.UI.Spacing.Height.Medium * 0.75
     
@@ -38,18 +36,15 @@ class OrderDetailViewController: DetailFormViewController {
         self.orderInfoFieldsSection = InputFieldsSection(fields: [
             orderNumberField,
             TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
-//            TitleWithSwitch(title: .deposited, spacing: Constants.UI.Spacing.Width.Medium),
-//            TitleWithSwitch(title: .paid, spacing: Constants.UI.Spacing.Width.Medium),
-//            TitleWithSwitch(title: .shipped, spacing: Constants.UI.Spacing.Width.Medium),
             TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
         ])
-        
+
         let tempBtn = UIButton()
         tempBtn.setTitleColor(.buttonIcon, for: .normal)
         tempBtn.setTitle("Mark as closed", for: .normal)
         tempBtn.isEnabled = false
         tempBtn.alpha = 0.5
-        
+
         tempBtn.translatesAutoresizingMaskIntoConstraints = false
         tempBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
         
@@ -61,24 +56,26 @@ class OrderDetailViewController: DetailFormViewController {
         self.customerCard = CustomerDescCard()
         
         let orderItemAddBtn = OrderItemAddBtn()
-        self.orderItemTableView = OrderDetailsStackView(fields: [
+        self.orderItemStackView = OrderDetailsStackView(fields: [
             orderItemAddBtn
         ])
         
         self.actionType = config.action
         self.orderList = config.viewModel as? OrderList
+        self.orderItemDetailsArr = []
         
         super.init(config: config)
         
-        guard let nextId = self.orderList?.getNextId() else {
-            fatalError("Unable to retrieve next id.")
+        if self.actionType == .add {
+            guard let nextId = self.orderList?.getNextId() else {
+                fatalError("Unable to retrieve next id.")
+            }
+            self.currentId = nextId
+        } else {
+            self.currentId = config.id
         }
         
-        if self.actionType == .add {
-            orderNumberField.value = "#\(nextId)"
-        } else {
-            orderNumberField.value = "#\(self.currentId)"
-        }
+        orderNumberField.value = "#\(self.currentId)"
         orderNumberField.valueView.alpha = 0.5
         
         self.customerCard.delegate = self
@@ -117,68 +114,91 @@ class OrderDetailViewController: DetailFormViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.fillCustomerCard()
+        self.updateCustomerCard()
     }
     
-    private func fillCustomerCard() {
+    private func fillCustomerCard(customer: Customer) {
+        self.customerCard.placeholder.isHidden = true
+        self.customerCard.nameLabel.text = customer.name
+        self.customerCard.addressLabel.text = customer.address
+        self.customerCard.phoneLabel.text = customer.phone == "" ? .absent : customer.phone
+        self.customerCard.icon.backgroundColor = .accent
+        
+        let customerImage: UIImage? = {
+            if let imgData = customer.image {
+                return UIImage(data: imgData)
+            } else {
+                return nil
+            }
+        }()
+        
+        self.customerCard.icon.image = customerImage ?? #imageLiteral(resourceName: "AvatarDefault")
+        self.customerCard.setupLayout()
+    }
+    
+    private func updateCustomerCard() {
         let customerList = CustomerList()
         
         if let id = self.currentCustomerId,
             let customer = customerList.getCustomer(id: id) {
-            
-            self.customerCard.placeholder.isHidden = true
-            self.customerCard.nameLabel.text = customer.name
-            self.customerCard.addressLabel.text = customer.address
-            self.customerCard.phoneLabel.text = customer.phone == "" ? .absent : customer.phone
-            self.customerCard.icon.backgroundColor = .accent
-            
-            let customerImage: UIImage? = {
-                if let imgData = customer.image {
-                    return UIImage(data: imgData)
-                } else {
-                    return nil
-                }
-            }()
-            
-            self.customerCard.icon.image = customerImage ?? #imageLiteral(resourceName: "AvatarDefault")
-            
-            self.customerCard.setupLayout()
+            self.fillCustomerCard(customer: customer)
         }
+    }
+    
+    private func insertNewOrderItemView(orderItem: OrderItemDetails) {
+        let orderItemView = OrderItemView()
+        orderItemView.nameLabel.text = orderItem.name
+        orderItemView.priceField.textField.text = String(orderItem.price)
+        orderItemView.qtyField.textField.text = String(orderItem.qty)
+        orderItemView.delegate = self
+        
+        self.orderItemDetailsArr.append(orderItem)
+        self.orderItemStackView.appendView(view: orderItemView)
     }
     
     private func appendOrderItem(id: String) {
         let inventory = Inventory()
         
-        if let orderItem = inventory.getDetails(id: id) as? MerchDetails {
-            let orderItemView = OrderItemView()
-            orderItemView.nameLabel.text = orderItem.name
-            orderItemView.priceField.textField.text = String(orderItem.price)
-            orderItemView.delegate = self
+        if let merchDet = inventory.getDetails(id: id) as? MerchDetails {
+            let orderItemDet = OrderItemDetails(name: merchDet.name, qty: 1, price: merchDet.price)
+            self.insertNewOrderItemView(orderItem: orderItemDet)
             
-            self.orderItemDetailsArr.append(OrderItemDetails(name: orderItem.name, qty: 1, price: orderItem.price))
-            self.orderItemTableView.appendView(view: orderItemView)
+            DispatchQueue.main.async {
+                if self.scrollView.contentSize.height > self.scrollView.frame.height {
+                    self.scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.mimimumBottomInset), animated: true)
+                }
+            }
         }
     }
     
     private func prefillFieldsForEdit() {
-        //        guard let orderDetails = self.orderList?.getDetails(id: self.currentId ?? "") as? OrderDetails else {
-        //            fatalError()
-        //        }
+        guard let orderDetails = self.orderList?.getDetails(id: self.currentId) as? OrderDetails else {
+            fatalError("Unable to retrieve data.")
+        }
         
-        //        let valueMap: [String: String] = [
-        //            .number: orderDetails.number,
-        //            .phone: orderDetails.phone,
-        //            .address: orderDetails.address,
-        //            .remark: orderDetails.remark,
-        //            .lastContacted: orderDetails.lastContacted.toString(format: Constants.System.DateFormat),
-        //        ]
-        //
-        //        let iconView = self.inputFieldsSection.getView(viewType: IconView.self).first as? IconView
-        //        if orderDetails.image != nil {
-        //            iconView?.iconImage.image = orderDetails.image
-        //        }
-        //
-        //        self.inputFieldsSection.prefillValues(values: valueMap)
+        let valueMap: [String: String] = [
+            .orderNumber: orderDetails.number,
+            .remark: orderDetails.remark,
+            .openedOn: orderDetails.openedOn.toString(format: Constants.System.DateFormat)
+        ]
+        
+        self.orderInfoFieldsSection.prefillValues(values: valueMap)
+        
+        self.currentCustomerId = orderDetails.customerName
+        self.updateCustomerCard()
+        
+        if let items = orderDetails.items {
+            for item in items {
+                self.insertNewOrderItemView(orderItem: item)
+            }
+        }
+        
+        if let statusView = self.orderStatusControlSection.getViews(viewType: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons {
+            statusView.isPreped = orderDetails.isPreped
+            statusView.isShipped = orderDetails.isShipped
+            statusView.isDeposit = orderDetails.isDeposit
+            statusView.isPaid = orderDetails.isPaid
+        }
     }
     
     private func setup() {
@@ -197,13 +217,12 @@ class OrderDetailViewController: DetailFormViewController {
         self.scrollView.addSubview(self.orderStatusControlSection)
         self.orderStatusControlSection.snp.makeConstraints { make in
             make.top.equalTo(self.customerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
-//            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault * 2)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
         self.orderStatusControlSection.backgroundColor = .primary
         self.orderStatusControlSection.clipsToBounds = true
-        
+
         self.scrollView.addSubview(self.orderInfoFieldsSection)
         self.orderInfoFieldsSection.snp.makeConstraints { make in
             make.top.equalTo(self.orderStatusControlSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
@@ -212,22 +231,23 @@ class OrderDetailViewController: DetailFormViewController {
         }
         self.orderInfoFieldsSection.backgroundColor = .primary
         self.orderInfoFieldsSection.clipsToBounds = true
-        
-        self.scrollView.addSubview(self.orderItemTableView)
-        self.orderItemTableView.snp.makeConstraints { make in
+
+        self.scrollView.addSubview(self.orderItemStackView)
+        self.orderItemStackView.snp.makeConstraints { make in
             make.top.equalTo(self.orderInfoFieldsSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
         }
-        self.orderItemTableView.backgroundColor = .primary
-        self.orderItemTableView.clipsToBounds = true
+        self.orderItemStackView.backgroundColor = .primary
+        self.orderItemStackView.clipsToBounds = true
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
             self.customerCard.layer.cornerRadius = self.customerCard.frame.width / 24
             self.orderStatusControlSection.layer.cornerRadius = self.orderStatusControlSection.frame.width / 24
             self.orderInfoFieldsSection.layer.cornerRadius = self.orderInfoFieldsSection.frame.width / 24
-            self.orderItemTableView.layer.cornerRadius = self.orderItemTableView.frame.width / 24
+            self.orderItemStackView.layer.cornerRadius = self.orderItemStackView.frame.width / 24
         }
         
         if self.actionType == .edit {
@@ -238,50 +258,73 @@ class OrderDetailViewController: DetailFormViewController {
     
     // MARK: - Data
     @objc private func submitOrderDetails () {
-        //        let orderDetails = self.makeOrderDetails()
-        //        if orderDetails.name == "" {
-        //            if let textField = self.inputFieldsSection
-        //                .getView(labelText: .name) as? TitleWithTextField {
-        //                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorOrderInputEmpty", comment: "Error Message - Order name text field ."), field: textField.textView as! UITextField)
-        //            }
-        //            return
-        //        }
-        //
-        //        let handler: (UIAlertAction) -> Void = { [weak self] alert in
-        //            guard let `self` = self else { return }
-        //            if self.actionType == .edit {
-        //                self.editItem(details: orderDetails)
-        //            } else if self.actionType == .add {
-        //                self.addOrder(orderDetails: orderDetails)
-        //            }
-        //        }
-        //
-        //        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
-        //
-        //        self.present(confirmationAlert, animated: true, completion: nil)
+        let orderDetails = self.makeOrderDetails()
+        if orderDetails.customerName == "" {
+            self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoCustomer", comment: "Error Message.")), animated: true, completion: nil)
+            return
+        }
+
+        if orderDetails.items?.isEmpty ?? false {
+            self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoOrderItem", comment: "Error Message.")), animated: true, completion: nil)
+            return
+        }
+
+        let handler: (UIAlertAction) -> Void = { [weak self] alert in
+            guard let `self` = self else { return }
+            if self.actionType == .edit {
+                self.editItem(details: orderDetails)
+            } else if self.actionType == .add {
+                self.addOrder(orderDetails: orderDetails)
+            }
+        }
+        
+        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
+        
+        self.present(confirmationAlert, animated: true, completion: nil)
     }
     
     private func makeOrderDetails() -> OrderDetails {
-        let extractedValues = self.orderInfoFieldsSection.extractValues(mappingKeys: [])
-        
-        let extractedCustomer = Customer()
-        
+        let extractedCustomerName: String = {
+            let customerList = CustomerList()
+            if let id = self.currentCustomerId,
+                let customer = customerList.getCustomer(id: id) {
+                return customer.name
+            } else {
+                return ""
+            }
+        }()
+
+        let extractedInfo = self.orderInfoFieldsSection.extractValues(mappingKeys: [.remark,
+                                                                                    .openedOn])
+        let statusView = self.orderStatusControlSection.getViews(viewType: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons
+
+        let orderDetailsViews = self.orderItemStackView.getViews(viewType: OrderItemView.self) as? [OrderItemView]
+        let latestDetails: [OrderItemDetails] = orderDetailsViews?.compactMap({ v in
+            let name = v.nameLabel.text
+            let qty = Int32(v.qtyField.textField.text ?? "0") ?? 0
+            let price = Double(v.priceField.textField.text ?? "0") ?? 0
+            return OrderItemDetails(name: name ?? "",
+                             qty: qty,
+                             price: price)
+        }) ?? []
+
         return OrderDetails(
-            number: extractedValues[.orderNumber] ?? "",
-            remark: extractedValues[.remark] ?? "",
-            openedOn: extractedValues[.openedOn]?.toDate(format: Constants.System.DateFormat) ?? Date(),
-            isShipped: false,
-            isPreped: false,
-            isPaid: false,
-            isDeposit: false,
+            number: self.currentId,
+            remark: extractedInfo[.remark] ?? "",
+            openedOn: extractedInfo[.openedOn]?.toDate(format: Constants.System.DateFormat) ?? Date(),
+            isShipped: statusView?.isShipped ?? false,
+            isPreped: statusView?.isPreped ?? false,
+            isPaid: statusView?.isPaid ?? false,
+            isDeposit: statusView?.isDeposit ?? false,
             isClosed: false,
-            customerName: extractedCustomer.name,
-            items: self.orderItemDetailsArr
+            customerName: extractedCustomerName,
+            items: latestDetails
         )
     }
     
     private func addOrder(orderDetails: OrderDetails) {
-        self.orderList?.add(details: orderDetails, completion: { success in
+        self.orderList?.add(details: orderDetails, completion: { [weak self] success in
+            guard let `self` = self else { return }
             if !success {
                 self.promptItemExistsError()
             }
@@ -293,10 +336,10 @@ class OrderDetailViewController: DetailFormViewController {
 extension OrderDetailViewController: DataPicker {
     
     func pickCustomer() {
-        
-        let onSelectRowHandler: (String) -> Void = { customerName in
+        let onSelectRowHandler: (String) -> Void = { [weak self] customerName in
+            guard let `self` = self else { return }
             self.currentCustomerId = customerName
-            self.fillCustomerCard()
+            self.updateCustomerCard()
             self.navigationController?.popToViewController(self, animated: true)
         }
         
@@ -307,7 +350,8 @@ extension OrderDetailViewController: DataPicker {
     }
     
     func pickOrderItem() {
-        let onSelectRowHandler: (String) -> Void = { merchName in
+        let onSelectRowHandler: (String) -> Void = { [weak self] merchName in
+            guard let `self` = self else { return }
             self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
         }

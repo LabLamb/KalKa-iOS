@@ -72,12 +72,16 @@ class OrderItemView: CustomView {
         return result
     }()
     
-    var delegate: DataPicker?
+    weak var delegate: DataPicker?
     
     override var intrinsicContentSize: CGSize {
         get {
             return CGSize(width: 0, height: Constants.UI.Sizing.Height.TextFieldDefault * 2)
         }
+    }
+    
+    deinit {
+        self.delegate = nil
     }
     
     override func setupLayout() {
@@ -127,13 +131,15 @@ class OrderItemView: CustomView {
             make.top.equalTo(self.snp.centerY)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Small)
             make.bottom.equalToSuperview()
-//            make.right.equalTo(self.priceField.snp.left)
         }
     }
     
     @objc func remove() {
-        self.delegate?.removeOrderItem(id: self.nameLabel.text ?? "")
-        self.removeFromSuperview()
+        let confirmDialog = UIAlertController.makeConfirmation(confirmHandler: {_ in
+            self.delegate?.removeOrderItem(id: self.nameLabel.text ?? "")
+            self.removeFromSuperview()
+        })
+        self.parentContainerViewController()?.present(confirmDialog, animated: true, completion: nil)
     }
 }
 

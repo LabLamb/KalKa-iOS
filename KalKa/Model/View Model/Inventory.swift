@@ -103,6 +103,15 @@ class Inventory: ViewModel {
         completion(true)
     }
     
+    func updateInventoryQty(merchId: String, diff: Int32) {
+        let context = self.persistentContainer.newBackgroundContext()
+        let predicate = NSPredicate(format: "name = %@", merchId)
+        guard let result = self.query(clause: predicate, incContext: context)?.first as? Merch else { return }
+        result.qty -= diff
+        
+        try? context.save()
+    }
+    
     func exists(id: String, completion: ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "name = %@", id)
         if let result = self.query(clause: predicate) {

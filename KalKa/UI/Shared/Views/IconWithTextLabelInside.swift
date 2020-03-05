@@ -28,6 +28,18 @@ class IconWithTextLabelInside: CustomView {
         }
     }
     
+    var iconTintColor: UIColor {
+        get {
+            return self.icon.tintColor
+        }
+        
+        set {
+            self.icon.tintColor = newValue
+            self.icon.layoutIfNeeded()
+            self.icon.setNeedsDisplay()
+        }
+    }
+    
     init(icon: UIImage, text: String = "") {
         self.icon = UIImageView(image: icon)
         self.textLabel = UILabel()

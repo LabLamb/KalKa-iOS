@@ -37,22 +37,52 @@ class OrderList: ViewModel {
         self.exists(id: String(details.number), completion: { exists in
             if !exists {
                 let context = self.persistentContainer.newBackgroundContext()
-                let predicate = NSPredicate(format: "name = %@", details.customerName)
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
-                fetchRequest.predicate = predicate
-                if let entity = NSEntityDescription.entity(forEntityName: "Order", in: context),
-                    let result = try? context.fetch(fetchRequest),
-                    let customer = result.first,
-                    let num = Int64(details.number) {
+                
+                let customer: Customer? = {
+                    let predicate = NSPredicate(format: "name = %@", details.customerName)
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
+                    fetchRequest.predicate = predicate
+                    if let result = try? context.fetch(fetchRequest),
+                        let customer = result.first as? Customer {
+                        return customer
+                    } else {
+                        return nil
+                    }
+                }()
+                
+                if let `customer` = customer,
+                    let entity = NSEntityDescription.entity(forEntityName: "Order", in: context),
+                    let num = Int64(details.number),
+                    let items = details.items {
                     let newOrder = Order(entity: entity, insertInto: context)
                     newOrder.number = num
                     newOrder.openedOn = details.openedOn
-                    
-//                    newOrder.items = details.items
-                    
-                    newOrder.customer = customer as! Customer
+                    newOrder.customer = customer
                     newOrder.isClosed = details.isClosed
+                    newOrder.isDeposit = details.isDeposit
+                    newOrder.isShipped = details.isShipped
+                    newOrder.isPreped = details.isPreped
+                    newOrder.isPaid = details.isPaid
+                    newOrder.remark = details.remark
+                    newOrder.items = {
+                        guard let entity = NSEntityDescription.entity(forEntityName: "OrderItem", in: context) else { return nil }
+                        var result = [OrderItem]()
+                        for item in items {
+                            let newOrderItem = OrderItem(entity: entity, insertInto: context)
+                            newOrderItem.name = item.name
+                            newOrderItem.price = item.price
+                            newOrderItem.qty = item.qty
+                            result.append(newOrderItem)
+                        }
+                        return Set(result)
+                    }()
+                    
                     try? context.save()
+                    
+                    for item in items {
+                        Inventory().updateInventoryQty(merchId: item.name, diff: item.qty)
+                    }
+                    
                     self.fetch()
                     completion(true)
                 } else {
@@ -108,14 +138,7 @@ class OrderList: ViewModel {
             self.storeEdit(oldId: oldId, details: details)
             completion(true)
         } else {
-            self.exists(id: String(details.number)) { exists in
-                if exists {
-                    completion(false)
-                } else {
-                    self.storeEdit(oldId: oldId, details: details)
-                    completion(true)
-                }
-            }
+            fatalError("Order number changed, which it should not.")
         }
     }
     
@@ -131,18 +154,54 @@ class OrderList: ViewModel {
             fatalError("Trying to edit an non-existing Order. (Array is empty)")
         }
         
-        guard let num = Int64(details.number) else {
-            fatalError("ID unable to be cast as Integer.")
-        }
+        editingOrder.remark = details.remark
+        editingOrder.openedOn = details.openedOn
+        editingOrder.isClosed = details.isClosed
+        editingOrder.isPreped = details.isPreped
+        editingOrder.isPaid = details.isPaid
+        editingOrder.isShipped = details.isShipped
+        editingOrder.isDeposit = details.isDeposit
         
-        editingOrder.number = num
-        //        editingOrder.address = details.address
-        //        editingOrder.phone = details.phone
-        //        editingOrder.remark = details.remark
-        //        editingOrder.lastContacted = details.lastContacted
-        //        editingOrder.image = details.image?.pngData()
+        var itemQtyChanges: [(name: String, diff: Int32)] = []
+        
+        details.items?.forEach({ itemDet in
+            let matchingItem = editingOrder.items?.first(where: { itemObj in
+                itemObj.name == itemDet.name
+            })
+            
+            if let `matchingItem` = matchingItem {
+                itemQtyChanges.append((name: matchingItem.name,
+                                       diff: itemDet.qty - matchingItem.qty))
+                matchingItem.price = itemDet.price
+                matchingItem.qty = itemDet.qty
+            } else {
+                if let entity = NSEntityDescription.entity(forEntityName: "OrderItem", in: context) {
+                    let newOrderItem = OrderItem(entity: entity, insertInto: context)
+                    newOrderItem.name = itemDet.name
+                    newOrderItem.price = itemDet.price
+                    newOrderItem.qty = itemDet.qty
+                    editingOrder.addToItems(newOrderItem)
+                    itemQtyChanges.append((name: newOrderItem.name,
+                                           diff: newOrderItem.qty))
+                }
+            }
+        })
+        
+        editingOrder.items = editingOrder.items?.filter({ itemObj in
+            let hasDetails = (details.items?.contains(where: { $0.name == itemObj.name }) ?? false)
+            if !hasDetails {
+                itemQtyChanges.append((name: itemObj.name,
+                    diff: -itemObj.qty))
+            }
+            return hasDetails
+        })
         
         try? context.save()
+        
+        let inv = Inventory()
+        for changes in itemQtyChanges {
+            inv.updateInventoryQty(merchId: changes.name, diff: changes.diff)
+        }
     }
     
     func exists(id: String, completion: ((Bool) -> Void)) {

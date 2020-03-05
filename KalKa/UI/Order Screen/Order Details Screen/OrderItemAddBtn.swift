@@ -16,7 +16,7 @@ class OrderItemAddBtn: CustomView {
         return result
     }()
     
-    var delegate: DataPicker?
+    weak var delegate: DataPicker?
     
     override init() {
         super.init()
@@ -24,10 +24,16 @@ class OrderItemAddBtn: CustomView {
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.pickMerch))
         self.addGestureRecognizer(tapGest)
         self.isUserInteractionEnabled = true
+        
+        self.addLabel.isUserInteractionEnabled = false
     }
     
     @objc func pickMerch() {
         self.delegate?.pickOrderItem()
+    }
+    
+    deinit {
+        self.delegate = nil
     }
     
     required init?(coder: NSCoder) {

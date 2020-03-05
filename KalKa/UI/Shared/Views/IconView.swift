@@ -10,6 +10,12 @@ class IconView: CustomView {
     let defaultImage: UIImage
     weak var cameraOptionPresenter: UIViewController?
     
+    override var intrinsicContentSize: CGSize {
+        get {
+            return CGSize(width: 0, height: Constants.UI.Sizing.Height.Medium)
+        }
+    }
+    
     init(image: UIImage) {
         self.defaultImage = image
         self.iconImage = UIImageView(image: self.defaultImage)

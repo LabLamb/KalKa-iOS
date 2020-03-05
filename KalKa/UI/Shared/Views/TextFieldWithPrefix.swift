@@ -25,7 +25,7 @@ class TextFieldWithPrefix: CustomView {
         self.addSubview(self.prefixLabel)
         self.prefixLabel.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
-            let textWidth = ceil(self.prefixLabel.text?.size(withAttributes:[.font: UILabel().font]).width ?? 0)
+            let textWidth = ceil(self.prefixLabel.text?.size(withAttributes:[.font: UILabel().font as Any]).width ?? 0)
             make.width.equalTo(textWidth)
         }
         
@@ -35,5 +35,4 @@ class TextFieldWithPrefix: CustomView {
             make.top.bottom.right.equalToSuperview()
         }
     }
-    
 }

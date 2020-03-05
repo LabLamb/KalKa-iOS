@@ -25,7 +25,7 @@ extension Order {
     @NSManaged public var isDeposit: Bool
     @NSManaged public var isClosed: Bool
     @NSManaged public var customer: Customer
-    @NSManaged public var items: [OrderItem]?
+    @NSManaged public var items: Set<OrderItem>?
 
 }
 

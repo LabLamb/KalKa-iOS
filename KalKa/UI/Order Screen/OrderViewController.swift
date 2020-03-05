@@ -94,6 +94,7 @@ extension OrderViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = String(self.fileredOrders[indexPath.row].number)
         let isClosed = self.fileredOrders[indexPath.row].isClosed
+        
         if let delegate = self.onSelectRowDelegate {
             delegate(id)
         } else {

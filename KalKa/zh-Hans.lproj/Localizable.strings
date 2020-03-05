@@ -49,3 +49,5 @@
 "PreparedToShip" = "已包装";
 "Membership" = "会员功能";
 "AddItem" = "新增货品";
+"ErrorOrderNoCustomer" = "请先选取一名客户";
+"ErrorOrderNoOrderItem" = "订单货品不能为零";

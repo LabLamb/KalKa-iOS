@@ -28,7 +28,7 @@ class CustomerDescCard: CustomView {
         return result
     }()
     
-    var delegate: DataPicker?
+    weak var delegate: DataPicker?
     
     let placeholder: IconWithTextLabel = {
         let plusImg = UIImage(named: "Plus") ?? UIImage()

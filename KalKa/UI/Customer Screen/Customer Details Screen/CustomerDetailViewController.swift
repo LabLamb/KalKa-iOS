@@ -78,6 +78,8 @@ class CustomerDetailViewController: DetailFormViewController {
             fatalError()
         }
         
+        print("\(customerDetails.name) has \(customerDetails.orders?.count ?? 0) orders.")
+        
         let valueMap: [String: String] = [
             .name: customerDetails.name,
             .phone: customerDetails.phone,

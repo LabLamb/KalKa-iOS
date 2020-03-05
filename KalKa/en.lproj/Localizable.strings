@@ -49,3 +49,5 @@
 "Shipped" = "Shipped";
 "Membership" = "Membership";
 "AddItem" = "Add item";
+"ErrorOrderNoCustomer" = "Please select a cusomter";
+"ErrorOrderNoOrderItem" = "Please add at least add one product";
