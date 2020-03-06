@@ -8,11 +8,8 @@ class CustomerDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
     private let inputFieldsSection: InputFieldsSection
-    
-    let actionType: DetailsViewActionType
     weak var customerList: CustomerList?
-    var onSelectRowDelegate: ((String) -> Void)?
-    
+
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
         let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
@@ -41,9 +38,7 @@ class CustomerDetailViewController: DetailFormViewController {
             ]
         )
         
-        self.actionType = config.action
         self.customerList = config.viewModel as? CustomerList
-        self.onSelectRowDelegate = config.onSelectRow
         
         super.init(config: config)
         iconView.cameraOptionPresenter = self
@@ -67,8 +62,6 @@ class CustomerDetailViewController: DetailFormViewController {
                 return ""
             }
         }()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitCustomerDetails))
         
         self.setup()
     }
@@ -123,31 +116,17 @@ class CustomerDetailViewController: DetailFormViewController {
     
     
     // MARK: - Data
-    @objc private func submitCustomerDetails () {
-        let customerDetails = self.makeCustomerDetails()
-        if customerDetails.name == "" {
-            if let textField = self.inputFieldsSection
-                .getViews(descText: .name).first as? TitleWithTextField {
-                self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField.valueView as! UITextField)
-            }
-            return
+    override func validateFields() -> Bool {
+        if self.makeDetails().id == "" {
+            let textField = self.inputFieldsSection.getViews(descText: .name).first as? TitleWithTextField
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField?.valueView as? UITextField)
+            return false
         }
         
-        let handler: (UIAlertAction) -> Void = { [weak self] alert in
-            guard let `self` = self else { return }
-            if self.actionType == .edit {
-                self.editItem(details: customerDetails)
-            } else if self.actionType == .add {
-                self.addCustomer(customerDetails: customerDetails)
-            }
-        }
-        
-        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
-        
-        self.present(confirmationAlert, animated: true, completion: nil)
+        return true
     }
     
-    private func makeCustomerDetails() -> CustomerDetails {
+    override func makeDetails() -> ModelDetails {
         let extractedValues = self.inputFieldsSection.extractValues(mappingKeys: [
             .name,
             .phone,
@@ -172,21 +151,6 @@ class CustomerDetailViewController: DetailFormViewController {
                                phone: extractedValues[.phone] ?? "",
                                orders: nil,
                                remark: extractedValues[.remark] ?? "")
-        
-    }
-    
-    private func addCustomer(customerDetails: CustomerDetails) {
-        self.customerList?.add(details: customerDetails, completion: { success in
-            if !success {
-                self.promptItemExistsError()
-            }
-        })
-        
-        if let delegate = self.onSelectRowDelegate {
-            delegate(customerDetails.name)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
         
     }
 }

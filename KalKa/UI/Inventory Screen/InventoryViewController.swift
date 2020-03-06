@@ -45,8 +45,7 @@ class InventoryViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfiguration) {
-        let editVC = MerchDetailViewController(config: config)
-        self.navigationController?.pushViewController(editVC, animated: true)
+    override func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
+        return MerchDetailViewController(config: config)
     }
 }

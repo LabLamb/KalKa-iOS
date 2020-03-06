@@ -43,4 +43,5 @@ extension String {
     static let addCustomer = NSLocalizedString("AddCustomer", comment: "")
     static let membership = NSLocalizedString("Membership", comment: "")
     static let addOrderItem = NSLocalizedString("AddItem", comment: "")
+    static let unexpectedErrorMsg = NSLocalizedString("ErrorExpectedMessage", comment: "")
 }
