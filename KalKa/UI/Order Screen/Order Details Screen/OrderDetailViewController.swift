@@ -275,7 +275,6 @@ class OrderDetailViewController: DetailFormViewController {
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            //            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
