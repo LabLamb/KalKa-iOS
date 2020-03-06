@@ -1,0 +1,54 @@
+/*
+  Copyright © 2020 LabLambWorks. All rights reserved.
+*/
+
+"Inventory" = "Inventory";
+"Orders" = "Orders";
+"Search" = "Search";
+"Name" = "Name";
+"Price" = "Price";
+"Qty" = "Quantity";
+"Remark" = "Remark";
+"NewMerch" = "New product";
+"GenericError" = "Error";
+"ErrorMerchExists" = "Product with the same name already exists";
+"OK" = "OK";
+"ErrorMerchInputEmpty" = "Please enter a product name";
+"Save" = "Save";
+"Edit" = "Edit";
+"Camera" = "Camera";
+"Photos" = "Camera roll";
+"Cancel" = "Cancel";
+"Required(Input)" = "Required";
+"Optional(Input)" = "Optional";
+"ConfirmationTitle" = "Confirmation";
+"ConfirmationMessage" = "Are you sure?";
+"Customers" = "Customers";
+"Add" = "Add";
+"Remove" = "Remove";
+"LastContacted" = "Last Contact";
+"ErrorCustomerExists" = "Customer with the same name already exists";
+"ErrorCustomerInputEmpty" = "Please enter a cusomter name";
+"NewCustomer" = "New customer";
+"AddCustomer" = "Add customer";
+"Phone" = "Phone";
+"Address" = "Address";
+"Absent" = "N/A";
+"Statistics" = "Statistics";
+"Settings" = "Settings";
+"OrderNumber" = "Order number";
+"OpenedOn" = "Issue date";
+"Status" = "Status";
+"NewOrder" = "New order";
+"All" = "All";
+"Open" = "Open";
+"Closed" = "Closed";
+"Deposited" = "Deposited";
+"Paid" = "Paid";
+"PreparedToShip" = "Ready";
+"Shipped" = "Shipped";
+"Membership" = "Membership";
+"AddItem" = "Add item";
+"ErrorOrderNoCustomer" = "Please select a cusomter";
+"ErrorOrderNoOrderItem" = "Please add at least add one product";
+"ErrorExpectedMessage" = "Unexpected error. Please contact author to report this issue.";

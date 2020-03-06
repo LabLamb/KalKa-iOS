@@ -1,7 +1,7 @@
 name: Swift
 
 on:
-  push:
+  pull_request:
     branches: 
       - master
       - develop
@@ -21,6 +21,6 @@ jobs:
       shell: bash
     - name: Build
       run: |
-          xcodebuild clean build -workspace SalesAccountBook.xcworkspace -scheme SalesAccountBook -destination "${destination}"
+          xcodebuild clean build -workspace KalKa.xcworkspace -scheme KalKa -destination "${destination}"
       env:
          destination: ${{ matrix.destination }}
