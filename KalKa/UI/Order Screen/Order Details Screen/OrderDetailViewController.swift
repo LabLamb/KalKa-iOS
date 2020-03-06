@@ -173,6 +173,9 @@ class OrderDetailViewController: DetailFormViewController {
         orderItemView.qtyField.textField.text = String(orderItem.qty)
         orderItemView.delegate = self
         orderItemView.updatePriceTotal()
+        
+        orderItemView.priceField.textField.isUserInteractionEnabled = !self.isClosed
+        orderItemView.qtyField.textField.isUserInteractionEnabled = !self.isClosed
         orderItemView.delBtn.isHidden = self.isClosed
         
         self.orderItemDetailsArr.append(orderItem)
