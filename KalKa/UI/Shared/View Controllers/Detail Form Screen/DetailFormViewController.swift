@@ -89,7 +89,7 @@ class DetailFormViewController: UIViewController {
             if !success {
                 self.promptItemExistsError()
             }
-            self.dismiss(animated: false, completion: { [weak self] in
+            self.dismiss(animated: true, completion: { [weak self] in
                 guard let `self` = self else { return }
                 self.onSelectRowDelegate?(details.id)
             })

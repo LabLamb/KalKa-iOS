@@ -379,8 +379,8 @@ extension OrderDetailViewController: DataPicker {
         let onSelectRowHandler: (String) -> Void = { [weak self] customerName in
             guard let `self` = self else { return }
             self.currentCustomerId = customerName
-            self.updateCustomerCard()
             self.navigationController?.popToViewController(self, animated: true)
+            self.updateCustomerCard()
         }
         
         let prefillIds = [self.currentCustomerId ?? ""]
@@ -392,8 +392,8 @@ extension OrderDetailViewController: DataPicker {
     func pickOrderItem() {
         let onSelectRowHandler: (String) -> Void = { [weak self] merchName in
             guard let `self` = self else { return }
-            self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
+            self.appendOrderItem(id: merchName)
         }
         let prefillIds = self.orderItemDetailsArr.compactMap({ $0.name })
         
