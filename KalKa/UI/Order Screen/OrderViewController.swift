@@ -41,8 +41,16 @@ class OrderViewController: SearchTableViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = .orders
+        
+        let swipeGestLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.tableViewSwipped))
+        swipeGestLeft.direction = .left
+        
+        let swipeGestRight = UISwipeGestureRecognizer(target: self, action: #selector(self.tableViewSwipped))
+        swipeGestRight.direction = .right
+        
+        self.tableView.gestureRecognizers = [swipeGestLeft, swipeGestRight]
+        self.tableView.isUserInteractionEnabled = true
     }
     
     override func filterListByString(_ searchText: String) {
@@ -74,6 +82,17 @@ class OrderViewController: SearchTableViewController {
             })
         }
         self.tableView.reloadData()
+    }
+    
+    @objc func tableViewSwipped(gest: UISwipeGestureRecognizer) {
+        let currentIndex = self.searchBar.selectedScopeButtonIndex
+        guard let totalIndex = self.searchBar.scopeButtonTitles?.count else { return }
+        if gest.direction == .left {
+            self.searchBar.selectedScopeButtonIndex = min(currentIndex + 1, totalIndex - 1)
+        } else {
+            self.searchBar.selectedScopeButtonIndex = max(0, currentIndex - 1)
+        }
+        self.filterListByString(self.searchBar.text ?? "")
     }
     
     override func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
