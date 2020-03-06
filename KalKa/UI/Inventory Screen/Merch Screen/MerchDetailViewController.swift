@@ -8,10 +8,7 @@ class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
     let inputFieldsSection: InputFieldsSection
-    
-    let actionType: DetailsViewActionType
     weak var inventory: Inventory?
-    var onSelectRowDelegate: ((String) -> Void)?
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
@@ -40,9 +37,7 @@ class MerchDetailViewController: DetailFormViewController {
         
         self.inputFieldsSection = InputFieldsSection(fields: fields)
         
-        self.actionType = config.action
         self.inventory = config.viewModel as? Inventory
-        self.onSelectRowDelegate = config.onSelectRow
         
         super.init(config: config)
         iconView.cameraOptionPresenter = self
@@ -66,9 +61,6 @@ class MerchDetailViewController: DetailFormViewController {
                 return ""
             }
         }()
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitMerchDetails))
-        
         self.setup()
     }
     
@@ -116,35 +108,24 @@ class MerchDetailViewController: DetailFormViewController {
     
     
     // MARK: - Data
-    @objc private func submitMerchDetails () {
-        let merchDetails = self.makeMerchDetails()
-        if merchDetails.name == "" {
-            let textField = self.inputFieldsSection
-                .getViews(viewType: TitleWithTextField.self)
+    override func validateFields() -> Bool {
+        if self.makeDetails().id == "" {
+            let textField = self.inputFieldsSection.getViews(viewType: TitleWithTextField.self)
                 .first(where: { view in
-                    let abc = (view as? TitleWithTextField)
-                    let abcDesc = (abc?.desc as? String)
-                    return abcDesc == .name
-                }) as! TitleWithTextField
-            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: textField.valueView as! UITextField)
-            return
+                    (((view as? TitleWithTextField)?.desc) as? String) == .name
+                }) as? TitleWithTextField
+            
+            let inputField = textField?.valueView as? UITextField
+            
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: inputField)
+            
+            return false
         }
         
-        let handler: (UIAlertAction) -> Void = { [weak self] alert in
-            guard let `self` = self else { return }
-            if self.actionType == .edit {
-                self.editItem(details: merchDetails)
-            } else if self.actionType == .add {
-                self.addMerch(merchDetails: merchDetails)
-            }
-        }
-        
-        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
-        
-        self.present(confirmationAlert, animated: true, completion: nil)
+        return true
     }
     
-    private func makeMerchDetails() -> MerchDetails {
+    override func makeDetails() -> ModelDetails {
         let extractedValue = self.inputFieldsSection.extractValues(mappingKeys: [
             .name,
             .price,
@@ -170,19 +151,5 @@ class MerchDetailViewController: DetailFormViewController {
                             remark: extractedValue[.remark] ?? "",
                             image: image)
         
-    }
-    
-    private func addMerch(merchDetails: MerchDetails) {
-        self.inventory?.add(details: merchDetails, completion: { success in
-            if !success {
-                self.promptItemExistsError()
-            }
-        })
-        
-        if let delegate = self.onSelectRowDelegate {
-            delegate(merchDetails.name)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
     }
 }

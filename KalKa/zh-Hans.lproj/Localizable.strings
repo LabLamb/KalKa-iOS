@@ -51,3 +51,4 @@
 "AddItem" = "新增货品";
 "ErrorOrderNoCustomer" = "请先选取一名客户";
 "ErrorOrderNoOrderItem" = "订单货品不能为零";
+"ErrorExpectedMessage" = "未知的错误";

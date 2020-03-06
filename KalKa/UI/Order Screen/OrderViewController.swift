@@ -3,6 +3,7 @@
 //
 
 import SnapKit
+import CoreData
 
 class OrderViewController: SearchTableViewController {
     
@@ -75,12 +76,21 @@ class OrderViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfiguration) {
-        let editVC = OrderDetailViewController(config: config)
-        self.navigationController?.pushViewController(editVC, animated: true)
+    override func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
+        return OrderDetailViewController(config: config)
+    }
+    
+    // MARK: - Data
+    override func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
+        if let `data` = data as? Order {
+            return OrderDetailsConfigurator(action: .edit, id: data.id, viewModel: self.list, onSelectRow: nil, isClosed: data.isClosed)
+        } else {
+            return DetailsConfiguration(action: .edit, id: data.id, viewModel: self.list, onSelectRow: nil)
+        }
     }
     
 }
+
 
 // MARK: - SearchBar
 extension OrderViewController {
@@ -94,17 +104,5 @@ extension OrderViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (Constants.UI.Sizing.Height.Small * 1.5) + self.betweenCellPadding
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = String(self.fileredOrders[indexPath.row].number)
-        let isClosed = self.fileredOrders[indexPath.row].isClosed
-        
-        if let delegate = self.onSelectRowDelegate {
-            delegate(id)
-        } else {
-            let detailConfig = OrderDetailsConfigurator(action: .edit, id: id, viewModel: self.list, onSelectRow: nil, isClosed: isClosed)
-            self.navigateToDetailView(config: detailConfig)
-        }
     }
 }

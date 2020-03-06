@@ -9,11 +9,13 @@ class OrderDetailsConfigurator: DetailsConfiguration {
          id: String,
          viewModel: ViewModel?,
          onSelectRow: ((String) -> Void)?,
-         isClosed: Bool) {
+         isClosed: Bool,
+         presentingRefreshable: Refreshable? = nil) {
         self.isClosed = isClosed
         super.init(action: action,
                    id: id,
                    viewModel: viewModel,
-                   onSelectRow: onSelectRow)
+                   onSelectRow: onSelectRow,
+                   presentingRefreshable: presentingRefreshable)
     }
 }

@@ -12,7 +12,6 @@ class OrderDetailViewController: DetailFormViewController {
     private let orderInfoFieldsSection: InputFieldsSection
     private let orderItemStackView: OrderDetailsStackView
     
-    let actionType: DetailsViewActionType
     weak var orderList: OrderList?
     var currentCustomerId: String?
     
@@ -24,7 +23,6 @@ class OrderDetailViewController: DetailFormViewController {
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
-        
         if let orderConfig = config as? OrderDetailsConfigurator {
             self.isClosed = orderConfig.isClosed
         } else {
@@ -55,7 +53,6 @@ class OrderDetailViewController: DetailFormViewController {
             orderItemAddBtn
         ])
         
-        self.actionType = config.action
         self.orderList = config.viewModel as? OrderList
         self.orderItemDetailsArr = []
         
@@ -126,8 +123,8 @@ class OrderDetailViewController: DetailFormViewController {
             }
         }()
         
-        if !self.isClosed {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitOrderDetails))
+        if self.isClosed {
+            self.navigationItem.rightBarButtonItem = nil
         }
         
         self.setup()
@@ -254,14 +251,9 @@ class OrderDetailViewController: DetailFormViewController {
     @objc func toggleOrder() {
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
             guard let `self` = self else { return }
+            if !self.allFieldsIsValid { return }
             self.isClosed = !self.isClosed
-            let orderDetails = self.makeOrderDetails()
-            if orderDetails.items?.isEmpty ?? false {
-                self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoOrderItem", comment: "Error Message.")), animated: true, completion: nil)
-                self.isClosed = !self.isClosed
-                return
-            }
-            self.editItem(details: orderDetails)
+            self.editItem(details: self.makeDetails())
         }
         let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
         self.present(confirmationAlert, animated: true, completion: nil)
@@ -275,7 +267,6 @@ class OrderDetailViewController: DetailFormViewController {
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            //            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
         }
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
@@ -323,33 +314,26 @@ class OrderDetailViewController: DetailFormViewController {
     
     
     // MARK: - Data
-    @objc private func submitOrderDetails () {
-        let orderDetails = self.makeOrderDetails()
-        if orderDetails.customerName == "" {
+    override func validateFields() -> Bool {
+        guard let details = self.makeDetails() as? OrderDetails else {
+            self.present(UIAlertController.makeError(message: .unexpectedErrorMsg, errorCode: .detailsCastingFailure), animated: true, completion: nil)
+            return false
+        }
+        
+        if details.customerName == "" {
             self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoCustomer", comment: "Error Message.")), animated: true, completion: nil)
-            return
+            return false
         }
         
-        if orderDetails.items?.isEmpty ?? false {
+        if details.items?.isEmpty ?? false {
             self.present(UIAlertController.makeError(message: NSLocalizedString("ErrorOrderNoOrderItem", comment: "Error Message.")), animated: true, completion: nil)
-            return
+            return false
         }
         
-        let handler: (UIAlertAction) -> Void = { [weak self] alert in
-            guard let `self` = self else { return }
-            if self.actionType == .edit {
-                self.editItem(details: orderDetails)
-            } else if self.actionType == .add {
-                self.addOrder(orderDetails: orderDetails)
-            }
-        }
-        
-        let confirmationAlert = UIAlertController.makeConfirmation(confirmHandler: handler)
-        
-        self.present(confirmationAlert, animated: true, completion: nil)
+        return true
     }
     
-    private func makeOrderDetails() -> OrderDetails {
+    override func makeDetails() -> ModelDetails {
         let extractedCustomerName: String = {
             let customerList = CustomerList()
             if let id = self.currentCustomerId,
@@ -387,16 +371,6 @@ class OrderDetailViewController: DetailFormViewController {
             items: latestDetails
         )
     }
-    
-    private func addOrder(orderDetails: OrderDetails) {
-        self.orderList?.add(details: orderDetails, completion: { [weak self] success in
-            guard let `self` = self else { return }
-            if !success {
-                self.promptItemExistsError()
-            }
-        })
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
 extension OrderDetailViewController: DataPicker {
@@ -405,8 +379,8 @@ extension OrderDetailViewController: DataPicker {
         let onSelectRowHandler: (String) -> Void = { [weak self] customerName in
             guard let `self` = self else { return }
             self.currentCustomerId = customerName
-            self.updateCustomerCard()
             self.navigationController?.popToViewController(self, animated: true)
+            self.updateCustomerCard()
         }
         
         let prefillIds = [self.currentCustomerId ?? ""]
@@ -418,8 +392,8 @@ extension OrderDetailViewController: DataPicker {
     func pickOrderItem() {
         let onSelectRowHandler: (String) -> Void = { [weak self] merchName in
             guard let `self` = self else { return }
-            self.appendOrderItem(id: merchName)
             self.navigationController?.popToViewController(self, animated: true)
+            self.appendOrderItem(id: merchName)
         }
         let prefillIds = self.orderItemDetailsArr.compactMap({ $0.name })
         

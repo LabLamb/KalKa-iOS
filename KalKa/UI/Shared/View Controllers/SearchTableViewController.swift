@@ -112,13 +112,24 @@ class SearchTableViewController: UIViewController {
     }
     
     @objc private func navToAddDetailView() {
-        let config = DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate)
-        self.navigateToDetailView(config: config)
+        let config = DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate, presentingRefreshable: self)
+        self.navigateToDetailView(detailVC: self.makeDetailViewController(config: config))
     }
     
-    internal func navigateToDetailView(config: DetailsConfiguration) {
-        let editVC = DetailFormViewController(config: config)
-        self.navigationController?.pushViewController(editVC, animated: true)
+    internal func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
+        return DetailsConfiguration(action: .edit, id: data.id, viewModel: self.list, onSelectRow: nil)
+    }
+    
+    internal func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
+        return DetailFormViewController(config: config)
+    }
+    
+    internal func navigateToDetailView(detailVC: DetailFormViewController) {
+        if detailVC.actionType == .add {
+            self.present(UINavigationController(rootViewController: detailVC), animated: true, completion: nil)
+        } else {
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
     
     @objc private func keyboardDidAppear(noti: NSNotification) {
@@ -169,12 +180,12 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = self.filteredList[indexPath.row].id
+        let data = self.filteredList[indexPath.row]
         if let delegate = self.onSelectRowDelegate {
-            delegate(id)
+            delegate(data.id)
         } else {
-            let detailConfig = DetailsConfiguration(action: .edit, id: id, viewModel: self.list, onSelectRow: nil)
-            self.navigateToDetailView(config: detailConfig)
+            let detailConfig = self.makeEditDetailConfig(data: data)
+            self.navigateToDetailView(detailVC: self.makeDetailViewController(config: detailConfig))
         }
     }
 }

@@ -48,9 +48,8 @@ class CustomerViewController: SearchTableViewController {
         self.tableView.reloadData()
     }
     
-    override func navigateToDetailView(config: DetailsConfiguration) {
-        let editVC = CustomerDetailViewController(config: config)
-        self.navigationController?.pushViewController(editVC, animated: true)
+    override func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
+        return CustomerDetailViewController(config: config)
     }
     
 }

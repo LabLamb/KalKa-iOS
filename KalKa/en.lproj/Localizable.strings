@@ -51,3 +51,4 @@
 "AddItem" = "Add item";
 "ErrorOrderNoCustomer" = "Please select a cusomter";
 "ErrorOrderNoOrderItem" = "Please add at least add one product";
+"ErrorExpectedMessage" = "Unexpected error. Please contact author to report this issue.";
