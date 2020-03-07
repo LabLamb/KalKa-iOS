@@ -2,15 +2,7 @@
 
 ## [Unreleased](https://github.com/LabLamb/KalKa-iOS/tree/HEAD)
 
-[Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/v1.0.0...HEAD)
-
-**Merged pull requests:**
-
-- Up verison [\#49](https://github.com/LabLamb/KalKa-iOS/pull/49) ([LabLamb](https://github.com/LabLamb))
-
-## [v1.0.0](https://github.com/LabLamb/KalKa-iOS/tree/v1.0.0) (2020-03-07)
-
-[Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/d44b75ca9e5308208057919bdc45199841c890ae...v1.0.0)
+[Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/d44b75ca9e5308208057919bdc45199841c890ae...HEAD)
 
 **Implemented enhancements:**
 
@@ -33,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Up verison [\#49](https://github.com/LabLamb/KalKa-iOS/pull/49) ([LabLamb](https://github.com/LabLamb))
 - Patch project for appstore [\#48](https://github.com/LabLamb/KalKa-iOS/pull/48) ([LabLamb](https://github.com/LabLamb))
 - Patch project to meet appstore standard [\#46](https://github.com/LabLamb/KalKa-iOS/pull/46) ([LabLamb](https://github.com/LabLamb))
 - 🎊 Completing MVP 🎉 [\#43](https://github.com/LabLamb/KalKa-iOS/pull/43) ([LabLamb](https://github.com/LabLamb))
