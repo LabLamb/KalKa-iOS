@@ -2,4 +2,4 @@
   Copyright © 2020 LabLambWorks. All rights reserved.
 */
 
-NSPhotoLibraryUsageDescription = "KalKa would like to use your album for image picking"
+NSPhotoLibraryUsageDescription = "KalKa would like to use your album for image picking";
