@@ -44,6 +44,7 @@
 		D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B8D2403E152004CBB7E /* NSManagedObject+Property.swift */; };
 		D2727B9324040A07004CBB7E /* UITextField+PlusOrMinus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B9224040A07004CBB7E /* UITextField+PlusOrMinus.swift */; };
 		D2727B9524041766004CBB7E /* OrderDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2727B9424041766004CBB7E /* OrderDetailsConfigurator.swift */; };
+		D286069124138CAB00F283A3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D286069324138CAB00F283A3 /* InfoPlist.strings */; };
 		D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A224003A4F0049D780 /* OrderViewController.swift */; };
 		D28E57A624003B580049D780 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28E57A524003B580049D780 /* OrderCell.swift */; };
 		D297919E240BE331007BD3E5 /* OrderItemAddBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D297919D240BE331007BD3E5 /* OrderItemAddBtn.swift */; };
@@ -153,6 +154,10 @@
 		D2727B8D2403E152004CBB7E /* NSManagedObject+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Property.swift"; sourceTree = "<group>"; };
 		D2727B9224040A07004CBB7E /* UITextField+PlusOrMinus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+PlusOrMinus.swift"; sourceTree = "<group>"; };
 		D2727B9424041766004CBB7E /* OrderDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsConfigurator.swift; sourceTree = "<group>"; };
+		D286069224138CAB00F283A3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D286069724138CF200F283A3 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D286069824138CF400F283A3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D286069924138CF600F283A3 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D28E57A224003A4F0049D780 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		D28E57A524003B580049D780 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		D297919D240BE331007BD3E5 /* OrderItemAddBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemAddBtn.swift; sourceTree = "<group>"; };
@@ -452,6 +457,7 @@
 				D2C7D86223F13336004C66B4 /* Info.plist */,
 				D2C7D85A23F13333004C66B4 /* KalKa.xcdatamodeld */,
 				D22AF8D023F14FE700186AA4 /* Localizable.strings */,
+				D286069324138CAB00F283A3 /* InfoPlist.strings */,
 			);
 			path = KalKa;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				D2C7D84A23F13333004C66B4 /* Sources */,
 				D2C7D84B23F13333004C66B4 /* Frameworks */,
 				D2C7D84C23F13333004C66B4 /* Resources */,
+				D21648A32413891B000D2666 /* Adding version number */,
 			);
 			buildRules = (
 			);
@@ -708,6 +715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */,
+				D286069124138CAB00F283A3 /* InfoPlist.strings in Resources */,
 				D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */,
 				D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */,
 			);
@@ -773,6 +781,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D21648A32413891B000D2666 /* Adding version number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Adding version number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		EAF9B2AD13EF48347FA0966C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -922,6 +948,17 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		D286069324138CAB00F283A3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D286069224138CAB00F283A3 /* en */,
+				D286069724138CF200F283A3 /* zh-HK */,
+				D286069824138CF400F283A3 /* zh-Hans */,
+				D286069924138CF600F283A3 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1055,6 +1092,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = 5APGXQS5S8;
 				INFOPLIST_FILE = KalKa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1075,6 +1113,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = 5APGXQS5S8;
 				INFOPLIST_FILE = KalKa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
