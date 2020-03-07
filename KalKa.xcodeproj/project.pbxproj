@@ -30,6 +30,7 @@
 		D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F523F7BE3700B6E955 /* CustomView.swift */; };
 		D23A385223F5100E00488DFD /* InputFieldsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23A385123F5100E00488DFD /* InputFieldsSection.swift */; };
 		D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E44ED24129EEC00476B23 /* ModelDetails.swift */; };
+		D25E44F12412BF1100476B23 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D25E44F32412BF1100476B23 /* InfoPlist.strings */; };
 		D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */; };
 		D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945123F6AF250015B6E6 /* ViewModel.swift */; };
 		D25E945623F6C2650015B6E6 /* DetailFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945523F6C2650015B6E6 /* DetailFormViewController.swift */; };
@@ -139,6 +140,10 @@
 		D23778F523F7BE3700B6E955 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		D23A385123F5100E00488DFD /* InputFieldsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldsSection.swift; sourceTree = "<group>"; };
 		D25E44ED24129EEC00476B23 /* ModelDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetails.swift; sourceTree = "<group>"; };
+		D25E44F22412BF1100476B23 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D25E44F42412BF1200476B23 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D25E44F52412BF1300476B23 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D25E44F62412BF1700476B23 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		D25E945123F6AF250015B6E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D25E945523F6C2650015B6E6 /* DetailFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFormViewController.swift; sourceTree = "<group>"; };
@@ -452,6 +457,7 @@
 				D2C7D86223F13336004C66B4 /* Info.plist */,
 				D2C7D85A23F13333004C66B4 /* KalKa.xcdatamodeld */,
 				D22AF8D023F14FE700186AA4 /* Localizable.strings */,
+				D25E44F32412BF1100476B23 /* InfoPlist.strings */,
 			);
 			path = KalKa;
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				D2C7D84A23F13333004C66B4 /* Sources */,
 				D2C7D84B23F13333004C66B4 /* Frameworks */,
 				D2C7D84C23F13333004C66B4 /* Resources */,
+				D25E44F72412C93900476B23 /* Increment build number */,
 			);
 			buildRules = (
 			);
@@ -708,6 +715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C7D86123F13336004C66B4 /* LaunchScreen.storyboard in Resources */,
+				D25E44F12412BF1100476B23 /* InfoPlist.strings in Resources */,
 				D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */,
 				D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */,
 			);
@@ -773,6 +781,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D25E44F72412C93900476B23 /* Increment build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
 		};
 		EAF9B2AD13EF48347FA0966C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -922,6 +948,17 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		D25E44F32412BF1100476B23 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D25E44F22412BF1100476B23 /* en */,
+				D25E44F42412BF1200476B23 /* zh-HK */,
+				D25E44F52412BF1300476B23 /* zh-Hant */,
+				D25E44F62412BF1700476B23 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D2C7D85F23F13336004C66B4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -984,7 +1021,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1039,7 +1076,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

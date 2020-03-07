@@ -1,0 +1,5 @@
+/*
+  Copyright © 2020 LabLambWorks. All rights reserved.
+*/
+
+NSPhotoLibraryUsageDescription = "KalKa 想要打開你的相簿";
