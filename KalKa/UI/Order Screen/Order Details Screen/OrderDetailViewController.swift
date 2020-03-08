@@ -22,12 +22,8 @@ class OrderDetailViewController: DetailFormViewController {
     var isClosed: Bool
     
     // MARK: - Initializion
-    override init(config: DetailsConfiguration) {
-        if let orderConfig = config as? OrderDetailsConfigurator {
-            self.isClosed = orderConfig.isClosed
-        } else {
-            self.isClosed = false
-        }
+    init(config: OrderDetailsConfigurator) {
+        self.isClosed = config.isClosed
         
         let orderNumberField = TitleWithTextLabel(title: .orderNumber, spacing: Constants.UI.Spacing.Width.Medium)
         

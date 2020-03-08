@@ -96,7 +96,8 @@ class OrderViewController: SearchTableViewController {
     }
     
     override func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
-        return OrderDetailViewController(config: config)
+        guard let orderConfig = config as? OrderDetailsConfigurator else { fatalError("Did not pass in OrderDetailsConfigurator.") }
+        return OrderDetailViewController(config: orderConfig)
     }
     
     // MARK: - Data
