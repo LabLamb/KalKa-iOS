@@ -74,7 +74,7 @@ class OrderDetailViewController: DetailFormViewController {
             orderToggleBtn.removeFromSuperview()
         } else {
             orderToggleBtn.setTitleColor(.buttonIcon, for: .normal)
-            let btnTitle = self.isClosed ? "Return order" : "Close order"
+            let btnTitle: String = self.isClosed ? .returnOrder : .closeOrder
             orderToggleBtn.setTitle(btnTitle, for: .normal)
             orderToggleBtn.isEnabled = (config.action == .edit)
             orderToggleBtn.alpha = (config.action == .edit) ? 1 : 0.5

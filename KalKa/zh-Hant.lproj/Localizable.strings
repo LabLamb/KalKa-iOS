@@ -52,3 +52,5 @@
 "ErrorOrderNoCustomer" = "請先選取一名客戶";
 "ErrorOrderNoOrderItem" = "訂單貨品不能為零";
 "ErrorExpectedMessage" = "未知的錯誤";
+"ReturnOrder" = "設回未完成";
+"Closeorder" = "設為已完成";
