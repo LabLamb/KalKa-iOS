@@ -68,7 +68,7 @@ class CustomerDetailViewController: DetailFormViewController {
     
     private func prefillFieldsForEdit() {
         guard let customerDetails = self.customerList?.getDetails(id: self.currentId) as? CustomerDetails else {
-            fatalError()
+            fatalError("Unable to retrieve data.")
         }
         
         // Add to past orders table view
