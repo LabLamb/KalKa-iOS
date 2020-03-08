@@ -1,8 +1,8 @@
 ---
 name: Chores template
-about: Template for user story.
+about: Template for development chores.
 title: ''
-labels: enhancement
+labels: chores
 assignees: ''
 
 ---

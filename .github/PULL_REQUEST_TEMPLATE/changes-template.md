@@ -1,3 +1,11 @@
+---
+name: Changes template
+about: Template for changes in repo.
+title: ''
+assignees: ''
+
+---
+
 # PR Type
 What kind of change does this PR introduce?
 
