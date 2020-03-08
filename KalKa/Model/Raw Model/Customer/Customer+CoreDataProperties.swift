@@ -19,6 +19,7 @@ extension Customer {
     @NSManaged public var phone: String
     @NSManaged public var orders: [Order]
     @NSManaged public var remark: String
+    @NSManaged public var store: String
 
 }
 

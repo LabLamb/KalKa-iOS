@@ -10,9 +10,9 @@ protocol ViewModel {
     var items: [NSManagedObject] { get set }
     
     func fetch(completion: (() -> Void)?)
-    func add(details: Any, completion: ((Bool) -> Void))
-    func getDetails(id: String) -> Any?
-    func edit(oldId: String, details: Any, completion: ((Bool) -> Void))
+    func add(details: ModelDetails, completion: ((Bool) -> Void))
+    func getDetails(id: String) -> ModelDetails?
+    func edit(oldId: String, details: ModelDetails, completion: ((Bool) -> Void))
     func exists(id: String, completion: ((Bool) -> Void))
-    func query(clause: NSPredicate, incContext: NSManagedObjectContext?) -> [Any]?
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext?) -> [NSManagedObject]?
 }
