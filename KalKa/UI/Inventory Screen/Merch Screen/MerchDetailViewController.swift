@@ -66,7 +66,7 @@ class MerchDetailViewController: DetailFormViewController {
     
     private func prefillFieldsForEdit() {
         guard let merchDetails = self.inventory?.getDetails(id: self.currentId) as? MerchDetails else {
-            fatalError()
+            fatalError("Unable to retrieve data.")
         }
         
         let valueMap: [String: String] = [

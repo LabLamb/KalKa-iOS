@@ -9,7 +9,7 @@ class OrderItemAddBtn: CustomView {
     lazy var addLabel: IconWithTextLabel = {
         let plusImg = UIImage(named: "Plus") ?? UIImage()
         let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
-        result.value = "Order item"
+        result.value = .addOrderItem
         (result.valueView as? UILabel)?.font = UITextField().font
         (result.valueView as? UILabel)?.textColor = .buttonIcon
         result.iconImage.tintColor = .buttonIcon
