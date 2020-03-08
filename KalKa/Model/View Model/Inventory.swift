@@ -21,7 +21,7 @@ class Inventory: ViewModel {
         completion?()
     }
     
-    func add(details: Any, completion: ((_ success: Bool) -> Void)) {
+    func add(details: ModelDetails, completion: ((_ success: Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -50,7 +50,7 @@ class Inventory: ViewModel {
         
     }
     
-    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [NSManagedObject]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Merch")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -61,7 +61,7 @@ class Inventory: ViewModel {
         
     }
     
-    func getDetails(id: String) -> Any? {
+    func getDetails(id: String) -> ModelDetails? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Merch] else { return nil}
         guard let merch = result.first else { return nil }
@@ -76,7 +76,7 @@ class Inventory: ViewModel {
         return MerchDetails(name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
     }
     
-    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: ModelDetails, completion: ((Bool) -> Void)) {
         guard let `details` = details as? MerchDetails else {
             fatalError("Passed wrong datatype to edit.")
         }

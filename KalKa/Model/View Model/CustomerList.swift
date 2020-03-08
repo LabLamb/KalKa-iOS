@@ -20,7 +20,7 @@ class CustomerList: ViewModel {
         completion?()
     }
     
-    func add(details: Any, completion: ((Bool) -> Void)) {
+    func add(details: ModelDetails, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }
@@ -49,7 +49,7 @@ class CustomerList: ViewModel {
         })
     }
     
-    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [Any]? {
+    func query(clause: NSPredicate, incContext: NSManagedObjectContext? = nil) -> [NSManagedObject]? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Customer")
         fetchRequest.predicate = clause
         if let context = incContext {
@@ -59,7 +59,7 @@ class CustomerList: ViewModel {
         }
     }
     
-    func getDetails(id: String) -> Any? {
+    func getDetails(id: String) -> ModelDetails? {
         let predicate = NSPredicate(format: "name = %@", id)
         guard let result = self.query(clause: predicate) as? [Customer] else { return nil}
         guard let customer = result.first else { return nil }
@@ -82,7 +82,7 @@ class CustomerList: ViewModel {
     }
     
     
-    func edit(oldId: String, details: Any, completion: ((Bool) -> Void)) {
+    func edit(oldId: String, details: ModelDetails, completion: ((Bool) -> Void)) {
         guard let `details` = details as? CustomerDetails else {
             fatalError("Passed wrong datatype to add.")
         }

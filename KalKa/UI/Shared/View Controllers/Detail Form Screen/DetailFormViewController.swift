@@ -99,7 +99,7 @@ class DetailFormViewController: UIViewController {
         })
     }
     
-    func editItem(details: Any) {
+    func editItem(details: ModelDetails) {
         self.list?.edit(oldId: self.currentId,
                         details: details,
                         completion: { [weak self] success in
