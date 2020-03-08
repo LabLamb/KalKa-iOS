@@ -52,3 +52,6 @@
 "ErrorOrderNoCustomer" = "请先选取一名客户";
 "ErrorOrderNoOrderItem" = "订单货品不能为零";
 "ErrorExpectedMessage" = "未知的错误";
+"ReturnOrder" = "设回未完成";
+"Closeorder" = "设为已完成";
+"DeleteOrder" = "永久删除订单";
