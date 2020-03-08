@@ -1,4 +1,12 @@
-## PR Type
+---
+name: Changes template
+about: Template for any changes.
+title: ''
+assignees: ''
+
+---
+
+# PR Type
 What kind of change does this PR introduce?
 
 <!-- Please check the one that applies to this PR using "x". -->
@@ -13,16 +21,16 @@ What kind of change does this PR introduce?
 - [ ] Other... Please describe:
 
 
-## What is the current behavior?
+# What is the current behavior?
 <!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
 
 (Optional) Resolved: #`Insert issue number`
 
 
-## What is the new behavior?
+# What is the new behavior?
 
 
-## Does this PR introduce a breaking change?
+# Does this PR introduce a breaking change?
 
 - [ ] Yes
 - [ ] No
@@ -31,4 +39,4 @@ What kind of change does this PR introduce?
 <!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
 
 
-## Other information
+# Other information
