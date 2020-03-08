@@ -8,15 +8,13 @@ assignees: ''
 ---
 
 # Component
-`Insert screen/component of this bug is related.`.
+`Insert screen/component of this bug is related.`
 
 # Severity
 `Choose one`:
-[
-    `Critical (Application crash, Loss of data)`,
-    `Major (Unable to proceed on a journey)`,
-    `Trivial (Some UI issue)`
-]
+- `Critical (Application crash, Loss of data)`
+- `Major (Unable to proceed on a journey)`
+- `Trivial (Some UI issue)`
 
 # Summary
 `Insert a TL;DR sentence describing the bug.`
