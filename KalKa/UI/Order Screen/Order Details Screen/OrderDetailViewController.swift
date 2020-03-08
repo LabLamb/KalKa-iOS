@@ -87,7 +87,7 @@ class OrderDetailViewController: DetailFormViewController {
             delOrderBtn.removeFromSuperview()
         } else {
             delOrderBtn.setTitleColor(.red, for: .normal)
-            delOrderBtn.setTitle("Delete order", for: .normal)
+            delOrderBtn.setTitle(.deleteOrder, for: .normal)
             delOrderBtn.isEnabled = (config.action == .edit)
             delOrderBtn.alpha = (config.action == .edit) ? 1 : 0.5
             delOrderBtn.addTarget(self, action: #selector(self.deleteOrder), for: .touchUpInside)

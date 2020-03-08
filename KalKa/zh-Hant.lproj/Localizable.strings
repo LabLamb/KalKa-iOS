@@ -54,3 +54,4 @@
 "ErrorExpectedMessage" = "未知的錯誤";
 "ReturnOrder" = "設回未完成";
 "Closeorder" = "設為已完成";
+"DeleteOrder" = "永久刪除訂單";

@@ -46,4 +46,5 @@ extension String {
     static let unexpectedErrorMsg = NSLocalizedString("ErrorExpectedMessage", comment: "")
     static let returnOrder = NSLocalizedString("ReturnOrder", comment: "")
     static let closeOrder = NSLocalizedString("Closeorder", comment: "")
+    static let deleteOrder = NSLocalizedString("DeleteOrder", comment: "")
 }
