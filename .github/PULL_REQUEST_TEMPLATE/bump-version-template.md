@@ -1,7 +1,7 @@
 ---
 name: Bump version template
 about: Template for bumping version after release.
-title: 'Bump version to {version_number}'
+title: 'Bumping to {version_number}'
 assignees: ''
 
 ---

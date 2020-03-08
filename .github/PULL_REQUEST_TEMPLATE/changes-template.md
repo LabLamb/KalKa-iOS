@@ -1,11 +1,3 @@
----
-name: Changes template
-about: Template for any changes.
-title: ''
-assignees: ''
-
----
-
 # PR Type
 What kind of change does this PR introduce?
 

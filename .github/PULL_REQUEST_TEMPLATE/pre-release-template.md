@@ -1,7 +1,7 @@
 ---
 name: Pre-release template
 about: Template for pre-release. Develop -> Master.
-title: 'Pre-release for {version_number}'
+title: 'Pre-releasing {version_number}'
 labels: pre-release
 assignees: ''
 
