@@ -1,5 +1,36 @@
 # Changelog
 
+## [v1.0.1](https://github.com/LabLamb/KalKa-iOS/tree/v1.0.1) (2020-03-09)
+
+[Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/v1.0.0...v1.0.1)
+
+**Implemented enhancements:**
+
+- Move delete button away [\#79](https://github.com/LabLamb/KalKa-iOS/issues/79)
+- Reposition order delete button [\#80](https://github.com/LabLamb/KalKa-iOS/pull/80) ([LabLamb](https://github.com/LabLamb))
+- Fix hardcoded copy [\#74](https://github.com/LabLamb/KalKa-iOS/pull/74) ([LabLamb](https://github.com/LabLamb))
+
+**Closed issues:**
+
+- Adding CHANGELOG after MVP [\#16](https://github.com/LabLamb/KalKa-iOS/issues/16)
+
+**Merged pull requests:**
+
+- Hotfix tableview unscrollable [\#81](https://github.com/LabLamb/KalKa-iOS/pull/81) ([LabLamb](https://github.com/LabLamb))
+- add makeAddDetailConfig to override [\#78](https://github.com/LabLamb/KalKa-iOS/pull/78) ([LabLamb](https://github.com/LabLamb))
+- Refractor OrderDetailViewController [\#76](https://github.com/LabLamb/KalKa-iOS/pull/76) ([LabLamb](https://github.com/LabLamb))
+- Mark adding version number only happen when archive [\#75](https://github.com/LabLamb/KalKa-iOS/pull/75) ([LabLamb](https://github.com/LabLamb))
+- Add meaningful error message to fatalErrors [\#73](https://github.com/LabLamb/KalKa-iOS/pull/73) ([LabLamb](https://github.com/LabLamb))
+- Add pull request template [\#72](https://github.com/LabLamb/KalKa-iOS/pull/72) ([LabLamb](https://github.com/LabLamb))
+- Add issue templates [\#68](https://github.com/LabLamb/KalKa-iOS/pull/68) ([LabLamb](https://github.com/LabLamb))
+- Remove yaml for selection [\#61](https://github.com/LabLamb/KalKa-iOS/pull/61) ([LabLamb](https://github.com/LabLamb))
+- Test out PR template [\#60](https://github.com/LabLamb/KalKa-iOS/pull/60) ([LabLamb](https://github.com/LabLamb))
+- Add more PR templates [\#59](https://github.com/LabLamb/KalKa-iOS/pull/59) ([LabLamb](https://github.com/LabLamb))
+- Add github templates [\#58](https://github.com/LabLamb/KalKa-iOS/pull/58) ([LabLamb](https://github.com/LabLamb))
+- Refine return types for CRUD actions [\#56](https://github.com/LabLamb/KalKa-iOS/pull/56) ([LabLamb](https://github.com/LabLamb))
+- Add privacy agreement [\#53](https://github.com/LabLamb/KalKa-iOS/pull/53) ([LabLamb](https://github.com/LabLamb))
+- Up version to v1.0.1 [\#52](https://github.com/LabLamb/KalKa-iOS/pull/52) ([LabLamb](https://github.com/LabLamb))
+
 ## [v1.0.0](https://github.com/LabLamb/KalKa-iOS/tree/v1.0.0) (2020-03-07)
 
 [Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/d44b75ca9e5308208057919bdc45199841c890ae...v1.0.0)
