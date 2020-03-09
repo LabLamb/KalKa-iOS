@@ -49,7 +49,8 @@ class OrderViewController: SearchTableViewController {
         let swipeGestRight = UISwipeGestureRecognizer(target: self, action: #selector(self.tableViewSwipped))
         swipeGestRight.direction = .right
         
-        self.tableView.gestureRecognizers = [swipeGestLeft, swipeGestRight]
+        self.tableView.gestureRecognizers?.append(swipeGestLeft)
+        self.tableView.gestureRecognizers?.append(swipeGestRight)
         self.tableView.isUserInteractionEnabled = true
     }
     
