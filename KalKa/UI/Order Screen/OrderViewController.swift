@@ -101,6 +101,10 @@ class OrderViewController: SearchTableViewController {
     }
     
     // MARK: - Data
+    override func makeAddDetailConfig() -> DetailsConfiguration {
+        return OrderDetailsConfigurator(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate, isClosed: false, presentingRefreshable: self)
+    }
+    
     override func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
         if let `data` = data as? Order {
             return OrderDetailsConfigurator(action: .edit, id: data.id, viewModel: self.list, onSelectRow: nil, isClosed: data.isClosed)

@@ -47,7 +47,7 @@ class DetailFormViewController: UIViewController {
         self.scrollView.isDirectionalLockEnabled = true
         
         if self.actionType == .add {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.closeAndRefresh))
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.closeAndRefresh))
         }
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitDetails))
