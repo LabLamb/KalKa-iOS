@@ -112,8 +112,12 @@ class SearchTableViewController: UIViewController {
     }
     
     @objc private func navToAddDetailView() {
-        let config = DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate, presentingRefreshable: self)
+        let config = self.makeAddDetailConfig()
         self.navigateToDetailView(detailVC: self.makeDetailViewController(config: config))
+    }
+    
+    internal func makeAddDetailConfig() -> DetailsConfiguration {
+        return DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate, presentingRefreshable: self)
     }
     
     internal func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
