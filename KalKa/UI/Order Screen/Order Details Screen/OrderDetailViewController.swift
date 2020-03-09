@@ -11,6 +11,7 @@ class OrderDetailViewController: DetailFormViewController {
     private let orderStatusControlSection: InputFieldsSection
     private let orderInfoFieldsSection: InputFieldsSection
     private let orderItemStackView: OrderDetailsStackView
+    private let deleteButton: UIButton
     
     weak var orderList: OrderList?
     var currentCustomerId: String?
@@ -34,12 +35,11 @@ class OrderDetailViewController: DetailFormViewController {
         ])
         
         let orderToggleBtn = UIButton()
-        let delOrderBtn = UIButton()
+        self.deleteButton = UIButton()
         
         self.orderStatusControlSection = InputFieldsSection(fields: [
             OrderDetailsStatusIcons(),
-            orderToggleBtn,
-            delOrderBtn
+            orderToggleBtn
         ])
         
         self.customerCard = CustomerDescCard()
@@ -80,15 +80,13 @@ class OrderDetailViewController: DetailFormViewController {
         }
         
         if self.isClosed || self.actionType == .add {
-            delOrderBtn.removeFromSuperview()
+            self.deleteButton.isHidden = true
         } else {
-            delOrderBtn.setTitleColor(.red, for: .normal)
-            delOrderBtn.setTitle(.deleteOrder, for: .normal)
-            delOrderBtn.isEnabled = (config.action == .edit)
-            delOrderBtn.alpha = (config.action == .edit) ? 1 : 0.5
-            delOrderBtn.addTarget(self, action: #selector(self.deleteOrder), for: .touchUpInside)
-            delOrderBtn.translatesAutoresizingMaskIntoConstraints = false
-            delOrderBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+            self.deleteButton.setTitleColor(.red, for: .normal)
+            self.deleteButton.setTitle(.deleteOrder, for: .normal)
+            self.deleteButton.isEnabled = (config.action == .edit)
+            self.deleteButton.alpha = (config.action == .edit) ? 1 : 0.5
+            self.deleteButton.addTarget(self, action: #selector(self.deleteOrder), for: .touchUpInside)
         }
         
         if self.isClosed {
@@ -290,10 +288,20 @@ class OrderDetailViewController: DetailFormViewController {
             make.top.equalTo(self.orderInfoFieldsSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.bottom.equalToSuperview()
         }
         self.orderItemStackView.backgroundColor = .primary
         self.orderItemStackView.clipsToBounds = true
+        
+        self.scrollView.addSubview(self.deleteButton)
+        self.deleteButton.snp.makeConstraints { make in
+            make.top.equalTo(self.orderItemStackView.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
+            make.bottom.equalToSuperview()
+        }
+        self.deleteButton.backgroundColor = .primary
+        self.deleteButton.clipsToBounds = true
         
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
@@ -301,6 +309,7 @@ class OrderDetailViewController: DetailFormViewController {
             self.orderStatusControlSection.layer.cornerRadius = self.orderStatusControlSection.frame.width / 24
             self.orderInfoFieldsSection.layer.cornerRadius = self.orderInfoFieldsSection.frame.width / 24
             self.orderItemStackView.layer.cornerRadius = self.orderItemStackView.frame.width / 24
+            self.deleteButton.layer.cornerRadius = self.deleteButton.frame.width / 24
         }
         
         if self.actionType == .edit {
