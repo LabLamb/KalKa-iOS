@@ -3,6 +3,7 @@
 //
 
 import SnapKit
+import PNPForm
 
 class CustomerDescCard: CustomView {
     
@@ -36,10 +37,12 @@ class CustomerDescCard: CustomView {
     
     let placeholder: IconWithTextLabel = {
         let plusImg = UIImage(named: "Plus") ?? UIImage()
-        let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
-        (result.valueView as? UILabel)?.font = UITextField().font
-        (result.valueView as? UILabel)?.textColor = .buttonIcon
-        result.iconImage.tintColor = .buttonIcon
+        let textField = PNPTextField()
+        let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), textField: textField, spacing: Constants.UI.Spacing.Width.Medium * 0.75)
+        textField.text = .customers
+        textField.textColor = .buttonIcon
+        textField.font = Constants.UI.Font.Plain.ExLarge
+        result.iconImageView.tintColor = .buttonIcon
         return result
     }()
     
@@ -47,9 +50,6 @@ class CustomerDescCard: CustomView {
         self.icon = UIImageView()
         
         super.init()
-        
-        self.placeholder.value = .customers
-        (self.placeholder.valueView as? UILabel)?.font = Constants.UI.Font.Plain.ExLarge
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.pickCustomer))
         self.addGestureRecognizer(tapGest)

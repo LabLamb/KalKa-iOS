@@ -13,7 +13,3 @@ enum LinePosition {
     case left
     case right
 }
-
-enum KalKaError: String {
-    case detailsCastingFailure = "0001"
-}

@@ -116,19 +116,19 @@ class SearchTableViewController: UIViewController {
         self.navigateToDetailView(detailVC: self.makeDetailViewController(config: config))
     }
     
-    internal func makeAddDetailConfig() -> DetailsConfiguration {
+    func makeAddDetailConfig() -> DetailsConfiguration {
         return DetailsConfiguration(action: .add, id: "", viewModel: self.list, onSelectRow: self.onSelectRowDelegate, presentingRefreshable: self)
     }
     
-    internal func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
+    func makeEditDetailConfig(data: NSManagedObject) -> DetailsConfiguration {
         return DetailsConfiguration(action: .edit, id: data.id, viewModel: self.list, onSelectRow: nil)
     }
     
-    internal func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
+    func makeDetailViewController(config: DetailsConfiguration) -> DetailFormViewController {
         return DetailFormViewController(config: config)
     }
     
-    internal func navigateToDetailView(detailVC: DetailFormViewController) {
+    func navigateToDetailView(detailVC: DetailFormViewController) {
         if detailVC.actionType == .add {
             self.present(UINavigationController(rootViewController: detailVC), animated: true, completion: nil)
         } else {
@@ -149,7 +149,7 @@ class SearchTableViewController: UIViewController {
         self.tableView.scrollIndicatorInsets.bottom = 0
     }
     
-    internal func filterListByString(_ searchText: String) {
+    func filterListByString(_ searchText: String) {
         fatalError("Filter list is not implemented.")
     }
     
@@ -207,7 +207,7 @@ extension SearchTableViewController: Refreshable {
 //MARK: - SearchBar
 extension SearchTableViewController: UISearchBarDelegate {
     
-    internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filterListByString(searchText)
     }
     

@@ -3,39 +3,29 @@
 //
 
 import SnapKit
+import PNPForm
 
 class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
-    let inputFieldsSection: InputFieldsSection
+    let inputForm: PNPForm
     weak var inventory: Inventory?
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
         let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
         
-        let fields = [
+        let fields: [UIView] = [
             iconView,
-            TitleWithTextField(title: .name,
-                               placeholder: .required,
-                               spacing: Constants.UI.Spacing.Width.Medium,
-                               maxTextLength: 15),
-            TitleWithTextField(title: .price,
-                               placeholder: .optional,
-                               spacing: Constants.UI.Spacing.Width.Medium,
-                               inputKeyboardType: .decimalPad,
-                               maxTextLength: 9),
-            TitleWithTextField(title: .quantity,
-                               placeholder: .optional,
-                               spacing: Constants.UI.Spacing.Width.Medium,
-                               inputKeyboardType: .numberPad,
-                               maxTextLength: 7),
-            TitleWithTextView(title: .remark,
-                              placeholder: .optional,
-                              spacing: Constants.UI.Spacing.Width.Medium)
+            PNPRow(title: .name, config: PNPRowConfig(placeholder: .required)),
+            PNPRow(title: .price, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .decimalPad)),
+                                                       placeholder: .optional)),
+            PNPRow(title: .quantity, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .numberPad)),
+                                                          placeholder: .optional)),
+            PNPRow(title: .remark, config: PNPRowConfig(placeholder: .optional))
         ]
         
-        self.inputFieldsSection = InputFieldsSection(fields: fields)
+        self.inputForm = PNPForm(rows: fields, separatorColor: .background)
         
         self.inventory = config.viewModel as? Inventory
         
@@ -76,29 +66,29 @@ class MerchDetailViewController: DetailFormViewController {
             .remark: merchDetails.remark
         ]
         
-        let iconView = self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView
+        let iconView = self.inputForm.getViews(withViewClass: IconView.self).first as? IconView
         if merchDetails.image != nil {
             iconView?.iconImage.image = merchDetails.image
         }
         
-        self.inputFieldsSection.prefillValues(values: valueMap)
+        self.inputForm.prefillRows(titleValueMap: valueMap)
     }
     
     private func setup() {
         self.view.backgroundColor = .background
         
-        self.scrollView.addSubview(self.inputFieldsSection)
-        self.inputFieldsSection.snp.makeConstraints { make in
+        self.scrollView.addSubview(self.inputForm)
+        self.inputForm.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
         }
-        self.inputFieldsSection.backgroundColor = .primary
-        self.inputFieldsSection.clipsToBounds = true
+        self.inputForm.backgroundColor = .primary
+        self.inputForm.clipsToBounds = true
         
         DispatchQueue.main.async {
-            self.inputFieldsSection.layer.cornerRadius = self.inputFieldsSection.frame.width / 24
+            self.inputForm.layer.cornerRadius = self.inputForm.frame.width / 24
         }
         
         if self.actionType == .edit {
@@ -110,14 +100,10 @@ class MerchDetailViewController: DetailFormViewController {
     // MARK: - Data
     override func validateFields() -> Bool {
         if self.makeDetails().id == "" {
-            let textField = self.inputFieldsSection.getViews(viewType: TitleWithTextField.self)
-                .first(where: { view in
-                    (((view as? TitleWithTextField)?.desc) as? String) == .name
-                }) as? TitleWithTextField
+//            let textField = self.inputForm.getRows(withLabelText: .name).first
+//            let inputField = textField?.value
             
-            let inputField = textField?.valueView as? UITextField
-            
-            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."), field: inputField)
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."))
             
             return false
         }
@@ -126,14 +112,14 @@ class MerchDetailViewController: DetailFormViewController {
     }
     
     override func makeDetails() -> ModelDetails {
-        let extractedValue = self.inputFieldsSection.extractValues(mappingKeys: [
+        let extractedValue = self.inputForm.extractRowValues(withLabelTextList: [
             .name,
             .price,
             .quantity,
             .remark
         ])
         
-        let iconView = self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView
+        let iconView = self.inputForm.getViews(withViewClass: IconView.self).first as? IconView
         let image: UIImage? = {
             if let img = iconView?.iconImage.image {
                 return img  == #imageLiteral(resourceName: "MerchDefault") ? nil : img

@@ -142,7 +142,7 @@ class DetailFormViewController: UIViewController {
         self.present(UIAlertController.makeError(message: self.itemExistsErrorMsg), animated: true, completion: nil)
     }
     
-    func promptEmptyFieldError(errorMsg: String, field: UITextField?) {
+    func promptEmptyFieldError(errorMsg: String, field: UITextField? = nil) {
         self.present(UIAlertController.makeError(message: errorMsg), animated: true, completion: nil)
         
         field?.attributedPlaceholder = NSAttributedString(

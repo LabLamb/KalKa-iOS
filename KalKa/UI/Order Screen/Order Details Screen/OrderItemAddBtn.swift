@@ -3,16 +3,17 @@
 //
 
 import SnapKit
+import PNPForm
 
 class OrderItemAddBtn: CustomView {
     
     lazy var addLabel: IconWithTextLabel = {
         let plusImg = UIImage(named: "Plus") ?? UIImage()
-        let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), spacing: -Constants.UI.Spacing.Width.Medium * 1.5)
-        result.value = .addOrderItem
-        (result.valueView as? UILabel)?.font = UITextField().font
-        (result.valueView as? UILabel)?.textColor = .buttonIcon
-        result.iconImage.tintColor = .buttonIcon
+        let textField = PNPTextField()
+        let result = IconWithTextLabel(icon: plusImg.withRenderingMode(.alwaysTemplate), textField: textField, spacing: Constants.UI.Spacing.Width.Medium * 0.75)
+        textField.text = .addOrderItem
+        textField.textColor = .buttonIcon
+        result.iconImageView.tintColor = .buttonIcon
         return result
     }()
     

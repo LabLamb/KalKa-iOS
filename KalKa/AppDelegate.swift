@@ -4,6 +4,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import PNPForm
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.toolbarTintColor = .buttonIcon
+        PNPFormConstants.UI.BaseRowDefaultHeight = Constants.UI.Sizing.Height.TextFieldDefault
+        PNPFormConstants.UI.RowConfigDefaultLabelWidth = Constants.UI.Sizing.Width.Medium * 1.25
         
         self.window = UIWindow()
         
@@ -115,4 +119,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
-
