@@ -20,8 +20,8 @@ class CustomView: UIView {
         self.setupData()
     }
     
-    internal func setupLayout() {}
+    func setupLayout() {}
     
-    internal func setupData() {}
+    func setupData() {}
     
 }

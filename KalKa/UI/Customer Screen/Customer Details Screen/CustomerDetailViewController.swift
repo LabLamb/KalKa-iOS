@@ -3,46 +3,45 @@
 //
 
 import SnapKit
+import PNPForm
 
 class CustomerDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
-    private let inputFieldsSection: InputFieldsSection
+    private lazy var inputForm: PNPForm = {
+        let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
+        iconView.cameraOptionPresenter = self
+        return PNPForm(rows: [
+            iconView,
+            PNPRow(title: .name,
+                   config: PNPRowConfig(placeholder: .required,
+                                        validation: .required)),
+            
+            PNPRow(title: .phone,
+                   config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .phonePad)),
+                                        placeholder: .optional)),
+            
+            PNPRow(title: .address,
+                   config: PNPRowConfig(type: .multilineText(),
+                                        placeholder: .optional)),
+            
+            PNPRow(title: .remark,
+                   config: PNPRowConfig(type: .multilineText(),
+                                        placeholder: .optional)),
+            
+            PNPRow(title: .lastContacted,
+                   config: PNPRowConfig(type: .date(Constants.System.DateFormat),
+                                        placeholder: Date().toString(format: Constants.System.DateFormat)))
+            ],
+                       separatorColor: .background
+        )
+    }()
     weak var customerList: CustomerList?
-
+    
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
-        let iconView = IconView(image: #imageLiteral(resourceName: "AvatarDefault"))
-        
-        
-        self.inputFieldsSection = InputFieldsSection(fields:
-            [
-                iconView,
-                TitleWithTextField(title: .name,
-                                   placeholder: .required,
-                                   spacing: Constants.UI.Spacing.Width.Medium),
-                TitleWithTextField(title: .phone,
-                                   placeholder: .optional,
-                                   spacing: Constants.UI.Spacing.Width.Medium,
-                                   inputKeyboardType: .phonePad,
-                                   maxTextLength: 15),
-                TitleWithTextView(title: .address,
-                                  placeholder: .optional,
-                                  spacing: Constants.UI.Spacing.Width.Medium),
-                TitleWithTextView(title: .remark,
-                                  placeholder: .optional,
-                                  spacing: Constants.UI.Spacing.Width.Medium),
-                TitleWithDatePicker(title: .lastContacted,
-                                    placeholder: .optional,
-                                    spacing: Constants.UI.Spacing.Width.Medium)
-            ]
-        )
-        
         self.customerList = config.viewModel as? CustomerList
-        
         super.init(config: config)
-        iconView.cameraOptionPresenter = self
-    
         self.itemExistsErrorMsg = NSLocalizedString("ErrorCustomerExists", comment: "Error Message - Customer exists with the same name.")
     }
     
@@ -82,32 +81,32 @@ class CustomerDetailViewController: DetailFormViewController {
             .lastContacted: customerDetails.lastContacted.toString(format: Constants.System.DateFormat),
         ]
         
-        let iconView = self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView
+        let iconView = self.inputForm.getViews(withViewClass: IconView.self).first as? IconView
         if customerDetails.image != nil {
             iconView?.iconImage.image = customerDetails.image
         }
         
-        self.inputFieldsSection.prefillValues(values: valueMap)
+        self.inputForm.prefillRows(titleValueMap: valueMap)
     }
     
     private func setup() {
         self.view.backgroundColor = .background
         
-        self.scrollView.addSubview(self.inputFieldsSection)
-        self.inputFieldsSection.snp.makeConstraints { make in
+        self.scrollView.addSubview(self.inputForm)
+        self.inputForm.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.bottom.equalToSuperview()
         }
-        self.inputFieldsSection.backgroundColor = .primary
-        self.inputFieldsSection.clipsToBounds = true
+        self.inputForm.backgroundColor = .primary
+        self.inputForm.clipsToBounds = true
         
         DispatchQueue.main.async {
-            self.inputFieldsSection.layer.cornerRadius = self.inputFieldsSection.frame.width / 24
+            self.inputForm.layer.cornerRadius = self.inputForm.frame.width / 24
         }
         
-        (self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView)?.cameraOptionPresenter = self
+        (self.inputForm.getViews(withViewClass: IconView.self).first as? IconView)?.cameraOptionPresenter = self
         
         if self.actionType == .edit {
             self.prefillFieldsForEdit()
@@ -117,17 +116,15 @@ class CustomerDetailViewController: DetailFormViewController {
     
     // MARK: - Data
     override func validateFields() -> Bool {
-        if self.makeDetails().id == "" {
-            let textField = self.inputFieldsSection.getViews(descText: .name).first as? TitleWithTextField
-            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."), field: textField?.valueView as? UITextField)
-            return false
+        let isValid = self.inputForm.validateRows()
+        if !isValid {
+            self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorCustomerInputEmpty", comment: "Error Message - Customer name text field ."))
         }
-        
-        return true
+        return isValid
     }
     
     override func makeDetails() -> ModelDetails {
-        let extractedValues = self.inputFieldsSection.extractValues(mappingKeys: [
+        let extractedValues = self.inputForm.extractRowValues(withLabelTextList: [
             .name,
             .phone,
             .address,
@@ -135,7 +132,7 @@ class CustomerDetailViewController: DetailFormViewController {
             .lastContacted
         ])
         
-        let iconView = self.inputFieldsSection.getViews(viewType: IconView.self).first as? IconView
+        let iconView = self.inputForm.getViews(withViewClass: IconView.self).first as? IconView
         let image: UIImage? = {
             if let img = iconView?.iconImage.image {
                 return img  == #imageLiteral(resourceName: "AvatarDefault") ? nil : img

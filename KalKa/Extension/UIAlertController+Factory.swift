@@ -5,7 +5,7 @@
 import UIKit
 
 extension UIAlertController {
-    static func makeError(message: String, errorCode: KalKaError? = nil) -> UIAlertController {
+    static func makeError(message: String) -> UIAlertController {
         let alertCtrl = UIAlertController(title: .error, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: .OK, style: .default, handler: { alert in
             alertCtrl.dismiss(animated: true, completion: nil)

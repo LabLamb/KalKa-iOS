@@ -13,7 +13,7 @@ class CustomCell: UITableViewCell {
         return result
     }()
     
-    internal func setupLayout() {
+    func setupLayout() {
         self.backgroundColor = .clear
         
         self.contentView.addSubview(self.paddingView)
@@ -24,7 +24,7 @@ class CustomCell: UITableViewCell {
         }
     }
     
-    internal func setupData(data: NSManagedObject) {}
+    func setupData(data: NSManagedObject) {}
     
     public func setup(data: NSManagedObject) {
         self.selectionStyle = .none

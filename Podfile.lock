@@ -1,9 +1,11 @@
 PODS:
   - IQKeyboardManagerSwift (6.5.5)
+  - PNPForm (0.0.1)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
+  - PNPForm (from `../PNPForm`)
   - SnapKit
 
 SPEC REPOS:
@@ -11,10 +13,15 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - SnapKit
 
+EXTERNAL SOURCES:
+  PNPForm:
+    :path: "../PNPForm"
+
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  PNPForm: 4c630509fde037953fa249e0d2cb59f1b967529c
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 88053ec5c644ee2b2fe285ecaf776646bfcb3d8c
+PODFILE CHECKSUM: 4a3a29773632b3ca740f8f7e4087e80bfe534801
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.9.1

@@ -123,6 +123,10 @@ class OrderDetailsStatusIcons: CustomView {
     }()
     
     override func setupLayout() {
+        self.snp.makeConstraints { make in
+            make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault * 2)
+        }
+        
         [self.isDepositIcon,
          self.isPrepedIcon,
          self.isPaidIcon,

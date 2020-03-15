@@ -28,6 +28,10 @@ class IconView: CustomView {
     }
     
     override func setupLayout() {
+        self.snp.makeConstraints { make in
+            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
+        }
+        
         self.addSubview(self.iconImage)
         self.iconImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)

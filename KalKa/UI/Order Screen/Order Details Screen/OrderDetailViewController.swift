@@ -3,14 +3,15 @@
 //
 
 import SnapKit
+import PNPForm
 
 class OrderDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
     private let customerCard: CustomerDescCard
-    private let orderStatusControlSection: InputFieldsSection
-    private let orderInfoFieldsSection: InputFieldsSection
-    private let orderItemStackView: OrderDetailsStackView
+    private let orderStatusControlForm: PNPForm
+    private let orderInfoForm: PNPForm
+    private let orderItemStack: PNPForm
     private let deleteButton: UIButton
     
     weak var orderList: OrderList?
@@ -26,28 +27,28 @@ class OrderDetailViewController: DetailFormViewController {
     init(config: OrderDetailsConfigurator) {
         self.isClosed = config.isClosed
         
-        let orderNumberField = TitleWithTextLabel(title: .orderNumber, spacing: Constants.UI.Spacing.Width.Medium)
+        let orderNumberField = PNPRow(title: .orderNumber, config: PNPRowConfig(type: .label))
+        orderNumberField.isUserInteractionEnabled = false
         
-        self.orderInfoFieldsSection = InputFieldsSection(fields: [
+        self.orderInfoForm = PNPForm(rows: [
             orderNumberField,
-            TitleWithDatePicker(title: .openedOn, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium),
-            TitleWithTextView(title: .remark, placeholder: .optional, spacing: Constants.UI.Spacing.Width.Medium)
-        ])
+            PNPRow(title: .openedOn, config: PNPRowConfig(type: .date(Constants.System.DateFormat),
+                                                          placeholder: Date().toString(format: Constants.System.DateFormat))),
+            PNPRow(title: .remark, config: PNPRowConfig(type: .multilineText(), placeholder: .optional))
+        ], separatorColor: .background)
         
         let orderToggleBtn = UIButton()
         self.deleteButton = UIButton()
         
-        self.orderStatusControlSection = InputFieldsSection(fields: [
+        self.orderStatusControlForm = PNPForm(rows: [
             OrderDetailsStatusIcons(),
             orderToggleBtn
-        ])
+        ], separatorColor: .background)
         
         self.customerCard = CustomerDescCard()
         
         let orderItemAddBtn = OrderItemAddBtn()
-        self.orderItemStackView = OrderDetailsStackView(fields: [
-            orderItemAddBtn
-        ])
+        self.orderItemStack = PNPForm(rows: [orderItemAddBtn], separatorColor: .background)
         
         self.orderList = config.viewModel as? OrderList
         self.orderItemDetailsArr = []
@@ -64,7 +65,6 @@ class OrderDetailViewController: DetailFormViewController {
         }
         
         orderNumberField.value = "#\(self.currentId)"
-        orderNumberField.valueView.alpha = 0.5
         
         if self.actionType == .add {
             orderToggleBtn.removeFromSuperview()
@@ -170,7 +170,7 @@ class OrderDetailViewController: DetailFormViewController {
         orderItemView.delBtn.isHidden = self.isClosed
         
         self.orderItemDetailsArr.append(orderItem)
-        self.orderItemStackView.appendView(view: orderItemView)
+        self.orderItemStack.appendView(view: orderItemView)
     }
     
     private func appendOrderItem(id: String) {
@@ -194,15 +194,15 @@ class OrderDetailViewController: DetailFormViewController {
         }
         
         let valueMap: [String: String] = [
-            .orderNumber: orderDetails.number,
+            .orderNumber: "#\(orderDetails.number)",
             .remark: orderDetails.remark,
             .openedOn: orderDetails.openedOn.toString(format: Constants.System.DateFormat)
         ]
         
-        self.orderInfoFieldsSection.prefillValues(values: valueMap)
-        self.orderInfoFieldsSection.stackView.arrangedSubviews.forEach({ [weak self] view in
+        self.orderInfoForm.prefillRows(titleValueMap: valueMap)
+        self.orderInfoForm.getRows().forEach({ [weak self] row in
             guard let `self` = self else { return }
-            view.isUserInteractionEnabled = !self.isClosed
+            row.isUserInteractionEnabled = !self.isClosed
         })
         
         self.currentCustomerId = orderDetails.customerName
@@ -214,7 +214,7 @@ class OrderDetailViewController: DetailFormViewController {
             }
         }
         
-        if let statusView = self.orderStatusControlSection.getViews(viewType: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons {
+        if let statusView = self.orderStatusControlForm.getViews(withViewClass: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons {
             statusView.isPreped = orderDetails.isPreped
             statusView.isShipped = orderDetails.isShipped
             statusView.isDeposit = orderDetails.isDeposit
@@ -265,36 +265,36 @@ class OrderDetailViewController: DetailFormViewController {
         self.customerCard.backgroundColor = .primary
         self.customerCard.clipsToBounds = true
         
-        self.scrollView.addSubview(self.orderStatusControlSection)
-        self.orderStatusControlSection.snp.makeConstraints { make in
+        self.scrollView.addSubview(self.orderStatusControlForm)
+        self.orderStatusControlForm.snp.makeConstraints { make in
             make.top.equalTo(self.customerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
-        self.orderStatusControlSection.backgroundColor = .primary
-        self.orderStatusControlSection.clipsToBounds = true
+        self.orderStatusControlForm.backgroundColor = .primary
+        self.orderStatusControlForm.clipsToBounds = true
         
-        self.scrollView.addSubview(self.orderInfoFieldsSection)
-        self.orderInfoFieldsSection.snp.makeConstraints { make in
-            make.top.equalTo(self.orderStatusControlSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+        self.scrollView.addSubview(self.orderInfoForm)
+        self.orderInfoForm.snp.makeConstraints { make in
+            make.top.equalTo(self.orderStatusControlForm.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
-        self.orderInfoFieldsSection.backgroundColor = .primary
-        self.orderInfoFieldsSection.clipsToBounds = true
+        self.orderInfoForm.backgroundColor = .primary
+        self.orderInfoForm.clipsToBounds = true
         
-        self.scrollView.addSubview(self.orderItemStackView)
-        self.orderItemStackView.snp.makeConstraints { make in
-            make.top.equalTo(self.orderInfoFieldsSection.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+        self.scrollView.addSubview(self.orderItemStack)
+        self.orderItemStack.snp.makeConstraints { make in
+            make.top.equalTo(self.orderInfoForm.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
-        self.orderItemStackView.backgroundColor = .primary
-        self.orderItemStackView.clipsToBounds = true
+        self.orderItemStack.backgroundColor = .primary
+        self.orderItemStack.clipsToBounds = true
         
         self.scrollView.addSubview(self.deleteButton)
         self.deleteButton.snp.makeConstraints { make in
-            make.top.equalTo(self.orderItemStackView.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.top.equalTo(self.orderItemStack.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
             make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
@@ -306,9 +306,9 @@ class OrderDetailViewController: DetailFormViewController {
         DispatchQueue.main.async { [weak self] in
             guard let `self` = self else { return }
             self.customerCard.layer.cornerRadius = self.customerCard.frame.width / 24
-            self.orderStatusControlSection.layer.cornerRadius = self.orderStatusControlSection.frame.width / 24
-            self.orderInfoFieldsSection.layer.cornerRadius = self.orderInfoFieldsSection.frame.width / 24
-            self.orderItemStackView.layer.cornerRadius = self.orderItemStackView.frame.width / 24
+            self.orderStatusControlForm.layer.cornerRadius = self.orderStatusControlForm.frame.width / 24
+            self.orderInfoForm.layer.cornerRadius = self.orderInfoForm.frame.width / 24
+            self.orderItemStack.layer.cornerRadius = self.orderItemStack.frame.width / 24
             self.deleteButton.layer.cornerRadius = self.deleteButton.frame.width / 24
         }
         
@@ -321,7 +321,7 @@ class OrderDetailViewController: DetailFormViewController {
     // MARK: - Data
     override func validateFields() -> Bool {
         guard let details = self.makeDetails() as? OrderDetails else {
-            self.present(UIAlertController.makeError(message: .unexpectedErrorMsg, errorCode: .detailsCastingFailure), animated: true, completion: nil)
+            self.present(UIAlertController.makeError(message: .unexpectedErrorMsg), animated: true, completion: nil)
             return false
         }
         
@@ -349,11 +349,10 @@ class OrderDetailViewController: DetailFormViewController {
             }
         }()
         
-        let extractedInfo = self.orderInfoFieldsSection.extractValues(mappingKeys: [.remark,
-                                                                                    .openedOn])
-        let statusView = self.orderStatusControlSection.getViews(viewType: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons
+        let extractedInfo = self.orderInfoForm.extractRowValues(withLabelTextList: [.remark, .openedOn])
+        let statusView = self.orderStatusControlForm.getViews(withViewClass: OrderDetailsStatusIcons.self).first as? OrderDetailsStatusIcons
         
-        let orderDetailsViews = self.orderItemStackView.getViews(viewType: OrderItemView.self) as? [OrderItemView]
+        let orderDetailsViews = self.orderItemStack.getViews(withViewClass: OrderItemView.self) as? [OrderItemView]
         let latestDetails: [OrderItemDetails] = orderDetailsViews?.compactMap({ v in
             let name = v.nameLabel.text
             let qty = Int32(v.qtyField.textField.text ?? "0") ?? 0
