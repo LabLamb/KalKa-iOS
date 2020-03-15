@@ -5,7 +5,7 @@ PODS:
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
-  - PNPForm (from `../PNPForm`)
+  - PNPForm (from `https://github.com/LabLamb/PNPForm.git`)
   - SnapKit
 
 SPEC REPOS:
@@ -15,13 +15,18 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   PNPForm:
-    :path: "../PNPForm"
+    :git: https://github.com/LabLamb/PNPForm.git
+
+CHECKOUT OPTIONS:
+  PNPForm:
+    :commit: a75522e44ea9436f8a37b41c0b547da960cc7cc2
+    :git: https://github.com/LabLamb/PNPForm.git
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
-  PNPForm: 4c630509fde037953fa249e0d2cb59f1b967529c
+  PNPForm: 89de7db9d39c2223779c3d82613687f94e731075
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 4a3a29773632b3ca740f8f7e4087e80bfe534801
+PODFILE CHECKSUM: e14e7d364b68154005fb26e1defd6a312e6667e5
 
 COCOAPODS: 1.9.1
