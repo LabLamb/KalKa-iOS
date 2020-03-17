@@ -1,6 +1,6 @@
 PODS:
   - IQKeyboardManagerSwift (6.5.5)
-  - PNPForm (0.0.1)
+  - PNPForm (0.0.2)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
@@ -19,12 +19,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   PNPForm:
-    :commit: a75522e44ea9436f8a37b41c0b547da960cc7cc2
+    :commit: c12fedffcca0cacba574bfb2986b150f7a5cd08a
     :git: https://github.com/LabLamb/PNPForm.git
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
-  PNPForm: 89de7db9d39c2223779c3d82613687f94e731075
+  PNPForm: c7338d9608300c3eafed919dbe37760f767b2059
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
 PODFILE CHECKSUM: e14e7d364b68154005fb26e1defd6a312e6667e5

@@ -30,7 +30,7 @@ class CustomerDetailViewController: DetailFormViewController {
                                         placeholder: .optional)),
             
             PNPRow(title: .lastContacted,
-                   config: PNPRowConfig(type: .date(Constants.System.DateFormat),
+                   config: PNPRowConfig(type: .date(format: Constants.System.DateFormat),
                                         placeholder: Date().toString(format: Constants.System.DateFormat)))
             ],
                        separatorColor: .background

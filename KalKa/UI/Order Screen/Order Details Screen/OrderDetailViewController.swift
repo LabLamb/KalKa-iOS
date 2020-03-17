@@ -32,7 +32,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         self.orderInfoForm = PNPForm(rows: [
             orderNumberField,
-            PNPRow(title: .openedOn, config: PNPRowConfig(type: .date(Constants.System.DateFormat),
+            PNPRow(title: .openedOn, config: PNPRowConfig(type: .date(format: Constants.System.DateFormat),
                                                           placeholder: Date().toString(format: Constants.System.DateFormat))),
             PNPRow(title: .remark, config: PNPRowConfig(type: .multilineText(), placeholder: .optional))
         ], separatorColor: .background)
