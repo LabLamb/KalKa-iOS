@@ -7,8 +7,15 @@ import PNPForm
 
 class SettingsViewController: UIViewController {
     
+    let currentLang: String = {
+        let currentLangKey = (UserDefaults.standard.value(forKey: "AppleLanguages") as? Array<String>)?.first ?? ""
+        return Constants.System.AppLanguageMapping.first(where:  { tuple in
+            tuple.value.rawValue == currentLangKey
+        })?.key ?? ""
+    }()
+    
     lazy var settingsForm: PNPForm = {
-        let languageRowConfig = PNPRowConfig(type: .picker(options: ["English", "Chinese"]), placeholder: .settings)
+        let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages), placeholder: .settings)
         let languageRow = PNPRow(title: "Language", config: languageRowConfig)
         
         let result = PNPForm(rows: [languageRow], separatorColor: .background)
@@ -18,11 +25,22 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = .background
         self.navigationItem.title = .settings
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveSettings))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveSettings))
         self.setup()
+        
+        self.settingsForm.prefillRowsInOrder(orderedValues: [currentLang])
     }
     
-    @objc private func saveSettings() {}
+    @objc private func saveSettings() {
+        if let selectedLangauge = self.settingsForm.getRows(withLabelText: "Language").first?.value,
+            self.currentLang != selectedLangauge,
+            let key = Constants.System.AppLanguageMapping[selectedLangauge]?.rawValue {
+            UserDefaults.standard.set([key], forKey: "AppleLanguages")
+            
+            let alert = UIAlertController.makePrompt(message: NSLocalizedString("RestartTakeEffect", comment: ""))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     private func setup() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)

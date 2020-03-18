@@ -14,8 +14,23 @@ extension UIAlertController {
         return alertCtrl
     }
     
-    static func makeConfirmation(confirmHandler: @escaping (UIAlertAction) -> Void) -> UIAlertController {
-        let alertCtrl = UIAlertController(title: NSLocalizedString("ConfirmationTitle", comment: "Confirmation title."), message: NSLocalizedString("ConfirmationMessage", comment: "Confirmation message."), preferredStyle: .alert)
+    static func makePrompt(message: String) -> UIAlertController {
+        let alertCtrl = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: .OK, style: .default, handler: { alert in
+            alertCtrl.dismiss(animated: true, completion: nil)
+        })
+        alertCtrl.addAction(alertAction)
+        return alertCtrl
+    }
+    
+    static func makeConfirmation(confirmHandler: @escaping (UIAlertAction) -> Void,
+                                 confirmationTitle: String? = nil,
+                                 confirmationMsg: String? = nil) -> UIAlertController {
+        let title = confirmationTitle ?? NSLocalizedString("ConfirmationTitle", comment: "Confirmation title.")
+        let message = confirmationMsg ?? NSLocalizedString("ConfirmationMessage", comment: "Confirmation message.")
+        
+        
+        let alertCtrl = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: .cancel, style: .cancel, handler: nil)
         alertCtrl.addAction(cancel)

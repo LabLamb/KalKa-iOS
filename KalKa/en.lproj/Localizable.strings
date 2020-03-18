@@ -55,3 +55,4 @@
 "ReturnOrder" = "Return order";
 "Closeorder" = "Close order";
 "DeleteOrder" = "Delete order";
+"RestartTakeEffect" = "Saved changes, please restart your application to take effect";

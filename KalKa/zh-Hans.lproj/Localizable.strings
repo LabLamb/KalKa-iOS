@@ -55,3 +55,4 @@
 "ReturnOrder" = "设回未完成";
 "Closeorder" = "设为已完成";
 "DeleteOrder" = "永久删除订单";
+"RestartTakeEffect" = "设置完成，请重启应用以便新设定生效";
