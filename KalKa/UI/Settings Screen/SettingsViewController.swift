@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController {
     }
     
     @objc private func saveSettings() {
-        if let selectedLangauge = self.settingsForm.getRows(withLabelText: "Language").first?.value,
+        if let selectedLangauge = self.settingsForm.getRows(withLabelText: .sysLanguage).first?.value,
             self.currentLang != selectedLangauge,
             let key = Constants.System.AppLanguageMapping[selectedLangauge]?.rawValue {
             UserDefaults.standard.set([key], forKey: "AppleLanguages")
