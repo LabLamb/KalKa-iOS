@@ -1,9 +1,5 @@
 //
-//  Order+CoreDataProperties.swift
-//  
-//
-//  Created by LabLamb on 23/2/2020.
-//
+//  Copyright © 2019 LabLambWorks. All rights reserved.
 //
 
 import Foundation

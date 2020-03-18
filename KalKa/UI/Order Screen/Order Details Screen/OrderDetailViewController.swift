@@ -201,7 +201,7 @@ class OrderDetailViewController: DetailFormViewController {
         
         self.orderInfoForm.prefillRows(titleValueMap: valueMap)
         self.orderInfoForm.getRows().forEach({ [weak self] row in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             row.isUserInteractionEnabled = !self.isClosed
         })
         
@@ -221,7 +221,7 @@ class OrderDetailViewController: DetailFormViewController {
             statusView.isPaid = orderDetails.isPaid
             
             statusView.iconStack.arrangedSubviews.forEach({ [weak self] view in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 view.alpha = self.isClosed ? 0.5 : 1
                 view.isUserInteractionEnabled = !self.isClosed
             })
@@ -230,7 +230,7 @@ class OrderDetailViewController: DetailFormViewController {
     
     @objc func deleteOrder() {
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.orderList?.removeOrder(id: self.currentId, completion: { isDeleted in
                 if isDeleted {
                     self.navigationController?.popViewController(animated: true)
@@ -244,7 +244,7 @@ class OrderDetailViewController: DetailFormViewController {
     
     @objc func toggleOrder() {
         let handler: (UIAlertAction) -> Void = { [weak self] alert in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if !self.allFieldsIsValid { return }
             self.isClosed = !self.isClosed
             self.editItem(details: self.makeDetails())
@@ -304,7 +304,7 @@ class OrderDetailViewController: DetailFormViewController {
         self.deleteButton.clipsToBounds = true
         
         DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.customerCard.layer.cornerRadius = self.customerCard.frame.width / 24
             self.orderStatusControlForm.layer.cornerRadius = self.orderStatusControlForm.frame.width / 24
             self.orderInfoForm.layer.cornerRadius = self.orderInfoForm.frame.width / 24
@@ -381,7 +381,7 @@ extension OrderDetailViewController: DataPicker {
     
     func pickCustomer() {
         let onSelectRowHandler: (String) -> Void = { [weak self] customerName in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.currentCustomerId = customerName
             self.navigationController?.popToViewController(self, animated: true)
             self.updateCustomerCard()
@@ -395,7 +395,7 @@ extension OrderDetailViewController: DataPicker {
     
     func pickOrderItem() {
         let onSelectRowHandler: (String) -> Void = { [weak self] merchName in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.navigationController?.popToViewController(self, animated: true)
             self.appendOrderItem(id: merchName)
         }

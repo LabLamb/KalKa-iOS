@@ -13,3 +13,10 @@ enum LinePosition {
     case left
     case right
 }
+
+enum AppLangauge: String {
+    case english = "en"
+    case chineseCN = "zh-Hans"
+    case chineseTW = "zh-Hant"
+    case chineseHK = "zh-HK"
+}

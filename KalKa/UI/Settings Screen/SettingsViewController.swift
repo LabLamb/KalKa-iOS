@@ -18,12 +18,15 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = .background
         self.navigationItem.title = .settings
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveSettings))
         self.setup()
     }
     
+    @objc private func saveSettings() {}
+    
     private func setup() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = .buttonIcon
         if var textAttributes = navigationController?.navigationBar.titleTextAttributes {

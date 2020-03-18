@@ -73,7 +73,7 @@ class SearchTableViewController: UIViewController {
         super.viewDidAppear(animated)
         DispatchQueue.main.async {
             self.list?.fetch(completion: { [weak self] in
-                guard let `self` = self  else { return }
+                guard let self = self  else { return }
                 if let txt = self.searchBar.text, txt != "" {
                     self.filterListByString(txt)
                 } else {
