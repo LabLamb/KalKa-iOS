@@ -7,16 +7,18 @@ import PNPForm
 
 class SettingsViewController: UIViewController {
     
-    let currentLang: String = {
-        let currentLangKey = (UserDefaults.standard.value(forKey: "AppleLanguages") as? Array<String>)?.first ?? ""
-        return Constants.System.AppLanguageMapping.first(where:  { tuple in
-            tuple.value.rawValue == currentLangKey
-        })?.key ?? ""
-    }()
+    var currentLang: String {
+        get {
+            let currentLangKey = (UserDefaults.standard.value(forKey: "AppleLanguages") as? Array<String>)?.first ?? ""
+            return Constants.System.AppLanguageMapping.first(where:  { tuple in
+                tuple.value.rawValue == currentLangKey
+            })?.key ?? ""
+        }
+    }
     
     lazy var settingsForm: PNPForm = {
         let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages), placeholder: .settings)
-        let languageRow = PNPRow(title: "Language", config: languageRowConfig)
+        let languageRow = PNPRow(title: .sysLanguage, config: languageRowConfig)
         
         let result = PNPForm(rows: [languageRow], separatorColor: .background)
         return result
