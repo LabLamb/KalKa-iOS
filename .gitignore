@@ -38,6 +38,7 @@ playground.xcworkspace
 
 # CocoaPods
 Pods/
+Podfile.lock
 
 # CHANGELOG
 .github_changelog_generator
