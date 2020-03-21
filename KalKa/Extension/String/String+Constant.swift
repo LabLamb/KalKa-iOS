@@ -47,4 +47,5 @@ extension String {
     static let returnOrder = NSLocalizedString("ReturnOrder", comment: "")
     static let closeOrder = NSLocalizedString("Closeorder", comment: "")
     static let deleteOrder = NSLocalizedString("DeleteOrder", comment: "")
+    static let sysLanguage = NSLocalizedString("SysLanguage", comment: "")
 }

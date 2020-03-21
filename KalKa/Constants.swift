@@ -4,78 +4,87 @@
 
 import UIKit
 
-class Constants {
+struct Constants {
     
-    static let System = (
-        DateFormat: "yyyy-MM-dd",
-        SupportedMiniumScreenHeight: CGFloat(667.0),
-        SupportedMiniumScreenWidth: CGFloat(375.0)
-    )
+    struct System {
+        static let DateFormat = "yyyy-MM-dd"
+        static let SupportedMiniumScreenHeight: CGFloat = 667.0
+        static let SupportedMiniumScreenWidth: CGFloat = 375.0
+        static let AppLanguages: [String] = [
+            "English", "简体中文", "繁體中文"
+        ]
+        
+        static let AppLanguageMapping: [String: AppLangauge] = [
+            "English": .english,
+            "简体中文": .chineseCN,
+            "繁體中文": .chineseTW
+        ]
+    }
     
-    static let UI = (
-        TabBarHeight: 49,
+    struct UI {
+        let TabBarHeight = 49
         
-        Spacing: (
-            Height: (
-                ExSmall: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.005),
-                Small: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.01),
-                Medium: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.025),
-                Large: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.05),
-                ExLarge: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.075)
-            ),
+        struct Spacing {
+            struct Height {
+                static let ExSmall: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.005
+                static let Small: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.01
+                static let Medium: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.025
+                static let Large: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.05
+                static let ExLarge: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.075
+            }
             
-            Width: (
-                ExSmall: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.005),
-                Small: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.01),
-                Medium: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.025),
-                Large: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.05),
-                ExLarge: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.075)
-            )
-        ),
+            struct Width {
+                static let ExSmall: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.005
+                static let Small: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.01
+                static let Medium: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.025
+                static let Large: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.05
+                static let ExLarge: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.075
+            }
+        }
         
-        Font: (
-            Bold: (
-                ExSmall: UIFont.boldSystemFont(ofSize: 10),
-                Small: UIFont.boldSystemFont(ofSize: 12.5),
-                Medium: UIFont.boldSystemFont(ofSize: 15),
-                Large: UIFont.boldSystemFont(ofSize: 17.5),
-                ExLarge: UIFont.boldSystemFont(ofSize: 20)
-            ),
+        struct Font {
+            struct Bold {
+                static let ExSmall = UIFont.boldSystemFont(ofSize: 10)
+                static let Small = UIFont.boldSystemFont(ofSize: 12.5)
+                static let Medium = UIFont.boldSystemFont(ofSize: 15)
+                static let Large = UIFont.boldSystemFont(ofSize: 17.5)
+                static let ExLarge = UIFont.boldSystemFont(ofSize: 20)
+            }
             
-            Italic: (
-                ExSmall: UIFont.italicSystemFont(ofSize: 10),
-                Small: UIFont.italicSystemFont(ofSize: 12.5),
-                Medium: UIFont.italicSystemFont(ofSize: 15),
-                Large: UIFont.italicSystemFont(ofSize: 17.5),
-                ExLarge: UIFont.italicSystemFont(ofSize: 20)
-            ),
+            struct Italic {
+                static let ExSmall = UIFont.italicSystemFont(ofSize: 10)
+                static let Small = UIFont.italicSystemFont(ofSize: 12.5)
+                static let Medium = UIFont.italicSystemFont(ofSize: 15)
+                static let Large = UIFont.italicSystemFont(ofSize: 17.5)
+                static let ExLarge = UIFont.italicSystemFont(ofSize: 20)
+            }
             
-            Plain: (
-                ExSmall: UIFont.systemFont(ofSize: 10),
-                Small: UIFont.systemFont(ofSize: 12.5),
-                Medium: UIFont.systemFont(ofSize: 15),
-                Large: UIFont.systemFont(ofSize: 17.5),
-                ExLarge: UIFont.systemFont(ofSize: 20)
-            )
-        ),
+            struct Plain {
+                static let ExSmall = UIFont.systemFont(ofSize: 10)
+                static let Small = UIFont.systemFont(ofSize: 12.5)
+                static let Medium = UIFont.systemFont(ofSize: 15)
+                static let Large = UIFont.systemFont(ofSize: 17.5)
+                static let ExLarge = UIFont.systemFont(ofSize: 20)
+            }
+        }
         
-        Sizing: (
-            Height: (ExSmall: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.05),
-                     Small: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.1),
-                     Medium: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.25),
-                     Large: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.5),
-                     ExLarge: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.75),
-                     TextFieldDefault: CGFloat(Constants.System.SupportedMiniumScreenHeight * 0.05 * 1.25)
-            ),
+        struct Sizing {
+            struct Height {
+                static let ExSmall: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.05
+                static let Small: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.1
+                static let Medium: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.25
+                static let Large: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.5
+                static let ExLarge: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.75
+                static let TextFieldDefault: CGFloat = Constants.System.SupportedMiniumScreenHeight * 0.05 * 1.25
+            }
             
-            Width: (
-                ExSmall: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.05),
-                Small: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.1),
-                Medium: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.25),
-                Large: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.5),
-                ExLarge: CGFloat(Constants.System.SupportedMiniumScreenWidth * 0.75)
-            )
-        )
-    )
-    
+            struct Width {
+                static let ExSmall: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.05
+                static let Small: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.1
+                static let Medium: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.25
+                static let Large: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.5
+                static let ExLarge: CGFloat = Constants.System.SupportedMiniumScreenWidth * 0.75
+            }
+        }
+    }
 }

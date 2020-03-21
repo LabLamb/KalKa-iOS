@@ -85,7 +85,7 @@ class DetailFormViewController: UIViewController {
     // MARK: - Data
     func addItem(details: ModelDetails) {
         self.list?.add(details: details, completion: { [weak self] success in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             if !success {
                 self.promptItemExistsError()
             }
@@ -103,7 +103,7 @@ class DetailFormViewController: UIViewController {
         self.list?.edit(oldId: self.currentId,
                         details: details,
                         completion: { [weak self] success in
-                            guard let `self` = self else { return }
+                            guard let self = self else { return }
                             if success {
                                 self.navigationController?.popViewController(animated: true)
                             } else {
@@ -119,7 +119,7 @@ class DetailFormViewController: UIViewController {
     @objc private func submitDetails () {
         if self.allFieldsIsValid {
             let handler: (UIAlertAction) -> Void = { [weak self] alert in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 if self.actionType == .edit {
                     self.editItem(details: self.makeDetails())
                 } else if self.actionType == .add {

@@ -12,6 +12,7 @@
 		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
 		D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B9123F44C54008DFDB1 /* UIView+Border.swift */; };
 		D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21320C6240EB8EE006EA462 /* TextFieldWithPrefix.swift */; };
+		D21514DC241E8A5800BF11BD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21514DB241E8A5800BF11BD /* SettingsViewController.swift */; };
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */; };
 		D21850F5240BBDEB00B3D37F /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21850F4240BBDEB00B3D37F /* OrderItemView.swift */; };
@@ -113,6 +114,7 @@
 		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D2044B9123F44C54008DFDB1 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		D21320C6240EB8EE006EA462 /* TextFieldWithPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPrefix.swift; sourceTree = "<group>"; };
+		D21514DB241E8A5800BF11BD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchDetailViewController.swift; sourceTree = "<group>"; };
 		D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsStatusIcons.swift; sourceTree = "<group>"; };
 		D21850F4240BBDEB00B3D37F /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D21514DD241E8A6100BF11BD /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D21514DB241E8A5800BF11BD /* SettingsViewController.swift */,
+			);
+			path = "Settings Screen";
+			sourceTree = "<group>";
+		};
 		D22AF8CA23F144B100186AA4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +256,7 @@
 				D2D6BA7323F527FA007894FD /* Customer Screen */,
 				D22AF8CB23F144C300186AA4 /* Inventory Screen */,
 				D28E57A424003A810049D780 /* Order Screen */,
+				D21514DD241E8A6100BF11BD /* Settings Screen */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -800,6 +811,7 @@
 				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */,
+				D21514DC241E8A5800BF11BD /* SettingsViewController.swift in Sources */,
 				D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
