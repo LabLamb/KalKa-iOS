@@ -57,3 +57,6 @@
 "DeleteOrder" = "永久删除订单";
 "RestartTakeEffect" = "设置完成，请重启应用以便新设定生效";
 "SysLanguage" = "语言";
+"InStock" = "目前仓存";
+"Restock" = "补仓数量";
+"Subtotal" = "小计";

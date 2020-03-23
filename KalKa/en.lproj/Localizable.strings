@@ -57,3 +57,6 @@
 "DeleteOrder" = "Delete order";
 "RestartTakeEffect" = "Saved changes, please restart your application to take effect";
 "SysLanguage" = "Language";
+"InStock" = "In stock";
+"Restock" = "Restock";
+"Subtotal" = "Subtotal";

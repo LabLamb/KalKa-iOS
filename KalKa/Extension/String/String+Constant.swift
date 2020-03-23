@@ -48,4 +48,7 @@ extension String {
     static let closeOrder = NSLocalizedString("Closeorder", comment: "")
     static let deleteOrder = NSLocalizedString("DeleteOrder", comment: "")
     static let sysLanguage = NSLocalizedString("SysLanguage", comment: "")
+    static let inStock = NSLocalizedString("InStock", comment: "")
+    static let restock = NSLocalizedString("Restock", comment: "")
+    static let subtotal = NSLocalizedString("Subtotal", comment: "")
 }
