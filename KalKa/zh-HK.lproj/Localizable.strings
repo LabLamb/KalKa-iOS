@@ -57,3 +57,6 @@
 "DeleteOrder" = "永久刪除訂單";
 "RestartTakeEffect" = "設置完成，請重啟應用以便新設定生效";
 "SysLanguage" = "語言";
+"InStock" = "目前倉存";
+"Restock" = "補倉數量";
+"Subtotal" = "小計";

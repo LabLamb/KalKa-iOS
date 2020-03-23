@@ -4,35 +4,47 @@
 
 import SnapKit
 import PNPForm
+import PanModal
 
 class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Variables
-    let inputForm: PNPForm
     weak var inventory: Inventory?
-    
-    // MARK: - Initializion
-    override init(config: DetailsConfiguration) {
+    lazy var inputForm: PNPForm = {
         let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
+        iconView.cameraOptionPresenter = self
+        
+        let qtyRow: PNPRow = {
+            if self.actionType == .edit {
+                return PNPRow(title: .quantity, config: PNPRowConfig(type: .label, placeholder: .optional))
+            } else {
+                return PNPRow(title: .quantity, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .numberPad)), placeholder: .optional))
+            }
+        }()
         
         let fields: [UIView] = [
             iconView,
-            PNPRow(title: .name, config: PNPRowConfig(placeholder: .required)),
+            PNPRow(title: .name, config: PNPRowConfig(placeholder: .required, validation: .required)),
             PNPRow(title: .price, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .decimalPad)),
                                                        placeholder: .optional)),
-            PNPRow(title: .quantity, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .numberPad)),
-                                                          placeholder: .optional)),
+            qtyRow,
             PNPRow(title: .remark, config: PNPRowConfig(placeholder: .optional))
         ]
         
-        self.inputForm = PNPForm(rows: fields, separatorColor: .background)
-        
+        return PNPForm(rows: fields, separatorColor: .background)
+    }()
+    
+    // MARK: - Initializion
+    override init(config: DetailsConfiguration) {
         self.inventory = config.viewModel as? Inventory
-        
         super.init(config: config)
-        iconView.cameraOptionPresenter = self
-        
         self.itemExistsErrorMsg = NSLocalizedString("ErrorMerchExists", comment: "Error Message - Merch name text field .")
+        if self.actionType == .edit,
+            let qtyRow = self.inputForm.getRows(withLabelText: .quantity).first {
+            let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToAdditionQty(gest:)))
+            qtyRow.addGestureRecognizer(tapGest)
+            qtyRow.isUserInteractionEnabled = true
+        }
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -74,6 +86,21 @@ class MerchDetailViewController: DetailFormViewController {
         self.inputForm.prefillRows(titleValueMap: valueMap)
     }
     
+    @objc func navToAdditionQty(gest: UITapGestureRecognizer) {
+        guard let row = gest.view as? PNPRow,
+            let qty = Int(row.value ?? "") else { return }
+        
+        let handler: (Int) -> Void = { [weak self] newQty in
+            guard let self = self else { return }
+            self.inputForm.prefillRows(titleValueMap: [
+                .quantity: String(newQty)
+            ])
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        self.presentPanModal(MerchQtyDetailNavViewController(rootViewController: MerchQtyDetailViewController(currentQty: qty, onSave: handler)))
+    }
+    
     private func setup() {
         self.view.backgroundColor = .background
         
@@ -99,16 +126,11 @@ class MerchDetailViewController: DetailFormViewController {
     
     // MARK: - Data
     override func validateFields() -> Bool {
-        if self.makeDetails().id == "" {
-//            let textField = self.inputForm.getRows(withLabelText: .name).first
-//            let inputField = textField?.value
-            
+        let isValid = self.inputForm.validateRows()
+        if !isValid {
             self.promptEmptyFieldError(errorMsg: NSLocalizedString("ErrorMerchInputEmpty", comment: "Error Message - Merch name text field ."))
-            
-            return false
         }
-        
-        return true
+        return isValid
     }
     
     override func makeDetails() -> ModelDetails {
