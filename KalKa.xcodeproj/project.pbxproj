@@ -20,6 +20,9 @@
 		D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22AF8C823F1447800186AA4 /* InventoryViewController.swift */; };
 		D22AF8CE23F14FE700186AA4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D22AF8D023F14FE700186AA4 /* Localizable.strings */; };
 		D22C74D22428FEC5004F28BC /* NewQtyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D12428FEC5004F28BC /* NewQtyRow.swift */; };
+		D22C74D5242A5A5A004F28BC /* Restock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */; };
+		D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */; };
+		D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D7242A5B05004F28BC /* RestockDetails.swift */; };
 		D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */; };
 		D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2C23F57E0600F93973 /* Date+String.swift */; };
 		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
@@ -124,6 +127,9 @@
 		D22AF8C823F1447800186AA4 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		D22AF8CF23F14FE700186AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D22C74D12428FEC5004F28BC /* NewQtyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQtyRow.swift; sourceTree = "<group>"; };
+		D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restock+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restock+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D22C74D7242A5B05004F28BC /* RestockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockDetails.swift; sourceTree = "<group>"; };
 		D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
 		D2364E2C23F57E0600F93973 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
@@ -480,9 +486,12 @@
 		D2D6BA6B23F52772007894FD /* Merch */ = {
 			isa = PBXGroup;
 			children = (
+				D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */,
+				D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */,
 				D2A2F03E240A2DD600272FC0 /* MerchDetails.swift */,
 				D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */,
 				D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */,
+				D22C74D7242A5B05004F28BC /* RestockDetails.swift */,
 			);
 			path = Merch;
 			sourceTree = "<group>";
@@ -814,6 +823,7 @@
 				D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* KalKa.xcdatamodeld in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
+				D22C74D5242A5A5A004F28BC /* Restock+CoreDataProperties.swift in Sources */,
 				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */,
@@ -834,9 +844,11 @@
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
 				D22C74D22428FEC5004F28BC /* NewQtyRow.swift in Sources */,
 				D2727B9324040A07004CBB7E /* UITextField+PlusOrMinus.swift in Sources */,
+				D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */,
 				D2D6BA7D23F52DE8007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D2A2F043240A2E4000272FC0 /* OrderDetails.swift in Sources */,
 				D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */,
+				D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */,
 				D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */,
 				D28E57A624003B580049D780 /* OrderCell.swift in Sources */,
 				D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */,

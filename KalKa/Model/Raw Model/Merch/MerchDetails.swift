@@ -17,6 +17,7 @@ class MerchDetails: ModelDetails {
     let qty: Int
     let remark: String
     var image: UIImage?
+    var restocks: [RestockDetails]?
     
     init(name: String, price: Double, qty: Int, remark: String, image: UIImage?) {
         self.name = name
