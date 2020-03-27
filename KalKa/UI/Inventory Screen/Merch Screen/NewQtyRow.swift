@@ -62,13 +62,22 @@ class NewQtyRow: BaseRow {
 
 extension NewQtyRow: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text,
-            let newValue = Int(text + string) else { return true }
-        if string == "" && textField.text?.count == 1 {
+        guard let text = textField.text else { return true }
+
+        let isDeletingAll: Bool = (range.length == textField.text?.count) && (string == "")
+        
+        if isDeletingAll {
             self.onChangeDelegate?(0)
         } else {
-            self.onChangeDelegate?(newValue)
+            if string == "" {
+                guard let newVal = Int(text.prefix(text.count - 1)) else { return true }
+                self.onChangeDelegate?(newVal)
+            } else {
+                guard let newVal = Int(text + string) else { return true }
+                self.onChangeDelegate?(newVal)
+            }
         }
+        
         return true
     }
 }
