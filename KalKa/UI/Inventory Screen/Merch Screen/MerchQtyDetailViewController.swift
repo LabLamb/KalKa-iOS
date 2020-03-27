@@ -18,10 +18,16 @@ class MerchQtyDetailViewController: UIViewController {
                                            placeholder: .required)
         
         let totalRowUpdateHandler: (Int) -> Void = { [weak self] newValue in
-            guard let self = self,
-                let currValue = self.calcForm.extractRowValues(withLabelTextList: [.inStock])[.inStock] else { return }
+            guard let self = self else { return }
+            guard let currValue = self.calcForm.extractRowValues(withLabelTextList: [.inStock])[.inStock],
+                let inStock = Int(currValue),
+                inStock > 0 else {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    return
+            }
+            
             self.calcForm.prefillRows(titleValueMap: [
-                .subtotal: String(newValue + (Int(currValue) ?? 0))
+                .subtotal: String(newValue + inStock)
             ])
         }
         
@@ -52,6 +58,7 @@ class MerchQtyDetailViewController: UIViewController {
         }
         self.scrollView.isDirectionalLockEnabled = true
         
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitDetails))
         
         self.scrollView.addSubview(self.calcForm)
