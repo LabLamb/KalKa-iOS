@@ -64,18 +64,20 @@ extension NewQtyRow: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
 
-        let isDeletingAll: Bool = (range.length == textField.text?.count) && (string == "")
+        let isDeletingAll: Bool = (range.length == text.count) && (string == "")
         
         if isDeletingAll {
             self.onChangeDelegate?(0)
         } else {
-            if string == "" {
-                guard let newVal = Int(text.prefix(text.count - 1)) else { return true }
-                self.onChangeDelegate?(newVal)
-            } else {
-                guard let newVal = Int(text + string) else { return true }
-                self.onChangeDelegate?(newVal)
-            }
+            guard let newVal: Int = {
+                if string == "" {
+                    return Int(text.prefix(text.count - 1))
+                } else {
+                    return Int(text + string)
+                }
+                }() else { return true }
+            
+            self.onChangeDelegate?(newVal)
         }
         
         return true
