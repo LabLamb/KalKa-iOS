@@ -488,10 +488,10 @@
 			children = (
 				D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */,
 				D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */,
+				D22C74D7242A5B05004F28BC /* RestockDetails.swift */,
 				D2A2F03E240A2DD600272FC0 /* MerchDetails.swift */,
 				D26BF52923F281C100EDB259 /* Merch+CoreDataClass.swift */,
 				D26BF52823F281C100EDB259 /* Merch+CoreDataProperties.swift */,
-				D22C74D7242A5B05004F28BC /* RestockDetails.swift */,
 			);
 			path = Merch;
 			sourceTree = "<group>";

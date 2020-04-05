@@ -16,7 +16,7 @@
         <attribute name="price" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remark" attributeType="String" defaultValueString=""/>
-        <relationship name="restocks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restock" inverseName="stockingMerch" inverseEntity="Restock"/>
+        <relationship name="restocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restock" inverseName="stockingMerch" inverseEntity="Restock"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="merchs" inverseEntity="Store"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
@@ -39,9 +39,9 @@
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
     </entity>
     <entity name="Restock" representedClassName="Restock" syncable="YES">
-        <attribute name="newQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="restockQty" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="stockTimeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="newQty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="restockQty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stockTimeStamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="stockingMerch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Merch" inverseName="restocks" inverseEntity="Merch"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
@@ -55,7 +55,7 @@
         <element name="Merch" positionX="-63" positionY="-18" width="128" height="148"/>
         <element name="Order" positionX="-63" positionY="27" width="128" height="208"/>
         <element name="OrderItem" positionX="-54" positionY="54" width="128" height="103"/>
-        <element name="Store" positionX="-54" positionY="81" width="128" height="103"/>
         <element name="Restock" positionX="-54" positionY="99" width="128" height="103"/>
+        <element name="Store" positionX="-54" positionY="81" width="128" height="103"/>
     </elements>
 </model>

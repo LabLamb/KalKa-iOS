@@ -71,6 +71,10 @@ class MerchDetailViewController: DetailFormViewController {
             fatalError("Unable to retrieve data.")
         }
         
+        merchDetails.restocks?.forEach({
+            print("Added \($0.restockQty) on \($0.stockTimeStamp)")
+        })
+        
         let valueMap: [String: String] = [
             .name: merchDetails.name,
             .price: String(merchDetails.price),
@@ -157,7 +161,8 @@ class MerchDetailViewController: DetailFormViewController {
                             price: parsedPrice,
                             qty: parsedQty,
                             remark: extractedValue[.remark] ?? "",
-                            image: image)
+                            image: image,
+                            restocks: [])
         
     }
 }

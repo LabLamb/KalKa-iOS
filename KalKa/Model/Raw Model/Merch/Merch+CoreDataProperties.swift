@@ -1,5 +1,9 @@
 //
-//  Copyright © 2019 LabLambWorks. All rights reserved.
+//  Merch+CoreDataProperties.swift
+//  
+//
+//  Created by LabLamb on 6/4/2020.
+//
 //
 
 import Foundation
@@ -18,4 +22,23 @@ extension Merch {
     @NSManaged public var qty: Int32
     @NSManaged public var remark: String
     @NSManaged public var restocks: Set<Restock>?
+    @NSManaged public var store: Store?
+
+}
+
+// MARK: Generated accessors for restocks
+extension Merch {
+
+    @objc(addRestocksObject:)
+    @NSManaged public func addToRestocks(_ value: Restock)
+
+    @objc(removeRestocksObject:)
+    @NSManaged public func removeFromRestocks(_ value: Restock)
+
+    @objc(addRestocks:)
+    @NSManaged public func addToRestocks(_ values: NSSet)
+
+    @objc(removeRestocks:)
+    @NSManaged public func removeFromRestocks(_ values: NSSet)
+
 }

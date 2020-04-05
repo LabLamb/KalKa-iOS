@@ -19,11 +19,12 @@ class MerchDetails: ModelDetails {
     var image: UIImage?
     var restocks: [RestockDetails]?
     
-    init(name: String, price: Double, qty: Int, remark: String, image: UIImage?) {
+    init(name: String, price: Double, qty: Int, remark: String, image: UIImage?, restocks: [RestockDetails]?) {
         self.name = name
         self.price = price
         self.qty = qty
         self.remark = remark
         self.image = image
+        self.restocks = restocks
     }
 }

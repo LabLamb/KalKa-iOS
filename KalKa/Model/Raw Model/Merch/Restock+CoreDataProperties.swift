@@ -16,9 +16,9 @@ extension Restock {
         return NSFetchRequest<Restock>(entityName: "Restock")
     }
 
-    @NSManaged public var stockTimeStamp: Date?
+    @NSManaged public var stockTimeStamp: Date
     @NSManaged public var restockQty: Int32
     @NSManaged public var newQty: Int32
-    @NSManaged public var stockingMerch: Merch?
+    @NSManaged public var stockingMerch: Merch
 
 }
