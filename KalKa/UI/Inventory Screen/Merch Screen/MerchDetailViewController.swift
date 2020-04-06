@@ -14,25 +14,38 @@ class MerchDetailViewController: DetailFormViewController {
         let iconView = IconView(image: #imageLiteral(resourceName: "MerchDefault"))
         iconView.cameraOptionPresenter = self
         
-        let qtyRow: PNPRow = {
-            if self.actionType == .edit {
-                return PNPRow(title: .quantity, config: PNPRowConfig(type: .label, placeholder: .optional))
-            } else {
-                return PNPRow(title: .quantity, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .numberPad)), placeholder: .optional))
-            }
-        }()
+        var fields = [UIView]()
         
-        let fields: [UIView] = [
-            iconView,
-            PNPRow(title: .name, config: PNPRowConfig(placeholder: .required, validation: .required)),
-            PNPRow(title: .price, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .decimalPad)),
-                                                       placeholder: .optional)),
-            qtyRow,
-            PNPRow(title: .remark, config: PNPRowConfig(placeholder: .optional))
-        ]
+        switch self.actionType {
+        case .add:
+            fields = [
+                iconView,
+                PNPRow(title: .name, config: PNPRowConfig(placeholder: .required, validation: .required)),
+                PNPRow(title: .price, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .decimalPad)),
+                                                           placeholder: .optional)),
+                PNPRow(title: .remark, config: PNPRowConfig(placeholder: .optional))
+            ]
+        case .edit:
+            fields = [
+                iconView,
+                PNPRow(title: .name, config: PNPRowConfig(placeholder: .required, validation: .required)),
+                PNPRow(title: .price, config: PNPRowConfig(type: .singlelineText(PNPKeyboardConfig(keyboardType: .decimalPad)),
+                                                           placeholder: .optional)),
+                PNPRow(title: .quantity, config: PNPRowConfig(type: .label, placeholder: .optional)),
+                PNPRow(title: .remark, config: PNPRowConfig(placeholder: .optional))
+            ]
+        }
         
         return PNPForm(rows: fields, separatorColor: .background)
     }()
+    
+    lazy var restockList: PNPForm = {
+        let labelConfig = PNPRowConfig(type: .label, placeholder: .restockRecord)
+        let result = PNPForm(rows: [PNPRow(config: labelConfig)], separatorColor: .background)
+        return result
+    }()
+    
+    var returnedRestocks: [RestockDetails] = []
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
@@ -54,21 +67,47 @@ class MerchDetailViewController: DetailFormViewController {
     // MARK: - UI
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = {
-            if self.actionType == .edit {
-                return "\(String.edit) \(self.currentId)"
-            } else if self.actionType == .add {
-                return NSLocalizedString("NewMerch", comment: "New entry of product.")
-            } else {
-                return ""
-            }
-        }()
+        switch self.actionType {
+        case .add:
+            self.navigationItem.title = NSLocalizedString("NewMerch", comment: "New entry of product.")
+            self.restockList.isHidden = true
+        case .edit:
+            self.navigationItem.title = "\(String.edit) \(self.currentId)"
+        }
+        
         self.setup()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateQuantityRow), name: .inventoryUpdated, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .inventoryUpdated, object: nil)
     }
     
     private func prefillFieldsForEdit() {
         guard let merchDetails = self.inventory?.getDetails(id: self.currentId) as? MerchDetails else {
             fatalError("Unable to retrieve data.")
+        }
+        
+        if let restocks = merchDetails.restocks,
+            restocks.count > 0 {
+            restocks.forEach({ details in
+                let restockView = RestockView(date: details.stockTimeStamp, qty: details.restockQty, returnDelegate: { [weak self] restockView in
+                    guard let self = self else { return }
+                    self.returnedRestocks.append(details)
+                    restockView.removeFromSuperview()
+                    let currentValue = self.inputForm.getRows(withLabelText: .quantity).first?.value ?? "0"
+                    self.inputForm.prefillRows(titleValueMap: [
+                        .quantity: String((Int(currentValue) ?? 0) - details.restockQty)
+                    ])
+                })
+                self.restockList.appendView(view: restockView)
+                restockView.snp.makeConstraints { make in
+                    make.height.equalTo(Constants.UI.Sizing.Height.TextFieldDefault)
+                }
+            })
+        } else {
+            self.restockList.isHidden = true
         }
         
         let valueMap: [String: String] = [
@@ -109,13 +148,24 @@ class MerchDetailViewController: DetailFormViewController {
             make.top.equalToSuperview()
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.bottom.equalToSuperview()
         }
         self.inputForm.backgroundColor = .primary
         self.inputForm.clipsToBounds = true
         
-        DispatchQueue.main.async {
+        self.scrollView.addSubview(self.restockList)
+        self.restockList.snp.makeConstraints { make in
+            make.top.equalTo(self.inputForm.snp.bottom).offset(Constants.UI.Spacing.Height.Medium * 0.75)
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
+            make.bottom.equalToSuperview()
+        }
+        self.restockList.backgroundColor = .primary
+        self.restockList.clipsToBounds = true
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.inputForm.layer.cornerRadius = self.inputForm.frame.width / 24
+            self.restockList.layer.cornerRadius = self.restockList.frame.width / 24
         }
         
         if self.actionType == .edit {
@@ -157,7 +207,20 @@ class MerchDetailViewController: DetailFormViewController {
                             price: parsedPrice,
                             qty: parsedQty,
                             remark: extractedValue[.remark] ?? "",
-                            image: image)
+                            image: image,
+                            restocks: [])
         
+    }
+    
+    override func editItem(details: ModelDetails) {
+        super.editItem(details: details)
+        self.inventory?.returnRestock(merchId: self.currentId, returnedDetails: self.returnedRestocks)
+    }
+    
+    @objc func updateQuantityRow() {
+        if let qtyRow = self.inputForm.getRows(withLabelText: .quantity).first,
+        let details = self.inventory?.getDetails(id: self.currentId) as? MerchDetails {
+            qtyRow.value = String(details.qty)
+        }
     }
 }

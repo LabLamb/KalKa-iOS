@@ -103,18 +103,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             custList.add(details: custDet, completion: { _ in })
         }
         
-        let merchDetails_testData = [
-            MerchDetails(name: "Shampoo", price: 36.6, qty: 255, remark: "", image: nil),
-            MerchDetails(name: "Soap", price: 12.2, qty: 125, remark: "", image: nil),
-            MerchDetails(name: "Rubber duck", price: 4.2, qty: 1325, remark: "", image: nil),
-            MerchDetails(name: "Towel", price: 76.8, qty: 234, remark: "", image: nil),
-            MerchDetails(name: "Hair tie", price: 1, qty: 4324, remark: "", image: nil),
-            MerchDetails(name: "Mirror", price: 20, qty: 542, remark: "", image: nil)
-        ]
-        
-        let merchList = Inventory()
-        for merchDet in merchDetails_testData {
-            merchList.add(details: merchDet, completion: { _ in })
-        }
+//        let merchDetails_testData = [
+//            MerchDetails(name: "Shampoo", price: 36.6, qty: 255, remark: "", image: nil, restocks: []),
+//            MerchDetails(name: "Soap", price: 12.2, qty: 125, remark: "", image: nil, restocks: []),
+//            MerchDetails(name: "Rubber duck", price: 4.2, qty: 1325, remark: "", image: nil, restocks: []),
+//            MerchDetails(name: "Towel", price: 76.8, qty: 234, remark: "", image: nil, restocks: []),
+//            MerchDetails(name: "Hair tie", price: 1, qty: 4324, remark: "", image: nil, restocks: []),
+//            MerchDetails(name: "Mirror", price: 20, qty: 542, remark: "", image: nil, restocks: [])
+//        ]
+//
+//        let merchList = Inventory()
+//        for merchDet in merchDetails_testData {
+//            merchList.add(details: merchDet, completion: { _ in })
+//        }
     }
 }

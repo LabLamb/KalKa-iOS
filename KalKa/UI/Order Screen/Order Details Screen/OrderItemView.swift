@@ -9,7 +9,7 @@ class OrderItemView: CustomView {
     lazy var nameLabel: UILabel = {
         let result = UILabel()
         result.font = UITextField().font
-        result.text = "波波醬"
+        result.text = ""
         return result
     }()
     

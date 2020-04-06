@@ -141,12 +141,12 @@ class SearchTableViewController: UIViewController {
         let rect: CGRect = info[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
         let kbHeight = rect.size.height - (self.tabBarController?.tabBar.frame.height ?? 0)
         self.tableView.contentInset.bottom = kbHeight
-        self.tableView.scrollIndicatorInsets.bottom = kbHeight
+        self.tableView.verticalScrollIndicatorInsets.bottom = kbHeight
     }
     
     @objc private func keyboardDidDisappeared() {
         self.tableView.contentInset.bottom = 0
-        self.tableView.scrollIndicatorInsets.bottom = 0
+        self.tableView.verticalScrollIndicatorInsets.bottom = 0
     }
     
     func filterListByString(_ searchText: String) {

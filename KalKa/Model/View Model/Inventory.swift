@@ -5,6 +5,7 @@
 import Foundation
 import CoreData
 import UIKit
+import NotificationCenter
 
 class Inventory: ViewModel {
     
@@ -73,7 +74,19 @@ class Inventory: ViewModel {
             }
         }()
         
-        return MerchDetails(name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage)
+        let merchRestocks: [RestockDetails] = {
+            var result = [RestockDetails]()
+            merch.restocks?.forEach({
+                result.append(RestockDetails(stockTimeStamp: $0.stockTimeStamp, restockQty: Int($0.restockQty)))
+            })
+            
+            result.sort(by: {
+                $0.stockTimeStamp > $1.stockTimeStamp
+            })
+            return result
+        }()
+        
+        return MerchDetails(name: merch.name, price: merch.price, qty: Int(merch.qty), remark: merch.remark, image: merchImage, restocks: merchRestocks)
     }
     
     func edit(oldId: String, details: ModelDetails, completion: ((Bool) -> Void)) {
@@ -92,11 +105,22 @@ class Inventory: ViewModel {
             fatalError("Trying to edit an non-existing Merch. (Array is empty)")
         }
         
+        if editingMerch.qty < Int32(details.qty) {
+            guard let entity = NSEntityDescription.entity(forEntityName: "Restock", in: context) else { return }
+            let newRestock = Restock(entity: entity, insertInto: context)
+            newRestock.restockQty = Int32(details.qty) - editingMerch.qty
+            newRestock.newQty = Int32(details.qty)
+            newRestock.stockingMerch = editingMerch
+            newRestock.stockTimeStamp = Date()
+            editingMerch.addToRestocks(newRestock)
+        }
+        
         editingMerch.name = details.name
         editingMerch.price = details.price
         editingMerch.qty = Int32(details.qty)
         editingMerch.remark = details.remark
         editingMerch.image = details.image?.pngData()
+        
         
         try? context.save()
         
@@ -110,6 +134,10 @@ class Inventory: ViewModel {
         result.qty -= diff
         
         try? context.save()
+        
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .inventoryUpdated, object: nil)
+        }
     }
     
     func exists(id: String, completion: ((Bool) -> Void)) {
@@ -119,5 +147,18 @@ class Inventory: ViewModel {
         } else {
             completion(false)
         }
+    }
+    
+    func returnRestock(merchId: String, returnedDetails: [RestockDetails]) {
+        let context = self.persistentContainer.newBackgroundContext()
+        for details in returnedDetails {
+            let predicate = NSPredicate(format: "stockingMerch.name = %@ AND stockTimeStamp = %@", merchId, details.stockTimeStamp as NSDate)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Restock")
+            fetchRequest.predicate = predicate
+            
+            guard let result = try? context.fetch(fetchRequest).first as? Restock else { return }
+            context.delete(result)
+        }
+        try? context.save()
     }
 }

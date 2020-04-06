@@ -18,11 +18,22 @@ class MerchQtyDetailViewController: UIViewController {
                                            placeholder: .required)
         
         let totalRowUpdateHandler: (Int) -> Void = { [weak self] newValue in
-            guard let self = self,
-                let currValue = self.calcForm.extractRowValues(withLabelTextList: [.inStock])[.inStock] else { return }
+            guard let self = self else { return }
+            guard let currValue = self.calcForm.extractRowValues(withLabelTextList: [.inStock])[.inStock],
+                let inStock = Int(currValue) else {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = false
+                    return
+            }
+            
             self.calcForm.prefillRows(titleValueMap: [
-                .subtotal: String(newValue + (Int(currValue) ?? 0))
+                .subtotal: String(newValue + inStock)
             ])
+            
+            if newValue <= 0 {
+                self.navigationItem.rightBarButtonItem?.isEnabled = false
+            } else {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+            }
         }
         
         return PNPForm(rows: [
@@ -53,6 +64,9 @@ class MerchQtyDetailViewController: UIViewController {
         self.scrollView.isDirectionalLockEnabled = true
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitDetails))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.closeView))
         
         self.scrollView.addSubview(self.calcForm)
         self.calcForm.snp.makeConstraints { make in
@@ -74,8 +88,12 @@ class MerchQtyDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc private func closeView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Data
-    @objc private func submitDetails () {
+    @objc private func submitDetails() {
         let confirmHandler: (UIAlertAction) -> Void = { [weak self] _ in
             guard let self = self,
                 let rowValue = self.calcForm.getRows(withLabelText: .subtotal).first?.value,

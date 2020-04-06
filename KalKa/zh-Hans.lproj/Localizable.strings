@@ -60,3 +60,4 @@
 "InStock" = "目前仓存";
 "Restock" = "补仓数量";
 "Subtotal" = "小计";
+"RestockRecord" = "补仓记录";
