@@ -5,6 +5,6 @@
 import Foundation
 
 extension Notification.Name {
-//    static let textInputStarted = Notification.Name("textInputStarted")
+    static let inventoryUpdated = Notification.Name("InventoryUpdated")
 //    static let textInputEnded = Notification.Name("textInputEnded")
 }

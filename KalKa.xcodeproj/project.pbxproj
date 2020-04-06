@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1328383A1744C8EBD757CEF9 /* Pods_KalKa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D8E162C0C1BDEB6FD8FA0F /* Pods_KalKa.framework */; };
-		5007725695047A458921BB12 /* Pods_KalKaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CAD33AB0E0C97D22D3AEA95 /* Pods_KalKaUITests.framework */; };
+		3AA1404969830A11A24FDA52 /* libPods-KalKaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EABE7B191873A8BFA44FE4A /* libPods-KalKaTests.a */; };
+		6EC0DB60E0A6B8159A397148 /* libPods-KalKa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6762A0095AD1397926F12B59 /* libPods-KalKa.a */; };
 		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
 		D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B9123F44C54008DFDB1 /* UIView+Border.swift */; };
 		D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21320C6240EB8EE006EA462 /* TextFieldWithPrefix.swift */; };
@@ -85,7 +85,8 @@
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
 		D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */; };
 		D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6008F23F24861003AAA58 /* InventoryHeader.swift */; };
-		D9F3152CBF601524C823BEB3 /* Pods_KalKaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F447FB44027FFB9658BEF6B /* Pods_KalKaTests.framework */; };
+		D2F6735D243B7A1B0011C441 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6735C243B7A1B0011C441 /* RestockView.swift */; };
+		F7E8EBF757A5B4C30CCBA995 /* libPods-KalKaUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CC1ADA183491238D62D0CE /* libPods-KalKaUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,13 +110,13 @@
 		031FB57617AEE24DBAB0F10B /* Pods-SalesAccountBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookUITests.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookUITests/Pods-SalesAccountBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1861493F3C2BC9D43A4E1994 /* Pods-KalKaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKaTests.release.xcconfig"; path = "Target Support Files/Pods-KalKaTests/Pods-KalKaTests.release.xcconfig"; sourceTree = "<group>"; };
 		2F2CA6AAFD826C89300756E8 /* Pods-KalKaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKaUITests.release.xcconfig"; path = "Target Support Files/Pods-KalKaUITests/Pods-KalKaUITests.release.xcconfig"; sourceTree = "<group>"; };
-		2F447FB44027FFB9658BEF6B /* Pods_KalKaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalKaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EABE7B191873A8BFA44FE4A /* libPods-KalKaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KalKaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AC3AEBC6D61BEC54F84BFA /* Pods-SalesAccountBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBookTests.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBookTests/Pods-SalesAccountBookTests.release.xcconfig"; sourceTree = "<group>"; };
+		6762A0095AD1397926F12B59 /* libPods-KalKa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KalKa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70CC1ADA183491238D62D0CE /* libPods-KalKaUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KalKaUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E8514E1DC173456249207E /* Pods-SalesAccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.release.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.release.xcconfig"; sourceTree = "<group>"; };
 		758924D60576DEE05E3448EF /* Pods-KalKaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKaTests.debug.xcconfig"; path = "Target Support Files/Pods-KalKaTests/Pods-KalKaTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7CAD33AB0E0C97D22D3AEA95 /* Pods_KalKaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalKaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EB64F0192810E6BB94DC369 /* Pods-SalesAccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalesAccountBook.debug.xcconfig"; path = "Target Support Files/Pods-SalesAccountBook/Pods-SalesAccountBook.debug.xcconfig"; sourceTree = "<group>"; };
-		C7D8E162C0C1BDEB6FD8FA0F /* Pods_KalKa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KalKa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		D2044B9123F44C54008DFDB1 /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		D21320C6240EB8EE006EA462 /* TextFieldWithPrefix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPrefix.swift; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D2F6008823F1B16A003AAA58 /* UIView+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		D2F6008F23F24861003AAA58 /* InventoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryHeader.swift; sourceTree = "<group>"; };
+		D2F6735C243B7A1B0011C441 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
 		D5500F88F4780817A80DBAAD /* Pods-KalKa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKa.release.xcconfig"; path = "Target Support Files/Pods-KalKa/Pods-KalKa.release.xcconfig"; sourceTree = "<group>"; };
 		DB0E4432E7D4AC220A32FA4A /* Pods-KalKaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKaUITests.debug.xcconfig"; path = "Target Support Files/Pods-KalKaUITests/Pods-KalKaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF98987F26F37D38AD6BB750 /* Pods-KalKa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KalKa.debug.xcconfig"; path = "Target Support Files/Pods-KalKa/Pods-KalKa.debug.xcconfig"; sourceTree = "<group>"; };
@@ -217,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D26BF52D23F2830A00EDB259 /* StoreKit.framework in Frameworks */,
-				1328383A1744C8EBD757CEF9 /* Pods_KalKa.framework in Frameworks */,
+				6EC0DB60E0A6B8159A397148 /* libPods-KalKa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9F3152CBF601524C823BEB3 /* Pods_KalKaTests.framework in Frameworks */,
+				3AA1404969830A11A24FDA52 /* libPods-KalKaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5007725695047A458921BB12 /* Pods_KalKaUITests.framework in Frameworks */,
+				F7E8EBF757A5B4C30CCBA995 /* libPods-KalKaUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,9 +246,9 @@
 			isa = PBXGroup;
 			children = (
 				D26BF52C23F2830A00EDB259 /* StoreKit.framework */,
-				C7D8E162C0C1BDEB6FD8FA0F /* Pods_KalKa.framework */,
-				2F447FB44027FFB9658BEF6B /* Pods_KalKaTests.framework */,
-				7CAD33AB0E0C97D22D3AEA95 /* Pods_KalKaUITests.framework */,
+				6762A0095AD1397926F12B59 /* libPods-KalKa.a */,
+				4EABE7B191873A8BFA44FE4A /* libPods-KalKaTests.a */,
+				70CC1ADA183491238D62D0CE /* libPods-KalKaUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,6 +397,7 @@
 				D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */,
 				D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */,
 				D22C74D12428FEC5004F28BC /* NewQtyRow.swift */,
+				D2F6735C243B7A1B0011C441 /* RestockView.swift */,
 			);
 			path = "Merch Screen";
 			sourceTree = "<group>";
@@ -587,7 +590,6 @@
 				D2C7D84B23F13333004C66B4 /* Frameworks */,
 				D2C7D84C23F13333004C66B4 /* Resources */,
 				D21648A32413891B000D2666 /* Adding version number */,
-				25DA8C74B09F42A0398D3C29 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -711,23 +713,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25DA8C74B09F42A0398D3C29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		334A94DC12F4F3864883E8FE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -841,6 +826,7 @@
 				D29F7D5E240E9B6D0045646B /* Notificaion+Names.swift in Sources */,
 				D223CD1723F57F2B003A8EF6 /* String+Date.swift in Sources */,
 				D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */,
+				D2F6735D243B7A1B0011C441 /* RestockView.swift in Sources */,
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
 				D22C74D22428FEC5004F28BC /* NewQtyRow.swift in Sources */,
 				D2727B9324040A07004CBB7E /* UITextField+PlusOrMinus.swift in Sources */,
@@ -1007,6 +993,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1062,6 +1049,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

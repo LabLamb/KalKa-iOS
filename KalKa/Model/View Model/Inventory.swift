@@ -5,6 +5,7 @@
 import Foundation
 import CoreData
 import UIKit
+import NotificationCenter
 
 class Inventory: ViewModel {
     
@@ -133,6 +134,10 @@ class Inventory: ViewModel {
         result.qty -= diff
         
         try? context.save()
+        
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .inventoryUpdated, object: nil)
+        }
     }
     
     func exists(id: String, completion: ((Bool) -> Void)) {
@@ -142,5 +147,18 @@ class Inventory: ViewModel {
         } else {
             completion(false)
         }
+    }
+    
+    func returnRestock(merchId: String, returnedDetails: [RestockDetails]) {
+        let context = self.persistentContainer.newBackgroundContext()
+        for details in returnedDetails {
+            let predicate = NSPredicate(format: "stockingMerch.name = %@ AND stockTimeStamp = %@", merchId, details.stockTimeStamp as NSDate)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Restock")
+            fetchRequest.predicate = predicate
+            
+            guard let result = try? context.fetch(fetchRequest).first as? Restock else { return }
+            context.delete(result)
+        }
+        try? context.save()
     }
 }
