@@ -63,7 +63,7 @@ class MerchQtyDetailViewController: UIViewController {
         }
         self.scrollView.isDirectionalLockEnabled = true
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.submitDetails))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.submitDetails))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.closeView))
@@ -94,15 +94,9 @@ class MerchQtyDetailViewController: UIViewController {
     
     // MARK: - Data
     @objc private func submitDetails() {
-        let confirmHandler: (UIAlertAction) -> Void = { [weak self] _ in
-            guard let self = self,
-                let rowValue = self.calcForm.getRows(withLabelText: .subtotal).first?.value,
-                let totalQty = Int(rowValue) else { return }
-            self.onSaveDelegate(totalQty)
-        }
-        
-        let alertCtrl = UIAlertController.makeConfirmation(confirmHandler: confirmHandler)
-        self.present(alertCtrl, animated: true, completion: nil)
+        guard let rowValue = self.calcForm.getRows(withLabelText: .restock).first?.value,
+            let restockQty = Int(rowValue) else { return }
+        self.onSaveDelegate(restockQty)
     }
 }
 

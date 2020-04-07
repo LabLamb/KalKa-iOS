@@ -105,10 +105,15 @@ class Inventory: ViewModel {
             fatalError("Trying to edit an non-existing Merch. (Array is empty)")
         }
         
-        if editingMerch.qty < Int32(details.qty) {
+        if let newRestocks = details.restocks,
+            newRestocks.count > 0 {
             guard let entity = NSEntityDescription.entity(forEntityName: "Restock", in: context) else { return }
+            var accumulatedRestocksQty = 0
+            for newRestock in newRestocks {
+                accumulatedRestocksQty += newRestock.restockQty
+            }
             let newRestock = Restock(entity: entity, insertInto: context)
-            newRestock.restockQty = Int32(details.qty) - editingMerch.qty
+            newRestock.restockQty = Int32(accumulatedRestocksQty)
             newRestock.newQty = Int32(details.qty)
             newRestock.stockingMerch = editingMerch
             newRestock.stockTimeStamp = Date()
@@ -149,7 +154,7 @@ class Inventory: ViewModel {
         }
     }
     
-    func returnRestock(merchId: String, returnedDetails: [RestockDetails]) {
+    func removeRestock(merchId: String, returnedDetails: [RestockDetails]) {
         let context = self.persistentContainer.newBackgroundContext()
         for details in returnedDetails {
             let predicate = NSPredicate(format: "stockingMerch.name = %@ AND stockTimeStamp = %@", merchId, details.stockTimeStamp as NSDate)
