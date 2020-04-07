@@ -60,6 +60,7 @@
 		D2A6A76323FAB06E007E144A /* Number+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A6A76223FAB06E007E144A /* Number+Format.swift */; };
 		D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B123F3A16B00C0F33B /* Enums.swift */; };
 		D2C3E8B423F3B31700C0F33B /* DetailsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3E8B323F3B31700C0F33B /* DetailsConfiguration.swift */; };
+		D2C79DA5243CA58400F94AC9 /* MembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */; };
 		D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85123F13333004C66B4 /* AppDelegate.swift */; };
 		D2C7D85C23F13333004C66B4 /* KalKa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D2C7D85A23F13333004C66B4 /* KalKa.xcdatamodeld */; };
 		D2C7D85E23F13336004C66B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2C7D85D23F13336004C66B4 /* Assets.xcassets */; };
@@ -174,6 +175,7 @@
 		D2A6A76223FAB06E007E144A /* Number+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Format.swift"; sourceTree = "<group>"; };
 		D2C3E8B123F3A16B00C0F33B /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		D2C3E8B323F3B31700C0F33B /* DetailsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsConfiguration.swift; sourceTree = "<group>"; };
+		D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipViewController.swift; sourceTree = "<group>"; };
 		D2C7D84E23F13333004C66B4 /* KalKa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KalKa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C7D85123F13333004C66B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C7D85B23F13333004C66B4 /* SalesAccountBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SalesAccountBook.xcdatamodel; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				D2D6BA7323F527FA007894FD /* Customer Screen */,
 				D22AF8CB23F144C300186AA4 /* Inventory Screen */,
 				D28E57A424003A810049D780 /* Order Screen */,
+				D2C79DA6243CA58F00F94AC9 /* Membership Screen */,
 				D21514DD241E8A6100BF11BD /* Settings Screen */,
 			);
 			path = UI;
@@ -400,6 +403,14 @@
 				D2F6735C243B7A1B0011C441 /* RestockView.swift */,
 			);
 			path = "Merch Screen";
+			sourceTree = "<group>";
+		};
+		D2C79DA6243CA58F00F94AC9 /* Membership Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */,
+			);
+			path = "Membership Screen";
 			sourceTree = "<group>";
 		};
 		D2C7D84523F13333004C66B4 = {
@@ -807,6 +818,7 @@
 				D2D3F71023F40CE90034D83F /* IconView.swift in Sources */,
 				D2A6A75723F93CB2007E144A /* UIColor+Constant.swift in Sources */,
 				D2C7D85C23F13333004C66B4 /* KalKa.xcdatamodeld in Sources */,
+				D2C79DA5243CA58400F94AC9 /* MembershipViewController.swift in Sources */,
 				D2F6008C23F1B16A003AAA58 /* UIView+Animation.swift in Sources */,
 				D22C74D5242A5A5A004F28BC /* Restock+CoreDataProperties.swift in Sources */,
 				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,

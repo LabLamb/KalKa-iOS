@@ -30,9 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cusVC = UINavigationController(rootViewController: CustomerViewController())
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
-        let memVC = UINavigationController(rootViewController: UIViewController())
+        let memVC = UINavigationController(rootViewController: MembershipViewController())
         memVC.tabBarItem = UITabBarItem(title: .membership, image: UIImage(named: "Membership"), tag: 3)
-        memVC.tabBarItem.isEnabled = false
         
         let setVC = UINavigationController(rootViewController: SettingsViewController())
         setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)
