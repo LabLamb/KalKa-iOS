@@ -45,7 +45,10 @@ class MerchDetailViewController: DetailFormViewController {
         return result
     }()
     
+    var enteredRestocks: [RestockDetails] = []
     var returnedRestocks: [RestockDetails] = []
+    
+    var didModifyQty = false
     
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
@@ -96,6 +99,9 @@ class MerchDetailViewController: DetailFormViewController {
                     guard let self = self else { return }
                     self.returnedRestocks.append(details)
                     restockView.removeFromSuperview()
+                    if self.restockList.getViews().count <= 1 {
+                        self.restockList.isHidden = true
+                    }
                     let currentValue = self.inputForm.getRows(withLabelText: .quantity).first?.value ?? "0"
                     self.inputForm.prefillRows(titleValueMap: [
                         .quantity: String((Int(currentValue) ?? 0) - details.restockQty)
@@ -129,11 +135,14 @@ class MerchDetailViewController: DetailFormViewController {
         guard let row = gest.view as? PNPRow,
             let qty = Int(row.value ?? "") else { return }
         
-        let handler: (Int) -> Void = { [weak self] newQty in
+        let handler: (Int) -> Void = { [weak self] restockQty in
             guard let self = self else { return }
+            let newQty = Int(self.inputForm.getRows(withLabelText: .quantity).first?.value ?? "0") ?? 0
             self.inputForm.prefillRows(titleValueMap: [
-                .quantity: String(newQty)
+                .quantity: String(newQty + restockQty)
             ])
+            self.didModifyQty = true
+            self.enteredRestocks.append(RestockDetails(stockTimeStamp: Date(), restockQty: restockQty))
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -208,19 +217,25 @@ class MerchDetailViewController: DetailFormViewController {
                             qty: parsedQty,
                             remark: extractedValue[.remark] ?? "",
                             image: image,
-                            restocks: [])
+                            restocks: self.enteredRestocks)
         
     }
     
     override func editItem(details: ModelDetails) {
         super.editItem(details: details)
-        self.inventory?.returnRestock(merchId: self.currentId, returnedDetails: self.returnedRestocks)
+        self.inventory?.removeRestock(merchId: self.currentId, returnedDetails: self.returnedRestocks)
     }
     
     @objc func updateQuantityRow() {
         if let qtyRow = self.inputForm.getRows(withLabelText: .quantity).first,
         let details = self.inventory?.getDetails(id: self.currentId) as? MerchDetails {
-            qtyRow.value = String(details.qty)
+            if self.didModifyQty {
+                let qtyValueInt = Int(qtyRow.value ?? "0") ?? 0
+                let diff = qtyValueInt + details.qty
+                qtyRow.value = String(diff)
+            } else {
+                qtyRow.value = String(details.qty)
+            }
         }
     }
 }
