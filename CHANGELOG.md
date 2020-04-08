@@ -1,5 +1,35 @@
 # Changelog
 
+## [v1.0.2](https://github.com/LabLamb/KalKa-iOS/tree/v1.0.2) (2020-04-07)
+
+[Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/v1.0.1...v1.0.2)
+
+**Implemented enhancements:**
+
+- Language option [\#65](https://github.com/LabLamb/KalKa-iOS/issues/65)
+- Change Inventory editing screen [\#33](https://github.com/LabLamb/KalKa-iOS/issues/33)
+- Settings screen [\#8](https://github.com/LabLamb/KalKa-iOS/issues/8)
+- Add a restock list on editing product [\#89](https://github.com/LabLamb/KalKa-iOS/pull/89) ([LabLamb](https://github.com/LabLamb))
+- Improve quantity editing [\#88](https://github.com/LabLamb/KalKa-iOS/pull/88) ([LabLamb](https://github.com/LabLamb))
+- Add Setting Screen [\#85](https://github.com/LabLamb/KalKa-iOS/pull/85) ([LabLamb](https://github.com/LabLamb))
+
+**Closed issues:**
+
+- Change Tuple to Struct for Constants [\#83](https://github.com/LabLamb/KalKa-iOS/issues/83)
+- Extract all Form related code to a library [\#77](https://github.com/LabLamb/KalKa-iOS/issues/77)
+- Finalise color theme [\#44](https://github.com/LabLamb/KalKa-iOS/issues/44)
+- Add sorting for SearchTableView [\#35](https://github.com/LabLamb/KalKa-iOS/issues/35)
+- Cater dark mode [\#26](https://github.com/LabLamb/KalKa-iOS/issues/26)
+- Add energy [\#25](https://github.com/LabLamb/KalKa-iOS/issues/25)
+
+**Merged pull requests:**
+
+- Fix bug in restock [\#90](https://github.com/LabLamb/KalKa-iOS/pull/90) ([LabLamb](https://github.com/LabLamb))
+- Ignore Podfile.lock [\#87](https://github.com/LabLamb/KalKa-iOS/pull/87) ([LabLamb](https://github.com/LabLamb))
+- Change templates [\#86](https://github.com/LabLamb/KalKa-iOS/pull/86) ([LabLamb](https://github.com/LabLamb))
+- Integrate with PNPForm [\#84](https://github.com/LabLamb/KalKa-iOS/pull/84) ([LabLamb](https://github.com/LabLamb))
+- Bump version v1.0.2 [\#82](https://github.com/LabLamb/KalKa-iOS/pull/82) ([LabLamb](https://github.com/LabLamb))
+
 ## [v1.0.1](https://github.com/LabLamb/KalKa-iOS/tree/v1.0.1) (2020-03-09)
 
 [Full Changelog](https://github.com/LabLamb/KalKa-iOS/compare/v1.0.0...v1.0.1)
@@ -27,7 +57,7 @@
 - Test out PR template [\#60](https://github.com/LabLamb/KalKa-iOS/pull/60) ([LabLamb](https://github.com/LabLamb))
 - Add more PR templates [\#59](https://github.com/LabLamb/KalKa-iOS/pull/59) ([LabLamb](https://github.com/LabLamb))
 - Add github templates [\#58](https://github.com/LabLamb/KalKa-iOS/pull/58) ([LabLamb](https://github.com/LabLamb))
-- Refine return types for CRUD actions [\#56](https://github.com/LabLamb/KalKa-iOS/pull/56) ([LabLamb](https://github.com/LabLamb))
+- Update issue templates [\#57](https://github.com/LabLamb/KalKa-iOS/pull/57) ([LabLamb](https://github.com/LabLamb))
 - Add privacy agreement [\#53](https://github.com/LabLamb/KalKa-iOS/pull/53) ([LabLamb](https://github.com/LabLamb))
 - Up version to v1.0.1 [\#52](https://github.com/LabLamb/KalKa-iOS/pull/52) ([LabLamb](https://github.com/LabLamb))
 
@@ -56,6 +86,7 @@
 
 **Merged pull requests:**
 
+- Refine return types for CRUD actions [\#56](https://github.com/LabLamb/KalKa-iOS/pull/56) ([LabLamb](https://github.com/LabLamb))
 - Added CHANGELOG.md [\#50](https://github.com/LabLamb/KalKa-iOS/pull/50) ([LabLamb](https://github.com/LabLamb))
 - Up version [\#49](https://github.com/LabLamb/KalKa-iOS/pull/49) ([LabLamb](https://github.com/LabLamb))
 - Patch project for appstore [\#48](https://github.com/LabLamb/KalKa-iOS/pull/48) ([LabLamb](https://github.com/LabLamb))
