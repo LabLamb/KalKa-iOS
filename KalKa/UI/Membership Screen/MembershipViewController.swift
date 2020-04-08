@@ -6,6 +6,14 @@ import SnapKit
 
 class MembershipViewController: UIViewController {
     
+    lazy var functionList: UIStackView = {
+        let result = UIStackView()
+        result.axis = .vertical
+        result.alignment = .center
+        result.distribution = .fill
+        return result
+    }()
+    
     override func viewDidLoad() {
         self.view.backgroundColor = .background
         self.navigationItem.title = .membership
