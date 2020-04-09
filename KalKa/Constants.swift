@@ -49,6 +49,7 @@ struct Constants {
                 static let Medium = UIFont.boldSystemFont(ofSize: 15)
                 static let Large = UIFont.boldSystemFont(ofSize: 17.5)
                 static let ExLarge = UIFont.boldSystemFont(ofSize: 20)
+                static let Hero = UIFont.boldSystemFont(ofSize: 25)
             }
             
             struct Italic {
@@ -57,6 +58,7 @@ struct Constants {
                 static let Medium = UIFont.italicSystemFont(ofSize: 15)
                 static let Large = UIFont.italicSystemFont(ofSize: 17.5)
                 static let ExLarge = UIFont.italicSystemFont(ofSize: 20)
+                static let Hero = UIFont.italicSystemFont(ofSize: 35)
             }
             
             struct Plain {
@@ -65,6 +67,7 @@ struct Constants {
                 static let Medium = UIFont.systemFont(ofSize: 15)
                 static let Large = UIFont.systemFont(ofSize: 17.5)
                 static let ExLarge = UIFont.systemFont(ofSize: 20)
+                static let Hero = UIFont.systemFont(ofSize: 35)
             }
         }
         

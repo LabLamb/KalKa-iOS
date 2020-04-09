@@ -100,7 +100,7 @@ class MerchQtyDetailViewController: UIViewController {
     }
 }
 
-class MerchQtyDetailNavViewController: UINavigationController, PanModalPresentable {
+class MerchQtyDetailNavViewController: CustomNavigationController, PanModalPresentable {
 
     var panScrollable: UIScrollView? {
            return nil

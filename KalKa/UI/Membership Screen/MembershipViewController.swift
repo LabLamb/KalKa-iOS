@@ -6,33 +6,94 @@ import SnapKit
 
 class MembershipViewController: UIViewController {
     
+    let scrollView = UIScrollView()
+    
     lazy var functionList: UIStackView = {
         let result = UIStackView()
         result.axis = .vertical
         result.alignment = .center
         result.distribution = .fill
+        result.spacing = Constants.UI.Spacing.Height.Medium
+        return result
+    }()
+    
+    lazy var membership: MembershipFuncButton = {
+        let result = MembershipFuncButton(title: .membership, icon: UIImage(named: "Membership")?.withRenderingMode(.alwaysTemplate) ?? UIImage())
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStatus))
+        result.addGestureRecognizer(tapGest)
+        result.isUserInteractionEnabled = true
+        
+        result.backgroundColor = .primary
+        result.isEnabled = true
+        
+        return result
+    }()
+    
+    lazy var statsButton: MembershipFuncButton = {
+        let result = MembershipFuncButton(title: .stats, icon: #imageLiteral(resourceName: "Stats").withRenderingMode(.alwaysTemplate))
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStat))
+        result.addGestureRecognizer(tapGest)
+        result.isUserInteractionEnabled = true
+        
+        result.backgroundColor = .primary
+        
+        return result
+    }()
+    
+    lazy var storesButton: MembershipFuncButton = {
+        let result = MembershipFuncButton(title: .stats, icon: #imageLiteral(resourceName: "Stats").withRenderingMode(.alwaysTemplate))
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStat))
+        result.addGestureRecognizer(tapGest)
+        result.isUserInteractionEnabled = true
+        
+        result.backgroundColor = .primary
+        
         return result
     }()
     
     override func viewDidLoad() {
         self.view.backgroundColor = .background
         self.navigationItem.title = .membership
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveSettings))
         self.setup()
     }
     
     private func setup() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = .buttonIcon
-        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.text
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        } else {
-            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
         }
+        
+        self.scrollView.addSubview(self.functionList)
+        self.functionList.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.equalTo(self.view.snp.left).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view.snp.right).offset(-Constants.UI.Spacing.Width.Medium)
+        }
+
+        self.functionList.addArrangedSubview(self.membership)
+        self.functionList.addArrangedSubview(self.statsButton)
+        
+        self.functionList.arrangedSubviews.forEach({ view in
+            view.snp.makeConstraints { make in
+                make.height.equalTo(Constants.UI.Sizing.Height.Medium * 0.75)
+                make.width.equalToSuperview()
+            }
+            view.clipsToBounds = true
+            DispatchQueue.main.async {
+                view.layer.cornerRadius = view.frame.width / 24
+            }
+        })
     }
+    
+    @objc func navToPurchase() {
+        
+    }
+    
+    @objc func navToStatus() {}
+    
+    @objc func navToStat() {}
     
 }

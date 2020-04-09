@@ -45,18 +45,6 @@ class SettingsViewController: UIViewController {
     }
     
     private func setup() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = .buttonIcon
-        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.text
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        } else {
-            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        }
-        
         self.view.addSubview(self.settingsForm)
         self.settingsForm.snp.makeConstraints { make in
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
