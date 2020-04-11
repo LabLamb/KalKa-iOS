@@ -83,6 +83,7 @@
 		D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */; };
 		D2E06E16240528AD00E4123E /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E06E15240528AD00E4123E /* String+Bool.swift */; };
 		D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */; };
+		D2E9BBC9244207AF007CB1AA /* MembershipPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */; };
 		D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F2EEFB241B9E9000C4471C /* IconWithTextLabel.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -206,6 +207,7 @@
 		D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDescCard.swift; sourceTree = "<group>"; };
 		D2E06E15240528AD00E4123E /* String+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bool.swift"; sourceTree = "<group>"; };
 		D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchQtyDetailViewController.swift; sourceTree = "<group>"; };
+		D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipPurchaseViewController.swift; sourceTree = "<group>"; };
 		D2F2EEFB241B9E9000C4471C /* IconWithTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconWithTextLabel.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		D2F6007723F172DD003AAA58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */,
 				D2C79DAB243E0F8100F94AC9 /* MembershipFuncButton.swift */,
+				D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */,
 			);
 			path = "Membership Screen";
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
+				D2E9BBC9244207AF007CB1AA /* MembershipPurchaseViewController.swift in Sources */,
 				D25FD8B424004EC5005E6162 /* OrderList.swift in Sources */,
 				D25FD8BA240055EB005E6162 /* OrderDetailViewController.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,

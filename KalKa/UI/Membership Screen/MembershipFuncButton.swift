@@ -19,18 +19,18 @@ class MembershipFuncButton: CustomView {
         return result
     }()
     
-    private lazy var disabledOverlay: UIView = {
-        let result = UIView()
-        result.backgroundColor = .black
-        result.alpha = 0.75
-        return result
-    }()
+//    private lazy var disabledOverlay: UIView = {
+//        let result = UIView()
+//        result.backgroundColor = .black
+//        result.alpha = 0.75
+//        return result
+//    }()
     
-    var isEnabled: Bool = false {
-        didSet {
-            self.disabledOverlay.isHidden = self.isEnabled
-        }
-    }
+//    var isEnabled: Bool = false {
+//        didSet {
+//            self.disabledOverlay.isHidden = self.isEnabled
+//        }
+//    }
     
     init(title: String, icon: UIImage) {
         super.init()
@@ -54,15 +54,14 @@ class MembershipFuncButton: CustomView {
         self.icon.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(Constants.UI.Spacing.Width.Large)
             make.centerY.equalToSuperview()
-//            make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Width.Medium)
             make.height.equalToSuperview().multipliedBy(1.5)
             make.width.equalTo(self.icon.snp.height)
         }
         
-        self.addSubview(self.disabledOverlay)
-        self.disabledOverlay.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalToSuperview()
-        }
+//        self.addSubview(self.disabledOverlay)
+//        self.disabledOverlay.snp.makeConstraints { make in
+//            make.top.bottom.left.right.equalToSuperview()
+//        }
     }
     
 }

@@ -3,6 +3,7 @@
 //
 
 import SnapKit
+import PanModal
 
 class MembershipViewController: UIViewController {
     
@@ -25,7 +26,7 @@ class MembershipViewController: UIViewController {
         result.isUserInteractionEnabled = true
         
         result.backgroundColor = .primary
-        result.isEnabled = true
+//        result.isEnabled = true
         
         return result
     }()
@@ -42,10 +43,22 @@ class MembershipViewController: UIViewController {
         return result
     }()
     
+    lazy var storeButton: MembershipFuncButton = {
+        let result = MembershipFuncButton(title: .stores, icon: #imageLiteral(resourceName: "Store").withRenderingMode(.alwaysTemplate))
+        
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStat))
+        result.addGestureRecognizer(tapGest)
+        result.isUserInteractionEnabled = true
+        
+        result.backgroundColor = .primary
+        
+        return result
+    }()
+    
     lazy var storesButton: MembershipFuncButton = {
         let result = MembershipFuncButton(title: .stats, icon: #imageLiteral(resourceName: "Stats").withRenderingMode(.alwaysTemplate))
         
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStat))
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStore))
         result.addGestureRecognizer(tapGest)
         result.isUserInteractionEnabled = true
         
@@ -75,6 +88,7 @@ class MembershipViewController: UIViewController {
 
         self.functionList.addArrangedSubview(self.membership)
         self.functionList.addArrangedSubview(self.statsButton)
+        self.functionList.addArrangedSubview(self.storeButton)
         
         self.functionList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in
@@ -88,12 +102,12 @@ class MembershipViewController: UIViewController {
         })
     }
     
-    @objc func navToPurchase() {
-        
+    @objc func navToStatus() {
+        self.presentPanModal(MembershipPurchaseViewController())
     }
     
-    @objc func navToStatus() {}
-    
     @objc func navToStat() {}
+    
+    @objc func navToStore() {}
     
 }
