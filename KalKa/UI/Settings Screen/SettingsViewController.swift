@@ -26,8 +26,6 @@ class SettingsViewController: UIViewController {
     }()
     
     lazy var feedbackForm: PNPForm = {
-//        let feedbackBtnConfig = PNPRowConfig(type: .button(target: self, selector: #selector(self.callFeedback)), placeholder: .giveFeedback)
-//        let feedbackBtn = PNPRow(config: feedbackBtnConfig)
         let feedbackBtn = UIButton()
         feedbackBtn.setTitleColor(.buttonIcon, for: .normal)
         feedbackBtn.setTitle(.giveFeedback, for: .normal)
