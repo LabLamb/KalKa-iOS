@@ -12,7 +12,6 @@
 		D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B8D23F43EFE008DFDB1 /* UIImage+Resize.swift */; };
 		D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2044B9123F44C54008DFDB1 /* UIView+Border.swift */; };
 		D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21320C6240EB8EE006EA462 /* TextFieldWithPrefix.swift */; };
-		D21514DC241E8A5800BF11BD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21514DB241E8A5800BF11BD /* SettingsViewController.swift */; };
 		D2156BFD23F26B2A002885C6 /* MerchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2156BFC23F26B2A002885C6 /* MerchDetailViewController.swift */; };
 		D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21755AD240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift */; };
 		D21850F5240BBDEB00B3D37F /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21850F4240BBDEB00B3D37F /* OrderItemView.swift */; };
@@ -80,6 +79,7 @@
 		D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */; };
 		D2E06E16240528AD00E4123E /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E06E15240528AD00E4123E /* String+Bool.swift */; };
 		D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */; };
+		D2E9BBCC244220EE007CB1AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21514DB241E8A5800BF11BD /* SettingsViewController.swift */; };
 		D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F2EEFB241B9E9000C4471C /* IconWithTextLabel.swift */; };
 		D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007523F1704B003AAA58 /* InventoryCell.swift */; };
 		D2F6007823F172DD003AAA58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F6007723F172DD003AAA58 /* Constants.swift */; };
@@ -812,7 +812,6 @@
 				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
 				D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */,
-				D21514DC241E8A5800BF11BD /* SettingsViewController.swift in Sources */,
 				D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
@@ -828,6 +827,7 @@
 				D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */,
 				D2F6735D243B7A1B0011C441 /* RestockView.swift in Sources */,
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
+				D2E9BBCC244220EE007CB1AA /* SettingsViewController.swift in Sources */,
 				D22C74D22428FEC5004F28BC /* NewQtyRow.swift in Sources */,
 				D2727B9324040A07004CBB7E /* UITextField+PlusOrMinus.swift in Sources */,
 				D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */,
