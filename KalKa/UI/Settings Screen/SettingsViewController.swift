@@ -4,6 +4,7 @@
 
 import SnapKit
 import PNPForm
+import StoreKit
 
 class SettingsViewController: UIViewController {
     
@@ -24,6 +25,17 @@ class SettingsViewController: UIViewController {
         return result
     }()
     
+    lazy var feedbackForm: PNPForm = {
+//        let feedbackBtnConfig = PNPRowConfig(type: .button(target: self, selector: #selector(self.callFeedback)), placeholder: .giveFeedback)
+//        let feedbackBtn = PNPRow(config: feedbackBtnConfig)
+        let feedbackBtn = UIButton()
+        feedbackBtn.setTitleColor(.buttonIcon, for: .normal)
+        feedbackBtn.setTitle(.giveFeedback, for: .normal)
+        feedbackBtn.addTarget(self, action: #selector(self.callFeedback), for: .touchUpInside)
+        feedbackBtn.heightAnchor.constraint(equalToConstant: Constants.UI.Sizing.Height.TextFieldDefault).isActive = true
+        return PNPForm(rows: [feedbackBtn], separatorColor: .background)
+    }()
+    
     override func viewDidLoad() {
         self.view.backgroundColor = .background
         self.navigationItem.title = .settings
@@ -31,6 +43,10 @@ class SettingsViewController: UIViewController {
         self.setup()
         
         self.settingsForm.prefillRowsInOrder(orderedValues: [currentLang])
+    }
+    
+    @objc private func callFeedback() {
+        SKStoreReviewController.requestReview()
     }
     
     @objc private func saveSettings() {
@@ -59,15 +75,25 @@ class SettingsViewController: UIViewController {
         
         self.view.addSubview(self.settingsForm)
         self.settingsForm.snp.makeConstraints { make in
-            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+            make.top.equalTo(self.view.layoutMarginsGuide.snp.top).offset(Constants.UI.Spacing.Width.Medium)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
         }
         self.settingsForm.backgroundColor = .primary
         self.settingsForm.clipsToBounds = true
         
+        self.view.addSubview(self.feedbackForm)
+        self.feedbackForm.snp.makeConstraints { make in
+            make.top.equalTo(self.settingsForm.snp.bottom).offset(Constants.UI.Spacing.Width.Medium)
+            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
+        }
+        self.feedbackForm.backgroundColor = .primary
+        self.feedbackForm.clipsToBounds = true
+        
         DispatchQueue.main.async {
             self.settingsForm.layer.cornerRadius = self.settingsForm.frame.width / 24
+            self.feedbackForm.layer.cornerRadius = self.feedbackForm.frame.width / 24
         }
     }
 }
