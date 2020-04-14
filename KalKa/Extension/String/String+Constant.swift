@@ -55,4 +55,5 @@ extension String {
     static let purchaseMembership = NSLocalizedString("PurchaseMembership", comment: "")
     static let stores = NSLocalizedString("Stores", comment: "")
     static let giveFeedback = NSLocalizedString("GiveFeedBack", comment: "")
+    static let extraFeatures = NSLocalizedString("ExtraFeatures", comment: "")
 }

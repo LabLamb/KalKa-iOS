@@ -66,8 +66,6 @@ class MerchQtyDetailViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.submitDetails))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.closeView))
-        
         self.scrollView.addSubview(self.calcForm)
         self.calcForm.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -88,25 +86,10 @@ class MerchQtyDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func closeView() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     // MARK: - Data
     @objc private func submitDetails() {
         guard let rowValue = self.calcForm.getRows(withLabelText: .restock).first?.value,
             let restockQty = Int(rowValue) else { return }
         self.onSaveDelegate(restockQty)
     }
-}
-
-class MerchQtyDetailNavViewController: CustomNavigationController, PanModalPresentable {
-
-    var panScrollable: UIScrollView? {
-           return nil
-       }
-       
-       var shortFormHeight: PanModalHeight {
-           return .contentHeight(Constants.UI.Sizing.Height.ExLarge)
-       }
 }

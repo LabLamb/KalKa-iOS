@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
         let memVC = CustomNavigationController(rootViewController: MembershipViewController())
-        memVC.tabBarItem = UITabBarItem(title: .membership, image: UIImage(named: "Membership"), tag: 3)
+        memVC.tabBarItem = UITabBarItem(title: .extraFeatures, image: UIImage(named: "Membership"), tag: 3)
         
         let setVC = CustomNavigationController(rootViewController: SettingsViewController())
         setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)

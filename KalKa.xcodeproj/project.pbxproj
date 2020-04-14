@@ -82,6 +82,7 @@
 		D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */; };
 		D2E06E16240528AD00E4123E /* String+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E06E15240528AD00E4123E /* String+Bool.swift */; };
 		D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */; };
+		D2E7096124423FB700FA3532 /* ModalNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E7096024423FB700FA3532 /* ModalNavigationViewController.swift */; };
 		D2E9BBC9244207AF007CB1AA /* MembershipPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */; };
 		D2E9BBCC244220EE007CB1AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21514DB241E8A5800BF11BD /* SettingsViewController.swift */; };
 		D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F2EEFB241B9E9000C4471C /* IconWithTextLabel.swift */; };
@@ -207,6 +208,7 @@
 		D2DACB062402C9B2005FDE3E /* CustomerDescCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDescCard.swift; sourceTree = "<group>"; };
 		D2E06E15240528AD00E4123E /* String+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Bool.swift"; sourceTree = "<group>"; };
 		D2E51C732428F77100B34ABD /* MerchQtyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchQtyDetailViewController.swift; sourceTree = "<group>"; };
+		D2E7096024423FB700FA3532 /* ModalNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationViewController.swift; sourceTree = "<group>"; };
 		D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipPurchaseViewController.swift; sourceTree = "<group>"; };
 		D2F2EEFB241B9E9000C4471C /* IconWithTextLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconWithTextLabel.swift; sourceTree = "<group>"; };
 		D2F6007523F1704B003AAA58 /* InventoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			children = (
 				D2C79DA9243E0D7200F94AC9 /* CustomNavigationController.swift */,
 				D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */,
+				D2E7096024423FB700FA3532 /* ModalNavigationViewController.swift */,
 				D25E945723F6C75C0015B6E6 /* Detail Form Screen */,
 			);
 			path = "View Controllers";
@@ -891,6 +894,7 @@
 				D25FD8B424004EC5005E6162 /* OrderList.swift in Sources */,
 				D25FD8BA240055EB005E6162 /* OrderDetailViewController.swift in Sources */,
 				D26BF53123F2F7F600EDB259 /* UIAlertController+Factory.swift in Sources */,
+				D2E7096124423FB700FA3532 /* ModalNavigationViewController.swift in Sources */,
 				D2D6BA8323F52DF5007894FD /* Customer+CoreDataProperties.swift in Sources */,
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,

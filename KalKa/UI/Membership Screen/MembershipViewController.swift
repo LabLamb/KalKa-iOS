@@ -19,7 +19,7 @@ class MembershipViewController: UIViewController {
     }()
     
     lazy var membership: MembershipFuncButton = {
-        let result = MembershipFuncButton(title: .membership, icon: UIImage(named: "Membership")?.withRenderingMode(.alwaysTemplate) ?? UIImage())
+        let result = MembershipFuncButton(title: .membership, icon: #imageLiteral(resourceName: "Premium").withRenderingMode(.alwaysTemplate) )
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStatus))
         result.addGestureRecognizer(tapGest)
@@ -69,7 +69,7 @@ class MembershipViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = .background
-        self.navigationItem.title = .membership
+        self.navigationItem.title = .extraFeatures
         self.setup()
     }
     
@@ -103,7 +103,7 @@ class MembershipViewController: UIViewController {
     }
     
     @objc func navToStatus() {
-        self.presentPanModal(MembershipPurchaseViewController())
+        self.presentPanModal(ModalNavigationViewController(rootViewController: MembershipPurchaseViewController(), formHeight: .maxHeightWithTopInset(Constants.UI.Sizing.Height.Small)))
     }
     
     @objc func navToStat() {}
