@@ -8,17 +8,8 @@ import StoreKit
 
 class SettingsViewController: UIViewController {
     
-    var currentLang: String {
-        get {
-            let currentLangKey = (UserDefaults.standard.value(forKey: "AppleLanguages") as? Array<String>)?.first ?? ""
-            return Constants.System.AppLanguageMapping.first(where:  { tuple in
-                tuple.value.rawValue == currentLangKey
-            })?.key ?? ""
-        }
-    }
-    
     lazy var settingsForm: PNPForm = {
-        let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages), placeholder: .settings)
+        let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages))
         let languageRow = PNPRow(title: .sysLanguage, config: languageRowConfig)
         
         let result = PNPForm(rows: [languageRow], separatorColor: .background)
