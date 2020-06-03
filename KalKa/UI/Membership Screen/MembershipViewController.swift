@@ -103,10 +103,13 @@ class MembershipViewController: UIViewController {
     }
     
     @objc func navToStatus() {
-        self.presentPanModal(ModalNavigationViewController(rootViewController: MembershipPurchaseViewController(), formHeight: .maxHeightWithTopInset(Constants.UI.Sizing.Height.Small)))
+        self.presentPanModal(ModalNavigationViewController(rootViewController: MembershipPurchaseViewController(),
+                                                           formHeight: .maxHeightWithTopInset(Constants.UI.Sizing.Height.Small)))
     }
     
-    @objc func navToStat() {}
+    @objc func navToStat() {
+        self.navigationController?.pushViewController(StatsViewController(), animated: true)
+    }
     
     @objc func navToStore() {}
     
