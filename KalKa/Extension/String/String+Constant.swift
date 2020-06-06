@@ -56,4 +56,6 @@ extension String {
     static let stores = NSLocalizedString("Stores", comment: "")
     static let giveFeedback = NSLocalizedString("GiveFeedBack", comment: "")
     static let extraFeatures = NSLocalizedString("ExtraFeatures", comment: "")
+    static let lastMonth = NSLocalizedString("LastMonth", comment: "")
+    static let currentMonth = NSLocalizedString("CurrentMonth", comment: "")
 }

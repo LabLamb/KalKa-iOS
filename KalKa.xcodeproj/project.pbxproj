@@ -27,6 +27,9 @@
 		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
 		D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F523F7BE3700B6E955 /* CustomView.swift */; };
 		D24571A82487A49800AF6891 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571A72487A49800AF6891 /* StatsViewController.swift */; };
+		D24571AB248A812800AF6891 /* MonthlyPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */; };
+		D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AC248A820800AF6891 /* CustomViewInterface.swift */; };
+		D24571AF248A838500AF6891 /* MonthlyPerformanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */; };
 		D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E44ED24129EEC00476B23 /* ModelDetails.swift */; };
 		D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */; };
 		D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945123F6AF250015B6E6 /* ViewModel.swift */; };
@@ -142,6 +145,9 @@
 		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
 		D23778F523F7BE3700B6E955 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		D24571A72487A49800AF6891 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceView.swift; sourceTree = "<group>"; };
+		D24571AC248A820800AF6891 /* CustomViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewInterface.swift; sourceTree = "<group>"; };
+		D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceCard.swift; sourceTree = "<group>"; };
 		D25E44ED24129EEC00476B23 /* ModelDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetails.swift; sourceTree = "<group>"; };
 		D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		D25E945123F6AF250015B6E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -310,8 +316,18 @@
 			isa = PBXGroup;
 			children = (
 				D24571A72487A49800AF6891 /* StatsViewController.swift */,
+				D24571B0248A839E00AF6891 /* Monthly Performance */,
 			);
 			path = "Statistics Screen";
+			sourceTree = "<group>";
+		};
+		D24571B0248A839E00AF6891 /* Monthly Performance */ = {
+			isa = PBXGroup;
+			children = (
+				D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */,
+				D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */,
+			);
+			path = "Monthly Performance";
 			sourceTree = "<group>";
 		};
 		D25E945323F6C1860015B6E6 /* Views */ = {
@@ -389,6 +405,7 @@
 		D2A55A0123F1584C00022E9A /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 				D2D6BA4F23F522CE007894FD /* CustomerList.swift */,
 				D2A559FF23F1584800022E9A /* Inventory.swift */,
 				D25FD8B324004EC5005E6162 /* OrderList.swift */,
@@ -546,9 +563,9 @@
 		D2D6D98D23F25464003CDFAC /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 				D2D6D98B23F2545E003CDFAC /* Refreshable.swift */,
 				D2727B8B2402D5C3004CBB7E /* DataPicker.swift */,
+				D24571AC248A820800AF6891 /* CustomViewInterface.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -849,9 +866,11 @@
 				D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */,
 				D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
+				D24571AF248A838500AF6891 /* MonthlyPerformanceCard.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
 				D2D6BA7723F527FA007894FD /* CustomerViewController.swift in Sources */,
 				D25E945623F6C2650015B6E6 /* DetailFormViewController.swift in Sources */,
+				D24571AB248A812800AF6891 /* MonthlyPerformanceView.swift in Sources */,
 				D2D6BA5023F522CE007894FD /* CustomerList.swift in Sources */,
 				D2A2F041240A2E1500272FC0 /* CustomerDetails.swift in Sources */,
 				D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */,
@@ -900,6 +919,7 @@
 				D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
 				D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */,
+				D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 				D2E9BBC9244207AF007CB1AA /* MembershipPurchaseViewController.swift in Sources */,

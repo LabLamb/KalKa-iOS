@@ -46,7 +46,7 @@ class MembershipViewController: UIViewController {
     lazy var storeButton: MembershipFuncButton = {
         let result = MembershipFuncButton(title: .stores, icon: #imageLiteral(resourceName: "Store").withRenderingMode(.alwaysTemplate))
         
-        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStat))
+        let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStore))
         result.addGestureRecognizer(tapGest)
         result.isUserInteractionEnabled = true
         

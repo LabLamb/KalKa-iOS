@@ -67,3 +67,5 @@
 "ExtraFeatures" = "Extra";
 "MembershipTitle" = "KalKa Premium";
 "MembershipDesc" = "Enjoy full access of all extra features in KalKa.";
+"LastMonth" = "Last month";
+"CurrentMonth" = "Current month";

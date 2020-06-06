@@ -15,7 +15,7 @@ class MembershipPurchaseViewController: UIViewController {
     let premiumIcon: UIImageView = {
         let appIcon = #imageLiteral(resourceName: "Premium").withRenderingMode(.alwaysTemplate)
         let result = UIImageView(image: appIcon)
-        result.tintColor = UIColor(red:1.00, green:0.84, blue:0.00, alpha:1.0)
+        result.tintColor = .gold
         return result
     }()
     

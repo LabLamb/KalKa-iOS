@@ -6,8 +6,10 @@ import SnapKit
 
 class StatsViewController: UIViewController {
     
+    let standardStatsCardHeight = Constants.UI.Sizing.Height.Medium
+    
     lazy var recentPerformanceCard: UIView = {
-        return UIView()
+        return MonthlyPerformanceCard(lastMonthSales: "$\(5434342.toLocalCurrency(fractDigits: 2) ?? "")", currentMonthSales: "$\(123343.toLocalCurrency(fractDigits: 2) ?? "")")
     }()
     
     lazy var bestSellerCard: UIView = {
@@ -31,10 +33,10 @@ class StatsViewController: UIViewController {
     private func setup() {
         self.view.addSubview(self.recentPerformanceCard)
         self.recentPerformanceCard.snp.makeConstraints { make in
-            make.top.equalTo(self.view.layoutMarginsGuide.snp.top)
+            make.top.equalTo(self.view.layoutMarginsGuide.snp.top).offset(Constants.UI.Spacing.Height.Medium)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
+            make.height.equalTo(self.standardStatsCardHeight)
         }
         self.recentPerformanceCard.backgroundColor = .primary
         self.recentPerformanceCard.clipsToBounds = true
@@ -44,7 +46,7 @@ class StatsViewController: UIViewController {
             make.top.equalTo(self.recentPerformanceCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
+            make.height.equalTo(self.standardStatsCardHeight)
         }
         self.bestSellerCard.backgroundColor = .primary
         self.bestSellerCard.clipsToBounds = true
@@ -54,7 +56,7 @@ class StatsViewController: UIViewController {
             make.top.equalTo(self.bestSellerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium)
             make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(Constants.UI.Sizing.Height.Medium)
+            make.height.equalTo(self.standardStatsCardHeight)
         }
         self.topClientCard.backgroundColor = .primary
         self.topClientCard.clipsToBounds = true

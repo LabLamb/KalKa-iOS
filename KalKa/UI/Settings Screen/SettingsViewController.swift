@@ -8,8 +8,17 @@ import StoreKit
 
 class SettingsViewController: UIViewController {
     
+    var currentLang: String {
+        get {
+            let currentLangKey = (UserDefaults.standard.value(forKey: "AppleLanguages") as? Array<String>)?.first ?? ""
+            return Constants.System.AppLanguageMapping.first(where:  { tuple in
+                tuple.value.rawValue == currentLangKey
+            })?.key ?? ""
+        }
+    }
+    
     lazy var settingsForm: PNPForm = {
-        let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages))
+        let languageRowConfig = PNPRowConfig(type: .picker(options: Constants.System.AppLanguages), placeholder: .settings)
         let languageRow = PNPRow(title: .sysLanguage, config: languageRowConfig)
         
         let result = PNPForm(rows: [languageRow], separatorColor: .background)
@@ -50,6 +59,18 @@ class SettingsViewController: UIViewController {
     }
     
     private func setup() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.tintColor = .buttonIcon
+        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
+            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.text
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        } else {
+            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
+            navigationController?.navigationBar.titleTextAttributes = textAttributes
+        }
+        
         self.view.addSubview(self.settingsForm)
         self.settingsForm.snp.makeConstraints { make in
             make.top.equalTo(self.view.layoutMarginsGuide.snp.top).offset(Constants.UI.Spacing.Width.Medium)
