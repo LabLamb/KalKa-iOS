@@ -70,9 +70,6 @@ class CustomerDetailViewController: DetailFormViewController {
             fatalError("Unable to retrieve data.")
         }
         
-        // Add to past orders table view
-        print("\(customerDetails.name) has \(customerDetails.orders?.count ?? 0) orders.")
-        
         let valueMap: [String: String] = [
             .name: customerDetails.name,
             .phone: customerDetails.phone,

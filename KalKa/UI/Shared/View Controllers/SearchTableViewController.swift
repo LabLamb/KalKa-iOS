@@ -84,19 +84,7 @@ class SearchTableViewController: UIViewController {
     }
     
     private func setup() {
-        
         self.view.backgroundColor = .background
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = .buttonIcon
-        if var textAttributes = navigationController?.navigationBar.titleTextAttributes {
-            textAttributes[NSAttributedString.Key.foregroundColor] = UIColor.text
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        } else {
-            let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text]
-            navigationController?.navigationBar.titleTextAttributes = textAttributes
-        }
         
         self.view.addSubview(self.searchBar)
         self.searchBar.snp.makeConstraints { make in
@@ -130,7 +118,7 @@ class SearchTableViewController: UIViewController {
     
     func navigateToDetailView(detailVC: DetailFormViewController) {
         if detailVC.actionType == .add {
-            self.present(UINavigationController(rootViewController: detailVC), animated: true, completion: nil)
+            self.present(CustomNavigationController(rootViewController: detailVC), animated: true, completion: nil)
         } else {
             self.navigationController?.pushViewController(detailVC, animated: true)
         }

@@ -47,7 +47,7 @@
 "Paid" = "已收款";
 "Shipped" = "已寄出";
 "PreparedToShip" = "已包装";
-"Membership" = "会员功能";
+"Membership" = "会员";
 "AddItem" = "新增货品";
 "ErrorOrderNoCustomer" = "请先选取一名客户";
 "ErrorOrderNoOrderItem" = "订单货品不能为零";
@@ -61,4 +61,9 @@
 "Restock" = "补仓数量";
 "Subtotal" = "小计";
 "RestockRecord" = "补仓记录";
+"PurchaseMembership" = "成为会员";
+"Stores" = "商店";
 "GiveFeedBack" = "给予评分";
+"ExtraFeatures" = "额外功能";
+"MembershipTitle" = "KalKa会藉";
+"MembershipDesc" = "加入会员立即开通所有额外功能。";

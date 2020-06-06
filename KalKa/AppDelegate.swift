@@ -21,20 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow()
         
-        let ordVC = UINavigationController(rootViewController: OrderViewController())
+        let ordVC = CustomNavigationController(rootViewController: OrderViewController())
         ordVC.tabBarItem = UITabBarItem(title: .orders, image: #imageLiteral(resourceName: "Orders"), tag: 0)
         
-        let invVC = UINavigationController(rootViewController: InventoryViewController())
+        let invVC = CustomNavigationController(rootViewController: InventoryViewController())
         invVC.tabBarItem = UITabBarItem(title: .inventory, image: #imageLiteral(resourceName: "Inventory"), tag: 1)
         
-        let cusVC = UINavigationController(rootViewController: CustomerViewController())
+        let cusVC = CustomNavigationController(rootViewController: CustomerViewController())
         cusVC.tabBarItem = UITabBarItem(title: .customers, image: #imageLiteral(resourceName: "Customers"), tag: 2)
         
-        let memVC = UINavigationController(rootViewController: UIViewController())
-        memVC.tabBarItem = UITabBarItem(title: .membership, image: UIImage(named: "Membership"), tag: 3)
-        memVC.tabBarItem.isEnabled = false
+        let memVC = CustomNavigationController(rootViewController: MembershipViewController())
+        memVC.tabBarItem = UITabBarItem(title: .extraFeatures, image: UIImage(named: "Membership"), tag: 3)
         
-        let setVC = UINavigationController(rootViewController: SettingsViewController())
+        let setVC = CustomNavigationController(rootViewController: SettingsViewController())
         setVC.tabBarItem = UITabBarItem(title: .settings, image: #imageLiteral(resourceName: "Settings"), tag: 4)
         
         let tabController: UITabBarController = {

@@ -146,7 +146,7 @@ class MerchDetailViewController: DetailFormViewController {
             self.dismiss(animated: true, completion: nil)
         }
         
-        self.presentPanModal(MerchQtyDetailNavViewController(rootViewController: MerchQtyDetailViewController(currentQty: qty, onSave: handler)))
+        self.presentPanModal(ModalNavigationViewController(rootViewController: MerchQtyDetailViewController(currentQty: qty, onSave: handler), formHeight: .contentHeight(Constants.UI.Sizing.Height.ExLarge)))
     }
     
     private func setup() {

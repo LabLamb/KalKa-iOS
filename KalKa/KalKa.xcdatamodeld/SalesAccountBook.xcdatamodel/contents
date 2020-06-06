@@ -45,6 +45,7 @@
         <relationship name="stockingMerch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Merch" inverseName="restocks" inverseEntity="Merch"/>
     </entity>
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
+        <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="storeName" attributeType="String" defaultValueString="First Store"/>
         <relationship name="customers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Customer" inverseName="store" inverseEntity="Customer"/>
         <relationship name="merchs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Merch" inverseName="store" inverseEntity="Merch"/>
@@ -56,6 +57,6 @@
         <element name="Order" positionX="-63" positionY="27" width="128" height="208"/>
         <element name="OrderItem" positionX="-54" positionY="54" width="128" height="103"/>
         <element name="Restock" positionX="-54" positionY="99" width="128" height="103"/>
-        <element name="Store" positionX="-54" positionY="81" width="128" height="103"/>
+        <element name="Store" positionX="-54" positionY="81" width="128" height="118"/>
     </elements>
 </model>
