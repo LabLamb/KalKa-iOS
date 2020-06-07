@@ -8,7 +8,7 @@ class MembershipFuncButton: CustomView {
     
     lazy var title: UILabel = {
         let result = UILabel()
-        result.font = Constants.UI.Font.Bold.Hero
+        result.font = Constants.UI.Font.Plain.Hero
         result.numberOfLines = 0
         return result
     }()
@@ -46,7 +46,7 @@ class MembershipFuncButton: CustomView {
         self.addSubview(self.title)
         self.title.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.Large)
-            make.right.equalTo(self.snp.centerX).offset(Constants.UI.Spacing.Width.Large)
+//            make.right.equalTo(self.snp.centerX).offset(Constants.UI.Spacing.Width.Large)
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Width.Large)
         }
         

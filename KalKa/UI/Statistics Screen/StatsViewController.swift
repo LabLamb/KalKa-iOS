@@ -6,10 +6,19 @@ import SnapKit
 
 class StatsViewController: UIViewController {
     
-    let standardStatsCardHeight = Constants.UI.Sizing.Height.Medium
+    let scrollView = UIScrollView()
+    
+    lazy var statsCardList: UIStackView = {
+        let result = UIStackView()
+        result.axis = .vertical
+        result.alignment = .center
+        result.distribution = .fill
+        result.spacing = Constants.UI.Spacing.Height.Medium
+        return result
+    }()
     
     lazy var recentPerformanceCard: UIView = {
-        return MonthlyPerformanceCard(lastMonthSales: "$\(5434342.toLocalCurrency(fractDigits: 2) ?? "")", currentMonthSales: "$\(123343.toLocalCurrency(fractDigits: 2) ?? "")")
+        return MonthlyPerformanceCard(lastMonthSales: 5434342.23, currentMonthSales: 123343.54)
     }()
     
     lazy var bestSellerCard: UIView = {
@@ -31,40 +40,30 @@ class StatsViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.addSubview(self.recentPerformanceCard)
-        self.recentPerformanceCard.snp.makeConstraints { make in
-            make.top.equalTo(self.view.layoutMarginsGuide.snp.top).offset(Constants.UI.Spacing.Height.Medium)
-            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(self.standardStatsCardHeight)
+        self.view.addSubview(self.scrollView)
+        self.scrollView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
         }
-        self.recentPerformanceCard.backgroundColor = .primary
-        self.recentPerformanceCard.clipsToBounds = true
         
-        self.view.addSubview(self.bestSellerCard)
-        self.bestSellerCard.snp.makeConstraints { make in
-            make.top.equalTo(self.recentPerformanceCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium)
-            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(self.standardStatsCardHeight)
+        self.scrollView.addSubview(self.statsCardList)
+        self.statsCardList.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.equalTo(self.view.snp.left).offset(Constants.UI.Spacing.Width.Medium)
+            make.right.equalTo(self.view.snp.right).offset(-Constants.UI.Spacing.Width.Medium)
         }
-        self.bestSellerCard.backgroundColor = .primary
-        self.bestSellerCard.clipsToBounds = true
+
+        self.statsCardList.addArrangedSubview(self.recentPerformanceCard)
+        self.statsCardList.addArrangedSubview(self.bestSellerCard)
+        self.statsCardList.addArrangedSubview(self.topClientCard)
         
-        self.view.addSubview(self.topClientCard)
-        self.topClientCard.snp.makeConstraints { make in
-            make.top.equalTo(self.bestSellerCard.snp.bottom).offset(Constants.UI.Spacing.Height.Medium)
-            make.left.equalTo(self.view).offset(Constants.UI.Spacing.Width.Medium)
-            make.right.equalTo(self.view).offset(-Constants.UI.Spacing.Width.Medium)
-            make.height.equalTo(self.standardStatsCardHeight)
-        }
-        self.topClientCard.backgroundColor = .primary
-        self.topClientCard.clipsToBounds = true
-        
-        DispatchQueue.main.async {
-            self.recentPerformanceCard.layer.cornerRadius = self.recentPerformanceCard.frame.width / 24
-            self.bestSellerCard.layer.cornerRadius = self.bestSellerCard.frame.width / 24
-            self.topClientCard.layer.cornerRadius = self.topClientCard.frame.width / 24
-        }
+        self.statsCardList.arrangedSubviews.forEach({ view in
+            view.snp.makeConstraints { make in
+                make.width.equalToSuperview()
+            }
+            view.clipsToBounds = true
+            DispatchQueue.main.async {
+                view.layer.cornerRadius = view.frame.width / 24
+            }
+        })
     }
 }
