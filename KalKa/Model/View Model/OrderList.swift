@@ -102,7 +102,6 @@ class OrderList: ViewModel {
         } else {
             return try? self.persistentContainer.viewContext.fetch(fetchRequest) as? [Order]
         }
-        
     }
     
     func getDetails(id: String) -> ModelDetails? {

@@ -35,16 +35,6 @@ class MonthlyPerformanceCard: CustomView {
         return CGSize(width: 0, height: Constants.UI.Sizing.Height.Small)
     }
     
-    init(lastMonthSales: Double,
-         currentMonthSales: Double) {
-        super.init()
-        
-        self.lastMonthSales = lastMonthSales
-        self.currentMonthSales = currentMonthSales
-        
-        CADisplayLink(target: self, selector: #selector(self.updateSalesNumbers)).add(to: .main, forMode: .default)
-    }
-    
     @objc private func updateSalesNumbers() {
         if self.lastMonthSalesCounter < self.lastMonthSales {
             self.lastMonthSalesCounter += self.lastMonthSales / 45
@@ -67,10 +57,6 @@ class MonthlyPerformanceCard: CustomView {
     
     func updateCurrentMonthSales(sales: Double) {
         self.currentMonth.salesAmountLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func setupLayout() {
@@ -97,6 +83,10 @@ class MonthlyPerformanceCard: CustomView {
             make.right.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
         }
+    }
+    
+    override func setupData() {
+        CADisplayLink(target: self, selector: #selector(self.updateSalesNumbers)).add(to: .main, forMode: .default)
     }
     
 }

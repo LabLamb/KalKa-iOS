@@ -30,6 +30,7 @@
 		D24571AB248A812800AF6891 /* MonthlyPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */; };
 		D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AC248A820800AF6891 /* CustomViewInterface.swift */; };
 		D24571AF248A838500AF6891 /* MonthlyPerformanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */; };
+		D24571B2248D34FA00AF6891 /* BestSellerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571B1248D34FA00AF6891 /* BestSellerCard.swift */; };
 		D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E44ED24129EEC00476B23 /* ModelDetails.swift */; };
 		D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */; };
 		D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945123F6AF250015B6E6 /* ViewModel.swift */; };
@@ -148,6 +149,7 @@
 		D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceView.swift; sourceTree = "<group>"; };
 		D24571AC248A820800AF6891 /* CustomViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewInterface.swift; sourceTree = "<group>"; };
 		D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceCard.swift; sourceTree = "<group>"; };
+		D24571B1248D34FA00AF6891 /* BestSellerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCard.swift; sourceTree = "<group>"; };
 		D25E44ED24129EEC00476B23 /* ModelDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetails.swift; sourceTree = "<group>"; };
 		D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		D25E945123F6AF250015B6E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			children = (
 				D24571A72487A49800AF6891 /* StatsViewController.swift */,
 				D24571B0248A839E00AF6891 /* Monthly Performance */,
+				D24571B1248D34FA00AF6891 /* BestSellerCard.swift */,
 			);
 			path = "Statistics Screen";
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				D2DACB02240197BF005FDE3E /* Order+CoreDataClass.swift in Sources */,
 				D2727B9524041766004CBB7E /* OrderDetailsConfigurator.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
+				D24571B2248D34FA00AF6891 /* BestSellerCard.swift in Sources */,
 				D2A2F045240A2E6600272FC0 /* OrderItemDetails.swift in Sources */,
 				D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */,
 				D297919E240BE331007BD3E5 /* OrderItemAddBtn.swift in Sources */,

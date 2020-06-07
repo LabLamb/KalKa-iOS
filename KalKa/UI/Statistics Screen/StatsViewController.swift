@@ -17,8 +17,8 @@ class StatsViewController: UIViewController {
         return result
     }()
     
-    lazy var recentPerformanceCard: UIView = {
-        return MonthlyPerformanceCard(lastMonthSales: 5434342.23, currentMonthSales: 123343.54)
+    lazy var recentPerformanceCard: MonthlyPerformanceCard = {
+        return MonthlyPerformanceCard()
     }()
     
     lazy var bestSellerCard: UIView = {
@@ -37,6 +37,7 @@ class StatsViewController: UIViewController {
         self.view.backgroundColor = .background
         self.navigationItem.title = .stats
         self.setup()
+        self.calculateAndUpdateData()
     }
     
     private func setup() {
@@ -51,7 +52,7 @@ class StatsViewController: UIViewController {
             make.left.equalTo(self.view.snp.left).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view.snp.right).offset(-Constants.UI.Spacing.Width.Medium)
         }
-
+        
         self.statsCardList.addArrangedSubview(self.recentPerformanceCard)
         self.statsCardList.addArrangedSubview(self.bestSellerCard)
         self.statsCardList.addArrangedSubview(self.topClientCard)
@@ -65,5 +66,21 @@ class StatsViewController: UIViewController {
                 view.layer.cornerRadius = view.frame.width / 24
             }
         })
+    }
+    
+    private func calculateAndUpdateData() {
+        let orderList = OrderList()
+        
+        let predicate = NSPredicate(format: "openedOn >= %@ AND openedOn <= %@ AND isClosed = %@", argumentArray: [Date().startOfMonth, Date().endOfMonth, true])
+        let orders = orderList.query(clause: predicate) as? [Order]
+        let sales = orders?.reduce(0.00, { result, order in
+            
+            let orderSales = order.items?.compactMap({ orderItem in
+                return orderItem.price * Double(orderItem.qty)
+            }).reduce(0.00, +) ?? 0.00
+            
+            return (result ?? 0.00) + orderSales
+        })
+        self.recentPerformanceCard.currentMonthSales = sales ?? 0.00
     }
 }
