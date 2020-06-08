@@ -48,7 +48,8 @@ class StatsViewController: UIViewController {
     private func setup() {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.bottom.left.right.equalToSuperview()
         }
         
         self.scrollView.addSubview(self.statsCardList)
@@ -61,7 +62,7 @@ class StatsViewController: UIViewController {
         self.statsCardList.addArrangedSubview(self.recentPerformanceCard)
         self.statsCardList.addArrangedSubview(self.bestSellerCard)
         self.statsCardList.addArrangedSubview(self.topClientCard)
-        self.statsCardList.addArrangedSubview(self.moreBtn)
+//        self.statsCardList.addArrangedSubview(self.moreBtn)
         
         self.statsCardList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in

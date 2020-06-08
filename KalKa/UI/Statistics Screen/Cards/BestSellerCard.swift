@@ -13,6 +13,15 @@ class BestSellerCard: CustomView {
         return result
     }()
     
+    lazy var productName: UILabel = {
+        let result = UILabel()
+        result.text = "Delux Shampoo"
+        result.textAlignment = .left
+        result.font = Constants.UI.Font.Bold.Small
+        result.textColor = .accent
+        return result
+    }()
+    
     lazy var cardLabel: UILabel = {
         let result = UILabel()
         result.text = .bestSeller
@@ -22,11 +31,11 @@ class BestSellerCard: CustomView {
         return result
     }()
     
-    var sales = 0.00
+    var sales = 86400.00
     var salesCounter = 0.00
     
-    var quantity = 0
-    var quantityCounter = 0
+    var quantity = 5487.00
+    var quantityCounter = 0.00
     
     lazy var salesView: PerformanceCounter = {
         let result = PerformanceCounter(title: .sales)
@@ -52,9 +61,9 @@ class BestSellerCard: CustomView {
 
         if self.quantityCounter < self.quantity {
             self.quantityCounter += self.quantity / 45
-            self.updateQty(sales: self.quantityCounter)
+            self.updateQty(qty: self.quantityCounter)
         } else {
-            self.updateQty(sales: self.quantity)
+            self.updateQty(qty: self.quantity)
         }
     }
     
@@ -62,8 +71,8 @@ class BestSellerCard: CustomView {
         self.salesView.counterLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
     }
 
-    func updateQty(sales: Int) {
-        self.quantityView.counterLabel.text = String(quantity)
+    func updateQty(qty: Double) {
+        self.quantityView.counterLabel.text = qty.toLocalCurrency(fractDigits: 0) ?? ""
     }
     
     override func setupLayout() {
@@ -75,9 +84,15 @@ class BestSellerCard: CustomView {
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.ExLarge)
         }
         
+        self.addSubview(self.productName)
+        self.productName.snp.makeConstraints { make in
+            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.ExLarge)
+        }
+        
         self.addSubview(self.salesView)
         self.salesView.snp.makeConstraints { make in
-            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.productName.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.left.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
@@ -85,7 +100,7 @@ class BestSellerCard: CustomView {
         
         self.addSubview(self.quantityView)
         self.quantityView.snp.makeConstraints { make in
-            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.productName.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.right.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
@@ -94,8 +109,8 @@ class BestSellerCard: CustomView {
         self.addSubview(self.productImage)
         self.productImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.height.equalTo(self.cardLabel.font.lineHeight)
-            make.width.equalTo(self.cardLabel.font.lineHeight)
+            make.height.equalTo(self.cardLabel.font.lineHeight + self.productName.font.lineHeight + Constants.UI.Spacing.Height.ExSmall)
+            make.width.equalTo(self.productImage.snp.height)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Large)
         }
         DispatchQueue.main.async {

@@ -109,7 +109,7 @@ class InventoryCell: CustomCell {
         self.nameLabel.text = data.name
         self.remarkLabel.text = data.remark
         self.priceLabel.text = "$\(data.price.toLocalCurrency(fractDigits: 2) ?? "")"
-        self.qtyLabel.text = data.qty.toLocalCurrency() ?? ""
+        self.qtyLabel.text = data.qty.toLocalCurrency(fractDigits: 0) ?? ""
     }
     
     override func layoutSubviews() {

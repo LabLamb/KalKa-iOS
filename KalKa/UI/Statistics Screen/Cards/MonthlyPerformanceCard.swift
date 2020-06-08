@@ -15,7 +15,7 @@ class MonthlyPerformanceCard: CustomView {
         return result
     }()
     
-    var lastMonthSales = 0.00
+    var lastMonthSales = 51400.00
     var lastMonthSalesCounter = 0.00
     
     var currentMonthSales = 0.00

@@ -23,6 +23,8 @@
 		D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */; };
 		D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D7242A5B05004F28BC /* RestockDetails.swift */; };
 		D2329AA4248E01EC00AC90F6 /* TopClientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */; };
+		D2329AA6248E0FE500AC90F6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA5248E0FE500AC90F6 /* UserSession.swift */; };
+		D2329AA8248E11FC00AC90F6 /* MemberShipReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */; };
 		D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */; };
 		D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2C23F57E0600F93973 /* Date+String.swift */; };
 		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
@@ -144,6 +146,8 @@
 		D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D22C74D7242A5B05004F28BC /* RestockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockDetails.swift; sourceTree = "<group>"; };
 		D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopClientCard.swift; sourceTree = "<group>"; };
+		D2329AA5248E0FE500AC90F6 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShipReminderViewController.swift; sourceTree = "<group>"; };
 		D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
 		D2364E2C23F57E0600F93973 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
@@ -310,6 +314,16 @@
 			path = "Inventory Screen";
 			sourceTree = "<group>";
 		};
+		D2329AA9248E4D5100AC90F6 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */,
+				D24571B1248D34FA00AF6891 /* BestSellerCard.swift */,
+				D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		D2364E2123F54D6600F93973 /* Customer Details Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,19 +346,9 @@
 			children = (
 				D24571A72487A49800AF6891 /* StatsViewController.swift */,
 				D243DCFA248DF69C00CCA389 /* Shared */,
-				D24571B0248A839E00AF6891 /* Monthly Performance */,
-				D24571B1248D34FA00AF6891 /* BestSellerCard.swift */,
-				D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */,
+				D2329AA9248E4D5100AC90F6 /* Cards */,
 			);
 			path = "Statistics Screen";
-			sourceTree = "<group>";
-		};
-		D24571B0248A839E00AF6891 /* Monthly Performance */ = {
-			isa = PBXGroup;
-			children = (
-				D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */,
-			);
-			path = "Monthly Performance";
 			sourceTree = "<group>";
 		};
 		D25E945323F6C1860015B6E6 /* Views */ = {
@@ -466,6 +470,7 @@
 				D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */,
 				D2C79DAB243E0F8100F94AC9 /* MembershipFuncButton.swift */,
 				D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */,
+				D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */,
 			);
 			path = "Membership Screen";
 			sourceTree = "<group>";
@@ -497,8 +502,9 @@
 			children = (
 				D2C7D85123F13333004C66B4 /* AppDelegate.swift */,
 				D2F6007723F172DD003AAA58 /* Constants.swift */,
-				D26BF52E23F28FEE00EDB259 /* CoreStack.swift */,
 				D2C3E8B123F3A16B00C0F33B /* Enums.swift */,
+				D26BF52E23F28FEE00EDB259 /* CoreStack.swift */,
+				D2329AA5248E0FE500AC90F6 /* UserSession.swift */,
 				D2A559FD23F157E700022E9A /* Model */,
 				D22AF8CA23F144B100186AA4 /* UI */,
 				D2F6008723F1B16A003AAA58 /* Extension */,
@@ -950,6 +956,7 @@
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2C79DAC243E0F8100F94AC9 /* MembershipFuncButton.swift in Sources */,
 				D2DACB01240197BF005FDE3E /* Order+CoreDataProperties.swift in Sources */,
+				D2329AA6248E0FE500AC90F6 /* UserSession.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2D6BA7E23F52DE8007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
 				D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */,
@@ -967,6 +974,7 @@
 				D2E7096124423FB700FA3532 /* ModalNavigationViewController.swift in Sources */,
 				D2D6BA8323F52DF5007894FD /* Customer+CoreDataProperties.swift in Sources */,
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
+				D2329AA8248E11FC00AC90F6 /* MemberShipReminderViewController.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 				D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */,
 				D29791A0240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift in Sources */,

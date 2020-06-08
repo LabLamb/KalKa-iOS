@@ -13,6 +13,15 @@ class TopClientCard: CustomView {
         return result
     }()
     
+    lazy var clientName: UILabel = {
+        let result = UILabel()
+        result.text = "John Smith"
+        result.textAlignment = .left
+        result.font = Constants.UI.Font.Bold.Small
+        result.textColor = .accent
+        return result
+    }()
+    
     lazy var cardLabel: UILabel = {
         let result = UILabel()
         result.text = .topClient
@@ -22,11 +31,11 @@ class TopClientCard: CustomView {
         return result
     }()
     
-    var spending = 0.00
+    var spending = 3500.00
     var spendingCounter = 0.00
     
-    var orders = 0
-    var ordersCounter = 0
+    var orders = 24.00
+    var ordersCounter = 0.00
     
     lazy var spendingView: PerformanceCounter = {
         let result = PerformanceCounter(title: .spent)
@@ -45,25 +54,25 @@ class TopClientCard: CustomView {
     @objc private func updateNums() {
         if self.spendingCounter < self.spending {
             self.spendingCounter += self.spending / 45
-            self.updatespending(spending: self.spendingCounter)
+            self.updateSpending(spending: self.spendingCounter)
         } else {
-            self.updatespending(spending: self.spending)
+            self.updateSpending(spending: self.spending)
         }
 
         if self.ordersCounter < self.orders {
             self.ordersCounter += self.orders / 45
-            self.updateQty(spending: self.ordersCounter)
+            self.updateOrders(orders: self.ordersCounter)
         } else {
-            self.updateQty(spending: self.orders)
+            self.updateOrders(orders: self.orders)
         }
     }
     
-    func updatespending(spending: Double) {
+    func updateSpending(spending: Double) {
         self.spendingView.counterLabel.text = "$\(spending.toLocalCurrency(fractDigits: 2) ?? "")"
     }
 
-    func updateQty(spending: Int) {
-        self.ordersView.counterLabel.text = String(orders)
+    func updateOrders(orders: Double) {
+        self.ordersView.counterLabel.text = orders.toLocalCurrency(fractDigits: 0) ?? ""
     }
     
     override func setupLayout() {
@@ -74,10 +83,16 @@ class TopClientCard: CustomView {
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.ExLarge)
         }
+
+        self.addSubview(self.clientName)
+        self.clientName.snp.makeConstraints { make in
+            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.ExSmall)
+            make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.ExLarge)
+        }
         
         self.addSubview(self.spendingView)
         self.spendingView.snp.makeConstraints { make in
-            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.clientName.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.left.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
@@ -85,7 +100,7 @@ class TopClientCard: CustomView {
         
         self.addSubview(self.ordersView)
         self.ordersView.snp.makeConstraints { make in
-            make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
+            make.top.equalTo(self.clientName.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.right.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
@@ -94,8 +109,8 @@ class TopClientCard: CustomView {
         self.addSubview(self.clientImage)
         self.clientImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
-            make.height.equalTo(self.cardLabel.font.lineHeight)
-            make.width.equalTo(self.cardLabel.font.lineHeight)
+            make.height.equalTo(self.cardLabel.font.lineHeight + self.clientName.font.lineHeight + Constants.UI.Spacing.Height.ExSmall)
+            make.width.equalTo(self.clientImage.snp.height)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Large)
         }
         DispatchQueue.main.async {

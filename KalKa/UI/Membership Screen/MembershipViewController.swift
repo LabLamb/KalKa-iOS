@@ -26,7 +26,6 @@ class MembershipViewController: UIViewController {
         result.isUserInteractionEnabled = true
         
         result.backgroundColor = .primary
-//        result.isEnabled = true
         
         return result
     }()
@@ -74,10 +73,17 @@ class MembershipViewController: UIViewController {
         self.setup()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.membership.icon.tintColor = UserSession.shared.isPremium ? .gold : .buttonIcon
+        self.statsButton.isEnabled = UserSession.shared.isPremium
+        self.storeButton.isEnabled = UserSession.shared.isPremium
+    }
+    
     private func setup() {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { make in
-            make.top.bottom.left.right.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.bottom.left.right.equalToSuperview()
         }
         
         self.scrollView.addSubview(self.functionList)
@@ -86,7 +92,7 @@ class MembershipViewController: UIViewController {
             make.left.equalTo(self.view.snp.left).offset(Constants.UI.Spacing.Width.Medium)
             make.right.equalTo(self.view.snp.right).offset(-Constants.UI.Spacing.Width.Medium)
         }
-
+        
         self.functionList.addArrangedSubview(self.membership)
         self.functionList.addArrangedSubview(self.statsButton)
         self.functionList.addArrangedSubview(self.storeButton)
@@ -109,9 +115,25 @@ class MembershipViewController: UIViewController {
     }
     
     @objc func navToStat() {
-        self.navigationController?.pushViewController(StatsViewController(), animated: true)
+        if self.statsButton.isEnabled {
+            self.navigationController?.pushViewController(StatsViewController(), animated: true)
+        } else {
+            self.membershipReminderPopup()
+        }
     }
     
-    @objc func navToStore() {}
+    @objc func navToStore() {
+        if self.storeButton.isEnabled {
+            self.navigationController?.pushViewController(UIViewController(), animated: true)
+        } else {
+            self.membershipReminderPopup()
+        }
+    }
+    
+    private func membershipReminderPopup() {
+        self.presentPanModal(ModalNavigationViewController(rootViewController: MemberShipReminderViewController(),
+                                                           formHeight: .contentHeight(Constants.UI.Sizing.Height.Large)))
+    }
     
 }
+
