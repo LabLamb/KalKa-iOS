@@ -6,6 +6,7 @@ target 'KalKa' do
   pod 'IQKeyboardManagerSwift'
   pod 'PNPForm', :git => 'https://github.com/LabLamb/PNPForm.git'
   pod 'PanModal'
+  pod 'SwiftDate'
 
   target 'KalKaTests' do
     inherit! :search_paths

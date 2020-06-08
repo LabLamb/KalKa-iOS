@@ -8,7 +8,7 @@ class MonthlyPerformanceCard: CustomView {
     
     lazy var cardLabel: UILabel = {
         let result = UILabel()
-        result.text = "Sales"
+        result.text = .sales
         result.textAlignment = .left
         result.font = Constants.UI.Font.Bold.Hero
         result.textColor = .text
