@@ -51,6 +51,7 @@ class MembershipViewController: UIViewController {
         result.isUserInteractionEnabled = true
         
         result.backgroundColor = .primary
+        result.isEnabled = false
         
         return result
     }()
@@ -92,7 +93,7 @@ class MembershipViewController: UIViewController {
         
         self.functionList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in
-                make.height.equalTo(Constants.UI.Sizing.Height.Medium * 0.75)
+                make.height.equalTo(Constants.UI.Sizing.Height.Small * 1.5)
                 make.width.equalToSuperview()
             }
             view.clipsToBounds = true

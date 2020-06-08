@@ -4,37 +4,37 @@
 
 import SnapKit
 
-class BestSellerCard: CustomView {
+class TopClientCard: CustomView {
     
-    lazy var productImage: UIImageView = {
+    lazy var clientImage: UIImageView = {
         let result = UIImageView()
         result.backgroundColor = .accent
-        result.image = #imageLiteral(resourceName: "MerchDefault")
+        result.image = #imageLiteral(resourceName: "AvatarDefault")
         return result
     }()
     
     lazy var cardLabel: UILabel = {
         let result = UILabel()
-        result.text = .bestSeller
+        result.text = .topClient
         result.textAlignment = .left
         result.font = Constants.UI.Font.Bold.Hero
         result.textColor = .text
         return result
     }()
     
-    var sales = 0.00
-    var salesCounter = 0.00
+    var spending = 0.00
+    var spendingCounter = 0.00
     
-    var quantity = 0
-    var quantityCounter = 0
+    var orders = 0
+    var ordersCounter = 0
     
-    lazy var salesView: PerformanceCounter = {
-        let result = PerformanceCounter(title: .sales)
+    lazy var spendingView: PerformanceCounter = {
+        let result = PerformanceCounter(title: .spent)
         return result
     }()
     
-    lazy var quantityView: PerformanceCounter = {
-        let result = PerformanceCounter(title: .quantity)
+    lazy var ordersView: PerformanceCounter = {
+        let result = PerformanceCounter(title: .orders)
         return result
     }()
     
@@ -43,27 +43,27 @@ class BestSellerCard: CustomView {
     }
     
     @objc private func updateNums() {
-        if self.salesCounter < self.sales {
-            self.salesCounter += self.sales / 45
-            self.updateSales(sales: self.salesCounter)
+        if self.spendingCounter < self.spending {
+            self.spendingCounter += self.spending / 45
+            self.updatespending(spending: self.spendingCounter)
         } else {
-            self.updateSales(sales: self.sales)
+            self.updatespending(spending: self.spending)
         }
 
-        if self.quantityCounter < self.quantity {
-            self.quantityCounter += self.quantity / 45
-            self.updateQty(sales: self.quantityCounter)
+        if self.ordersCounter < self.orders {
+            self.ordersCounter += self.orders / 45
+            self.updateQty(spending: self.ordersCounter)
         } else {
-            self.updateQty(sales: self.quantity)
+            self.updateQty(spending: self.orders)
         }
     }
     
-    func updateSales(sales: Double) {
-        self.salesView.counterLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
+    func updatespending(spending: Double) {
+        self.spendingView.counterLabel.text = "$\(spending.toLocalCurrency(fractDigits: 2) ?? "")"
     }
 
-    func updateQty(sales: Int) {
-        self.quantityView.counterLabel.text = String(quantity)
+    func updateQty(spending: Int) {
+        self.ordersView.counterLabel.text = String(orders)
     }
     
     override func setupLayout() {
@@ -75,32 +75,32 @@ class BestSellerCard: CustomView {
             make.left.equalToSuperview().offset(Constants.UI.Spacing.Width.ExLarge)
         }
         
-        self.addSubview(self.salesView)
-        self.salesView.snp.makeConstraints { make in
+        self.addSubview(self.spendingView)
+        self.spendingView.snp.makeConstraints { make in
             make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.left.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
         }
         
-        self.addSubview(self.quantityView)
-        self.quantityView.snp.makeConstraints { make in
+        self.addSubview(self.ordersView)
+        self.ordersView.snp.makeConstraints { make in
             make.top.equalTo(self.cardLabel.snp.bottom).offset(Constants.UI.Spacing.Height.Small)
             make.bottom.equalToSuperview().offset(-Constants.UI.Spacing.Height.Medium)
             make.right.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2)
         }
         
-        self.addSubview(self.productImage)
-        self.productImage.snp.makeConstraints { make in
+        self.addSubview(self.clientImage)
+        self.clientImage.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.height.equalTo(self.cardLabel.font.lineHeight)
             make.width.equalTo(self.cardLabel.font.lineHeight)
             make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Large)
         }
         DispatchQueue.main.async {
-            self.productImage.clipsToBounds = true
-            self.productImage.layer.cornerRadius = self.productImage.frame.width / 2
+            self.clientImage.clipsToBounds = true
+            self.clientImage.layer.cornerRadius = self.clientImage.frame.width / 2
         }
     }
     

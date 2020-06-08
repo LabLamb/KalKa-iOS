@@ -21,19 +21,15 @@ class MonthlyPerformanceCard: CustomView {
     var currentMonthSales = 0.00
     var currentMonthSalesCounter = 0.00
     
-    lazy var lastMonth: MonthlyPerformanceView = {
-        let result = MonthlyPerformanceView(period: .lastMonth)
+    lazy var lastMonth: PerformanceCounter = {
+        let result = PerformanceCounter(title: .lastMonth)
         return result
     }()
     
-    lazy var currentMonth: MonthlyPerformanceView = {
-        let result = MonthlyPerformanceView(period: .currentMonth)
+    lazy var currentMonth: PerformanceCounter = {
+        let result = PerformanceCounter(title: .currentMonth)
         return result
     }()
-    
-    override public var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: Constants.UI.Sizing.Height.Small)
-    }
     
     @objc private func updateSalesNumbers() {
         if self.lastMonthSalesCounter < self.lastMonthSales {
@@ -52,11 +48,11 @@ class MonthlyPerformanceCard: CustomView {
     }
     
     func updateLastMonthSales(sales: Double) {
-        self.lastMonth.salesAmountLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
+        self.lastMonth.counterLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
     }
     
     func updateCurrentMonthSales(sales: Double) {
-        self.currentMonth.salesAmountLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
+        self.currentMonth.counterLabel.text = "$\(sales.toLocalCurrency(fractDigits: 2) ?? "")"
     }
     
     override func setupLayout() {

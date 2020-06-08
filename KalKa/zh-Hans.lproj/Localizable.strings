@@ -65,8 +65,11 @@
 "Stores" = "商店";
 "GiveFeedBack" = "给予评分";
 "ExtraFeatures" = "额外功能";
-"MembershipTitle" = "KalKa会藉";
+"MembershipTitle" = "会藉";
 "MembershipDesc" = "加入会员立即开通所有额外功能。";
 "LastMonth" = "上个月";
 "CurrentMonth" = "目前";
 "Sales" = "销售额";
+"BestSeller" = "最畅销";
+"TopClient" = "尊贵客户";
+"Spending" = "消费";

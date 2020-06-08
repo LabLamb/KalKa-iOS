@@ -23,15 +23,19 @@ class StatsViewController: UIViewController {
     }()
     
     lazy var bestSellerCard: UIView = {
-        return UIView()
+        return BestSellerCard()
     }()
     
     lazy var topClientCard: UIView = {
-        return UIView()
+        return TopClientCard()
     }()
     
     lazy var moreBtn: UIButton = {
-        return UIButton()
+        let result = UIButton()
+        result.backgroundColor = .primary
+        result.setTitle("More", for: .normal)
+        result.setTitleColor(.buttonIcon, for: .normal)
+        return result
     }()
     
     override func viewDidLoad() {
@@ -57,6 +61,7 @@ class StatsViewController: UIViewController {
         self.statsCardList.addArrangedSubview(self.recentPerformanceCard)
         self.statsCardList.addArrangedSubview(self.bestSellerCard)
         self.statsCardList.addArrangedSubview(self.topClientCard)
+        self.statsCardList.addArrangedSubview(self.moreBtn)
         
         self.statsCardList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in
@@ -70,6 +75,11 @@ class StatsViewController: UIViewController {
     }
     
     private func updateData() {
+        self.updateRecentPerformance()
+        self.updateBestSeller()
+    }
+    
+    private func updateRecentPerformance() {
         self.updateCurrentSales()
         self.updateLastMonthSales()
     }
@@ -90,5 +100,9 @@ class StatsViewController: UIViewController {
         let sales = SalesCalculator().calculateSalesBetween(startDate: startDate, endDate: endDate)
         
         self.recentPerformanceCard.lastMonthSales = sales
+    }
+    
+    private func updateBestSeller() {
+        
     }
 }
