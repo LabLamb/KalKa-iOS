@@ -226,12 +226,16 @@ class MerchDetailViewController: DetailFormViewController {
     @objc func updateQuantityRow() {
         if let qtyRow = self.inputForm.getRows(withLabelText: .quantity).first,
         let details = self.inventory?.getDetails(id: self.currentId) as? MerchDetails {
-            let restockTotal = self.enteredRestocks.reduce(0, { result, restock in
+
+            let enteredRestockTotal = self.enteredRestocks.reduce(0, { result, restock in
                 return result + restock.restockQty
             })
             
-            let diff = restockTotal + details.qty
-            qtyRow.value = String(diff)
+            let returnedRestockTotal = self.returnedRestocks.reduce(0, { result, restock in
+                return result + restock.restockQty
+            })
+            
+            qtyRow.value = String(enteredRestockTotal - returnedRestockTotal + details.qty)
         }
     }
 }
