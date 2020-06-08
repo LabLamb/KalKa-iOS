@@ -48,8 +48,6 @@ class MerchDetailViewController: DetailFormViewController {
     var enteredRestocks: [RestockDetails] = []
     var returnedRestocks: [RestockDetails] = []
     
-    var didModifyQty = false
-    
     // MARK: - Initializion
     override init(config: DetailsConfiguration) {
         self.inventory = config.viewModel as? Inventory
@@ -141,7 +139,6 @@ class MerchDetailViewController: DetailFormViewController {
             self.inputForm.prefillRows(titleValueMap: [
                 .quantity: String(newQty + restockQty)
             ])
-            self.didModifyQty = true
             self.enteredRestocks.append(RestockDetails(stockTimeStamp: Date(), restockQty: restockQty))
             self.dismiss(animated: true, completion: nil)
         }
@@ -229,13 +226,12 @@ class MerchDetailViewController: DetailFormViewController {
     @objc func updateQuantityRow() {
         if let qtyRow = self.inputForm.getRows(withLabelText: .quantity).first,
         let details = self.inventory?.getDetails(id: self.currentId) as? MerchDetails {
-            if self.didModifyQty {
-                let qtyValueInt = Int(qtyRow.value ?? "0") ?? 0
-                let diff = qtyValueInt + details.qty
-                qtyRow.value = String(diff)
-            } else {
-                qtyRow.value = String(details.qty)
-            }
+            let restockTotal = self.enteredRestocks.reduce(0, { result, restock in
+                return result + restock.restockQty
+            })
+            
+            let diff = restockTotal + details.qty
+            qtyRow.value = String(diff)
         }
     }
 }
