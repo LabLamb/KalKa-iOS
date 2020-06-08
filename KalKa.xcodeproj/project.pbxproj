@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2C23F57E0600F93973 /* Date+String.swift */; };
 		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
 		D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F523F7BE3700B6E955 /* CustomView.swift */; };
+		D243DCF9248DE6BC00CCA389 /* SalesCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */; };
 		D24571A82487A49800AF6891 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571A72487A49800AF6891 /* StatsViewController.swift */; };
 		D24571AB248A812800AF6891 /* MonthlyPerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */; };
 		D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AC248A820800AF6891 /* CustomViewInterface.swift */; };
@@ -145,6 +146,7 @@
 		D2364E2C23F57E0600F93973 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
 		D23778F523F7BE3700B6E955 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesCalculator.swift; sourceTree = "<group>"; };
 		D24571A72487A49800AF6891 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		D24571AA248A812800AF6891 /* MonthlyPerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceView.swift; sourceTree = "<group>"; };
 		D24571AC248A820800AF6891 /* CustomViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewInterface.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				D24571A72487A49800AF6891 /* StatsViewController.swift */,
 				D24571B0248A839E00AF6891 /* Monthly Performance */,
 				D24571B1248D34FA00AF6891 /* BestSellerCard.swift */,
+				D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */,
 			);
 			path = "Statistics Screen";
 			sourceTree = "<group>";
@@ -911,6 +914,7 @@
 				D2A2F043240A2E4000272FC0 /* OrderDetails.swift in Sources */,
 				D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */,
 				D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */,
+				D243DCF9248DE6BC00CCA389 /* SalesCalculator.swift in Sources */,
 				D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */,
 				D28E57A624003B580049D780 /* OrderCell.swift in Sources */,
 				D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */,

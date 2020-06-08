@@ -38,7 +38,7 @@ class StatsViewController: UIViewController {
         self.view.backgroundColor = .background
         self.navigationItem.title = .stats
         self.setup()
-        self.calculateAndUpdateData()
+        self.updateData()
     }
     
     private func setup() {
@@ -69,47 +69,26 @@ class StatsViewController: UIViewController {
         })
     }
     
-    private func calculateAndUpdateData() {
-        self.calculateAndUpdateCurrentSales()
-        self.calculateAndUpdateLastMonthSales()
+    private func updateData() {
+        self.updateCurrentSales()
+        self.updateLastMonthSales()
     }
     
-    private func calculateAndUpdateCurrentSales() {
+    private func updateCurrentSales() {
         let startDate = DateInRegion().dateAtStartOf(.month).date // Current start of month
         let endDate = DateInRegion().dateAtEndOf(.month).date // Current end of month
         
-        let sales = self.calculateSalesBetween(startDate: startDate, endDate: endDate)
+        let sales = SalesCalculator().calculateSalesBetween(startDate: startDate, endDate: endDate)
         
         self.recentPerformanceCard.currentMonthSales = sales
     }
     
-    private func calculateAndUpdateLastMonthSales() {
+    private func updateLastMonthSales() {
         let startDate = (DateInRegion().dateAtStartOf(.month) - 1.months).date // Previous start of month
         let endDate = (DateInRegion().dateAtEndOf(.month) - 1.months).date // Previous end of month
         
-        let sales = self.calculateSalesBetween(startDate: startDate, endDate: endDate)
+        let sales = SalesCalculator().calculateSalesBetween(startDate: startDate, endDate: endDate)
         
         self.recentPerformanceCard.lastMonthSales = sales
-    }
-    
-    private func calculateSalesBetween(startDate: Date, endDate: Date) -> Double {
-        let orders = self.queryClosedOrderBetween(startDate: startDate, endDate: endDate)
-        let sales = orders?.reduce(0.00, { result, order in
-            return result + self.accumulateSales(order: order)
-        }) ?? 0.00
-        return sales
-    }
-    
-    private func queryClosedOrderBetween(startDate: Date, endDate: Date) -> [Order]? {
-        let orderList = OrderList()
-        let predicate = NSPredicate(format: "openedOn >= %@ AND openedOn <= %@ AND isClosed = %@", argumentArray: [startDate, endDate, true])
-        return orderList.query(clause: predicate) as? [Order]
-    }
-    
-    private func accumulateSales(order: Order) -> Double {
-        let orderSales = order.items?.compactMap({ orderItem in
-            return orderItem.price * Double(orderItem.qty)
-        }).reduce(0.00, +)
-        return orderSales ?? 0.00
     }
 }

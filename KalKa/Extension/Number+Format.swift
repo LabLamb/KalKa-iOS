@@ -8,6 +8,7 @@ extension NSNumber {
     func toLocalCurrency(fractDigits: Int = 2) -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = fractDigits
         formatter.maximumFractionDigits = fractDigits
         return formatter.string(from: self)
     }
