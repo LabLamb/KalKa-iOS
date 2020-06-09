@@ -4,7 +4,7 @@
 
 import UIKit
 
-class CustomView: UIView {
+class CustomView: UIView, CustomViewInterface {
     
     init() {
         super.init(frame: .zero)

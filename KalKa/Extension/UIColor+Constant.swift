@@ -11,4 +11,5 @@ extension UIColor {
     static let add = UIColor(red: 0.1, green: 0.85, blue: 0.3, alpha:1.0)
     static let primary = UIColor(red:0.2, green:0.21, blue:0.22, alpha:1.0)
     static let accent = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
+    static let gold = UIColor(red:1.00, green:0.84, blue:0.00, alpha:1.0)
 }

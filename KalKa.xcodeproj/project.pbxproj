@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,10 +22,19 @@
 		D22C74D5242A5A5A004F28BC /* Restock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */; };
 		D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */; };
 		D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C74D7242A5B05004F28BC /* RestockDetails.swift */; };
+		D2329AA4248E01EC00AC90F6 /* TopClientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */; };
+		D2329AA6248E0FE500AC90F6 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA5248E0FE500AC90F6 /* UserSession.swift */; };
+		D2329AA8248E11FC00AC90F6 /* MemberShipReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */; };
 		D2364E2723F54D6600F93973 /* CustomerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */; };
 		D2364E2D23F57E0600F93973 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2364E2C23F57E0600F93973 /* Date+String.swift */; };
 		D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */; };
 		D23778F623F7BE3700B6E955 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23778F523F7BE3700B6E955 /* CustomView.swift */; };
+		D243DCF9248DE6BC00CCA389 /* SalesCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */; };
+		D24571A82487A49800AF6891 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571A72487A49800AF6891 /* StatsViewController.swift */; };
+		D24571AB248A812800AF6891 /* PerformanceCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AA248A812800AF6891 /* PerformanceCounter.swift */; };
+		D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AC248A820800AF6891 /* CustomViewInterface.swift */; };
+		D24571AF248A838500AF6891 /* MonthlyPerformanceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */; };
+		D24571B2248D34FA00AF6891 /* BestSellerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24571B1248D34FA00AF6891 /* BestSellerCard.swift */; };
 		D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E44ED24129EEC00476B23 /* ModelDetails.swift */; };
 		D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */; };
 		D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E945123F6AF250015B6E6 /* ViewModel.swift */; };
@@ -136,10 +145,19 @@
 		D22C74D3242A5A5A004F28BC /* Restock+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restock+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D22C74D4242A5A5A004F28BC /* Restock+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restock+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D22C74D7242A5B05004F28BC /* RestockDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockDetails.swift; sourceTree = "<group>"; };
+		D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopClientCard.swift; sourceTree = "<group>"; };
+		D2329AA5248E0FE500AC90F6 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberShipReminderViewController.swift; sourceTree = "<group>"; };
 		D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDetailViewController.swift; sourceTree = "<group>"; };
 		D2364E2C23F57E0600F93973 /* Date+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		D23778F323F75DB500B6E955 /* IconWithTextLabelInside.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithTextLabelInside.swift; sourceTree = "<group>"; };
 		D23778F523F7BE3700B6E955 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesCalculator.swift; sourceTree = "<group>"; };
+		D24571A72487A49800AF6891 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		D24571AA248A812800AF6891 /* PerformanceCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCounter.swift; sourceTree = "<group>"; };
+		D24571AC248A820800AF6891 /* CustomViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewInterface.swift; sourceTree = "<group>"; };
+		D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyPerformanceCard.swift; sourceTree = "<group>"; };
+		D24571B1248D34FA00AF6891 /* BestSellerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCard.swift; sourceTree = "<group>"; };
 		D25E44ED24129EEC00476B23 /* ModelDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDetails.swift; sourceTree = "<group>"; };
 		D25E944D23F6A9DF0015B6E6 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		D25E945123F6AF250015B6E6 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -280,6 +298,7 @@
 				D28E57A424003A810049D780 /* Order Screen */,
 				D2C79DA6243CA58F00F94AC9 /* Membership Screen */,
 				D21514DD241E8A6100BF11BD /* Settings Screen */,
+				D24571A92487A49C00AF6891 /* Statistics Screen */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -295,12 +314,41 @@
 			path = "Inventory Screen";
 			sourceTree = "<group>";
 		};
+		D2329AA9248E4D5100AC90F6 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				D24571AE248A838500AF6891 /* MonthlyPerformanceCard.swift */,
+				D24571B1248D34FA00AF6891 /* BestSellerCard.swift */,
+				D2329AA3248E01EC00AC90F6 /* TopClientCard.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
 		D2364E2123F54D6600F93973 /* Customer Details Screen */ = {
 			isa = PBXGroup;
 			children = (
 				D2364E2323F54D6600F93973 /* CustomerDetailViewController.swift */,
 			);
 			path = "Customer Details Screen";
+			sourceTree = "<group>";
+		};
+		D243DCFA248DF69C00CCA389 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D243DCF8248DE6BC00CCA389 /* SalesCalculator.swift */,
+				D24571AA248A812800AF6891 /* PerformanceCounter.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D24571A92487A49C00AF6891 /* Statistics Screen */ = {
+			isa = PBXGroup;
+			children = (
+				D24571A72487A49800AF6891 /* StatsViewController.swift */,
+				D243DCFA248DF69C00CCA389 /* Shared */,
+				D2329AA9248E4D5100AC90F6 /* Cards */,
+			);
+			path = "Statistics Screen";
 			sourceTree = "<group>";
 		};
 		D25E945323F6C1860015B6E6 /* Views */ = {
@@ -378,6 +426,7 @@
 		D2A55A0123F1584C00022E9A /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 				D2D6BA4F23F522CE007894FD /* CustomerList.swift */,
 				D2A559FF23F1584800022E9A /* Inventory.swift */,
 				D25FD8B324004EC5005E6162 /* OrderList.swift */,
@@ -421,6 +470,7 @@
 				D2C79DA4243CA58400F94AC9 /* MembershipViewController.swift */,
 				D2C79DAB243E0F8100F94AC9 /* MembershipFuncButton.swift */,
 				D2E9BBC8244207AF007CB1AA /* MembershipPurchaseViewController.swift */,
+				D2329AA7248E11FC00AC90F6 /* MemberShipReminderViewController.swift */,
 			);
 			path = "Membership Screen";
 			sourceTree = "<group>";
@@ -452,8 +502,9 @@
 			children = (
 				D2C7D85123F13333004C66B4 /* AppDelegate.swift */,
 				D2F6007723F172DD003AAA58 /* Constants.swift */,
-				D26BF52E23F28FEE00EDB259 /* CoreStack.swift */,
 				D2C3E8B123F3A16B00C0F33B /* Enums.swift */,
+				D26BF52E23F28FEE00EDB259 /* CoreStack.swift */,
+				D2329AA5248E0FE500AC90F6 /* UserSession.swift */,
 				D2A559FD23F157E700022E9A /* Model */,
 				D22AF8CA23F144B100186AA4 /* UI */,
 				D2F6008723F1B16A003AAA58 /* Extension */,
@@ -535,9 +586,9 @@
 		D2D6D98D23F25464003CDFAC /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				D25E945123F6AF250015B6E6 /* ViewModel.swift */,
 				D2D6D98B23F2545E003CDFAC /* Refreshable.swift */,
 				D2727B8B2402D5C3004CBB7E /* DataPicker.swift */,
+				D24571AC248A820800AF6891 /* CustomViewInterface.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -613,6 +664,7 @@
 				D2C7D84B23F13333004C66B4 /* Frameworks */,
 				D2C7D84C23F13333004C66B4 /* Resources */,
 				D21648A32413891B000D2666 /* Adding version number */,
+				EDBC7F40B71791A791D91DBE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -820,6 +872,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EDBC7F40B71791A791D91DBE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KalKa/Pods-KalKa-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -835,12 +904,15 @@
 				D22C74D5242A5A5A004F28BC /* Restock+CoreDataProperties.swift in Sources */,
 				D2727B8E2403E152004CBB7E /* NSManagedObject+Property.swift in Sources */,
 				D2F6007623F1704B003AAA58 /* InventoryCell.swift in Sources */,
+				D2329AA4248E01EC00AC90F6 /* TopClientCard.swift in Sources */,
 				D21320C7240EB8EE006EA462 /* TextFieldWithPrefix.swift in Sources */,
 				D25E44EE24129EEC00476B23 /* ModelDetails.swift in Sources */,
 				D2A55A0023F1584800022E9A /* Inventory.swift in Sources */,
+				D24571AF248A838500AF6891 /* MonthlyPerformanceCard.swift in Sources */,
 				D2F6007823F172DD003AAA58 /* Constants.swift in Sources */,
 				D2D6BA7723F527FA007894FD /* CustomerViewController.swift in Sources */,
 				D25E945623F6C2650015B6E6 /* DetailFormViewController.swift in Sources */,
+				D24571AB248A812800AF6891 /* PerformanceCounter.swift in Sources */,
 				D2D6BA5023F522CE007894FD /* CustomerList.swift in Sources */,
 				D2A2F041240A2E1500272FC0 /* CustomerDetails.swift in Sources */,
 				D25E945223F6AF250015B6E6 /* ViewModel.swift in Sources */,
@@ -853,12 +925,14 @@
 				D2D6BA7623F527FA007894FD /* CustomerCell.swift in Sources */,
 				D2E9BBCC244220EE007CB1AA /* SettingsViewController.swift in Sources */,
 				D22C74D22428FEC5004F28BC /* NewQtyRow.swift in Sources */,
+				D24571A82487A49800AF6891 /* StatsViewController.swift in Sources */,
 				D2727B9324040A07004CBB7E /* UITextField+PlusOrMinus.swift in Sources */,
 				D22C74D6242A5A5A004F28BC /* Restock+CoreDataClass.swift in Sources */,
 				D2D6BA7D23F52DE8007894FD /* OrderItem+CoreDataClass.swift in Sources */,
 				D2A2F043240A2E4000272FC0 /* OrderDetails.swift in Sources */,
 				D28E57A324003A4F0049D780 /* OrderViewController.swift in Sources */,
 				D22C74D8242A5B05004F28BC /* RestockDetails.swift in Sources */,
+				D243DCF9248DE6BC00CCA389 /* SalesCalculator.swift in Sources */,
 				D2E51C742428F77100B34ABD /* MerchQtyDetailViewController.swift in Sources */,
 				D28E57A624003B580049D780 /* OrderCell.swift in Sources */,
 				D2F2EEFC241B9E9000C4471C /* IconWithTextLabel.swift in Sources */,
@@ -870,6 +944,7 @@
 				D2DACB02240197BF005FDE3E /* Order+CoreDataClass.swift in Sources */,
 				D2727B9524041766004CBB7E /* OrderDetailsConfigurator.swift in Sources */,
 				D2044B9223F44C54008DFDB1 /* UIView+Border.swift in Sources */,
+				D24571B2248D34FA00AF6891 /* BestSellerCard.swift in Sources */,
 				D2A2F045240A2E6600272FC0 /* OrderItemDetails.swift in Sources */,
 				D21755AE240C31EB00ADD9EC /* OrderDetailsStatusIcons.swift in Sources */,
 				D297919E240BE331007BD3E5 /* OrderItemAddBtn.swift in Sources */,
@@ -881,6 +956,7 @@
 				D2F6009023F24861003AAA58 /* InventoryHeader.swift in Sources */,
 				D2C79DAC243E0F8100F94AC9 /* MembershipFuncButton.swift in Sources */,
 				D2DACB01240197BF005FDE3E /* Order+CoreDataProperties.swift in Sources */,
+				D2329AA6248E0FE500AC90F6 /* UserSession.swift in Sources */,
 				D2D6D98C23F2545E003CDFAC /* Refreshable.swift in Sources */,
 				D2D6BA7E23F52DE8007894FD /* OrderItem+CoreDataProperties.swift in Sources */,
 				D2A6A75523F91373007E144A /* UIToolbar+Factory.swift in Sources */,
@@ -888,6 +964,7 @@
 				D2DACB072402C9B2005FDE3E /* CustomerDescCard.swift in Sources */,
 				D2044B8E23F43EFE008DFDB1 /* UIImage+Resize.swift in Sources */,
 				D25E944E23F6A9DF0015B6E6 /* SearchTableViewController.swift in Sources */,
+				D24571AD248A820800AF6891 /* CustomViewInterface.swift in Sources */,
 				D22AF8C923F1447800186AA4 /* InventoryViewController.swift in Sources */,
 				D2C7D85223F13333004C66B4 /* AppDelegate.swift in Sources */,
 				D2E9BBC9244207AF007CB1AA /* MembershipPurchaseViewController.swift in Sources */,
@@ -897,6 +974,7 @@
 				D2E7096124423FB700FA3532 /* ModalNavigationViewController.swift in Sources */,
 				D2D6BA8323F52DF5007894FD /* Customer+CoreDataProperties.swift in Sources */,
 				D2C3E8B223F3A16B00C0F33B /* Enums.swift in Sources */,
+				D2329AA8248E11FC00AC90F6 /* MemberShipReminderViewController.swift in Sources */,
 				D26BF52F23F28FEE00EDB259 /* CoreStack.swift in Sources */,
 				D23778F423F75DB500B6E955 /* IconWithTextLabelInside.swift in Sources */,
 				D29791A0240C1EF6007BD3E5 /* IconWithTextLabelUnder.swift in Sources */,

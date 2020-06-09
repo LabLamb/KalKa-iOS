@@ -56,7 +56,7 @@
 "Closeorder" = "设为已完成";
 "DeleteOrder" = "永久删除订单";
 "RestartTakeEffect" = "设置完成，请重启应用以便新设定生效";
-"SysLanguage" = "语言";
+"SysLanguage" = "更改语言";
 "InStock" = "目前仓存";
 "Restock" = "补仓数量";
 "Subtotal" = "小计";
@@ -65,5 +65,12 @@
 "Stores" = "商店";
 "GiveFeedBack" = "给予评分";
 "ExtraFeatures" = "额外功能";
-"MembershipTitle" = "KalKa会藉";
+"MembershipTitle" = "会藉";
 "MembershipDesc" = "加入会员立即开通所有额外功能。";
+"LastMonth" = "上个月";
+"CurrentMonth" = "目前";
+"Sales" = "销售额";
+"BestSeller" = "最畅销";
+"TopClient" = "尊贵客户";
+"Spending" = "消费";
+"Transfer" = "资料传输";

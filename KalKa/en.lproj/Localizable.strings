@@ -56,7 +56,7 @@
 "Closeorder" = "Close order";
 "DeleteOrder" = "Delete order";
 "RestartTakeEffect" = "Saved changes, please restart your application to take effect";
-"SysLanguage" = "Language";
+"SysLanguage" = "Change Language";
 "InStock" = "In stock";
 "Restock" = "Restock";
 "Subtotal" = "Subtotal";
@@ -64,6 +64,13 @@
 "PurchaseMembership" = "Purchase membership";
 "Stores" = "Stores";
 "GiveFeedBack" = "Give feedback";
-"ExtraFeatures" = "Extra";
-"MembershipTitle" = "KalKa Premium";
+"ExtraFeatures" = "Services";
+"MembershipTitle" = "Premium";
 "MembershipDesc" = "Enjoy full access of all extra features in KalKa.";
+"LastMonth" = "Last month";
+"CurrentMonth" = "Current";
+"Sales" = "Sales";
+"BestSeller" = "Best Seller";
+"TopClient" = "Top Client";
+"Spending" = "Spent";
+"Transfer" = "Transfer";
