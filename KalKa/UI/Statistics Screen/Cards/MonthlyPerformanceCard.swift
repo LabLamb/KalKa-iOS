@@ -58,7 +58,7 @@ class MonthlyPerformanceCard: CustomView {
         }
         
         let diff = self.currentMonthSalesCounter - self.lastMonthSalesCounter
-        var sign = "⬆"
+        var sign = "↑"
         if diff > 0 {
             sign = "↑"
             self.diffLabel.textColor = .green
