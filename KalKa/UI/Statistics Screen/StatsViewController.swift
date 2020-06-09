@@ -26,16 +26,8 @@ class StatsViewController: UIViewController {
         return BestSellerCard()
     }()
     
-    lazy var topClientCard: UIView = {
+    lazy var topClientCard: TopClientCard = {
         return TopClientCard()
-    }()
-    
-    lazy var moreBtn: UIButton = {
-        let result = UIButton()
-        result.backgroundColor = .primary
-        result.setTitle("More", for: .normal)
-        result.setTitleColor(.buttonIcon, for: .normal)
-        return result
     }()
     
     override func viewDidLoad() {
@@ -62,7 +54,7 @@ class StatsViewController: UIViewController {
         self.statsCardList.addArrangedSubview(self.recentPerformanceCard)
         self.statsCardList.addArrangedSubview(self.bestSellerCard)
         self.statsCardList.addArrangedSubview(self.topClientCard)
-//        self.statsCardList.addArrangedSubview(self.moreBtn)
+        //        self.statsCardList.addArrangedSubview(self.moreBtn)
         
         self.statsCardList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in
@@ -78,6 +70,7 @@ class StatsViewController: UIViewController {
     private func updateData() {
         self.updateRecentPerformance()
         self.updateBestSeller()
+        self.updateTopClient()
     }
     
     private func updateRecentPerformance() {
@@ -109,5 +102,25 @@ class StatsViewController: UIViewController {
         self.bestSellerCard.productName.text = bestSeller.name
         self.bestSellerCard.sales = bestSeller.sales
         self.bestSellerCard.quantity = Double(bestSeller.sold)
+        
+        let inventory = Inventory()
+        if let merchDet = inventory.getDetails(id: bestSeller.name) as? MerchDetails,
+            let img = merchDet.image {
+            self.bestSellerCard.productImage.image = img
+        }
+    }
+    
+    private func updateTopClient() {
+        let topClient = SalesCalculator().getTopClient()
+        
+        self.topClientCard.clientName.text = topClient.name
+        self.topClientCard.spending = topClient.spent
+        self.topClientCard.orders = Double(topClient.orders)
+        
+        let customerList = CustomerList()
+        if let custDet = customerList.getDetails(id: topClient.name) as? CustomerDetails,
+            let img = custDet.image {
+            self.topClientCard.clientImage.image = img
+        }
     }
 }

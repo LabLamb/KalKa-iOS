@@ -13,6 +13,12 @@ class SalesCalculator {
         var sold: Int
     }
     
+    struct TopClient {
+        let name: String
+        var spent: Double
+        var orders: Int
+    }
+    
     func calculateSalesBetween(startDate: Date, endDate: Date) -> Double {
         let orders = self.queryClosedOrderBetween(startDate: startDate, endDate: endDate)
         let sales = orders?.reduce(0.00, { result, order in
@@ -56,5 +62,27 @@ class SalesCalculator {
         } else {
             return BestSeller(name: .error, sales: 0.00, sold: 0)
         }
+    }
+    
+    func getTopClient() -> TopClient {
+        let customerList = CustomerList()
+        let predicate = NSPredicate(format: "orders.@count > %d", argumentArray: [0])
+        if let customers = customerList.query(clause: predicate) as? [Customer] {
+            let allCust: [TopClient] = customers.compactMap({ cust in
+                let orders = cust.orders
+                let spent = orders.reduce(0, { result, order in
+                    return result + self.accumulateSales(order: order)
+                })
+                return TopClient(name: cust.name, spent: spent, orders: orders.count)
+            })
+            
+            let topCust = allCust.sorted(by: { t1, t2 in
+                t1.spent > t2.spent
+                }).first
+            
+            return topCust ?? TopClient(name: .error, spent: 0.00, orders: 0)
+        }
+        
+        return TopClient(name: .error, spent: 0.00, orders: 0)
     }
 }

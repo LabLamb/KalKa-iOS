@@ -7,7 +7,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="phone" attributeType="String"/>
         <attribute name="remark" attributeType="String" defaultValueString=""/>
-        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="customer" inverseEntity="Order"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Order" inverseName="customer" inverseEntity="Order"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="customers" inverseEntity="Store"/>
     </entity>
     <entity name="Merch" representedClassName="Merch" syncable="YES">
@@ -16,7 +16,7 @@
         <attribute name="price" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="qty" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remark" attributeType="String" defaultValueString=""/>
-        <relationship name="restocks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restock" inverseName="stockingMerch" inverseEntity="Restock"/>
+        <relationship name="restocks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Restock" inverseName="stockingMerch" inverseEntity="Restock"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="merchs" inverseEntity="Store"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
@@ -29,7 +29,7 @@
         <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="remark" optional="YES" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="orders" inverseEntity="Customer"/>
-        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem"/>
         <relationship name="store" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Store" inverseName="orders" inverseEntity="Store"/>
     </entity>
     <entity name="OrderItem" representedClassName="OrderItem" syncable="YES">
@@ -47,9 +47,9 @@
     <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
         <attribute name="openedOn" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="storeName" attributeType="String" defaultValueString="First Store"/>
-        <relationship name="customers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Customer" inverseName="store" inverseEntity="Customer"/>
-        <relationship name="merchs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Merch" inverseName="store" inverseEntity="Merch"/>
-        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Order" inverseName="store" inverseEntity="Order"/>
+        <relationship name="customers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Customer" inverseName="store" inverseEntity="Customer"/>
+        <relationship name="merchs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Merch" inverseName="store" inverseEntity="Merch"/>
+        <relationship name="orders" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Order" inverseName="store" inverseEntity="Order"/>
     </entity>
     <elements>
         <element name="Customer" positionX="-63" positionY="18" width="128" height="163"/>
