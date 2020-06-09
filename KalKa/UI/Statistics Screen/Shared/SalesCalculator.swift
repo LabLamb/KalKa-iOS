@@ -39,7 +39,7 @@ class SalesCalculator {
         }).reduce(0.00, +)
         return orderSales ?? 0.00
     }
-
+    
     func getBestSeller() -> BestSeller {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderItem")
         if let orderItems = try? CoreStack.shared.persistentContainer.viewContext.fetch(fetchRequest) as? [OrderItem] {
@@ -60,7 +60,7 @@ class SalesCalculator {
             
             return bestSeller?.value ?? BestSeller(name: .error, sales: 0.00, sold: 0)
         } else {
-            return BestSeller(name: .error, sales: 0.00, sold: 0)
+            return BestSeller(name: .absent, sales: 0.00, sold: 0)
         }
     }
     
@@ -69,8 +69,9 @@ class SalesCalculator {
         let predicate = NSPredicate(format: "orders.@count > %d", argumentArray: [0])
         if let customers = customerList.query(clause: predicate) as? [Customer] {
             let allCust: [TopClient] = customers.compactMap({ cust in
-                let orders = cust.orders
-                let spent = orders.reduce(0, { result, order in
+                let orders = cust.orders as NSArray
+                let spent = orders.reduce(0.00, { result, order in
+                    guard let order = order as? Order else { return result }
                     return result + self.accumulateSales(order: order)
                 })
                 return TopClient(name: cust.name, spent: spent, orders: orders.count)
@@ -78,11 +79,11 @@ class SalesCalculator {
             
             let topCust = allCust.sorted(by: { t1, t2 in
                 t1.spent > t2.spent
-                }).first
+            }).first
             
-            return topCust ?? TopClient(name: .error, spent: 0.00, orders: 0)
+            return topCust ?? TopClient(name: .absent, spent: 0.00, orders: 0)
         }
         
-        return TopClient(name: .error, spent: 0.00, orders: 0)
+        return TopClient(name: .absent, spent: 0.00, orders: 0)
     }
 }
