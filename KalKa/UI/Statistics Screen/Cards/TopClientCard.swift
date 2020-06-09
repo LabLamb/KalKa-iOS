@@ -31,10 +31,10 @@ class TopClientCard: CustomView {
         return result
     }()
     
-    var spending = 3500.00
+    var spending = 0.00
     var spendingCounter = 0.00
     
-    var orders = 24.00
+    var orders = 0.00
     var ordersCounter = 0.00
     
     lazy var spendingView: PerformanceCounter = {

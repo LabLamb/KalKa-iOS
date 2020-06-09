@@ -31,10 +31,10 @@ class BestSellerCard: CustomView {
         return result
     }()
     
-    var sales = 86400.00
+    var sales = 0.00
     var salesCounter = 0.00
     
-    var quantity = 5487.00
+    var quantity = 0.00
     var quantityCounter = 0.00
     
     lazy var salesView: PerformanceCounter = {

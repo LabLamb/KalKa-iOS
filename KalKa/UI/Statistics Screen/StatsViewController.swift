@@ -22,7 +22,7 @@ class StatsViewController: UIViewController {
         return MonthlyPerformanceCard()
     }()
     
-    lazy var bestSellerCard: UIView = {
+    lazy var bestSellerCard: BestSellerCard = {
         return BestSellerCard()
     }()
     
@@ -104,6 +104,10 @@ class StatsViewController: UIViewController {
     }
     
     private func updateBestSeller() {
-        SalesCalculator().getBestSeller()
+        let bestSeller = SalesCalculator().getBestSeller()
+        
+        self.bestSellerCard.productName.text = bestSeller.name
+        self.bestSellerCard.sales = bestSeller.sales
+        self.bestSellerCard.quantity = Double(bestSeller.sold)
     }
 }
