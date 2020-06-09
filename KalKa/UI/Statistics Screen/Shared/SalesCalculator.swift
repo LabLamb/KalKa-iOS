@@ -58,7 +58,7 @@ class SalesCalculator {
                 return kv1.value.sales > kv2.value.sales
             }).first
             
-            return bestSeller?.value ?? BestSeller(name: .error, sales: 0.00, sold: 0)
+            return bestSeller?.value ?? BestSeller(name: .absent, sales: 0.00, sold: 0)
         } else {
             return BestSeller(name: .absent, sales: 0.00, sold: 0)
         }

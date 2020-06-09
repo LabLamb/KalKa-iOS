@@ -15,7 +15,7 @@ class BestSellerCard: CustomView {
     
     lazy var productName: UILabel = {
         let result = UILabel()
-        result.text = "Delux Shampoo"
+        result.text = .absent
         result.textAlignment = .left
         result.font = Constants.UI.Font.Bold.Small
         result.textColor = .accent
