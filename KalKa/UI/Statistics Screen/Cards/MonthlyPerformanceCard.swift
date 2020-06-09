@@ -59,13 +59,15 @@ class MonthlyPerformanceCard: CustomView {
         
         let diff = self.currentMonthSalesCounter - self.lastMonthSalesCounter
         var sign = "↑"
-        if diff > 0 {
+        
+        if diff >= 0 {
             sign = "↑"
             self.diffLabel.textColor = .green
         } else {
             sign = "↓"
             self.diffLabel.textColor = .red
         }
+        
         self.diffLabel.text = "$\(abs(diff).toLocalCurrency(fractDigits: 2) ?? "0")\(sign) "
     }
     
