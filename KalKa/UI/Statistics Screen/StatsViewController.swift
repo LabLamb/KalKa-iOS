@@ -104,6 +104,6 @@ class StatsViewController: UIViewController {
     }
     
     private func updateBestSeller() {
-        
+        SalesCalculator().getBestSeller()
     }
 }

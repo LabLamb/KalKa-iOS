@@ -55,14 +55,15 @@ class MembershipViewController: UIViewController {
         return result
     }()
     
-    lazy var storesButton: MembershipFuncButton = {
-        let result = MembershipFuncButton(title: .stats, icon: #imageLiteral(resourceName: "Stats").withRenderingMode(.alwaysTemplate))
+    lazy var transferButton: MembershipFuncButton = {
+        let result = MembershipFuncButton(title: .transfer, icon: #imageLiteral(resourceName: "transfer").withRenderingMode(.alwaysTemplate))
         
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.navToStore))
         result.addGestureRecognizer(tapGest)
         result.isUserInteractionEnabled = true
         
         result.backgroundColor = .primary
+        result.isEnabled = false
         
         return result
     }()
@@ -77,6 +78,7 @@ class MembershipViewController: UIViewController {
         self.membership.icon.tintColor = UserSession.shared.isPremium ? .gold : .buttonIcon
         self.statsButton.isEnabled = UserSession.shared.isPremium
         self.storeButton.isEnabled = UserSession.shared.isPremium
+        self.transferButton.isEnabled = UserSession.shared.isPremium
     }
     
     private func setup() {
@@ -96,6 +98,7 @@ class MembershipViewController: UIViewController {
         self.functionList.addArrangedSubview(self.membership)
         self.functionList.addArrangedSubview(self.statsButton)
         self.functionList.addArrangedSubview(self.storeButton)
+        self.functionList.addArrangedSubview(self.transferButton)
         
         self.functionList.arrangedSubviews.forEach({ view in
             view.snp.makeConstraints { make in
@@ -124,6 +127,14 @@ class MembershipViewController: UIViewController {
     
     @objc func navToStore() {
         if self.storeButton.isEnabled {
+            self.navigationController?.pushViewController(UIViewController(), animated: true)
+        } else {
+            self.membershipReminderPopup()
+        }
+    }
+    
+    @objc func navToTransfer() {
+        if self.transferButton.isEnabled {
             self.navigationController?.pushViewController(UIViewController(), animated: true)
         } else {
             self.membershipReminderPopup()

@@ -62,4 +62,5 @@ extension String {
     static let bestSeller = NSLocalizedString("BestSeller", comment: "")
     static let topClient = NSLocalizedString("TopClient", comment: "")
     static let spent = NSLocalizedString("Spending", comment: "")
+    static let transfer = NSLocalizedString("Transfer", comment: "")
 }

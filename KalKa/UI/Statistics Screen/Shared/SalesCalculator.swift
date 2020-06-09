@@ -3,6 +3,8 @@
 //
 
 import Foundation
+import CoreData
+
 class SalesCalculator {
     
     func calculateSalesBetween(startDate: Date, endDate: Date) -> Double {
@@ -24,5 +26,13 @@ class SalesCalculator {
             return orderItem.price * Double(orderItem.qty)
         }).reduce(0.00, +)
         return orderSales ?? 0.00
+    }
+
+    func getBestSeller() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderItem")
+        if let orderItems = try? CoreStack.shared.persistentContainer.viewContext.fetch(fetchRequest) as? [OrderItem] {
+            let grouped = Dictionary(grouping: orderItems, by: { $0.name })
+            print(orderItems.count)
+        }
     }
 }
