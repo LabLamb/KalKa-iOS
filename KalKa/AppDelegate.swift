@@ -62,79 +62,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func createTestData() {
-        let customersDetails_testData = [
-            CustomerDetails(image: nil,
-                            address: "8 Longbranch St. Bethlehem, PA 18015",
-                            lastContacted: Date(), name: "Rocco Pennington", phone: "91239123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "683 Summer Street\nCampbell, CA 95008",
-                            lastContacted: Date(), name: "Keaton Davis", phone: "91239123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "1 E. Belmont Court Valrico, FL 33594",
-                            lastContacted: Date(), name: "Jayson Williams", phone: "91230123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "502 Pineknoll Drive King Of Prussia, PA 19406",
-                            lastContacted: Date(), name: "Sanaa Chandler", phone: "91231123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "7086 NW. Hillcrest Lane Mundelein, IL 60060",
-                            lastContacted: Date(), name: "Tatum Villanueva", phone: "91232123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "151 North College Lane Worcester, MA 01604",
-                            lastContacted: Date(), name: "Keaton Rich", phone: "91233123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "8051 Southampton Street Nazareth, PA 18064",
-                            lastContacted: Date(), name: "Cael Lynch", phone: "91234123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "41 Heather Lane\nReynoldsburg, OH 43068",
-                            lastContacted: Date(), name: "Quinn Waters", phone: "91235123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "8380 Tarkiln Hill Lane\nPainesville, OH 44077",
-                            lastContacted: Date(), name: "Darren Whitehead", phone: "91236123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "540 Jefferson Drive\nClemmons, NC 27012",
-                            lastContacted: Date(), name: "Alisha Garcia", phone: "91237123", orders: nil, remark: ""),
-            CustomerDetails(image: nil,
-                            address: "7618 Elizabeth Street\nEncino, CA 91316",
-                            lastContacted: Date(), name: "Jazlene Stokes", phone: "91238123", orders: nil, remark: "")
-        ]
-        
         let custList = CustomerList()
-        for custDet in customersDetails_testData {
-            custList.add(details: custDet, completion: { _ in })
+        custList.fetch()
+        
+        var customersDetails_testData = [CustomerDetails]()
+        var merchDetails_testData = [MerchDetails]()
+        
+        if custList.items.count == 0 {
+            customersDetails_testData = [
+                CustomerDetails(image: nil,
+                                address: "8 Longbranch St. Bethlehem, PA 18015",
+                                lastContacted: Date(), name: "Rocco Pennington", phone: "91239123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "683 Summer Street\nCampbell, CA 95008",
+                                lastContacted: Date(), name: "Keaton Davis", phone: "91239123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "1 E. Belmont Court Valrico, FL 33594",
+                                lastContacted: Date(), name: "Jayson Williams", phone: "91230123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "502 Pineknoll Drive King Of Prussia, PA 19406",
+                                lastContacted: Date(), name: "Sanaa Chandler", phone: "91231123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "7086 NW. Hillcrest Lane Mundelein, IL 60060",
+                                lastContacted: Date(), name: "Tatum Villanueva", phone: "91232123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "151 North College Lane Worcester, MA 01604",
+                                lastContacted: Date(), name: "Keaton Rich", phone: "91233123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "8051 Southampton Street Nazareth, PA 18064",
+                                lastContacted: Date(), name: "Cael Lynch", phone: "91234123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "41 Heather Lane\nReynoldsburg, OH 43068",
+                                lastContacted: Date(), name: "Quinn Waters", phone: "91235123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "8380 Tarkiln Hill Lane\nPainesville, OH 44077",
+                                lastContacted: Date(), name: "Darren Whitehead", phone: "91236123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "540 Jefferson Drive\nClemmons, NC 27012",
+                                lastContacted: Date(), name: "Alisha Garcia", phone: "91237123", orders: nil, remark: ""),
+                CustomerDetails(image: nil,
+                                address: "7618 Elizabeth Street\nEncino, CA 91316",
+                                lastContacted: Date(), name: "Jazlene Stokes", phone: "91238123", orders: nil, remark: "")
+            ]
+            
+            for custDet in customersDetails_testData {
+                custList.add(details: custDet, completion: { _ in })
+            }
         }
         
-        let merchDetails_testData = [
-            MerchDetails(name: "Shampoo", price: 36.6, qty: 255, remark: "", image: nil, restocks: []),
-            MerchDetails(name: "Soap", price: 12.2, qty: 125, remark: "", image: nil, restocks: []),
-            MerchDetails(name: "Rubber duck", price: 4.2, qty: 1325, remark: "", image: nil, restocks: []),
-            MerchDetails(name: "Towel", price: 76.8, qty: 234, remark: "", image: nil, restocks: []),
-            MerchDetails(name: "Hair tie", price: 1, qty: 4324, remark: "", image: nil, restocks: []),
-            MerchDetails(name: "Mirror", price: 20, qty: 542, remark: "", image: nil, restocks: [])
-        ]
+        
 
         let merchList = Inventory()
-        for merchDet in merchDetails_testData {
-            merchList.add(details: merchDet, completion: { _ in })
+        merchList.fetch()
+        
+        if merchList.items.count == 0 {
+            merchDetails_testData = [
+                       MerchDetails(name: "Shampoo", price: 36.6, qty: 255, remark: "", image: nil, restocks: []),
+                       MerchDetails(name: "Soap", price: 12.2, qty: 125, remark: "", image: nil, restocks: []),
+                       MerchDetails(name: "Rubber duck", price: 4.2, qty: 1325, remark: "", image: nil, restocks: []),
+                       MerchDetails(name: "Towel", price: 76.8, qty: 234, remark: "", image: nil, restocks: []),
+                       MerchDetails(name: "Hair tie", price: 1, qty: 4324, remark: "", image: nil, restocks: []),
+                       MerchDetails(name: "Mirror", price: 20, qty: 542, remark: "", image: nil, restocks: [])
+                   ]
+                   for merchDet in merchDetails_testData {
+                       merchList.add(details: merchDet, completion: { _ in })
+                   }
         }
         
-//        let orderList = OrderList()
-//        
-//        if orderList.getNextId() == "1" {
-//            for i in 0..<10000 {
-//                let randomCustomerName = customersDetails_testData[Int.random(in: 0..<customersDetails_testData.count)].name
-//                var items = [OrderItemDetails]()
-//                
-//                for k in 0..<Int.random(in: 1...5) {
-//                    let ordItmDet = OrderItemDetails(name: merchDetails_testData[k].name, qty: Int32.random(in: 1...10), price: merchDetails_testData[k].price)
-//                    if !items.contains(where: { $0.name == ordItmDet.name }) {
-//                        items.append(ordItmDet)
-//                    }
-//                }
-//                
-//                let orderDetails = OrderDetails(number: orderList.getNextId(), remark: "", openedOn: DateInRegion.randomDate().date, isShipped: true, isPreped: true, isPaid: true, isDeposit: true, isClosed: Int.random(in: 0...10000) == 0 ? false : true, customerName: randomCustomerName, items: items)
-//                orderList.add(details: orderDetails, completion: { _ in })
-//                print(i)
-//            }
-//        }
+        let orderList = OrderList()
+        
+        if orderList.getNextId() == "1" {
+            let startDate = "2020-01-01".toDate(format: "yyyy-MM-dd") ?? Date()
+            for _ in 0..<200 {
+                let randomCustomer = customersDetails_testData.randomElement() ?? customersDetails_testData[0]
+                let randomCustomerName = randomCustomer.name
+                var items = [OrderItemDetails]()
+                
+                for k in 0..<Int.random(in: 1...5) {
+                    let ordItmDet = OrderItemDetails(name: merchDetails_testData[k].name, qty: Int32.random(in: 1...10), price: merchDetails_testData[k].price)
+                    if !items.contains(where: { $0.name == ordItmDet.name }) {
+                        items.append(ordItmDet)
+                    }
+                }
+                
+                let randomDate = DateInRegion.randomDate(between: DateInRegion(startDate, region: .current), and: DateInRegion(Date(), region: .current)).date
+                
+                let orderDetails = OrderDetails(number: orderList.getNextId(), remark: "", openedOn: randomDate, isShipped: true, isPreped: true, isPaid: true, isDeposit: true, isClosed: Int.random(in: 0...200) ==   0 ? false : true, customerName: randomCustomerName, items: items)
+                orderList.add(details: orderDetails, completion: { _ in })
+            }
+        }
     }
 }

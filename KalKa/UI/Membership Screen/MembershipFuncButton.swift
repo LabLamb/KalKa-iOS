@@ -15,7 +15,6 @@ class MembershipFuncButton: CustomView {
     
     lazy var icon: UIImageView = {
         let result = UIImageView()
-        result.alpha = 0.5
         return result
     }()
     
@@ -23,8 +22,10 @@ class MembershipFuncButton: CustomView {
         didSet {
             if self.isEnabled {
                 self.icon.tintColor = .buttonIcon
+                self.icon.alpha = 1
             } else {
                 self.icon.tintColor = .accent
+                self.icon.alpha = 0.5
             }
         }
     }

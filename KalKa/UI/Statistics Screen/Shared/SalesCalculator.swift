@@ -42,6 +42,7 @@ class SalesCalculator {
     
     func getBestSeller() -> BestSeller {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "OrderItem")
+        fetchRequest.predicate = NSPredicate(format: "order.isPaid = %@", argumentArray: [true])
         if let orderItems = try? CoreStack.shared.persistentContainer.viewContext.fetch(fetchRequest) as? [OrderItem] {
             var grouped = Dictionary<String, BestSeller>()
             
@@ -71,7 +72,7 @@ class SalesCalculator {
             let allCust: [TopClient] = customers.compactMap({ cust in
                 let orders = cust.orders as NSArray
                 let spent = orders.reduce(0.00, { result, order in
-                    guard let order = order as? Order else { return result }
+                    guard let order = order as? Order, order.isPaid else { return result }
                     return result + self.accumulateSales(order: order)
                 })
                 return TopClient(name: cust.name, spent: spent, orders: orders.count)
