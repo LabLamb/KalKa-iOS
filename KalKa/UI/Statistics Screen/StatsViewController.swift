@@ -34,6 +34,9 @@ class StatsViewController: UIViewController {
         self.view.backgroundColor = .background
         self.navigationItem.title = .stats
         self.setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.updateData()
     }
     

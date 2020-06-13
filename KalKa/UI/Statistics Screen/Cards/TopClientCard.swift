@@ -111,7 +111,7 @@ class TopClientCard: CustomView {
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.height.equalTo(self.cardLabel.font.lineHeight + self.clientName.font.lineHeight + Constants.UI.Spacing.Height.ExSmall)
             make.width.equalTo(self.clientImage.snp.height)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Large)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.ExLarge)
         }
         DispatchQueue.main.async {
             self.clientImage.clipsToBounds = true

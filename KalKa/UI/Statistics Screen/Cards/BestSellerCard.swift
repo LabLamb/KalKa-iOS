@@ -15,7 +15,7 @@ class BestSellerCard: CustomView {
     
     lazy var productName: UILabel = {
         let result = UILabel()
-        result.text = "Delux Shampoo"
+        result.text = .absent
         result.textAlignment = .left
         result.font = Constants.UI.Font.Bold.Small
         result.textColor = .accent
@@ -111,7 +111,7 @@ class BestSellerCard: CustomView {
             make.top.equalToSuperview().offset(Constants.UI.Spacing.Height.Medium)
             make.height.equalTo(self.cardLabel.font.lineHeight + self.productName.font.lineHeight + Constants.UI.Spacing.Height.ExSmall)
             make.width.equalTo(self.productImage.snp.height)
-            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.Large)
+            make.right.equalToSuperview().offset(-Constants.UI.Spacing.Width.ExLarge)
         }
         DispatchQueue.main.async {
             self.productImage.clipsToBounds = true
